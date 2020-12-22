@@ -1,6 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-<h1 class="test">test</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4 text-center">
+                <h1>
+                    Simple Sourdough
+                </h1>
+                <h3>
+                    Sourdough Shop and Subscription Service
+                </h3>
+                <p class="text-muted main-font pull-right">
+                    <small>(Try saying that 5 times fast!)</small>
+                </p>
+            </div>
+        </div>    
+
 {% endblock %}
