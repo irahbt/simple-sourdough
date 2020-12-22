@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+
+
+body, .main-font{
+       font-family: 'Amatic SC', cursive;
+}
+
+p {
+    font-family: 'Amatic SC', cursive;
+}
+
+.header-container {
+    padding-top: 164px;
+}
+
+.search-custom {
+    position: relative;
+}
+.search-custom input[type=text] {
+    border: none;
+    width: 100%;
+    padding-right: 123px;
+}
+.search-custom  .input-group-prepend {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;z-index:9;
+}
