@@ -27,3 +27,8 @@ p {
     top: 4px;
     bottom: 4px;z-index:9;
 }
+
+.logo-image {
+    height: 150px;
+    width: 150px;
+}
