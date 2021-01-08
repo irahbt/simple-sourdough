@@ -28,17 +28,17 @@
     </a>
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 bg-light" aria-labelledby="navbarDropdown">
         <div class="row">     
-            <ul class="list-inline list-unstyled" aria-labelledby="navbarDropdown">
+            <ul class="list-unstyled" aria-labelledby="navbarDropdown">
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                            <li class="list-inline-item"><a class="dropdown-item" href="#">Product Management</a></li>
-                            <li class="list-inline-item"><a class="dropdown-item" href="#">Recipe Management</a></li>
+                            <li><a class="dropdown-item" href="#">Product Management</a></li>
+                            <li><a class="dropdown-item" href="#">Recipe Management</a></li>
                     {% endif %}
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Profile</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
                 {% else %}
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Login</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Sign Up</a></li>
+                    <li><a class="dropdown-item" href="#">Login</a></li>
+                    <li><a class="dropdown-item" href="#">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
