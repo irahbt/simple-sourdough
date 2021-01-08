@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'simple_sourdough.urls'
+ROOT_URLCONF = 'starter.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-WSGI_APPLICATION = 'simple_sourdough.wsgi.application'
+WSGI_APPLICATION = 'starter.wsgi.application'
 
 
 # Database
