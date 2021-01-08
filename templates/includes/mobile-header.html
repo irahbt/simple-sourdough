@@ -21,24 +21,28 @@
         </div>
     </div>
 </li>
-<li class="list-inline-item dropdown">
+<li class="list-inline-item">
     <a class="nav-link btn p-0 d-block d-lg-none" href="#" role="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         <i class="fas fa-user btn"></i>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        {% if request.user.is_authenticated %}
-             {% if request.user.is_superuser %}
-                    <li><a class="dropdown-item" href="#">Product Management</a></li>
-                    <li><a class="dropdown-item" href="#">Recipe Management</a></li>
-             {% endif %}
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-        {% else %}
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Sign Up</a></li>
-        {% endif %}
-    </ul>
+    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 bg-light">
+        <div class="row">     
+            <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                            <li class="list-inline-item"><a class="dropdown-item" href="#">Product Management</a></li>
+                            <li class="list-inline-item"><a class="dropdown-item" href="#">Recipe Management</a></li>
+                    {% endif %}
+                    <li class="list-inline-item"><a class="dropdown-item" href="#">Profile</a></li>
+                    <li class="list-inline-item"><a class="dropdown-item" href="#">Logout</a></li>
+                {% else %}
+                    <li class="list-inline-item"><a class="dropdown-item" href="#">Login</a></li>
+                    <li class="list-inline-item"><a class="dropdown-item" href="#">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </li>
 <li class="list-inline-item">
     <a class="nav-link d-block d-lg-none btn" href="">
