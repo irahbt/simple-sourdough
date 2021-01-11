@@ -16,11 +16,17 @@
                 <div class="col">
                     <div class="card border-0">
                         {% if product.image %}
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                        {% else %}
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+                            </a>
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title"><strong>{{ product.name }}</strong></h5>
+                            <p class="card-text"><strong>£{{ product.price }}</strong></p>
                         </div>
                     </div>
                 </div>
