@@ -11,7 +11,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-4 g-5">
+        <div class="row row-cols-1 row-cols-md-4 row-cols-sm-3 g-5">
             {% for product in products %}
                 <div class="col">
                     <div class="card border-0">
@@ -20,7 +20,7 @@
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                         {% else %}
-                            <a href="">
+                            <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
                             </a>
                         {% endif %}
