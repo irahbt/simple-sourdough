@@ -11,8 +11,8 @@
                 <div class="row">
                     <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
                         <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
-                        <li class="list-inline-item"><a class="dropdown-item" href="#">Tools</a></li>
-                        <li class="list-inline-item"><a class="dropdown-item" href="#">Ingredients</a></li>
+                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a></li>
+                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,20 +1,27 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 
 def all_products(request):
-    """ A view to return all products """
+    """ A view to return all products, sorting and search queries """
 
     products = Product.objects.all()
     query = None
+    category = None
 
     if request.GET:
+        if 'category' in request.GET:
+            category = request.GET['category'].split(',')
+            products = products.filter(category__name__in=category)
+            category = Category.objects.filter(name__in=category)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "Hmm, you don't appear to have entered any search criteria. Please try again.")
+                messages.error(
+                    request, "Hmm, you don't appear to have entered any search criteria. Please try again.")
                 return redirect(reverse('products'))
 
             queries = Q(
@@ -24,6 +31,7 @@ def all_products(request):
     context = {
         'products': products,
         'search_term': query,
+        'current_category': category,
     }
 
     return render(request, 'products/products.html', context)
