@@ -1,16 +1,16 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="list-inline list-unstyled">
         <li class="list-inline-item">
-            <a class="nav-link text-reset" aria-current="page" href="#">Home</a>
+            <a class="nav-link text-reset" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
         <li class="list-inline-item">
-            <a class="nav-link text-reset" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link text-reset" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
             </a>
             <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 bg-light">
                 <div class="row">
                     <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
-                        <li class="list-inline-item"><a class="dropdown-item" href="#">All</a></li>
+                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
                         <li class="list-inline-item"><a class="dropdown-item" href="#">Tools</a></li>
                         <li class="list-inline-item"><a class="dropdown-item" href="#">Ingredients</a></li>
                     </ul>
