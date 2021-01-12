@@ -31,7 +31,7 @@
             </div>
             <div class="col-6 d-flex justify-content-end">
                 <div class="input-group w-50">
-                    <select class="form-select border-0" id="inputGroupSelect01">
+                    <select class="form-select border-0" id="sort-select">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -73,4 +73,48 @@
             <div class="col"></div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+    <script type="text/javascript">
+        $('#sort-select').change(function() {
+            let selector = $(this);
+            let currentUrl = new URL(window.location);
+
+            let selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                if(selectedVal == "added_date_desc"){
+                    let sort = selectedVal.split("_desc")[0];
+                    let direction = selectedVal.split("added_date_")[1];
+                    
+                    currentUrl.searchParams.set("sort", sort);
+                    currentUrl.searchParams.set("direction", direction);
+                    
+                    window.location.replace(currentUrl);
+                }
+                else{
+                    let sort = selectedVal.split("_")[0];
+                    let direction = selectedVal.split("_")[1];
+                   
+                    currentUrl.searchParams.set("sort", sort);
+                    currentUrl.searchParams.set("direction", direction);
+                   
+                    window.location.replace(currentUrl);
+                }
+
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
