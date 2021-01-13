@@ -7,10 +7,12 @@ html,body {
     padding: 0px;
     overflow-x: hidden;
     font-family: 'Patrick Hand SC', cursive;
+    letter-spacing: 1px;
 }
 
 .text-lower {
     font-family: 'Patrick Hand', cursive;
+    letter-spacing: .75px;
 }
 
 .extra-padding-container {
