@@ -34,3 +34,6 @@ html,body {
     bottom: 4px;z-index:9;
 }
 
+.fa-stack {
+    font-size: .70rem;
+}
