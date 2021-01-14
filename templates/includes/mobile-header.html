@@ -3,7 +3,7 @@
         aria-expanded="false">
         <i class="fas fa-search btn"></i>
     </a>
-    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 bg-light" aria-labelledby="navbarDropdown">
+    <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light" aria-labelledby="navbarDropdown">
         <div class="row">
             <form class="form" method="GET" action="{% url 'products' %}">
                 <div class="input-group">
@@ -24,26 +24,32 @@
         aria-expanded="false">
         <i class="fas fa-user btn"></i>
     </a>
-    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0 bg-light" aria-labelledby="navbarDropdown">
+    <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light" aria-labelledby="navbarDropdown">
         <div class="row">     
-            <ul class="list-inline list-unstyled" aria-labelledby="navbarDropdown">
-                {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                            <li class="list-inline-item"><a class="dropdown-item" href="#">Product Management</a></li>
-                            <li class="list-inline-item"><a class="dropdown-item" href="#">Recipe Management</a></li>
-                    {% endif %}
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Profile</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Logout</a></li>
-                {% else %}
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Login</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item" href="#">Sign Up</a></li>
-                {% endif %}
-            </ul>
+           <ul class="list-unstyled d-block d-md-none">
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+                <li ><a class="text-reset text-decoration-none" href="#">Product Management</a></li>
+                <li ><a class="text-reset text-decoration-none" href="#">Recipe Management</a></li>
+        {% endif %}
+        <li><a class="text-reset text-decoration-none" href="#">Account</a></li>
+        <li ><a class="text-reset text-decoration-none"  href="#">Logout</a></li>
+    {% else %}
+        <li ><a class="text-reset text-decoration-none"  href="#">Login</a></li>
+        <li ><a class="text-reset text-decoration-none"  href="#">Sign</a></li> 
+    {% endif %}
+</ul>
         </div>
     </div>
 </li>
-<li class="list-inline-item">
-    <a class="nav-link d-block d-lg-none btn" href="{% url 'view_basket' %}">
-            <div><i class="fas fa-shopping-basket fa-lg"></i></div>
+
+ <li class="list-inline-item">
+    <a class="nav-link btn  d-block d-lg-none " href="{% url 'view_basket' %}">
+        <i class="fas fa-shopping-basket"></i>
+        {% if product_count %}
+            <span class="small text-muted">{{ product_count }}</span>
+        {% else %}
+            <span class="small text-muted">{{ product_count }}</span>
+        {% endif %}
     </a>
 </li>

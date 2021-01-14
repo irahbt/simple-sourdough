@@ -2,20 +2,25 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container-fluid py-4 my-5">
+    <div class="container extra-padding-container">
         <div class="row">
-            <h2 class="d-flex justify-content-center">Shop</h2>
+            <div class="col-12">
+                <h2 class="d-flex justify-content-center">Shop</h2>
+            </div>
         </div>
         <div class="row">
-            <div class="d-flex justify-content-center">
+            <div class="col-12">
+                    <div class="d-flex justify-content-center">
                 {% for c in current_category %}
                     <a class="text-decoration-none text-reset" href="{% url 'products' %}?category={{ c.name }}">
                         {{ c.friendly_name }}
                     </a>
                 {% endfor %}
             </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block content %}

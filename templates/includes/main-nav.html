@@ -1,5 +1,6 @@
+
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="list-inline list-unstyled">
+    <ul class="list-inline list-unstyled d-none d-lg-flex">
         <li class="list-inline-item">
             <a class="nav-link text-reset" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
@@ -24,6 +25,31 @@
             <a class="nav-link text-reset" aria-current="page" href="#">Share</a>
         </li>
     </ul>
+
+    <!-- Mobile Collapse -->
+    <ul class="list-unstyled d-block d-lg-none">
+        <li>
+            <a class="nav-link text-reset" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a class="nav-link text-reset" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shop
+            </a>
+            <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light">
+                <div class="row">
+                    <ul class="list-unstyled" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    <li>
+            <a class="nav-link text-reset" aria-current="page" href="#">Subscribe</a>
+        </li>
+        <li>
+            <a class="nav-link text-reset" aria-current="page" href="#">Share</a>
+        </li>
+    </ul>
 </div>
-
-
