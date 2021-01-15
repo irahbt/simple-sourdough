@@ -1,55 +1,50 @@
-<li class="list-inline-item">
-    <a class="nav-link d-block d-lg-none btn" href="#" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <i class="fas fa-search btn"></i>
-    </a>
-    <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light" aria-labelledby="navbarDropdown">
-        <div class="row">
+   <li class="list-inline-item">
+        <a class="nav-link btn" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-search btn"></i>
+        </a>
+        <div class="dropdown-menu border-0 w-100 py-3" aria-labelledby="navbarDropdown">
             <form class="form" method="GET" action="{% url 'products' %}">
                 <div class="input-group">
-                    <input class="form-control" type="text" name="q" placeholder="Search">
+                    <input class="form-control search-custom rounded-0" type="text" name="q" placeholder="Search">
                     <div class="input-group-append">
-                        <button class="form-control form-control btn"
-                            type="submit">
-                                <i class="fas fa-search"></i>
+                        <button class="form-control form-control btn" type="submit">
+                            <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-</li>
-<li class="list-inline-item">
-    <a class="nav-link d-block d-lg-none btn" href="#" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <i class="fas fa-user btn"></i>
-    </a>
-    <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light" aria-labelledby="navbarDropdown">
-        <div class="row">     
-           <ul class="list-unstyled d-block d-md-none">
-    {% if request.user.is_authenticated %}
-        {% if request.user.is_superuser %}
-                <li ><a class="text-reset text-decoration-none" href="#">Product Management</a></li>
-                <li ><a class="text-reset text-decoration-none" href="#">Recipe Management</a></li>
-        {% endif %}
-        <li><a class="text-reset text-decoration-none" href="#">Account</a></li>
-        <li ><a class="text-reset text-decoration-none"  href="#">Logout</a></li>
-    {% else %}
-        <li ><a class="text-reset text-decoration-none"  href="#">Login</a></li>
-        <li ><a class="text-reset text-decoration-none"  href="#">Sign</a></li> 
-    {% endif %}
-</ul>
+    </li>
+    <li class="list-inline-item">
+        <a class="nav-link btn" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-user btn"></i>
+        </a>
+        <div class="dropdown-menu border-0 w-100 py-3 rounded-0" aria-labelledby="navbarDropdown">
+            <ul class="list-unstyled">
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <li><a class="nav-link text-reset" href="#">Product Management</a></li>
+                <li><a class="nav-link text-reset" href="#">Recipe Management</a></li>
+                {% endif %}
+                <li><a class="nav-link text-reset" href="#">Account</a></li>
+                <li><a class="nav-link text-reset" href="#">Logout</a></li>
+                {% else %}
+                <li><a class="nav-link text-reset" href="#">Login</a></li>
+                <li><a class="nav-link text-reset" href="#">Sign</a></li>
+                {% endif %}
+            </ul>
         </div>
-    </div>
-</li>
+    </li>
 
- <li class="list-inline-item">
-    <a class="nav-link btn  d-block d-lg-none " href="{% url 'view_basket' %}">
-        <i class="fas fa-shopping-basket"></i>
-        {% if product_count %}
+    <li class="list-inline-item pt-1">
+        <a class="nav-link btn" href="{% url 'view_basket' %}">
+            <i class="fas fa-shopping-basket"></i>
+            {% if product_count %}
             <span class="small text-muted">{{ product_count }}</span>
-        {% else %}
+            {% else %}
             <span class="small text-muted">{{ product_count }}</span>
-        {% endif %}
-    </a>
-</li>
+            {% endif %}
+        </a>
+    </li>

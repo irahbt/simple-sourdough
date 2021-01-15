@@ -1,6 +1,5 @@
-
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="list-inline list-unstyled d-none d-lg-flex">
+    <ul class="list-inline list-unstyled d-none d-lg-flex pt-2">
         <li class="list-inline-item">
             <a class="nav-link text-reset" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
@@ -8,17 +7,17 @@
             <a class="nav-link text-reset" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
             </a>
-            <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light">
-                <div class="row">
-                    <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
-                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
-                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a></li>
-                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
-                    </ul>
-                </div>
+            <div class="dropdown-menu border-0 w-100 my-0 bg-white py-4">
+                <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
+                    <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
+                    <li class="list-inline-item"><a class="dropdown-item"
+                            href="{% url 'products' %}?category=tools">Tools</a></li>
+                    <li class="list-inline-item"><a class="dropdown-item"
+                            href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
+                </ul>
             </div>
         </li>
-    <li class="list-inline-item">
+        <li class="list-inline-item">
             <a class="nav-link text-reset" aria-current="page" href="#">Subscribe</a>
         </li>
         <li class="list-inline-item">
@@ -28,24 +27,21 @@
 
     <!-- Mobile Collapse -->
     <ul class="list-unstyled d-block d-lg-none">
-        <li>
+        <li class="">
             <a class="nav-link text-reset" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
-        <li>
-            <a class="nav-link text-reset" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="dropdown">
+            <a class="nav-link text-reset" href="" role="button" id="shop-dropdown-mobile" data-bs-toggle="dropdown"
+                aria-expanded="false" aria-haspopup="true">
                 Shop
             </a>
-            <div class="dropdown-menu border-0 w-100 p-3 my-0 bg-light">
-                <div class="row">
-                    <ul class="list-unstyled" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
-                    </ul>
-                </div>
+            <div class="dropdown-menu border-0" aria-labelledby="shop-dropdown-mobile">
+                <a class="dropdown-item" href="{% url 'products' %}">All</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a>
             </div>
         </li>
-    <li>
+        <li>
             <a class="nav-link text-reset" aria-current="page" href="#">Subscribe</a>
         </li>
         <li>

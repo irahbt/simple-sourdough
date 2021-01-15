@@ -5,7 +5,6 @@ html,body {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden;
     font-family: 'Patrick Hand SC', cursive;
     letter-spacing: 1px;
 }
@@ -16,25 +15,17 @@ html,body {
 }
 
 .extra-padding-container {
-    padding-top: 164px;
+    padding-top: 150px;
+}
+
+
+.navbar-light .navbar-toggler {
+    border: none;
 }
 
 .search-custom {
-    position: relative;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    
 }
-.search-custom input[type=text] {
-    border: none;
-    width: 100%;
-    padding-right: 123px;
-}
-.search-custom  .input-group-prepend {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    bottom: 4px;z-index:9;
-}
-
-.fa-stack {
-    font-size: .70rem;
-}
-
