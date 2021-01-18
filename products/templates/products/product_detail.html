@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-
 {% block content %}
      <div class="container-fluid">
         <div class="row">
@@ -22,7 +20,7 @@
                     <h5>{{ product.name }}</h5>
                     <p class="">£{{ product.price }}</p>
                     <p class="mt-3 text-lower">{{ product.description }}</p>
-                     <form class="form" action="" method="POST">
+                      <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
                             <div class="col-12">
