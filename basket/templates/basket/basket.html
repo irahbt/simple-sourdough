@@ -73,37 +73,54 @@
                         {% endfor %}
                         </tbody>
 
-                        <tr>
-                            <td colspan="5" class="pt-5">
-                                <h6><strong>Basket Total: £{{ total|floatformat:2 }}</strong></h6>
-                                <h6>shipping: £{{ shipping|floatformat:2 }}</h6>
-                                <h4 class=""><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
-                                {% if free_shipping_delta > 0 %}
-                                <p class="">
-                                    You could get free shipping by spending just
-                                    <strong>£{{ free_shipping_delta }}</strong> more!
-                                </p>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                                <a href="" class="btn border border-dark">
-                                    <span class="p-3">Continue to Secure Checkout</span>
-                                        <i class="fas fa-lock p-3"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                                <a href="{% url 'products' %}" class="btn">
-                                        <i class="fas fa-chevron-left"></i>
-                                    <span>Keep Shopping</span>
-                                </a>
-                            </td>
-                        </tr>
                 </table>
             </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3">
+                        <h3>Total</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>Product Total:</h6>
+                            </div>
+                            <div class="col-6">
+                                <h6>£{{ total|floatformat:2 }}</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>Shipping Total:</h6>
+                            </div>
+                            <div class="col-6">
+                                <h6>£{{ shipping|floatformat:2 }}</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>Grand Total:</h6>
+                            </div>
+                            <div class="col-6">
+                                <h6>£{{ grand_total|floatformat:2 }}</h6>
+                            </div>
+                        </div>
+                        {% if free_shipping_delta > 0 %}
+                            <p class="pt-2">
+                                Spend <strong>£{{ free_shipping_delta }}</strong> more for free shipping.
+                            </p>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-6 mt-3">
+                            <a href="" class="btn border border-dark">
+                                <span class="p-3">Continue to Secure Checkout</span>
+                                <i class="fas fa-lock p-3"></i>
+                            </a>
+                            <p class="pt-3">
+                                <a href="{% url 'products' %}" class="btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                    <span>Keep Shopping</span>
+                                </a>
+                            </p>
+                    </div>
+                </div>
             {% else %}
                 <p>Your basket is currently empty.</p>
                 <a href="{% url 'products' %}" class="text-decoration-none text-reset">
@@ -115,7 +132,6 @@
             {% endif %}
         </div>
     </div>
-</div>
 
 <div class="container extra-padding-container">
         <div class="row">
