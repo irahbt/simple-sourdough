@@ -1,26 +1,109 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <style>
+        .img-fluid{
+           max-width: 60%;
+           max-height: auto; 
+        }
+        .x-small{
+            font-size: .75rem;
+        }
+
+        .border-custom-top {
+            border-top: solid 1px black;
+        }
+
+        .border-custom-bottom {
+            border-bottom: solid 1px black;
+        }
+    </style>
+{% endblock %}
+
 {% block page_header %}
-    <div class="container m-3">
-        <div class="row">
-            <div class="col">
-            </div>
-        </div>
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <div class="row">            
-        <h2 class="my-3">Basket</h2>
+    <div class="row">
+        <h2 class="my-3">Your Shopping Basket</h2>
     </div>
+
     <div class="row">
         <div class="col">
             {% if basket_items %}
-                <div class="table-responsive">
-                    {{ basket_items }}
-                </div>
+            <div class="table-responsive">
+                <table class="table table-borderless border-custom-top">
+                    <thead class="x-small text-muted">
+                        <tr class="">
+                            <th scope="col">Item</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="border-custom-bottom">
+                        {% for item in basket_items %}
+                            <tr>
+                                <td class="w-25">
+                                    <img class="img-fluid" src="{{ item.product.image.url }}">
+                                </td>
+                                <td class="">
+                                    <p class=""><strong>{{ item.product.name }}</strong></p>
+                                    <p class="x-small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                </td>
+                                <td class="">
+                                    <p class="">£{{ item.product.price }}</p>
+                                </td>
+                                <td class="">
+                                    <p class="">{{ item.quantity }}</p>
+                                </td>
+                                <td class="">
+                                    <p class="">£{{ item.product.price }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                        <tr>
+                            <td colspan="5" class="pt-5">
+                                <h6><strong>Basket Total: £{{ total|floatformat:2 }}</strong></h6>
+                                <h6>shipping: £{{ shipping|floatformat:2 }}</h6>
+                                <h4 class=""><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                                {% if free_shipping_delta > 0 %}
+                                <p class="">
+                                    You could get free shipping by spending just
+                                    <strong>£{{ free_shipping_delta }}</strong> more!
+                                </p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a href="" class="btn border border-dark">
+                                    <span class="p-3">Continue to Secure Checkout</span>
+                                        <i class="fas fa-lock p-3"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a href="{% url 'products' %}" class="btn">
+                                        <i class="fas fa-chevron-left"></i>
+                                    <span>Keep Shopping</span>
+                                </a>
+                            </td>
+                        </tr>
+                </table>
+            </div>
             {% else %}
                 <p>Your basket is currently empty.</p>
                 <a href="{% url 'products' %}" class="text-decoration-none text-reset">
@@ -32,5 +115,11 @@
             {% endif %}
         </div>
     </div>
+</div>
+
+<div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
 </div>
 {% endblock %}
