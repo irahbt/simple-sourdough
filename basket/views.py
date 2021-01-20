@@ -12,13 +12,24 @@ def add_to_basket(request, item_id):
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
+    colour = None
+    if 'product_colour' in request.POST:
+        colour = request.POST['product_colour']
     basket = request.session.get('basket', {})
 
-    if item_id in list(basket.keys()):
-        basket[item_id] += quantity
+    if colour:
+        if item_id in list(basket.keys()):
+            if colour in basket[item_id]['items_by_colour'].keys():
+                basket[item_id]['items_by_colour'][colour] += quantity
+            else:
+                basket[item_id]['items_by_colour'][colour] = quantity
+        else:
+            basket[item_id] = {'items_by_colour': {colour: quantity}}
     else:
-        basket[item_id] = quantity
+        if item_id in list(basket.keys()):
+            basket[item_id] += quantity
+        else:
+            basket[item_id] = quantity
 
     request.session['basket'] = basket
-
     return redirect(redirect_url)
