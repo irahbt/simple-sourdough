@@ -15,16 +15,20 @@ def add_to_basket(request, item_id):
     colour = None
     if 'product_colour' in request.POST:
         colour = request.POST['product_colour']
+
     basket = request.session.get('basket', {})
 
     if colour:
         if item_id in list(basket.keys()):
             if colour in basket[item_id]['items_by_colour'].keys():
                 basket[item_id]['items_by_colour'][colour] += quantity
+
             else:
                 basket[item_id]['items_by_colour'][colour] = quantity
+
         else:
             basket[item_id] = {'items_by_colour': {colour: quantity}}
+
     else:
         if item_id in list(basket.keys()):
             basket[item_id] += quantity
@@ -35,8 +39,8 @@ def add_to_basket(request, item_id):
     return redirect(redirect_url)
 
 
-def adjust_basket(request, item_id):
-    """Adjust the quantity of the specified product to the specified amount"""
+def update_basket(request, item_id):
+    """Update the quantity of the specified product to the specified amount"""
 
     quantity = int(request.POST.get('quantity'))
     colour = None
