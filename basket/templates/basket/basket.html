@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load basket_tools %}
 
 {% block extra_css %}
     <style>
@@ -96,10 +97,10 @@
                                     <a class="update-link x-small text-muted text-decoration-none">Update Qty</a>
                                 </td>
                                 <td class="">
-                                    <p class="">£{{ item.product.price }}</p>
+                                    <p class="">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                                 <td>
-                                    <a class="remove-item text-decoration-none" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
+                                    <a class="remove-item text-decoration-none text-reset" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
                                         <i class="fas fa-times fa-sm"></i>
                                     </a> 
                                 </td>
