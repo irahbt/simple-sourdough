@@ -29,3 +29,8 @@ html,body {
     border-left: none;
     
 }
+
+.update-link, 
+.remove-item {
+    cursor: pointer;
+}

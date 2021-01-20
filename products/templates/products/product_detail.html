@@ -35,7 +35,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend me-3">
                                         <button class="decrement-qty btn" 
                                             data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                             <i class="fas fa-minus"></i>
@@ -80,5 +80,4 @@
 {% block postloadjs %}
     {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
-
 {% endblock %}
