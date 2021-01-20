@@ -42,7 +42,7 @@
             <div class="table-responsive">
                 <table class="table table-borderless border-custom-top">
                     <thead class="x-small text-muted">
-                        <tr class="">
+                        <tr 0>
                             <th scope="col">Item</th>
                             <th scope="col"></th>
                             <th scope="col">Price</th>
@@ -59,17 +59,17 @@
                                 <td class="w-25">
                                     <img class="img-fluid" src="{{ item.product.image.url }}">
                                 </td>
-                                <td class="">
+                                <td>
                                     <p class="m-0"><strong>{{ item.product.name }}</strong></p>
                                     {% if item.product.has_colours %}
                                         <p class="my-0 x-small text-muted">{{ item.colour|title }}</p>
                                     {% endif %}
                                     <p class="x-small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
-                                <td class="">
-                                    <p class="">£{{ item.product.price }}</p>
+                                <td>
+                                    <p>£{{ item.product.price }}</p>
                                 </td>
-                                <td class="">
+                                <td>
                                     <form class="form update-form" method="POST" action="{% url 'update_basket' item.item_id %}">
                                         {% csrf_token %}
                                          <div class="form-group">
@@ -96,8 +96,8 @@
                                     </form>
                                     <a class="update-link x-small text-muted text-decoration-none">Update Qty</a>
                                 </td>
-                                <td class="">
-                                    <p class="">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                <td>
+                                    <p>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                                 <td>
                                     <a class="remove-item text-decoration-none text-reset" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
