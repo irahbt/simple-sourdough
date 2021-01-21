@@ -10,9 +10,9 @@ from products.models import Product
 class Order(models.Model):
     order_number = models.CharField(
         max_length=32, null=False, editable=False)
-    firstname = models.CharField(
+    first_name = models.CharField(
         max_length=50, null=False, blank=False)
-    surname = models.CharField(
+    second_name = models.CharField(
         max_length=50, null=False, blank=False)
     email = models.EmailField(
         max_length=254, null=False, blank=False)
