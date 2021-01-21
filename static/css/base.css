@@ -40,10 +40,16 @@ html,body {
 .message-container {
     position: fixed;
     top: 72px;
-    right: 15px;
+    right: 5%;
     z-index: 99999999999;
 }
 
 .toast-custom{
     overflow: visible;
+}
+
+.basket-toast-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
