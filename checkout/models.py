@@ -12,7 +12,7 @@ class Order(models.Model):
         max_length=32, null=False, editable=False)
     first_name = models.CharField(
         max_length=50, null=False, blank=False)
-    second_name = models.CharField(
+    last_name = models.CharField(
         max_length=50, null=False, blank=False)
     email = models.EmailField(
         max_length=254, null=False, blank=False)

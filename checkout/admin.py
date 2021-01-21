@@ -15,12 +15,12 @@ class OrderAdmin(admin.ModelAdmin):
                        'grand_total',)
 
     fields = ('order_number', 'date', 'first_name',
-              'second_name',  'email', 'phone_number',
+              'last_name',  'email', 'phone_number',
               'street_address1', 'street_address2',
               'town_or_city', 'county', 'country', 'postcode',
               'shipping_cost', 'order_total', 'grand_total',)
 
-    list_display = ('order_number', 'date', 'first_name', 'second_name',
+    list_display = ('order_number', 'date', 'first_name', 'last_name',
                     'order_total', 'shipping_cost', 'grand_total',)
 
     ordering = ('-date',)
