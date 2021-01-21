@@ -18,6 +18,10 @@ html,body {
     padding-top: 170px;
 }
 
+.extra-padding-container-small {
+    padding-top: 130px;
+}
+
 
 .navbar-light .navbar-toggler {
     border: none;
