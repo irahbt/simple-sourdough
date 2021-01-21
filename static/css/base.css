@@ -34,3 +34,16 @@ html,body {
 .remove-item {
     cursor: pointer;
 }
+
+/* ------------------------------- bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.toast-custom{
+    overflow: visible;
+}
