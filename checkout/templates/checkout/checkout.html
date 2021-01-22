@@ -71,7 +71,13 @@
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
                     <fieldset class="px-3 mb-3">
-                        <legend class="fieldset-label small px-2 w-auto">CONTACT INFORMATION</legend>
+                        <legend class="fieldset-label small px-2 w-auto">CONTACT INFORMATION 
+                            {% if not user.is_authenticated %} 
+                                <p class="text-xs">Already registered?
+                                <a href="{% url 'account_login' %}">Login</a> or 
+                                <a href="{% url 'account_signup' %}">create an account</a> to save your information.</p>
+                            {% endif %}
+                        </legend>      
                         {{ order_form.first_name | as_crispy_field }}
                         {{ order_form.last_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
@@ -89,11 +95,6 @@
 							{% if user.is_authenticated %}
 								<label class="form-check-label small" for="id-save-info">Save shipping information</label>
                                 <input class="form-check-input mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-							{% else %}
-								<label class="form-check-label" for="id-save-info">
-                                    <a href="{% url 'account_signup' %}">Create an account</a> or 
-                                    <a href="{% url 'account_login' %}">login</a> to save your information
-                                </label>
 							{% endif %}
 						</div>
                     </fieldset>
