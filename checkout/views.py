@@ -19,7 +19,7 @@ def checkout(request):
 
         form_data = {
         'first_name': request.POST['first_name'],
-        'second_name': request.POST['second_name'],
+        'last_name': request.POST['last_name'],
         'email': request.POST['email'],
         'phone_number': request.POST['phone_number'],
         'street_address1': request.POST['street_address1'],

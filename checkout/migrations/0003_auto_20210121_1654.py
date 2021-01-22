@@ -9,10 +9,4 @@ class Migration(migrations.Migration):
         ('checkout', '0002_auto_20210121_1441'),
     ]
 
-    operations = [
-        migrations.RenameField(
-            model_name='order',
-            old_name='second_name',
-            new_name='last_name',
-        ),
-    ]
+   
