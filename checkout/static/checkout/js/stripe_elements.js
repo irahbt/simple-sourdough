@@ -1,21 +1,21 @@
+
 /*
     Core logic/payment flow for this comes from here:
     https://stripe.com/docs/payments/accept-a-payment
-
     CSS from here: 
     https://stripe.com/docs/stripe-js
 */
 
-let stripe_public_key = $('#id_stripe_public_key').text().slice(1, -1);
-let client_secret = $('#id_client_secret').text().slice(1, -1);
-let stripe = Stripe(stripe_public_key);
+let stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+let clientSecret = $('#id_client_secret').text().slice(1, -1);
+let stripe = Stripe(stripePublicKey);
 let elements = stripe.elements();
 let style = {
     base: {
-        color: '#212529',
+        color: '#000',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
-        fontSize: '16px',
+        fontSize: '14px',
         '::placeholder': {
             color: '#aab7c4'
         }
@@ -30,11 +30,11 @@ card.mount('#card-element');
 
 // Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
-    var errorDiv = document.getElementById('card-errors');
+    let errorDiv = document.getElementById('card-errors');
     if (event.error) {
-        var html = `
-            <span role="alert">
-                <i class="fas fa-times small"></i>
+        let html = `
+            <span class="small" role="alert">
+                <i class="fas fa-times"></i>
             </span>
             <span class="small">${event.error.message}</span>
         `;
@@ -59,10 +59,10 @@ form.addEventListener('submit', function(ev) {
         if (result.error) {
             let errorDiv = document.getElementById('card-errors');
             let html = `
-                <span role="alert">
+                <span class="small" role="alert">
                 <i class="fas fa-times"></i>
                 </span>
-                <span>${result.error.message}</span>`;
+                <span class="small">${result.error.message}</span>`;
             $(errorDiv).html(html);
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);

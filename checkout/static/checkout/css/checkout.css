@@ -1,5 +1,6 @@
  .stripe-style-input {
      font-size: .8rem;
+     color:#aab7c4;
 
  }
 
@@ -10,13 +11,12 @@
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
-
   height: 40px;
 
   padding: 10px 12px;
 
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: white;
 
   box-shadow: 0 1px 3px 0 #e6ebf1;
@@ -28,6 +28,7 @@
 .stripe-style-input:focus,
 .stripe-style-input:active{
   box-shadow: 0 1px 3px 0 #cfd7df;
+  
 }
 
 .StripeElement--invalid {
