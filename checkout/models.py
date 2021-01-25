@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from decimal import Decimal
+
 
 from products.models import Product
 
@@ -52,7 +54,7 @@ class Order(models.Model):
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_SHIPPING_THRESHOLD:
-            self.shipping_cost = settings.STANDARD_SHIPPING
+            self.shipping_cost = Decimal(settings.STANDARD_SHIPPING)
         else:
             self.shipping_cost = 0
         self.grand_total = self.order_total + self.shipping_cost
