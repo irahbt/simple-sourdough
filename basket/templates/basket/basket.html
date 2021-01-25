@@ -140,16 +140,16 @@
                         {% endif %}
                     </div>
                     <div class="col-12 col-md-6 mt-3">
-                            <a href="{% url 'checkout' %}" class="btn border border-dark">
-                                <span class="p-3">Continue to Secure Checkout</span>
-                                <i class="fas fa-lock p-3"></i>
+                        <a href="{% url 'checkout' %}" class="btn btn-dark text-light p-2 me-2">
+                            <span class="p-3">Continue to Secure Checkout</span>
+                            <i class="fas fa-lock p-3"></i>
+                        </a>
+                        <p class="pt-3">
+                            <a href="{% url 'products' %}" class="btn">
+                                <i class="fas fa-chevron-left"></i>
+                                <span>Keep Shopping</span>
                             </a>
-                            <p class="pt-3">
-                                <a href="{% url 'products' %}" class="btn">
-                                    <i class="fas fa-chevron-left"></i>
-                                    <span>Keep Shopping</span>
-                                </a>
-                            </p>
+                        </p>
                     </div>
                 </div>
             {% else %}
