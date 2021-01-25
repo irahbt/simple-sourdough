@@ -78,8 +78,7 @@
                                 <a href="{% url 'account_signup' %}">create an account</a> to save your information.</p>
                             {% endif %}
                         </legend>      
-                        {{ order_form.first_name | as_crispy_field }}
-                        {{ order_form.last_name | as_crispy_field }}
+                        {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                     </fieldset>
                     <fieldset class="px-3 mb-3">
