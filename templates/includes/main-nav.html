@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="list-inline list-unstyled d-none d-lg-flex pt-2">
-        <li class="list-inline-item">
-            <a class="nav-link text-reset" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li  class="list-inline-item">
+            <a id="serviceList" class="nav-link text-reset dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
             </a>
             <div class="dropdown-menu border-0 w-100 my-0 bg-white py-4">
@@ -25,11 +25,11 @@
     <!-- Mobile Collapse -->
     <ul class="list-unstyled d-block d-lg-none">
         <li class="dropdown">
-            <a class="nav-link text-reset" href="" role="button" id="shop-dropdown-mobile" data-bs-toggle="dropdown"
+            <a class="nav-link text-reset dropdown-toggle" href="" role="button" id="shop-dropdown-mobile" data-bs-toggle="dropdown"
                 aria-expanded="false" aria-haspopup="true">
                 Shop
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="shop-dropdown-mobile">
+            <div class="dropdown-menu border-0 text-xs" aria-labelledby="shop-dropdown-mobile">
                 <a class="dropdown-item" href="{% url 'products' %}">All</a>
                 <a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a>
                 <a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a>
