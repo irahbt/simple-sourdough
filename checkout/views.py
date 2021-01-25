@@ -37,20 +37,24 @@ def checkout(request):
         basket = request.session.get('basket', {})
 
         form_data = {
-        'full_name': request.POST['full_name'],
-        'email': request.POST['email'],
-        'phone_number': request.POST['phone_number'],
-        'street_address1': request.POST['street_address1'],
-        'street_address2': request.POST['street_address2'],
-        'town_or_city': request.POST['town_or_city'],
-        'county': request.POST['county'],
-        'country': request.POST['country'],
-        'postcode': request.POST['postcode'],
-        }
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'street_address1': request.POST['street_address1'],
+            'street_address2': request.POST['street_address2'],
+            'town_or_city': request.POST['town_or_city'],
+            'county': request.POST['county'],
+            'country': request.POST['country'],
+            'postcode': request.POST['postcode'],
+            }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_basket = json.dumps(basket)
+            order.save()
             for item_id, item_data in basket.items():
                 try:
                     product = Product.objects.get(id=item_id)
