@@ -10,7 +10,7 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        {% if grand_total %}
+        {% if total > 0 %}
             <p class="py-1">Your Basket ({{ product_count }})</p>
             <div class="basket-toast-wrapper">
                 {% for item in basket_items %}
