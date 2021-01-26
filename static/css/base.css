@@ -67,6 +67,11 @@ html,body {
 
 /* ------------------------------- Allauth form  */
 
+.allauth-form-inner-content input,
+.allauth-form-inner-content input::placeholder {
+        font-family: 'Special Elite', sans-serif;
+}
+
 .allauth-form-inner-content label:not([for='id_remember']) {
     display: none;
 }
