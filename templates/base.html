@@ -91,8 +91,8 @@
                                         <li class="list-inline-item"><a class="dropdown-item" href="#">Account</a></li>
                                         <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                     {% else %}
-                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_signup' %}">Login</a></li>
-                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_login' %}">Sign Up</a></li>
+                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
                                     {% endif %}
                                 </ul>
                             </div>

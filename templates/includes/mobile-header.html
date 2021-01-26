@@ -31,8 +31,8 @@
                 <li><a class="nav-link text-reset" href="">Account</a></li>
                 <li><a class="nav-link text-reset" href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
-                <li><a class="nav-link text-reset" href="{% url 'account_signup' %}">Login</a></li>
-                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Sign Up</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Login</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_signup' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
