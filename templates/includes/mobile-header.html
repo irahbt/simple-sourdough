@@ -28,11 +28,11 @@
                 <li><a class="nav-link text-reset" href="#">Product Management</a></li>
                 <li><a class="nav-link text-reset" href="#">Recipe Management</a></li>
                 {% endif %}
-                <li><a class="nav-link text-reset" href="#">Account</a></li>
-                <li><a class="nav-link text-reset" href="#">Logout</a></li>
+                <li><a class="nav-link text-reset" href="">Account</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
-                <li><a class="nav-link text-reset" href="#">Login</a></li>
-                <li><a class="nav-link text-reset" href="#">Sign</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_signup' %}">Login</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
