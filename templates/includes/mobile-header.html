@@ -29,9 +29,9 @@
                 <li><a class="nav-link text-reset" href="#">Recipe Management</a></li>
                 {% endif %}
                 <li><a class="nav-link text-reset" href="">Account</a></li>
-                <li><a class="nav-link text-reset" href="{% url 'account_logout' %}">Logout</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_logout' %}">Sign Out</a></li>
                 {% else %}
-                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Login</a></li>
+                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Sign In</a></li>
                 <li><a class="nav-link text-reset" href="{% url 'account_signup' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
