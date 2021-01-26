@@ -88,7 +88,7 @@
                                                 <li class="list-inline-item"><a class="dropdown-item" href="#">Product Management</a></li>
                                                 <li class="list-inline-item"><a class="dropdown-item" href="#">Recipe Management</a></li>
                                         {% endif %}
-                                        <li class="list-inline-item"><a class="dropdown-item" href="#">Account</a></li>
+                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'profile' %}">Account</a></li>
                                         <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
                                     {% else %}
                                         <li class="list-inline-item"><a class="dropdown-item" href="{% url 'account_login' %}">Sign In</a></li>
