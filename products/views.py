@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category
+from .models import Product, ProductCategory
 
 
 
@@ -10,16 +10,18 @@ def all_products(request):
     """ A view to return all products, sorting and search queries """
 
     products = Product.objects.all()
-    category = None
+    product_category = None
     query = None
     sort = None
     direction = None
 
     if request.GET:
-        if 'category' in request.GET:
-            category = request.GET['category'].split(',')
-            products = products.filter(category__name__in=category)
-            category = Category.objects.filter(name__in=category)
+        if 'product_category' in request.GET:
+            product_category = request.GET['product_category'].split(',')
+            products = products.filter(
+                product_category__name__in=product_category)
+            product_category = ProductCategory.objects.filter(
+                name__in=product_category)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -39,8 +41,8 @@ def all_products(request):
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
 
-            if sortkey == 'category':
-                sortkey = 'category__name'
+            if sortkey == 'product_category':
+                sortkey = 'product_category__name'
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -54,7 +56,7 @@ def all_products(request):
     context = {
         'products': products,
         'search_term': query,
-        'current_category': category,
+        'current_product_category': product_category,
         'current_sorting': current_sorting,
     }
 

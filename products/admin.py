@@ -1,15 +1,15 @@
 from django.contrib import admin
-from .models import Product, Category
+from .models import Product, Category, ProductCategory
 
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
         'name',
-        'category',
         'price',
         'image',
-        'added_date',
+        'category',
+        'product_category',
         'has_colours',
     )
 
@@ -22,7 +22,14 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'friendly_name',
+        'name',
+    )
+
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(ProductCategory, ProductCategoryAdmin)
 
