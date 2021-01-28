@@ -13,3 +13,15 @@ def subscriptions(request):
     return render(
         request, 'subscriptions/subscriptions.html', context)
 
+
+
+def subscription_detail(request, subscription_id):
+    """ A view to show individual subscription details """
+
+    subscription = get_object_or_404(Subscription, pk=subscription_id)
+
+    context = {
+        'subscription': subscription,
+    }
+
+    return render(request, 'subscriptions/subscription_detail.html', context)

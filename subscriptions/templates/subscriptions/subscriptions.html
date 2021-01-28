@@ -17,15 +17,10 @@
     <div class="row my-4 ms-4">
 
         {% for subscription in subscriptions %}
-                <form class="form" action="{% 'add_to_basket' subscription.id 'subscription'  %}" method="POST">
-                        {% csrf_token %}
-                        <p>
+  
                             {{ subscription.name }}
                             {{ subscription.price }}
-                                <input type="submit" class="btn p-0" value="Add to Basket">
-
-                        </p>
-                </form>
+                          <a href="{% url 'subscription_detail' subscription.id %}">details</a>
         {% endfor %}
         </div>
     </div>

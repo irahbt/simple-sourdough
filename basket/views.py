@@ -34,12 +34,10 @@ def add_to_basket(request, item_id, category):
                     basket[category][item_id]['items_by_colour'][colour] += quantity
                     messages.success(
                         request, f'{colour.capitalize()} {product.name} quantity has been updated to {basket[category][item_id]["items_by_colour"][colour]}')
-
                 else:
                     basket[category][item_id]['items_by_colour'][colour] = quantity
                     messages.success(
                         request, f'{colour.capitalize()} {product.name} has been added to your basket')
-
             else:
                 basket[category][item_id] = {'items_by_colour': {colour: quantity}}
                 messages.success(
@@ -49,7 +47,6 @@ def add_to_basket(request, item_id, category):
                 basket[category][item_id] += quantity
                 messages.success(
                         request, f'{product.name} quantity has been updated to {basket[category][item_id]}')
-
             else:
                 basket[category][item_id] = quantity
                 messages.success(request, f'{product.name} has been added to your basket')
@@ -57,9 +54,9 @@ def add_to_basket(request, item_id, category):
     elif category == 'subscription':
         subscription = get_object_or_404(Subscription, pk=item_id)
         if item_id in list(basket[category].keys()):
-                basket[category][item_id] += quantity
-                messages.success(
-                        request, f'{product.name} quantity has been updated to {basket[category][item_id]}')
+            basket[category][item_id] += quantity
+            messages.success(
+                    request, f'{subscription.name} quantity has been updated to {basket[category][item_id]}')
         else:
             basket[category][item_id] = quantity
             messages.success(request, f'{subscription.name} has been added to your basket')
