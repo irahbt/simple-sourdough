@@ -14,11 +14,8 @@ def view_basket(request):
     return render(request, 'basket/basket.html')
 
 
-def add_to_basket(request, item_id):
+def add_to_basket(request, item_id, category):
     """ Add a quantity of the specified product to the shopping basket """
-
-    product = get_object_or_404(Product, pk=item_id)
-    subscription = get_object_or_404(Product, pk=item_id)
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -26,34 +23,46 @@ def add_to_basket(request, item_id):
     if 'product_colour' in request.POST:
         colour = request.POST['product_colour']
 
-    basket = request.session.get('basket', {})
+    basket = request.session.get('basket', {'product': {},
+                                            'subscription': {}})
 
-    if colour:
-        if item_id in list(basket.keys()):
-            if colour in basket[item_id]['items_by_colour'].keys():
-                basket[item_id]['items_by_colour'][colour] += quantity
-                messages.success(
-                    request, f'{colour.capitalize()} {product.name} quantity has been updated to {basket[item_id]["items_by_colour"][colour]}')
+    if category == 'product':
+        product = get_object_or_404(Product, pk=item_id)
+        if colour:
+            if item_id in list(basket[category].keys()):
+                if colour in basket[category][item_id]['items_by_colour'].keys():
+                    basket[category][item_id]['items_by_colour'][colour] += quantity
+                    messages.success(
+                        request, f'{colour.capitalize()} {product.name} quantity has been updated to {basket[category][item_id]["items_by_colour"][colour]}')
+
+                else:
+                    basket[category][item_id]['items_by_colour'][colour] = quantity
+                    messages.success(
+                        request, f'{colour.capitalize()} {product.name} has been added to your basket')
 
             else:
-                basket[item_id]['items_by_colour'][colour] = quantity
+                basket[category][item_id] = {'items_by_colour': {colour: quantity}}
                 messages.success(
                     request, f'{colour.capitalize()} {product.name} has been added to your basket')
-
         else:
-            basket[item_id] = {'items_by_colour': {colour: quantity}}
-            messages.success(
-                request, f'{colour.capitalize()} {product.name} has been added to your basket')
+            if item_id in list(basket[category].keys()):
+                basket[category][item_id] += quantity
+                messages.success(
+                        request, f'{product.name} quantity has been updated to {basket[category][item_id]}')
 
-    else:
-        if item_id in list(basket.keys()):
-            basket[item_id] += quantity
-            messages.success(
-                    request, f'{product.name} quantity has been updated to {basket[item_id]}')
+            else:
+                basket[category][item_id] = quantity
+                messages.success(request, f'{product.name} has been added to your basket')
 
+    elif category == 'subscription':
+        subscription = get_object_or_404(Subscription, pk=item_id)
+        if item_id in list(basket[category].keys()):
+                basket[category][item_id] += quantity
+                messages.success(
+                        request, f'{product.name} quantity has been updated to {basket[category][item_id]}')
         else:
-            basket[item_id] = quantity
-            messages.success(request, f'{product.name} has been added to your basket')
+            basket[category][item_id] = quantity
+            messages.success(request, f'{subscription.name} has been added to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
