@@ -14,7 +14,7 @@ def basket_contents(request):
     basket = request.session.get('basket', {'product': {},
                                             'subscription': {}})
     if bool(basket['product']):
-        for item_id, item_data in basket.items():
+        for item_id, item_data in basket['product'].items():
             if isinstance(item_data, int):
                 product = get_object_or_404(Product, pk=item_id)
                 total += item_data * product.price
@@ -44,7 +44,6 @@ def basket_contents(request):
                     product_count += item_data
                     basket_items.append({
                         'item_id': item_id,
-                        'quantity': item_data,
                         'subscription': subscription,
                     })
 
