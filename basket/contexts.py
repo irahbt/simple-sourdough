@@ -36,16 +36,16 @@ def basket_contents(request):
                         'colour': colour,
                     })
 
-        if bool(basket['subscription']):
-            for item_id, item_data in basket['subscription'].items():
-                if isinstance(item_data, int):
-                    subscription = get_object_or_404(Subscription, pk=item_id)
-                    total += item_data * subscription.price
-                    product_count += item_data
-                    basket_items.append({
-                        'item_id': item_id,
-                        'subscription': subscription,
-                    })
+    if bool(basket['subscription']):
+        for item_id, item_data in basket['subscription'].items():
+            if isinstance(item_data, int):
+                subscription = get_object_or_404(Subscription, pk=item_id)
+                total += item_data * subscription.price
+                product_count = 1
+                basket_items.append({
+                    'item_id': item_id,
+                    'subscription': subscription,
+                })
 
     if total < settings.FREE_SHIPPING_THRESHOLD:
         shipping = Decimal(settings.STANDARD_SHIPPING)
