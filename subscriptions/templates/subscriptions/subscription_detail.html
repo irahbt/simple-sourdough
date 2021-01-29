@@ -14,9 +14,8 @@
                     {% csrf_token %}
                     <div class="form-row">
                         {{ subscription.name }}
-                                                {{ subscription.price}}
-
-                        <div class="col-12">
+                        {{ subscription.price}}
+                        <!-- <div class="col-12">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend me-3">
@@ -36,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12"> -->
                             <i class="fas fa-plus"></i>
                             <input type="submit" class="btn p-0" value="Add to Basket">
                         </div>
@@ -47,6 +46,5 @@
                             </a>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </div>
                 </form>
 {% endblock %}

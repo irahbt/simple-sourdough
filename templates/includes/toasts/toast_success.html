@@ -14,27 +14,27 @@
             <p class="py-1">Your Basket ({{ product_count }})</p>
             <div class="basket-toast-wrapper">
                 {% for item in basket_items %}
-                {% if item.product %}
-                    <div class="row">
-                            <div class="col-3 my-1">
-                                <img class="w-100" src="{{ item.product.image.url }}">
-                            </div>
-                            <div class="col-9">
-                                <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                {% if item.product.has_colours %}<p class="my-0 small">{{ item.colour|title }}</p>{% endif %}
-                                <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
-                            </div>
-                    </div>
-                        {% elif item.subscription %}
+                    {% if item.product %}
+                        <div class="row">
+                                <div class="col-3 my-1">
+                                    <img class="w-100" src="{{ item.product.image.url }}">
+                                </div>
+                                <div class="col-9">
+                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                    {% if item.product.has_colours %}<p class="my-0 small">{{ item.colour|title }}</p>{% endif %}
+                                    <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                                </div>
+                        </div>
+                    {% elif item.subscription %}
                         <div class="row">
                             <div class="col-9">
                                 <p class="my-0"><strong>{{ item.subscription.name }}</strong></p>
                                 <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                             </div>
                         </div>
-                        {% endif %}
+                    {% endif %}
                 {% endfor %}
-            
+            </div>
             <div class="row">
                 <div class="col">
                     <p class="mt-3 mb-1">
@@ -53,6 +53,6 @@
                 </div>
             </div>
         {% endif %}      
-  </div>
+ 
 </div>
 </div>

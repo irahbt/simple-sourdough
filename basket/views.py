@@ -17,7 +17,6 @@ def view_basket(request):
 def add_to_basket(request, item_id, category):
     """ Add a quantity of the specified product to the shopping basket """
 
-    quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     colour = None
     if 'product_colour' in request.POST:
@@ -27,6 +26,7 @@ def add_to_basket(request, item_id, category):
                                             'subscription': {}})
 
     if category == 'product':
+        quantity = int(request.POST.get('quantity'))
         product = get_object_or_404(Product, pk=item_id)
         if colour:
             if item_id in list(basket[category].keys()):
@@ -52,11 +52,11 @@ def add_to_basket(request, item_id, category):
                 messages.success(request, f'{product.name} has been added to your basket')
 
     elif category == 'subscription':
+        quantity = 1
         subscription = get_object_or_404(Subscription, pk=item_id)
         if item_id in list(basket[category].keys()):
-            basket[category][item_id] += quantity
             messages.success(
-                    request, f'{subscription.name} quantity has been updated to {basket[category][item_id]}')
+                    request, f'{subscription.name} is already in your basket')
         else:
             basket[category][item_id] = quantity
             messages.success(request, f'{subscription.name} has been added to your basket')
@@ -97,17 +97,6 @@ def update_basket(request, item_id, category):
                 del basket[category][item_id]
                 messages.success(
                     request, f'{product.name} has been removed from your basket')
-
-    elif category == 'subscription':
-        subscription = get_object_or_404(Subscription, pk=item_id)
-        if quantity > 0:
-            basket[category][item_id] = quantity
-            messages.success(
-                    request, f'{subscription.name} quantity has been updated to {basket[category][item_id]}')
-        else:
-            del basket[category][item_id]
-            messages.success(
-                request, f'{subscription.name} has been removed from your basket')
 
     request.session['basket'] = basket
     return redirect(reverse('view_basket'))

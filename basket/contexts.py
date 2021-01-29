@@ -41,7 +41,7 @@ def basket_contents(request):
             if isinstance(item_data, int):
                 subscription = get_object_or_404(Subscription, pk=item_id)
                 total += item_data * subscription.price
-                product_count = 1
+                product_count += item_data
                 basket_items.append({
                     'item_id': item_id,
                     'subscription': subscription,
