@@ -85,7 +85,7 @@ def update_basket(request, item_id, category):
             else:
                 del basket[category][item_id]['items_by_colour'][colour]
                 if not basket[category][item_id]['items_by_colour']:
-                    basket.pop(item_id)
+                    del basket[category][item_id]
                 messages.success(
                     request, f'{colour.capitalize()} {product.name} has been removed from your basket')
         else:
@@ -94,7 +94,7 @@ def update_basket(request, item_id, category):
                 messages.success(
                         request, f'{product.name} quantity has been updated to {basket[category][item_id]}')
             else:
-                basket.pop(item_id)
+                del basket[category][item_id]
                 messages.success(
                     request, f'{product.name} has been removed from your basket')
 
@@ -105,7 +105,7 @@ def update_basket(request, item_id, category):
             messages.success(
                     request, f'{subscription.name} quantity has been updated to {basket[category][item_id]}')
         else:
-            basket.pop(item_id)
+            del basket[category][item_id]
             messages.success(
                 request, f'{subscription.name} has been removed from your basket')
 
@@ -126,17 +126,17 @@ def remove_from_basket(request, item_id, category):
             if colour:
                 del basket[category][item_id]['items_by_colour'][colour]
                 if not basket[category][item_id]['items_by_colour']:
-                    basket.pop(item_id)
+                    del basket[category][item_id]
                 messages.success(
                     request, f'{colour.capitalize()} {product.name} has been removed from your basket')
             else:
-                basket.pop(item_id)
+                del basket[category][item_id]
                 messages.success(
                     request, f'{product.name} has been removed from your basket')
 
         elif category == 'subscription':
             subscription = get_object_or_404(Subscription, pk=item_id)
-            basket.pop(item_id)
+            del basket[category][item_id]
             messages.success(
                 request, f'{subscription.name} has been removed from your basket')
 
