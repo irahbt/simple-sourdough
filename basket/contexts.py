@@ -37,6 +37,8 @@ def basket_contents(request):
                     })
 
     if bool(basket['subscription']):
+        shipping = 0
+        free_shipping_delta = 0
         for item_id, item_data in basket['subscription'].items():
             if isinstance(item_data, int):
                 subscription = get_object_or_404(Subscription, pk=item_id)
@@ -46,10 +48,6 @@ def basket_contents(request):
                     'item_id': item_id,
                     'subscription': subscription,
                 })
-
-    if bool(basket['subscription']):
-        shipping = 0
-        free_shipping_delta = 0
 
     if bool(basket['product']) and total < settings.FREE_SHIPPING_THRESHOLD:
         shipping = Decimal(settings.STANDARD_SHIPPING)
