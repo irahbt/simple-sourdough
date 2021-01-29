@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineItem, SubscriptionOrderLineItem
 from products.models import Product
+from subscriptions.models import Subscription
+
 
 import json
 import time
@@ -82,24 +84,36 @@ class StripeWH_Handler:
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-                for item_id, item_data in json.loads(basket).items():
-                    product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                    else:
-                        for colour, quantity in item_data['items_by_colour'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                                product_colour=colour,
-                            )
-                            order_line_item.save()
+                for category in json.loads(basket).items():
+                    if category == 'product':
+                        for item_id, item_data in json.loads(basket).items():
+                            product = Product.objects.get(id=item_id)
+                            if isinstance(item_data, int):
+                                order_line_item = OrderLineItem(
+                                    order=order,
+                                    product=product,
+                                    quantity=item_data,
+                                )
+                                order_line_item.save()
+                            else:
+                                for colour, quantity in item_data['items_by_colour'].items():
+                                    order_line_item = OrderLineItem(
+                                        order=order,
+                                        product=product,
+                                        quantity=quantity,
+                                        product_colour=colour,
+                                    )
+                                    order_line_item.save()
+                    elif category == 'subscription':
+                        for item_id, item_data in json.loads(basket).items():
+                            subscription = Subscription.objects.get(id=item_id)
+                            if isinstance(item_data, int):
+                                order_line_item = SubscriptionOrderLineItem(
+                                    order=order,
+                                    subscription=subscription,
+                                    quantity=item_data,
+                                )
+                                order_line_item.save()
 
             except Exception as e:
                 if order:

@@ -30,6 +30,15 @@
                 </div>
             </div>
             {% endfor %}
+            {% for item in order.subscriptionlineitems.all %}
+             <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0">{{ item.subscription.name }}</p>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">x {{ item.quantity }} (£{{ item.subscription.price }} each)</p>
+                </div>
+            </div>
+            {% endfor %}
             <div class="row mt-3">
                 <div class="col-12 col-md-4">
                     <p class="mb-0">Subtotal</p>
