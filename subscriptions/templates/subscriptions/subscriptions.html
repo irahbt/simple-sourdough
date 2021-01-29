@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container extra-padding-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-  <div class="container">
+<div class="container">
     <div class="row">
         <h2 class="d-flex justify-content-center">Subscription Plans</h2>
     </div>
@@ -18,18 +18,23 @@
 
         {% for subscription in subscriptions %}
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="{{ subscription.image.url }}" class="card-img-top" alt="subscription">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title"> {{ subscription.name }}
+                    </h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <p> {{ subscription.price }}</p>
+                    <form class="form" action="{% url 'add_to_basket' subscription.id 'subscription' %}" method="POST">
+                        {% csrf_token %}
+                        <i class="fas fa-plus"></i>
+                        <input type="submit" class="btn p-0" value="Add to Basket">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
             </div>
-  
-                            {{ subscription.name }}
-                            {{ subscription.price }}
-                          <a href="{% url 'subscription_detail' subscription.id %}">details</a>
         {% endfor %}
-        </div>
     </div>
+</div>
+
 {% endblock %}

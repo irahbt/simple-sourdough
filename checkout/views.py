@@ -120,9 +120,9 @@ def checkout(request):
 
     else:
         basket = request.session.get('basket', {})
-        # if not basket:
-        #     messages.error(request, "There's nothing in your basket right now")
-        #     return redirect(reverse('products'))
+        if not basket:
+            messages.error(request, "There's nothing in your basket right now")
+            return redirect(reverse('products'))
 
         current_basket = basket_contents(request)
         total = current_basket['grand_total']

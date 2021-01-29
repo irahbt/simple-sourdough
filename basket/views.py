@@ -56,7 +56,7 @@ def add_to_basket(request, item_id, category):
         subscription = get_object_or_404(Subscription, pk=item_id)
         if item_id in list(basket[category].keys()):
             messages.success(
-                    request, f'{subscription.name} is already in your basket')
+                    request, f'You already have a subscription in your basket, head to basket to remove')
         else:
             basket[category][item_id] = quantity
             messages.success(request, f'{subscription.name} has been added to your basket')
