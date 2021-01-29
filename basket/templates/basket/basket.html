@@ -70,7 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <h6>Shipping Total:</h6>
+                                <h6>Shipping:</h6>
                             </div>
                             <div class="col-6">
                                 <h6>£{{ shipping|floatformat:2 }}</h6>
@@ -86,7 +86,7 @@
                         </div>
                         {% if free_shipping_delta > 0 %}
                             <p class="pt-2">
-                                Spend <strong>£{{ free_shipping_delta }}</strong> more for free shipping.
+                                Spend <strong>£{{ free_shipping_delta|floatformat:2 }}</strong> more for free shipping.
                             </p>
                         {% endif %}
                     </div>

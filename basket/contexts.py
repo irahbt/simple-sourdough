@@ -47,7 +47,11 @@ def basket_contents(request):
                     'subscription': subscription,
                 })
 
-    if total < settings.FREE_SHIPPING_THRESHOLD:
+    if bool(basket['subscription']):
+        shipping = 0
+        free_shipping_delta = 0
+
+    if bool(basket['product']) and total < settings.FREE_SHIPPING_THRESHOLD:
         shipping = Decimal(settings.STANDARD_SHIPPING)
         free_shipping_delta = settings.FREE_SHIPPING_THRESHOLD - total
     else:
