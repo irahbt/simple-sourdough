@@ -101,7 +101,6 @@ def checkout(request):
                                 order_line_item = SubscriptionOrderLineItem(
                                     order=order,
                                     plan=plan,
-                                    quantity=item_data,
                                 )
                                 order_line_item.save()
     
