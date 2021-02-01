@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 from .models import Order, OrderLineItem, SubscriptionOrderLineItem
 from products.models import Product
-from subscriptions.models import Subscription
+from subscriptions.models import SubscriptionPlan
 
 
 import json
@@ -106,11 +106,11 @@ class StripeWH_Handler:
                                     order_line_item.save()
                     elif category == 'subscription':
                         for item_id, item_data in json.loads(basket).items():
-                            subscription = Subscription.objects.get(id=item_id)
+                            plan = SubscriptionPlan.objects.get(id=item_id)
                             if isinstance(item_data, int):
                                 order_line_item = SubscriptionOrderLineItem(
                                     order=order,
-                                    subscription=subscription,
+                                    plan=plan,
                                     quantity=item_data,
                                 )
                                 order_line_item.save()

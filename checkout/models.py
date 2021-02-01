@@ -8,7 +8,7 @@ from decimal import Decimal
 from django_countries.fields import CountryField
 
 from products.models import Product
-from subscriptions.models import Subscription
+from subscriptions.models import SubscriptionPlan
 from profiles.models import UserProfile
 
 
@@ -105,8 +105,8 @@ class OrderLineItem(models.Model):
 class SubscriptionOrderLineItem(models.Model):
     order = models.ForeignKey(
         Order, null=False, blank=False, on_delete=models.CASCADE, related_name='subscriptionlineitems')
-    subscription = models.ForeignKey(
-        Subscription, null=False, blank=False, on_delete=models.CASCADE)
+    plan = models.ForeignKey(
+        SubscriptionPlan, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(
         null=False, blank=False, default=0)
     subscriptionlineitem_total = models.DecimalField(
@@ -117,8 +117,8 @@ class SubscriptionOrderLineItem(models.Model):
         Override original save method to set the lineitem total
         and update the order total.
         """
-        self.subscriptionlineitem_total = self.subscription.price * self.quantity
+        self.subscriptionlineitem_total = self.plan.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.subscription.name} on order {self.order.order_number}'
+        return f'SKU {self.plan.name} on order {self.order.order_number}'

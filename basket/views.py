@@ -4,7 +4,7 @@ from django.shortcuts import (
 from django.contrib import messages
 
 from products.models import Product
-from subscriptions.models import Subscription
+from subscriptions.models import SubscriptionPlan
 
  
 
@@ -53,13 +53,13 @@ def add_to_basket(request, item_id, category):
 
     elif category == 'subscription':
         quantity = 1
-        subscription = get_object_or_404(Subscription, pk=item_id)
+        plan = get_object_or_404(SubscriptionPlan, pk=item_id)
         if item_id in list(basket[category].keys()):
             messages.success(
-                    request, f'You already have a subscription in your basket, head to basket to remove')
+                    request, f'You already have a subscription plan in your basket, head to basket to remove')
         else:
             basket[category][item_id] = quantity
-            messages.success(request, f'{subscription.name} has been added to your basket')
+            messages.success(request, f'{plan.name} subscription plan has been added to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -124,10 +124,10 @@ def remove_from_basket(request, item_id, category):
                     request, f'{product.name} has been removed from your basket')
 
         elif category == 'subscription':
-            subscription = get_object_or_404(Subscription, pk=item_id)
+            plan = get_object_or_404(SubscriptionPlan, pk=item_id)
             del basket[category][item_id]
             messages.success(
-                request, f'{subscription.name} has been removed from your basket')
+                request, f'{plan.name} has been removed from your basket')
 
         request.session['basket'] = basket
         return HttpResponse(status=200)

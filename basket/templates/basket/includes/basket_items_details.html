@@ -53,16 +53,16 @@
         </td>
     </tr>
 
-{% elif item.subscription %}
+{% elif item.plan %}
     <tr>
         <td class="w-25">
-            <img class="img-fluid" src="{{ item.subscription.image.url }}">
+            <img class="img-fluid" src="{{ item.plan.image.url }}">
         </td>
         <td>
-            <p class="m-0"><strong>{{ item.subscription.name }} Subscription</strong></p>
+            <p class="m-0"><strong>{{ item.plan.name }} Subscription</strong></p>
         </td>
         <td>
-            <p>£{{ item.subscription.price }}</p>
+            <p>£{{ item.plan.price }}</p>
         </td>
         <td>
         <td>

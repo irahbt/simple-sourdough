@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
-from subscriptions.models import Subscription
+from subscriptions.models import SubscriptionPlan
 
 from decimal import Decimal
 
@@ -41,12 +41,12 @@ def basket_contents(request):
         free_shipping_delta = 0
         for item_id, item_data in basket['subscription'].items():
             if isinstance(item_data, int):
-                subscription = get_object_or_404(Subscription, pk=item_id)
-                total += item_data * subscription.price
+                plan = get_object_or_404(SubscriptionPlan, pk=item_id)
+                total += item_data * plan.price
                 product_count += item_data
                 basket_items.append({
                     'item_id': item_id,
-                    'subscription': subscription,
+                    'plan': plan,
                 })
 
     if bool(basket['product']) and total < settings.FREE_SHIPPING_THRESHOLD:

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Subscription, SubscriptionRecipe, Category
+from .models import SubscriptionPlan, SubscriptionRecipe, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,6 +10,6 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Subscription)
+admin.site.register(SubscriptionPlan)
 admin.site.register(SubscriptionRecipe)
 admin.site.register(Category, CategoryAdmin)

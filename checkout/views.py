@@ -6,7 +6,7 @@ from django.conf import settings
 from .forms import OrderForm
 from .models import Order, OrderLineItem, SubscriptionOrderLineItem
 from products.models import Product
-from subscriptions.models import Subscription
+from subscriptions.models import SubscriptionPlan
 from basket.contexts import basket_contents
 
 import stripe
@@ -92,19 +92,19 @@ def checkout(request):
 
                     elif category == 'subscription':
                         try:
-                            subscription = get_object_or_404(
-                                Subscription, pk=item_id)
+                            plan = get_object_or_404(
+                                SubscriptionPlan, pk=item_id)
                             if isinstance(item_data, int):
                                 order_line_item = SubscriptionOrderLineItem(
                                     order=order,
-                                    subscription=subscription,
+                                    plan=plan,
                                     quantity=item_data,
                                 )
                                 order_line_item.save()
     
-                        except Subscription.DoesNotExist:
+                        except SubscriptionPlan.DoesNotExist:
                             messages.error(request, (
-                                "We couldn't find your subscription in our database. Please contact us for assistance."
+                                "We couldn't find this subscription plan in our database. Please contact us for assistance."
                                 "Please contact us for assistance")
                             )
                             order.delete()
