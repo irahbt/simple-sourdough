@@ -12,3 +12,11 @@ def subscriptions(request):
 
     return render(
         request, 'subscriptions/subscriptions.html', context)
+
+
+def plan(request, pk):
+    plan = get_object_or_404(SubscriptionPlan, pk=pk)
+    if plan.premium:
+        return redirect('account_login')
+    else:
+        return render(request, 'subscriptions/subscriptions.html', {'plan': plan})

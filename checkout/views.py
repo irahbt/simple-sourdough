@@ -90,26 +90,6 @@ def checkout(request):
                             order.delete()
                             return redirect(reverse('view_basket'))
 
-                    elif category == 'subscription':
-                        try:
-                            plan = get_object_or_404(
-                                SubscriptionPlan, pk=item_id)
-                            if isinstance(item_data, int):
-                                order_line_item = SubscriptionOrderLineItem(
-                                    order=order,
-                                    plan=plan,
-                                )
-                                order_line_item.save()
-    
-                        except SubscriptionPlan.DoesNotExist:
-                            messages.error(request, (
-                                "We couldn't find this subscription plan in our database. Please contact us for assistance."
-                                "Please contact us for assistance")
-                            )
-                            order.delete()
-                            return redirect(reverse('view_basket'))
-
-
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
 
@@ -146,6 +126,7 @@ def checkout(request):
     }
 
     return render(request, template, context)
+
 
 
 def checkout_success(request, order_number):
