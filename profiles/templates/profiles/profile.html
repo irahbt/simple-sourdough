@@ -30,6 +30,12 @@
         </div>
         <div class="col-12 col-md-6">
             <h5 class="d-flex justify-content-center">Purchased recipes</h5>
+                {% for order in orders %}
+                    {% for item in order.subscriptionlineitems.all %}
+                                {{ item.plan.name }}   
+       
+                     {% endfor %}
+                {% endfor %}
         </div>
     </div>
     <div class="row">
@@ -54,17 +60,24 @@
                                             {{ order.order_number|truncatechars:6 }}
                                         </a>
                                     </td>
-                                    <td>{{ order.date }}</td>
-                                    <td>
+                                    <td>{{ order.date }}</td>                                    <td>
+
+
                                         <ul class="list-unstyled">
                                             {% for item in order.lineitems.all %}
                                                 <li class="small">
                                                     {% if item.product.has_colours %}
                                                         {{ item.product.colour }}
-                                                    {% endif %}{{ item.product.name }} x{{ item.quantity }}
+                                                    {% endif %}{{ item.product.name }} x {{ item.quantity }}           
                                                 </li>
                                             {% endfor %}
+                                    
                                         </ul>
+                                        {% for item in order.subscriptionlineitems.all %}
+                                            <p class="small">
+                                                {{ item.plan.name }}   
+                                            </p>
+                                        {% endfor %}                                 
                                     </td>
                                     <td>£{{ order.grand_total }}</td>
                                 </tr>

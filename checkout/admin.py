@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, OrderLineItem
+from .models import Order, OrderLineItem, SubscriptionOrderLineItem
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
@@ -7,8 +7,13 @@ class OrderLineItemAdminInline(admin.TabularInline):
     readonly_fields = ('lineitem_total',)
 
 
+class SubscriptionOrderLineItemAdminInline(admin.TabularInline):
+    model = SubscriptionOrderLineItem
+    readonly_fields = ('subscriptionlineitem_total',)
+
+
 class OrderAdmin(admin.ModelAdmin):
-    inlines = (OrderLineItemAdminInline,)
+    inlines = (OrderLineItemAdminInline, SubscriptionOrderLineItemAdminInline)
 
     readonly_fields = ('order_number', 'date',
                        'shipping_cost', 'order_total',
