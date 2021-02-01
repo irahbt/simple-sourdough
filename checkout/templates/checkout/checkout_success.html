@@ -83,6 +83,9 @@
         </div>
     </div>
 </div>
+{% if from_profile %}
+    <a href="{% url 'profile' %}" class="btn">Back to account</a>
+{% endif %}
 
 <div class="container extra-padding-container">
         <div class="row">
