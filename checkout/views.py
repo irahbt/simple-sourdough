@@ -4,9 +4,8 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import OrderForm
-from .models import Order, OrderLineItem, SubscriptionOrderLineItem
+from .models import Order, OrderLineItem
 from products.models import Product
-from subscriptions.models import SubscriptionPlan
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
@@ -22,8 +21,7 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'basket': json.dumps(request.session.get(
-                'basket', {'product': {}, 'subscription': {}})),
+            'basket': json.dumps(request.session.get('basket', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -37,11 +35,9 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
- 
-    if request.method == 'POST':
 
-        basket = request.session.get(
-                'basket', {'product': {}, 'subscription': {}})
+    if request.method == 'POST':
+        basket = request.session.get('basket', {})
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -62,55 +58,32 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
-
-            for category, category_items in basket.items():
-                for item_id, item_data in category_items.items():
-
-                    if category == 'product':
-                        try:
-                            product = get_object_or_404(Product, pk=item_id)
-                            if isinstance(item_data, int):
-                                order_line_item = OrderLineItem(
-                                    order=order,
-                                    product=product,
-                                    quantity=item_data,
-                                )
-                                order_line_item.save()
-                            else:
-                                for colour, quantity in item_data['items_by_colour'].items():
-                                    order_line_item = OrderLineItem(
-                                        order=order,
-                                        product=product,
-                                        quantity=quantity,
-                                        product_colour=colour,
-                                    )
-                                    order_line_item.save()
-                        except Product.DoesNotExist:
-                            messages.error(request, (
-                                "One of the products in your basket wasn't found in our database. "
-                                "Please contact us for assistance")
+            for item_id, item_data in basket.items():
+                try:
+                    product = Product.objects.get(id=item_id)
+                    if isinstance(item_data, int):
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            product=product,
+                            quantity=item_data,
+                        )
+                        order_line_item.save()
+                    else:
+                        for colour, quantity in item_data['items_by_colour'].items():
+                            order_line_item = OrderLineItem(
+                                order=order,
+                                product=product,
+                                quantity=quantity,
+                                product_colour=colour,
                             )
-                            order.delete()
-                            return redirect(reverse('view_basket'))
-
-                    elif category == 'subscription':
-                        try:
-                            plan = get_object_or_404(
-                                SubscriptionPlan, pk=item_id)
-                            if isinstance(item_data, int):
-                                order_line_item = SubscriptionOrderLineItem(
-                                    order=order,
-                                    plan=plan,
-                                )
-                                order_line_item.save()
-    
-                        except SubscriptionPlan.DoesNotExist:
-                            messages.error(request, (
-                                "We couldn't find this subscription plan in our database. Please contact us for assistance."
-                                "Please contact us for assistance")
-                            )
-                            order.delete()
-                            return redirect(reverse('view_basket'))
+                            order_line_item.save()
+                except Product.DoesNotExist:
+                    messages.error(request, (
+                        "One of the products in your basket wasn't found in our database. "
+                        "Please contact us for assistance")
+                    )
+                    order.delete()
+                    return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))

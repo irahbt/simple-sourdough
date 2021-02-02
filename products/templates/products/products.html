@@ -11,8 +11,8 @@
         <div class="row">
             <div class="col-12">
                     <div class="d-flex justify-content-center">
-                {% for c in current_product_category %}
-                    <a class="text-decoration-none text-reset" href="{% url 'products' %}?product_product_category={{ c.name }}">
+                {% for c in current_category %}
+                    <a class="text-decoration-none text-reset" href="{% url 'products' %}?category={{ c.name }}">
                         {{ c.friendly_name }}
                     </a>
                 {% endfor %}
@@ -28,7 +28,7 @@
         <div class="row w-100 ">
              <div class="col-6">
                 <p class="m-0">
-                    {% if search_term or current_product_categories or current_sorting != 'None_None' %}
+                    {% if search_term or current_categories or current_sorting != 'None_None' %}
                         <a class="text-reset" href="{% url 'products' %}">Shop All</a> | 
                     {% endif %}
                     {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
@@ -42,8 +42,8 @@
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
                         <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                         <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                        <option value="product_category_asc" {% if current_sorting == 'product_category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                        <option value="product_category_desc" {% if current_sorting == 'product_category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                        <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                        <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
                         <option value="added_date_desc" {% if current_sorting == 'added_date_desc' %}selected{% endif %}>Recently Added<option>
                     </select>
                 </div>

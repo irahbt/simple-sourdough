@@ -30,12 +30,7 @@
         </div>
         <div class="col-12 col-md-6">
             <h5 class="d-flex justify-content-center">Purchased recipes</h5>
-                {% for order in orders %}
-                    {% for item in order.subscriptionlineitems.all %}
-                                {{ item.plan.name }}   
-       
-                     {% endfor %}
-                {% endfor %}
+             
         </div>
     </div>
     <div class="row">
@@ -73,11 +68,7 @@
                                             {% endfor %}
                                     
                                         </ul>
-                                        {% for item in order.subscriptionlineitems.all %}
-                                            <p class="small">
-                                                {{ item.plan.name }}   
-                                            </p>
-                                        {% endfor %}                                 
+                    
                                     </td>
                                     <td>£{{ order.grand_total }}</td>
                                 </tr>

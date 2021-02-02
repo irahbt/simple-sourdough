@@ -21,23 +21,14 @@
             <p class="mb-0">{{ order.date|date:"F, jS, o" }}</p>
             <p class="mb-0"> Order No. {{ order.order_number }}</p>
             {% for item in order.lineitems.all %}
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0">{{ item.product.name }}</p>{% if item.product_colour %}<p class="text-muted text-xs">{{ item.product_colour|title }}</p>{% endif %}
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">x {{ item.quantity }} (£{{ item.product.price }} each)</p>
-                    </div>
+             <div class="row">
+                <div class="col-12 col-md-4">
+                    <p class="mb-0">{{ item.product.name }}</p>{% if item.product_colour %}<p class="text-muted text-xs">{{ item.product_colour|title }}</p>{% endif %}
                 </div>
-                {% endfor %}
-                {% for item in order.subscriptionlineitems.all %}
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p class="mb-0">{{ item.plan.name }}</p>
-                        <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0">x {{ item.quantity }} (£{{ item.plan.price }} each)</p>
-                        </div>
-                    </div>
+                <div class="col-12 col-md-8 text-md-right">
+                    <p class="mb-0">x {{ item.quantity }} (£{{ item.product.price }} each)</p>
+                </div>
+            </div>
             {% endfor %}
             <div class="row mt-3">
                 <div class="col-12 col-md-4">
@@ -83,9 +74,6 @@
         </div>
     </div>
 </div>
-{% if from_profile %}
-    <a href="{% url 'profile' %}" class="btn">Back to account</a>
-{% endif %}
 
 <div class="container extra-padding-container">
         <div class="row">

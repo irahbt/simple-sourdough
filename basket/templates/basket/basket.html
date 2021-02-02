@@ -52,7 +52,56 @@
 
                     <tbody class="border-custom-bottom">
                         {% for item in basket_items %}
-                            {% include 'basket/includes/basket_items_details.html' %}
+                            <tr>
+                                <td class="w-25">
+                                    <img class="img-fluid" src="{{ item.product.image.url }}">
+                                </td>
+                                <td>
+                                    <p class="m-0"><strong>{{ item.product.name }}</strong></p>
+                                    {% if item.product.has_colours %}
+                                        <p class="my-0 text-xs text-muted">{{ item.colour|title }}</p>
+                                    {% endif %}
+                                    <p class="text-xs text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                </td>
+                                <td>
+                                    <p>£{{ item.product.price }}</p>
+                                </td>
+                                <td>
+                                    <form class="form update-form" method="POST" action="{% url 'update_basket' item.item_id %}">
+                                        {% csrf_token %}
+                                         <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend me-3">
+                                                    <button class="decrement-qty btn btn-sm" 
+                                                        data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                        <i class="fas fa-minus fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                                <input class="border-0 qty_input text-xs" type="number" name="quantity" value="{{ item.quantity }}" min="1"
+                                                max="49" data-item_id="{{ item.item_id }}" id="id-qty_{{ item.item_id }}">
+                                                    <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm"
+                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <i class="fas fa-plus fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if item.product.has_colours %}
+                                            <input type="hidden" name="product_colour" value="{{ item.colour }}">
+                                        {% endif %}
+                                    </form>
+                                    <a class="update-link text-xs text-muted text-decoration-none">Update Qty</a>
+                                </td>
+                                <td>
+                                    <p>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                </td>
+                                <td>
+                                    <a class="remove-item text-decoration-none text-reset" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
+                                        <i class="fas fa-times fa-sm"></i>
+                                    </a> 
+                                </td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                 </table>
@@ -70,7 +119,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <h6>Shipping:</h6>
+                                <h6>Shipping Total:</h6>
                             </div>
                             <div class="col-6">
                                 <h6>£{{ shipping|floatformat:2 }}</h6>
@@ -86,7 +135,7 @@
                         </div>
                         {% if free_shipping_delta > 0 %}
                             <p class="pt-2">
-                                Spend <strong>£{{ free_shipping_delta|floatformat:2 }}</strong> more for free shipping.
+                                Spend <strong>£{{ free_shipping_delta }}</strong> more for free shipping.
                             </p>
                         {% endif %}
                     </div>
@@ -109,7 +158,7 @@
                     <p class="mb-0">Keep Shopping <i class="fas fa-chevron-right small"></i></p>
                 </a>
                 <a href="" class="text-decoration-none text-reset">
-                    <p>Add a Subscription Plan<i class="fas fa-chevron-right small"></i></p>
+                    <p>Add a Subscription <i class="fas fa-chevron-right small"></i></p>
                 </a>
             {% endif %}
         </div>
@@ -124,29 +173,28 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    {% include 'products/includes/quantity_input_script.html' %}
+{% include 'products/includes/quantity_input_script.html' %}
 
-    <script type="text/javascript">
-        // Update quantity on click
-        $('.update-link').click(function(e) {
-            let form = $(this).prev('.update-form');
-            form.submit();
-        })
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        let form = $(this).prev('.update-form');
+        form.submit();
+    })
 
-        // Remove item and reload on click
-        $('.remove-item').click(function(e) {
-            let csrfToken = "{{ csrf_token }}";
-            let itemId = $(this).attr('id').split('_')[1];
-            let categoryId = $(this).attr('id').split('_')[2];
-            let colour = $(this).data('product_colour');
-            let url = `/basket/remove/${itemId}/${categoryId}/`;
-            let data = {'csrfmiddlewaretoken': csrfToken, 'product_colour': colour};
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = $(this).attr('id').split('remove_')[1];
+        let colour = $(this).data('product_colour');
+        let url = `/basket/remove/${itemId}/`;
+        let data = {'csrfmiddlewaretoken': csrfToken, 'product_colour': colour};
 
-            $.post(url, data)
-            .done(function() {
-                location.reload();
-            });
-        })
-    </script>
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 
 {% endblock %}

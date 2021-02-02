@@ -8,7 +8,6 @@ from decimal import Decimal
 from django_countries.fields import CountryField
 
 from products.models import Product
-from subscriptions.models import SubscriptionPlan
 from profiles.models import UserProfile
 
 
@@ -57,17 +56,11 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for shipping costs.
         """
-        self.order_total = (self.lineitems.aggregate(
-            Sum('lineitem_total'))['lineitem_total__sum'] or 0) + (
-                self.subscriptionlineitems.aggregate(
-                    Sum('subscriptionlineitem_total'))['subscriptionlineitem_total__sum'] or 0)
-
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_SHIPPING_THRESHOLD:
             self.shipping_cost = Decimal(settings.STANDARD_SHIPPING)
-
         else:
             self.shipping_cost = 0
-
         self.grand_total = self.order_total + self.shipping_cost
         self.save()
 
@@ -106,23 +99,3 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
-
-
-class SubscriptionOrderLineItem(models.Model):
-    order = models.ForeignKey(
-        Order, null=False, blank=False, on_delete=models.CASCADE, related_name='subscriptionlineitems')
-    plan = models.ForeignKey(
-        SubscriptionPlan, null=False, blank=False, on_delete=models.CASCADE)
-    subscriptionlineitem_total = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-
-    def save(self, *args, **kwargs):
-        """
-        Override original save method to set the lineitem total
-        and update the order total.
-        """
-        self.subscriptionlineitem_total = self.plan.price
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'SKU {self.plan.name} on order {self.order.order_number}'
