@@ -17,5 +17,3 @@ def plan(request, pk):
         return render(request, 'plans/plan.html', context)
 
 
-def checkout_for_plan(request):
-    return render(request, 'plans/checkout_plan.html')

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Monthly Subscription Plan</h5>
+                        <p class="card-text">£5.00</p>
+                        <a href="{% url 'checkout_plan' %}?plan=monthly" class="btn btn-primary">Go Monthly</a>
+                    </div>
+                </div>
+            </div>
+               <div class="col-12 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Yearly Subscription Plan</h5>
+                        <p class="card-text">£60.00</p>
+                        <a href="{% url 'checkout_plan' %}?plan=yearly" class="btn btn-primary">Go Yearly</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
