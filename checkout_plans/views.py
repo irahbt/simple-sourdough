@@ -13,6 +13,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @login_required
 def checkout_plan(request):
 
+    try:
+        if request.user.userprofile.membership:
+            return redirect('profile')
+    except PlanCustomer.DoesNotExist:
+        pass
+
     if request.method == 'POST':
         stripe_customer = stripe.Customer.create(email=request.user.email, source=request.POST['stripeToken'])
         plan = 'price_1IECPRC0y3iCJrXqNx7gE55o'

@@ -3,8 +3,10 @@ from .models import RecipePlan
 from checkout_plans.models import PlanCustomer
 from profiles.models import UserProfile
 
+
 def subscribe(request):
     return render(request, 'plans/subscribe.html')
+
 
 def plan(request, pk):
     plan = get_object_or_404(RecipePlan, pk=pk)
