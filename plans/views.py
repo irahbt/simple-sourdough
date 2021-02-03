@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import RecipePlan
 from profiles.models import UserProfile
 
+import stripe
 
 def subscribe(request):
     return render(request, 'plans/subscribe.html')

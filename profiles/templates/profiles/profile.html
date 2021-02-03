@@ -34,8 +34,8 @@
                 {% for plan in plans.all %}
 
                     <li><a href="{% url 'plan' plan.id %}">{{ plan.title }}</a></li>
-
                 {% endfor %}
+                <a href="{% url 'membership_settings' %}">Settings</a>
             {% else %}
                     subscribe
             {% endif %}

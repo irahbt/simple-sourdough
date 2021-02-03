@@ -4,8 +4,9 @@ from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
 from plans.models import RecipePlan
-
 from checkout.models import Order
+
+import stripe
 
 
 def profile(request):
@@ -48,23 +49,28 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
-# def plan_settings(request):
-#     membership = False
-#     cancel_at_period_end = False
-#     if request.method == 'POST':
-#         subscription = stripe.Subscription.retrieve(request.user.plancustomer.)
-#     else:
-#         try:
-#             if request.user.userprofile.membership:
-#                 membership = True
-#             if request.user.plancustomer.cancel_at_period_end:
-#                 cancel_at_period_end = True
-#         except PlanCustomer.DoesNotExist:
-#             membership = False
+def membership_settings(request):
+    membership = False
+    cancel_at_period_end = False
+    if request.method == 'POST':
+        subscription = stripe.Subscription.retrieve(request.user.userprofile.stripe_subscription_id)
+        subscription.cancel_at_period_end = True
+        request.user.userprofile.cancel_at_period_end = True
+        cancel_at_period_end = True
+        subscription.save()
+        request.user.userprofile.save()
+    else:
+        try:
+            if request.user.userprofile.membership:
+                membership = True
+            if request.user.userprofile.cancel_at_period_end:
+                cancel_at_period_end = True
+        except UserProfile.DoesNotExist:
+            membership = False
 
-#         template = 'profiles/plan_settings.html'
-#         context = {
-#             'membership': membership,
-#             'cancel_at_period_end': cancel_at_period_end,
-#         }
-#     return render(request, template, context)
+    template = 'profiles/membership_settings.html'
+    context = {
+        'membership': membership,
+        'cancel_at_period_end': cancel_at_period_end,
+    }
+    return render(request, template, context)
