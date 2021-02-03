@@ -8,9 +8,9 @@
                 <ul class="list-inline list-unstyled d-flex justify-content-center" aria-labelledby="navbarDropdown">
                     <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
                     <li class="list-inline-item"><a class="dropdown-item"
-                            href="{% url 'products' %}?product_category=tools">Tools</a></li>
+                            href="{% url 'products' %}?category=tools">Tools</a></li>
                     <li class="list-inline-item"><a class="dropdown-item"
-                            href="{% url 'products' %}?product_category=ingredients">Ingredients</a></li>
+                            href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
                 </ul>
             </div>
         </li>
@@ -31,8 +31,8 @@
             </a>
             <div class="dropdown-menu border-0 text-xs" aria-labelledby="shop-dropdown-mobile">
                 <a class="dropdown-item" href="{% url 'products' %}">All</a>
-                <a class="dropdown-item" href="{% url 'products' %}?product_category=tools">Tools</a>
-                <a class="dropdown-item" href="{% url 'products' %}?product_category=ingredients">Ingredients</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a>
             </div>
         </li>
         <li>
