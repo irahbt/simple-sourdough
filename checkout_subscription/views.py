@@ -25,7 +25,7 @@ def checkout_subscription(request):
             subscription = 'price_1IECPRC0y3iCJrXqNVUpbMIA'
 
         subscription = stripe.Subscription.create(customer=stripe_customer.id,
-        items=[{'subscription':subscription}])
+        items=[{'plan': subscription}])
 
         customer = UserProfile.objects.get(user=request.user)
         customer.stripeid = stripe_customer.id
