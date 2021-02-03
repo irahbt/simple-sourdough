@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from .models import PlanCustomer
 from profiles.models import UserProfile
 
 import stripe
@@ -12,11 +11,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 @login_required
 def checkout_plan(request):
-
+    
     try:
         if request.user.userprofile.membership:
             return redirect('profile')
-    except PlanCustomer.DoesNotExist:
+    except UserProfile.DoesNotExist:
         pass
 
     if request.method == 'POST':
@@ -28,17 +27,12 @@ def checkout_plan(request):
         subscription = stripe.Subscription.create(customer=stripe_customer.id,
         items=[{'plan':plan}])
 
-        customer = PlanCustomer()
-        customer.user = request.user
+        customer = UserProfile.objects.get(user=request.user)
         customer.stripeid = stripe_customer.id
         customer.cancel_at_period_end = False
         customer.stripe_subscription_id = subscription.id
-        # Attach the user's profile
-        profile = UserProfile.objects.get(user=request.user)
-        profile.membership = True
-        customer.user_profile = profile
+        customer.membership = True
         customer.save()
-        profile.save()
 
         return redirect('home')
 

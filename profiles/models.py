@@ -27,8 +27,9 @@ class UserProfile(models.Model):
     default_postcode = models.CharField(
         max_length=20, null=True, blank=True)
     membership = models.BooleanField(default=False)
-
-
+    stripeid = models.CharField(max_length=255, null=True, blank=True)
+    stripe_subscription_id = models.CharField(max_length=255, null=True, blank=True)
+    cancel_at_period_end = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

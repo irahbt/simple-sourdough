@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RecipePlan
-from checkout_plans.models import PlanCustomer
 from profiles.models import UserProfile
 
 
@@ -15,7 +14,7 @@ def plan(request, pk):
             try:
                 if request.user.userprofile.membership:
                     return render(request, 'plans/plan.html', {'plan': plan})
-            except PlanCustomer.DoesNotExist:
+            except UserProfile.DoesNotExist:
                 return redirect('account_signup')
         return redirect('account_login')
     else:
@@ -23,4 +22,3 @@ def plan(request, pk):
             'plan': plan,
         }
         return render(request, 'plans/plan.html', context)
-
