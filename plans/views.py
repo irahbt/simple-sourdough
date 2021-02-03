@@ -20,6 +20,7 @@ def plan(request, pk):
                     return render(request, 'plans/plan.html', {'plan': plan})
             except PlanCustomer.DoesNotExist:
                 return redirect('subscribe')
+        return redirect('account_login')
     else:
         context = {
             'plan': plan,
