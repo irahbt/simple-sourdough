@@ -10,7 +10,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @login_required
-def checkout_plan(request):
+def checkout_subscription(request):
     
     try:
         if request.user.userprofile.membership:
@@ -20,12 +20,12 @@ def checkout_plan(request):
 
     if request.method == 'POST':
         stripe_customer = stripe.Customer.create(email=request.user.email, source=request.POST['stripeToken'])
-        plan = 'price_1IECPRC0y3iCJrXqNx7gE55o'
-        if request.POST['plan'] == 'yearly':
-            plan = 'price_1IECPRC0y3iCJrXqNVUpbMIA'
+        subscription = 'price_1IECPRC0y3iCJrXqNx7gE55o'
+        if request.POST['subscription'] == 'yearly':
+            subscription = 'price_1IECPRC0y3iCJrXqNVUpbMIA'
 
         subscription = stripe.Subscription.create(customer=stripe_customer.id,
-        items=[{'plan':plan}])
+        items=[{'subscription':subscription}])
 
         customer = UserProfile.objects.get(user=request.user)
         customer.stripeid = stripe_customer.id
@@ -37,17 +37,17 @@ def checkout_plan(request):
         return redirect('home')
 
     else:
-        plan = 'monthly'
+        subscription = 'monthly'
         price = 6
-        if request.method == 'GET' and 'plan' in request.GET:
-            if request.GET['plan'] == 'yearly':
-                plan = 'yearly'
+        if request.method == 'GET' and 'subscription' in request.GET:
+            if request.GET['subscription'] == 'yearly':
+                subscription = 'yearly'
                 price = '60'
 
         context = {
-            'plan': plan,
+            'subscription': subscription,
             'price': price,
         }
 
-        return render(request, 'checkout_plans/checkout_plan.html', context)
+        return render(request, 'checkout_subscription/checkout_subscription.html', context)
 

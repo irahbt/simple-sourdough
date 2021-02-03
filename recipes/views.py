@@ -5,21 +5,21 @@ from profiles.models import UserProfile
 import stripe
 
 def subscribe(request):
-    return render(request, 'plans/subscribe.html')
+    return render(request, 'recipes/subscribe.html')
 
 
-def plan(request, pk):
-    plan = get_object_or_404(Recipe, pk=pk)
-    if plan.premium:
+def recipe(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    if recipe.premium:
         if request.user.is_authenticated:
             try:
                 if request.user.userprofile.membership:
-                    return render(request, 'plans/plan.html', {'plan': plan})
+                    return render(request, 'recipes/recipe.html', {'recipe': recipe})
             except UserProfile.DoesNotExist:
                 return redirect('account_signup')
         return redirect('account_login')
     else:
         context = {
-            'plan': plan,
+            'recipe': recipe,
         }
-        return render(request, 'plans/plan.html', context)
+        return render(request, 'recipes/recipe.html', context)

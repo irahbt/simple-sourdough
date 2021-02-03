@@ -21,13 +21,13 @@
                 <div class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                         <h6 class="my-0">Recipe Subscription</h6>
-                        <small class="text-muted">{{ plan|title }}</small>
+                        <small class="text-muted">{{ recipe|title }}</small>
                     </div>
                     <span class="text-muted">£{{ price }}</span>
                 </div>
 
             <div class="text-center pt-3">
-                <form action="{% url 'checkout_plan' %}" method="POST">
+                <form action="{% url 'checkout_subscription' %}" method="POST">
                     {% csrf_token %}
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
                         data-key="pk_test_51HvgcNC0y3iCJrXqhi04GCxf5kYhgPvHlcXuO2kaigKKurbsieGPc9GgdJ63XTLBmvAD9nIeyC1Qyml16AXHUouf00ogCGCDbc"
@@ -37,7 +37,7 @@
                         data-email="{{ user.email }}"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto">
                         </script>
-                    <input type="hidden" value="{{ plan }}" name="plan" />
+                    <input type="hidden" value="{{ subscription }}" name="subscription" />
                 </form>
             </div>
         </div>

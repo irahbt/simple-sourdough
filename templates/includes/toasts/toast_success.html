@@ -25,17 +25,6 @@
                                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                                 </div>
                         </div>
-                    {% elif item.plan %}
-                        <div class="row">
-                            <div class="col-3">
-                                <img class="w-100" src="{{ item.plan.image.url }}">
-                            </div>
-                            <div class="col-9">
-                                <p><strong>{{ item.plan.name }} Subscription</strong></p>
-                                <p class="my-0 small text-muted">£{{ item.plan.price }}</p>
-                            </div>
-                        </div>
-                    {% endif %}
 
                 {% endfor %}
             </div>
