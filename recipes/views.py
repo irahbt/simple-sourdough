@@ -4,9 +4,6 @@ from profiles.models import UserProfile
 
 import stripe
 
-def subscribe(request):
-    return render(request, 'recipes/subscribe.html')
-
 
 def recipe(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
