@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 from .models import UserProfile
 from .forms import UserProfileForm
-from plans.models import RecipePlan
+from plans.models import Recipe
 from checkout.models import Order
 
 import stripe
@@ -41,7 +41,7 @@ def profile(request):
             messages.success(request, 'Your information has been updated')
 
     orders = profile.orders.all
-    plans = RecipePlan.objects
+    plans = Recipe.objects
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
     context = {

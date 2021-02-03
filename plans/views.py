@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import RecipePlan
+from .models import Recipe
 from profiles.models import UserProfile
 
 import stripe
@@ -9,7 +9,7 @@ def subscribe(request):
 
 
 def plan(request, pk):
-    plan = get_object_or_404(RecipePlan, pk=pk)
+    plan = get_object_or_404(Recipe, pk=pk)
     if plan.premium:
         if request.user.is_authenticated:
             try:
