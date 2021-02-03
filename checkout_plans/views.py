@@ -25,13 +25,14 @@ def checkout_plan(request):
         customer = PlanCustomer()
         customer.user = request.user
         customer.stripeid = stripe_customer.id
-        customer.membership = True
         customer.cancel_at_period_end = False
         customer.stripe_subscription_id = subscription.id
         # Attach the user's profile
         profile = UserProfile.objects.get(user=request.user)
+        profile.membership = True
         customer.user_profile = profile
         customer.save()
+        profile.save()
 
         return redirect('home')
 

@@ -26,6 +26,8 @@ class UserProfile(models.Model):
         blank_label='Country', null=True, blank=True)
     default_postcode = models.CharField(
         max_length=20, null=True, blank=True)
+    membership = models.BooleanField(default=False)
+
 
 
     def __str__(self):
