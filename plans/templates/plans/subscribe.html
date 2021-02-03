@@ -33,12 +33,5 @@
                 </div>
             </div>
         </div>    
-        {% for plan in plans.all %}
-
-            <li><a href="{% url 'plan' plan.id %}">{{ plan.title }}</a></li>
-
-        {% endfor %}
-
-
     </div>
 {% endblock %}

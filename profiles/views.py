@@ -3,6 +3,7 @@ from django.contrib import messages
 
 from .models import UserProfile
 from .forms import UserProfileForm
+from plans.models import RecipePlan
 
 from checkout.models import Order
 
@@ -19,6 +20,7 @@ def profile(request):
             messages.success(request, 'Your information has been updated')
 
     orders = profile.orders.all
+    plans = RecipePlan.objects
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
     context = {
@@ -26,6 +28,7 @@ def profile(request):
         'form': form,
         'orders': orders,
         'on_profile_page': True,
+        'plans': plans,
     }
 
     return render(request, template, context)
@@ -43,3 +46,4 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
