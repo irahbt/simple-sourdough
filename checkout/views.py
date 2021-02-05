@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 
@@ -9,7 +10,6 @@ from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
-
 
 import stripe
 import json
@@ -164,3 +164,47 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def checkout_subscription(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    try:
+        if request.user.userprofile.membership:
+            return redirect('profile')
+    except UserProfile.DoesNotExist:
+        pass
+
+    if request.method == 'POST':
+        stripe_customer = stripe.Customer.create(email=request.user.email, source=request.POST['stripeToken'])
+        subscription = 'price_1IECPRC0y3iCJrXqNx7gE55o'
+        if request.POST['subscription'] == 'yearly':
+            subscription = 'price_1IECPRC0y3iCJrXqNVUpbMIA'
+
+        subscription = stripe.Subscription.create(customer=stripe_customer.id,
+        items=[{'plan': subscription}])
+
+        customer = UserProfile.objects.get(user=request.user)
+        customer.stripeid = stripe_customer.id
+        customer.cancel_at_period_end = False
+        customer.stripe_subscription_id = subscription.id
+        customer.membership = True
+        customer.save()
+
+        return redirect('home')
+
+    else:
+        subscription = 'monthly'
+        price = 6
+        if request.method == 'GET' and 'subscription' in request.GET:
+            if request.GET['subscription'] == 'yearly':
+                subscription = 'yearly'
+                price = '60'
+
+        context = {
+            'subscription': subscription,
+            'price': price,
+        }
+
+        return render(request, 'checkout/checkout_subscription.html', context)
+
