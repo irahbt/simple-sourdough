@@ -27,18 +27,28 @@
                 </div>
 
             <div class="text-center pt-3">
-                <form action="{% url 'checkout_subscription' %}" method="POST">
+                <form action="{% url 'checkout_subscription' %}" method="POST" id="payment-form">
                     {% csrf_token %}
-                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
-                        data-key="pk_test_51HvgcNC0y3iCJrXqhi04GCxf5kYhgPvHlcXuO2kaigKKurbsieGPc9GgdJ63XTLBmvAD9nIeyC1Qyml16AXHUouf00ogCGCDbc"
-                        data-amount="£{{ price }}" 
-                        data-name="Starter" 
-                        data-description="Premium Subscription"
-                        data-email="{{ user.email }}"
-                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto">
-                        </script>
-                    <input type="hidden" value="{{ subscription }}" name="subscription" />
-                </form>
+
+                <fieldset class="px-3">
+                    <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                    <!-- Stripe card element -->
+                    <div class="mb-3" id="card-element"></div>
+                    <!-- Display form errors -->
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                     <input type="hidden" value="{{ subscription }}" name="subscription" />
+                </fieldset>
+                <div class="row submit-button">
+                    <div class="col-12 col-md-6 order-md-last my-2">
+                        <button id="submit-button" class="btn btn-dark text-light p-2 float-end me-2">
+                            <span class="p-3">Complete Order</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+  
+                   
+  
             </div>
         </div>
     </div>
@@ -48,3 +58,9 @@
 {% endblock %}
 
 
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}

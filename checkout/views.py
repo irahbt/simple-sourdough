@@ -204,6 +204,8 @@ def checkout_subscription(request):
         context = {
             'subscription': subscription,
             'price': price,
+            'stripe_public_key': 'test',
+            'client_secret': 'test',
         }
 
         return render(request, 'checkout/checkout_subscription.html', context)
