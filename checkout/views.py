@@ -169,6 +169,8 @@ def checkout_success(request, order_number):
 @login_required
 def checkout_subscription(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+
     try:
         if request.user.userprofile.membership:
             return redirect('profile')
@@ -204,8 +206,7 @@ def checkout_subscription(request):
         context = {
             'subscription': subscription,
             'price': price,
-            'stripe_public_key': 'test',
-            'client_secret': 'test',
+            'stripe_public_key': stripe_public_key,
         }
 
         return render(request, 'checkout/checkout_subscription.html', context)
