@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http.response import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
@@ -24,6 +24,7 @@ def stripe_config(request):
         return JsonResponse(stripe_config, safe=False)
 
 
+@login_required
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
@@ -32,7 +33,7 @@ def create_checkout_session(request):
         try:
             checkout_session = stripe.checkout.Session.create(
                 client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url=domain_url + 'subscription_success?session_id={CHECKOUT_SESSION_ID}',
+                success_url=domain_url + 'subscription_success?session_id={CHECKOUT_SESSION_ID}/',
                 cancel_url=domain_url + 'subscription_cancel/',
                 payment_method_types=['card'],
                 mode='subscription',
@@ -44,12 +45,32 @@ def create_checkout_session(request):
                 ]
             )
             return JsonResponse({'sessionId': checkout_session['id']})
+
         except Exception as e:
             return JsonResponse({'error': str(e)})
 
 
 @login_required
 def subscription_success(request):
+    # try:
+    #     if request.user.userprofile.membership:
+    #         return redirect('profile')
+    # except UserProfile.DoesNotExist:
+    #     pass
+
+    if request.user.is_authenticated:
+        stripe_customer_id = request.session.get('customer')
+        stripe_subscription_id = request.session.get('subscription')
+
+        customer = UserProfile.objects.get(user=request.user)
+        customer.stripe_customer_id = stripe_customer_id
+        customer.stripe_subscription_id = stripe_subscription_id
+        customer.cancel_at_period_end = False
+        customer.membership = True
+        customer.save()
+
+        return redirect('subscriptions')
+
     return render(request, 'subscriptions/subscription_success.html')
 
 
@@ -58,42 +79,3 @@ def subscription_cancel(request):
     return render(request, 'subscriptions/subscription_cancel.html')
 
 
-@csrf_exempt
-def stripe_webhook(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
-
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
-
-        # Fetch all the required data from session
-        client_reference_id = session.get('client_reference_id')
-        stripe_customer_id = session.get('customer')
-        stripe_subscription_id = session.get('subscription')
-
-        # Get the user and create a new UserProfile
-        user = User.objects.get(id=client_reference_id)
-
-        UserProfile.objects.create(
-            user=user,
-            stripeCustomerId=stripe_customer_id,
-            stripeSubscriptionId=stripe_subscription_id,
-        )
-        print(user.username + ' just subscribed.')
-
-    return HttpResponse(status=200)
