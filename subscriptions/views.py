@@ -53,10 +53,11 @@ def subscription_checkout(request):
             cancel_url='http://127.0.0.1:8000/subscription_cancel',
         )
 
-        template = 'checkout/subscription_checkout.html'
+        template = 'subscriptions/subscription_checkout.html'
         context = {
             'final_pound': final_pound,
             'session_id': session.id,
+            'subscription': subscription,
         }
 
         return render(request, template, context)
