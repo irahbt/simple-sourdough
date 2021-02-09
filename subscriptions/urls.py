@@ -6,4 +6,5 @@ urlpatterns = [
     path('subscription_checkout/', views.subscription_checkout, name='subscription_checkout'),
     path('subscription_success/', views.subscription_success, name='subscription_success'),
     path('subscription_cancel/', views.subscription_cancel, name='subscription_cancel'),
+    path('update_accounts/', views.update_accounts, name='update_accounts'),
 ]

@@ -1,13 +1,30 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.http.response import JsonResponse, HttpResponse
-from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http.response import HttpResponse
 from django.conf import settings
 
 from profiles.models import UserProfile
 
 import stripe
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def update_accounts(request):
+    """
+    A view to allow superuser to update/cancel user's
+    membership if their subscription is inactive.
+    """
+    profiles = UserProfile.objects.all()
+    for profile in profiles:
+        subscription = stripe.Subscription.retrieve(
+            profile.stripe_subscription_id)
+        if subscription.status != 'active':
+            profile.membership = False
+        else:
+            profile.membership = True
+        profile.cancel_at_period_end = subscription.cancel_at_period_end
+        profile.save()
+        return HttpResponse('Subscriptions update completed')
 
 
 def subscriptions(request):

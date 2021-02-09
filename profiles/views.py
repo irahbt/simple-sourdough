@@ -12,24 +12,6 @@ from checkout.models import Order
 import stripe
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def update_accounts(request):
-    """
-    Allow superuser to update accounts
-    """
-    profiles = UserProfile.objects.all()
-    for profile in profiles:
-        subscription = stripe.Subscription.retrieve(
-            profile.stripe_subscription_id)
-        if subscription.status != 'active':
-            profile.membership = False
-        else:
-            profile.membership = True
-        profile.cancel_at_period_end = subscription.cancel_at_period_end
-        profile.save()
-        return HttpResponse('update completed')
-
-
 def profile(request):
     """ Display the user's profile. """
 
