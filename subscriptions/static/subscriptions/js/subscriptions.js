@@ -1,28 +1,13 @@
-console.log('check!')
+
+let stripe = Stripe('pk_test_51HvgcNC0y3iCJrXqhi04GCxf5kYhgPvHlcXuO2kaigKKurbsieGPc9GgdJ63XTLBmvAD9nIeyC1Qyml16AXHUouf00ogCGCDbc');
 
 
-// Get Stripe publishable key
-fetch("./stripe_config/")
-.then((result) => { return result.json(); })
-.then((data) => {
-  // Initialize Stripe.js
-  const stripe = Stripe(data.publicKey);
+// Event handler
+let checkoutBtn = document.querySelector("#subscription-checkout-button");
 
-  // Event handler
-  let submitBtn = document.querySelector("#subscription-submit");
-  if (submitBtn !== null) {
-    submitBtn.addEventListener("click", () => {
-    // Get Checkout Session ID
-    fetch("./create_checkout_session/")
-      .then((result) => { return result.json(); })
-      .then((data) => {
-        console.log(data);
-        // Redirect to Stripe Checkout
-        return stripe.redirectToCheckout({sessionId: data.sessionId})
-      })
-      .then((res) => {
-        console.log(res);
-      });
+checkoutBtn.addEventListener('click', function () {
+    stripe.redirectToCheckout({
+        sessionId: sessionid
+    }).then(function (result) {
     });
-  }
-})
+});

@@ -30,7 +30,7 @@
                 </li>
             </ul>
             <div class="text-center pt-3">
-                <button id="checkout-button" data-secret="{{ session_id }}">
+                <button id="subscription-checkout-button" data-secret="{{ session_id }}">
                     Checkout
                 </button>
             </div>
@@ -42,9 +42,8 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
-    let sessionid = "{{session_id}}";
-</script>
-
-<script src="{% static 'subscriptions/js/subscriptions.js' %}"></script>
+    <script type="text/javascript">
+        let sessionid = "{{session_id}}";
+    </script>
+    <script src="{% static 'subscriptions/js/subscriptions.js' %}"></script>
 {% endblock %}

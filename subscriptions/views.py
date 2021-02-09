@@ -19,7 +19,6 @@ def subscriptions(request):
 @login_required
 def subscription_checkout(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
 
     try:
         if request.user.userprofile.membership:
@@ -49,8 +48,8 @@ def subscription_checkout(request):
                 }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url='http://127.0.0.1:8000/subscription_success?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url='http://127.0.0.1:8000/subscription_cancel',
+            success_url='https://8000-c258c6d1-b0ff-4fce-b6f4-eb72b8f7ec16.ws-eu03.gitpod.io/subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url='https://8000-c258c6d1-b0ff-4fce-b6f4-eb72b8f7ec16.ws-eu03.gitpod.io/subscriptions/subscription_cancel',
         )
 
         template = 'subscriptions/subscription_checkout.html'
@@ -64,7 +63,7 @@ def subscription_checkout(request):
 
 
 def subscription_cancel(request):
-    return render(request, 'checkout/subscription_cancel.html')
+    return render(request, 'subscriptions/subscription_cancel.html')
 
 
 def subscription_success(request):
@@ -78,4 +77,4 @@ def subscription_success(request):
         customer.stripe_subscription_id = session.subscription
         customer.save()
 
-    return render(request, 'checkout/subscription_success.html')
+    return render(request, 'subscriptions/subscription_success.html')
