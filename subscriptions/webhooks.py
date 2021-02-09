@@ -1,24 +1,27 @@
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-from checkout.webhook_handler import StripeWH_Handler
+from subscriptions.webhook_handler import StripeWH_Handler
 
 import stripe
+
 
 @csrf_exempt
 def subscription_webhook(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
-    endpoint_secret = settings.STRIPE_SUB_WH_SECRET
+    wh_secret = settings.STRIPE_SUB_WH_SECRET
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    # Get the webhook data and verify its signature
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
+        payload, sig_header, wh_secret
         )
     except ValueError as e:
         # Invalid payload
@@ -26,17 +29,25 @@ def subscription_webhook(request):
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
         return HttpResponse(status=400)
+    except Exception as e:
+        return HttpResponse(content=e, status=400)
 
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
+    handler = StripeWH_Handler(request)
 
-        session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
-        customer = UserProfile.objects.get(user=request.user)
-        customer.stripeid = session.customer
-        customer.membership = True
-        customer.cancel_at_period_end = False
-        customer.stripe_subscription_id = session.subscription
-        customer.save()
 
-    return HttpResponse(status=200)
+    # Map webhook events to relevant handler functions
+    event_map = {
+        'checkout_session_completed': handler.handle_checkout_session_completed,
+        'checkout_session.session_failed': handler.handle_checkout_session_failed,
+    }
+
+    # Get the webhook type from Stripe
+    event_type = event['type']
+
+    # If there's a handler for it, get it from the event map
+    # Use the generic one by default
+    event_handler = event_map.get(event_type, handler.handle_event)
+
+    # Call the event handler with the event
+    response = event_handler(event)
+    return response
