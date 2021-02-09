@@ -14,20 +14,24 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card" style="width: 18rem;">
-                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Monthly Subscription</h5>
                         <p class="card-text">£6.00</p>
-                        <button type="submit" class="btn btn-primary" id="subscription-submit">Subscribe to Monthly</button>
+                        <a href="{% url 'checkout_subscription' %}?subscription=monthly" class="btn btn-primary">Go Monthly</a>
+                    </div>
+                </div>
+            </div>
+               <div class="col-12 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Yearly Subscription</h5>
+                        <p class="card-text">£60.00</p>
+                        <a href="{% url 'checkout_subscription' %}?subscription=yearly" class="btn btn-primary">Go Yearly</a>
                     </div>
                 </div>
             </div>
         </div>    
     </div>
 {% endblock %}
-
-{% block postloadjs %}
-    <script src="{% static 'subscriptions/js/subscriptions.js' %}"></script>
-{% endblock %}
-
-
