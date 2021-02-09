@@ -100,7 +100,7 @@ class StripeWH_Handler:
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-             
+
                 for item_id, item_data in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):

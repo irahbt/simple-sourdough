@@ -12,22 +12,22 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+            <div class="col-12 col-md-5 offset-md-2">
+                <div class="card" style="width: 20rem;">
+                    <img src="{% static 'images/monthly.png' %}" class="card-img-top" alt="monthly image">
                     <div class="card-body">
                         <h5 class="card-title">Monthly Subscription</h5>
-                        <p class="card-text">£3.99</p>
+                        <p class="card-text">£3.99 a Month</p>
                         <a href="{% url 'subscription_checkout' %}?subscription=monthly" class="btn btn-primary">Go Monthly</a>
                     </div>
                 </div>
             </div>
-               <div class="col-12 col-md-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+               <div class="col-12 col-md-5">
+                <div class="card" style="width: 20rem;">
+                    <img src="{% static 'images/yearly.png' %}" class="card-img-top" alt="yearly image">
                     <div class="card-body">
                         <h5 class="card-title">Yearly Subscription</h5>
-                        <p class="card-text">£39.99</p>
+                        <p class="card-text">£39.99 a Month</p>
                         <a href="{% url 'subscription_checkout' %}?subscription=yearly" class="btn btn-primary">Go Yearly</a>
                     </div>
                 </div>
