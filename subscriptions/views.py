@@ -28,38 +28,38 @@ def subscription_checkout(request):
         pass
 
     if request.method == 'POST':
-        stripe_customer = stripe.Customer.create(email=request.user.email, source=request.POST['stripeToken'])
-        subscription = 'price_1IECPRC0y3iCJrXqNx7gE55o'
-        if request.POST['subscription'] == 'yearly':
-            subscription = 'price_1IECPRC0y3iCJrXqNVUpbMIA'
-
-        subscription = stripe.Subscription.create(customer=stripe_customer.id,
-        items=[{'plan': subscription}])
-
-        customer = UserProfile.objects.get(user=request.user)
-        customer.stripeid = stripe_customer.id
-        customer.cancel_at_period_end = False
-        customer.stripe_subscription_id = subscription.id
-        customer.membership = True
-        customer.save()
-
-        return redirect('home')
-
+        pass
     else:
         subscription = 'monthly'
-        price = 6
+        subscription_id = 'price_1IIt2jC0y3iCJrXqFs8IMEzd'
+        final_pound = 3.99
+
         if request.method == 'GET' and 'subscription' in request.GET:
             if request.GET['subscription'] == 'yearly':
                 subscription = 'yearly'
-                price = '60'
+                subscription_id = 'price_1IIt2uC0y3iCJrXqY47vRnG0'
+                final_pound = 39.99
 
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            customer_email=request.user.email,
+            line_items=[{
+                'price': subscription_id,
+                'quantity': 1,
+                }],
+            mode='subscription',
+            allow_promotion_codes=True,
+            success_url='http://127.0.0.1:8000/subscription_success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url='http://127.0.0.1:8000/subscription_cancel',
+        )
+
+        template = 'checkout/subscription_checkout.html'
         context = {
-            'subscription': subscription,
-            'price': price,
-            'stripe_public_key': stripe_public_key,
+            'final_pound': final_pound,
+            'session_id': session.id,
         }
 
-        return render(request, 'checkout/subscription_checkout.html', context)
+        return render(request, template, context)
 
 
 def subscription_cancel(request):
@@ -67,4 +67,14 @@ def subscription_cancel(request):
 
 
 def subscription_success(reequest):
+
+       
+        # customer = UserProfile.objects.get(user=request.user)
+        # customer.stripeid = stripe_customer.id
+        # customer.cancel_at_period_end = False
+        # customer.stripe_subscription_id = subscription.id
+        # customer.membership = True
+        # customer.save()
+
+        # return redirect('home')
     return render(request, 'checkout/subscription_success.html')
