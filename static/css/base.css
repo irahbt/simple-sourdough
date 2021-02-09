@@ -9,6 +9,11 @@ html,body {
     letter-spacing: 1.5px;
 }
 
+
+#promo-banner{
+    background-color: rgb(100,149,237);
+}
+
 .text-lower {
     font-family: 'Special Elite', sans-serif;
     letter-spacing: 1px;
