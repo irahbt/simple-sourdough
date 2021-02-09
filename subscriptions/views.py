@@ -67,8 +67,8 @@ def subscription_checkout(request):
                 }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url='https://8000-c258c6d1-b0ff-4fce-b6f4-eb72b8f7ec16.ws-eu03.gitpod.io/subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url='https://8000-c258c6d1-b0ff-4fce-b6f4-eb72b8f7ec16.ws-eu03.gitpod.io/subscriptions/subscription_cancel',
+            success_url='https://8000-turquoise-earthworm-f1kwkeby.ws-eu03.gitpod.io/subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url='https://8000-turquoise-earthworm-f1kwkeby.ws-eu03.gitpod.io/subscriptions/subscription_cancel',
         )
 
         template = 'subscriptions/subscription_checkout.html'
@@ -87,14 +87,14 @@ def subscription_cancel(request):
 
 def subscription_success(request):
 
-    # if request.method == 'GET' and 'session_id' in request.GET:
-    #     session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
-    #     customer = UserProfile.objects.get(user=request.user)
-    #     customer.stripeid = session.customer
-    #     customer.membership = True
-    #     customer.cancel_at_period_end = False
-    #     customer.stripe_subscription_id = session.subscription
-    #     customer.save()
+    if request.method == 'GET' and 'session_id' in request.GET:
+        session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
+        customer = UserProfile.objects.get(user=request.user)
+        customer.stripeid = session.customer
+        customer.membership = True
+        customer.cancel_at_period_end = False
+        customer.stripe_subscription_id = session.subscription
+        customer.save()
 
     return render(request, 'subscriptions/subscription_success.html')
 

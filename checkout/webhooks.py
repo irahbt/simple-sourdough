@@ -9,7 +9,7 @@ from checkout.webhook_handler import StripeWH_Handler
 import stripe
 
 
-@require_POST
+# @require_POST
 @csrf_exempt
 def webhook(request):
     """Listen for webhooks from Stripe"""
