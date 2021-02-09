@@ -17,7 +17,7 @@ def subscriptions(request):
 
 
 @login_required
-def checkout_subscription(request):
+def subscription_checkout(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
 
@@ -59,4 +59,12 @@ def checkout_subscription(request):
             'stripe_public_key': stripe_public_key,
         }
 
-        return render(request, 'checkout/checkout_subscription.html', context)
+        return render(request, 'checkout/subscription_checkout.html', context)
+
+
+def subscription_cancel(request):
+    return render(request, 'checkout/subscription_cancel.html')
+
+
+def subscription_success(reequest):
+    return render(request, 'checkout/subscription_success.html')
