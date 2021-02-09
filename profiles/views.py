@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
+from django.conf import settings
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -69,11 +70,13 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
-def membership_settings(request):
+def subscription_settings(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     membership = False
     cancel_at_period_end = False
     if request.method == 'POST':
-        subscription = stripe.Subscription.retrieve(request.user.userprofile.stripe_subscription_id)
+        subscription = stripe.Subscription.retrieve(
+            request.user.userprofile.stripe_subscription_id)
         subscription.cancel_at_period_end = True
         request.user.userprofile.cancel_at_period_end = True
         cancel_at_period_end = True
@@ -88,7 +91,7 @@ def membership_settings(request):
         except UserProfile.DoesNotExist:
             membership = False
 
-    template = 'profiles/membership_settings.html'
+    template = 'profiles/subscription_settings.html'
     context = {
         'membership': membership,
         'cancel_at_period_end': cancel_at_period_end,

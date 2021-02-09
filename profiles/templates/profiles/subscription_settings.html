@@ -14,7 +14,7 @@
     {% if cancel_at_period_end %}
         <p>Membership will run to end of billing cycle: </p>
     {% elif membership %}
-        <form action="{% url 'membership_settings' %}" method="POST">
+        <form action="{% url 'subscription_settings' %}" method="POST">
             {% csrf_token %}
             <input type="submit" value="Cancel Membership?">
         </form>
