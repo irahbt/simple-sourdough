@@ -19,7 +19,7 @@ def recipes(request):
 
 
 def recipe(request, pk):
-    """ 
+    """
     A view to return an individual recipe page,
     ensuring user has a membership to view
     """
@@ -27,7 +27,11 @@ def recipe(request, pk):
     if request.user.is_authenticated:
         try:
             if request.user.userprofile.membership:
-                return render(request, 'recipes/recipe.html', {'recipe': recipe})
+                template = 'recipes/recipe.html'
+                context = {
+                    'recipe': recipe
+                }
+                return render(request, template, context)
         except UserProfile.DoesNotExist:
             return redirect('account_signup')
     return redirect('account_login')
