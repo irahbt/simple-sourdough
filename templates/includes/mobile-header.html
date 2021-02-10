@@ -25,14 +25,14 @@
             <ul class="list-unstyled">
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                <li><a class="nav-link text-reset" href="#">Product Management</a></li>
-                <li><a class="nav-link text-reset" href="#">Recipe Management</a></li>
+                <li><a class="nav-link btn" href="#">Product Management</a></li>
+                <li><a class="nav-link btn" href="#">Recipe Management</a></li>
                 {% endif %}
-                <li><a class="nav-link text-reset" href="">Account</a></li>
-                <li><a class="nav-link text-reset" href="{% url 'account_logout' %}">Sign Out</a></li>
+                <li><a class="nav-link btn" href="">Account</a></li>
+                <li><a class="nav-link btn" href="{% url 'account_logout' %}">Sign Out</a></li>
                 {% else %}
-                <li><a class="nav-link text-reset" href="{% url 'account_login' %}">Sign In</a></li>
-                <li><a class="nav-link text-reset" href="{% url 'account_signup' %}">Sign Up</a></li>
+                <li><a class="nav-link btn" href="{% url 'account_login' %}">Sign In</a></li>
+                <li><a class="nav-link btn" href="{% url 'account_signup' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>

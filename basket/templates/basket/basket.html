@@ -83,13 +83,13 @@
                                             <input type="hidden" name="product_colour" value="{{ item.colour }}">
                                         {% endif %}
                                     </form>
-                                    <a class="update-link text-xs text-muted text-decoration-none">Update Qty</a>
+                                    <a class="update-link text-xs text-muted btn">Update Qty</a>
                                 </td>
                                 <td>
                                     <p>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                                 <td>
-                                    <a class="remove-item text-decoration-none text-reset" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
+                                    <a class="remove-item btn" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
                                         <i class="fas fa-times fa-sm"></i>
                                     </a> 
                                 </td>
@@ -146,7 +146,7 @@
                 </div>
             {% else %}
                 <p>Your basket is currently empty.</p>
-                <a href="{% url 'products' %}" class="text-decoration-none text-reset">
+                <a href="{% url 'products' %}" class="btn">
                     <p class="mb-0">Keep Shopping <i class="fas fa-chevron-right small"></i></p>
                 </a>
             {% endif %}

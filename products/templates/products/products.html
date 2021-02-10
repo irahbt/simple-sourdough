@@ -38,7 +38,7 @@
             <div class="col-12">
                 <div class="d-flex justify-content-center">
                     {% for c in current_category %}
-                        <a class="text-decoration-none text-reset" href="{% url 'products' %}?category={{ c.name }}">
+                        <a class="btn" href="{% url 'products' %}?category={{ c.name }}">
                             {{ c.friendly_name }}
                         </a>
                     {% endfor %}
@@ -49,7 +49,7 @@
              <div class="col-6">
                 <p class="m-0">
                     {% if search_term or current_categories or current_sorting != 'None_None' %}
-                        <a class="text-reset" href="{% url 'products' %}">Shop All</a> | 
+                        <a class="btn" href="{% url 'products' %}">Shop All</a> | 
                     {% endif %}
                     {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                 </p>
@@ -93,7 +93,7 @@
         </div>
     </div>
     <div class="up-button">
-        <a class="up-link d-flex h-100 text-decoration-none text-reset">
+        <a class="up-link d-flex h-100 btn">
             <i class="fas fa-chevron-up mx-auto my-auto"></i>
         </a>	
     </div>
