@@ -8,14 +8,6 @@
            max-width: 70%;
            max-height: auto; 
         }
-
-        .border-custom-top {
-            border-top: solid 1px black;
-        }
-
-        .border-custom-bottom {
-            border-bottom: solid 1px black;
-        }
     </style>
 {% endblock %}
 
@@ -141,7 +133,7 @@
                     </div>
                     <div class="col-12 col-md-6 mt-3">
                         <a href="{% url 'checkout' %}" class="btn btn-dark text-light p-2 me-2">
-                            <span class="p-3">Continue to Secure Checkout</span>
+                            <span class="p-3 pe-0">Continue to Secure Checkout</span>
                             <i class="fas fa-lock p-3"></i>
                         </a>
                         <p class="pt-3">
@@ -162,9 +154,9 @@
     </div>
 
 <div class="container extra-padding-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+    <div class="row">
+        <div class="col"></div>
+    </div>
 </div>
 {% endblock %}
 
