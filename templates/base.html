@@ -43,12 +43,7 @@
 <body>
     <header>
         <div class="container-fluid">
-            <div id="promo-banner" class="row">
-                <div class="col text-white text-center pt-md-3 pt-1">
-                    <p class="small">Subscribe now and get 10% off your first bill with code: <strong>WELCOME10</strong></p>
-                </div>
-            </div>
-            <div class="row bg-white mt-5 py-3 fixed-top border-bottom-dark">
+            <div class="row bg-white py-3">
                 <div class="col-12 col-lg-4 d-lg-flex justify-content-center">
                     <nav class="navbar-expand-lg navbar-light">
                         <ul class="list-inline list-unstyled mb-0 d-flex d-lg-none">
@@ -131,6 +126,11 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+            </div>
+            <div id="promo-banner" class="row d-none d-sm-flex">
+                <div class="col text-white text-center py-2">
+                    <a href="{% url 'subscriptions' %}" class="small text-reset text-decoration-none">Subscribe now and get 10% off your first bill with code: <strong>WELCOME10</strong></a>
                 </div>
             </div>
         </div>
