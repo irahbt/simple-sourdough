@@ -1,8 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+{% block extra_css %}
+    <style>
+        .up-button {
+            height: 50px;
+            width: 50px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .up-link {
+            font-size: 25px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
 {% block page_header %}
-    <div class="container-fluid extra-padding-container">
+<div class="container extra-padding-container-small">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <h2 class="d-flex justify-content-center">Shop</h2>
@@ -19,12 +45,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-{% endblock %}
-
-{% block content %}
-    <div class="container">
         <div class="row w-100 ">
              <div class="col-6">
                 <p class="m-0">
@@ -72,7 +92,11 @@
             {% endfor %}
         </div>
     </div>
-
+    <div class="up-button">
+        <a class="up-link d-flex h-100 text-decoration-none text-reset">
+            <i class="fas fa-chevron-up mx-auto my-auto"></i>
+        </a>	
+    </div>
     <div class="container extra-padding-container">
         <div class="row">
             <div class="col"></div>
@@ -82,6 +106,12 @@
 
 {% block postloadjs %}
     {{ block.super }}
+
+    <script type="text/javascript">
+		$('.up-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
     
     <script type="text/javascript">
         $('#sort-select').change(function() {
