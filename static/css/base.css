@@ -19,12 +19,12 @@ html,body {
     letter-spacing: 1px;
 }
 
-.extra-padding-container {
+.extra-padding-container-home {
     padding-top: 170px;
 }
 
-.extra-padding-container-small {
-    padding-top: 130px;
+.extra-padding-container {
+    padding-top: 80px;
 }
 
 
