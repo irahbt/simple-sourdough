@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http.response import HttpResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-
 from profiles.models import UserProfile
+from recipes.models import Recipe
 
 import stripe
 
@@ -27,13 +27,6 @@ def update_accounts(request):
         profile.cancel_at_period_end = subscription.cancel_at_period_end
         profile.save()
         return HttpResponse('Subscriptions update completed')
-
-
-def subscriptions(request):
-    """ A view to return the subscriptions page """
-
-    return render(request, 'subscriptions/subscriptions.html')
-
 
 @login_required
 def subscription_checkout(request):
