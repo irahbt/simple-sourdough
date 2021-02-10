@@ -22,10 +22,9 @@
 {% block content %}
     <div class="container">
         {% if profile.membership %}
-                 {% for recipe in recipes.all %}
-
-                    <li><a href="{% url 'recipe' recipe.id %}">{{ recipe.title }}</a></li>
-                {% endfor %}
+            {% for recipe in recipes.all %}
+                <li><a href="{% url 'recipe' recipe.id %}">{{ recipe.title }}</a></li>
+            {% endfor %}
         {% else %}
             <div class="row">
                 <div class="col text-center">
