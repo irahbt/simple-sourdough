@@ -7,5 +7,75 @@
         <div class="col"></div>
     </div>
 </div>
-<p>{{ recipe }}</p>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-9">
+            {% if recipe.image %}
+                <a href="{{ recipe.image.url }}" target="_blank">
+                    <img class="card-img-top img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                </a>
+            {% else %}
+                <a href="">
+                    <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ recipe.title  }}">
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-9">
+            <div class="accordion" id="accordionRecipe">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingIngredients">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseIngredients" aria-expanded="true" aria-controls="collapseInstructions">
+                            Ingredients
+                        </button>
+                    </h2>
+                    <div id="collapseIngredients" class="accordion-collapse collapse show" aria-labelledby="headingIngredients"
+                        data-bs-parent="#accordionRecipe">
+                        <div class="accordion-body">
+                            <ul>
+                                 {% for ingredient in recipe.ingredient_list.all %}
+                                    <li>
+                                        {{ ingredient.name }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingInstructions">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseInstructions" aria-expanded="false" aria-controls="collapseInstructions">
+                            Method
+                        </button>
+                    </h2>
+                    <div id="collapseInstructions" class="accordion-collapse collapse" aria-labelledby="headingInstructions"
+                        data-bs-parent="#accordianRecipe">
+                        <div class="accordion-body">
+                            {{ recipe.instructions }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="up-button">
+    <a class="up-link d-flex h-100 btn">
+        <i class="fas fa-chevron-up mx-auto my-auto"></i>
+    </a>
+</div>
+
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
 {% endblock %}

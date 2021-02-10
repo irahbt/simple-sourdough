@@ -67,10 +67,10 @@
     </div>
     {% endblock %}
 
-    {% block postloadjs %}
-    {{ block.super }}
+{% block postloadjs %}
+{{ block.super }}
     <script type="text/javascript">
         let sessionid = "{{session_id}}";
     </script>
     <script src="{% static 'subscriptions/js/subscriptions.js' %}"></script>
-    {% endblock %}
+{% endblock %}

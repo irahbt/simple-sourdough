@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <style>
+        .img-fluid{
+           width: 50%;
+           max-height: auto; 
+        }
+    </style>
+{% endblock %}
+
+
 {% block page_header %}
 <div class="container extra-padding-container">
     <div class="row">
@@ -15,11 +25,11 @@
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2 py-1 my-1 my-md-5 py-md-5">
             {% if product.image %}
             <a href="{{ product.image.url }}" target="_blank">
-                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
             </a>
             {% else %}
             <a href="">
-                <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+                <img class="img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
             </a>
             {% endif %}
         </div>

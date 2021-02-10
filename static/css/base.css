@@ -103,3 +103,16 @@ html,body {
 .border-custom-bottom {
     border-bottom: solid 1px black;
 }
+
+.up-button {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.up-link {
+    font-size: 22px;
+    cursor: pointer;
+}

@@ -24,6 +24,7 @@ def recipe(request, pk):
     ensuring user has a membership to view
     """
     recipe = get_object_or_404(Recipe, pk=pk)
+
     if request.user.is_authenticated:
         try:
             if request.user.userprofile.membership:

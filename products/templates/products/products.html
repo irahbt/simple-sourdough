@@ -3,20 +3,7 @@
 
 
 {% block extra_css %}
-    <style>
-        .up-button {
-            height: 50px;
-            width: 50px;
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-        }
 
-        .up-link {
-            font-size: 25px;
-            cursor: pointer;
-        }
-    </style>
 {% endblock %}
 
 {% block page_header %}
@@ -106,13 +93,6 @@
 
 {% block postloadjs %}
     {{ block.super }}
-
-    <script type="text/javascript">
-		$('.up-link').click(function(e) {
-			window.scrollTo(0,0)
-		})
-	</script>
-    
     <script type="text/javascript">
         $('#sort-select').change(function() {
             let selector = $(this);
