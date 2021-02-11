@@ -26,12 +26,11 @@ def profile(request):
 
     subscription = stripe.Subscription.retrieve(
             request.user.userprofile.stripe_subscription_id)
-
     amount = subscription.plan.amount / 100
-
     # code adapted from https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date post
-    ts = int(subscription.current_period_end)
-    next_billing_date = datetime.utcfromtimestamp(ts).strftime('%d-%m-%y')
+    period_end = datetime.utcfromtimestamp(
+        int(subscription.current_period_end)).strftime('%d-%m-%y')
+
     orders = profile.orders.all
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
@@ -40,12 +39,13 @@ def profile(request):
         'form': form,
         'subscription': subscription,
         'amount': amount,
-        'next_billing_date': next_billing_date,
+        'period_end': period_end,
         'orders': orders,
         'on_profile_page': True,
     }
 
     return render(request, template, context)
+
 
 
 def order_history(request, order_number):
@@ -64,11 +64,14 @@ def order_history(request, order_number):
 
 def subscription_settings(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
+    subscription = stripe.Subscription.retrieve(
+        request.user.userprofile.stripe_subscription_id)
     membership = False
     cancel_at_period_end = False
+    period_end = datetime.utcfromtimestamp(
+        int(subscription.current_period_end)).strftime('%d-%m-%y')
+
     if request.method == 'POST':
-        subscription = stripe.Subscription.retrieve(
-            request.user.userprofile.stripe_subscription_id)
         subscription.cancel_at_period_end = True
         request.user.userprofile.cancel_at_period_end = True
         cancel_at_period_end = True
@@ -87,5 +90,6 @@ def subscription_settings(request):
     context = {
         'membership': membership,
         'cancel_at_period_end': cancel_at_period_end,
+        'period_end': period_end,
     }
     return render(request, template, context)
