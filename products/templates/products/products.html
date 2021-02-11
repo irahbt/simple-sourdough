@@ -38,7 +38,7 @@
                     {% if search_term or current_categories or current_sorting != 'None_None' %}
                         <a class="btn" href="{% url 'products' %}">Shop All</a> | 
                     {% endif %}
-                    {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                    {{ products|length }} Products
                 </p>
             </div>
             <div class="col-6 d-flex justify-content-end">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            {% endfor %} 
         </div>
     </div>
     <div class="up-button">

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-6">
+    <p class="m-0">
+        {{ products|length }} Products found for <strong>"{{ search_term }}"</strong>
+        {{ recipes|length }} Recipes found for <strong>"{{ search_term }}"</strong>
+    </p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 row-cols-sm-3 g-5">
+    {% for product in products %}
+    <div class="col">
+        <div class="card border-0">
+            {% if product.image %}
+            <a href="{% url 'product_detail' product.id %}">
+                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            {% else %}
+            <a href="{% url 'product_detail' product.id %}">
+                <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+            </a>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><strong>{{ product.name }}</strong></h5>
+                <p class="card-text"><strong>£{{ product.price }}</strong></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for recipe in recipes.all %}
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card card-recipe">
+            {% if recipe.image %}
+            <a href="{% url 'recipe' recipe.id %}">
+                <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
+            </a>
+            {% else %}
+            <a href="{% url 'recipe' recipe.id %}">
+                <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ recipe.title }}">
+            </a>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title }}</a>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

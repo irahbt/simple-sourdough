@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     # Custom Apps
     'home',
+    'search',
     'products',
     'basket',
     'checkout',
