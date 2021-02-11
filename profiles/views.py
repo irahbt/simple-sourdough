@@ -27,10 +27,11 @@ def profile(request):
     subscription = stripe.Subscription.retrieve(
             request.user.userprofile.stripe_subscription_id)
 
+    amount = subscription.plan.amount / 100
+
     # code adapted from https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date post
     ts = int(subscription.current_period_end)
     next_billing_date = datetime.utcfromtimestamp(ts).strftime('%d-%m-%y')
-
     orders = profile.orders.all
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
@@ -38,6 +39,7 @@ def profile(request):
         'profile': profile,
         'form': form,
         'subscription': subscription,
+        'amount': amount,
         'next_billing_date': next_billing_date,
         'orders': orders,
         'on_profile_page': True,
