@@ -26,10 +26,6 @@ def profile(request):
 
     subscription = stripe.Subscription.retrieve(
             request.user.userprofile.stripe_subscription_id)
-    amount = subscription.plan.amount / 100
-    # code adapted from https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date post
-    period_end = datetime.utcfromtimestamp(
-        int(subscription.current_period_end)).strftime('%d-%m-%y')
 
     orders = profile.orders.all
     form = UserProfileForm(instance=profile)
@@ -38,25 +34,8 @@ def profile(request):
         'profile': profile,
         'form': form,
         'subscription': subscription,
-        'amount': amount,
-        'period_end': period_end,
         'orders': orders,
         'on_profile_page': True,
-    }
-
-    return render(request, template, context)
-
-
-
-def order_history(request, order_number):
-    order = get_object_or_404(Order, order_number=order_number)
-
-    messages.info(request, f'Order confirmation for {order_number}.')
-
-    template = 'checkout/checkout_success.html'
-    context = {
-        'order': order,
-        'from_profile': True,
     }
 
     return render(request, template, context)
@@ -68,9 +47,12 @@ def subscription_settings(request):
         request.user.userprofile.stripe_subscription_id)
     membership = False
     cancel_at_period_end = False
+    # period_end code adapted from
+    # https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date
     period_end = datetime.utcfromtimestamp(
         int(subscription.current_period_end)).strftime('%d-%m-%y')
-
+    amount = subscription.plan.amount / 100
+ 
     if request.method == 'POST':
         subscription.cancel_at_period_end = True
         request.user.userprofile.cancel_at_period_end = True
@@ -88,8 +70,22 @@ def subscription_settings(request):
 
     template = 'profiles/subscription_settings.html'
     context = {
+        'subscription': subscription,
         'membership': membership,
         'cancel_at_period_end': cancel_at_period_end,
+        'amount': amount,
         'period_end': period_end,
     }
+    return render(request, template, context)
+
+
+def order_history(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.info(request, f'Order confirmation for {order_number}.')
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+        'from_profile': True,
+    }
+
     return render(request, template, context)

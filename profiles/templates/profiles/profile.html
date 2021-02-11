@@ -31,8 +31,7 @@
         <div class="col-12 col-md-6">
             <h5 class="d-flex justify-content-center">Subscription</h5>
             {% if profile.membership %}
-                <p>You are currently subscribed to our {{ subscription.plan.interval }}ly plan charger at {{ amount }} per month</p>
-                <p>Your card will be charge on {{ period_end }}</p>
+                <p>You are currently subscribed to our {{ subscription.plan.interval }}ly plan</p>
                 <p>To manage your setting please go to -> <a href="{% url 'subscription_settings' %}">Settings</a></p>
             {% else %}
                     subscribe

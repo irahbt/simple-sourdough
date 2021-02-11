@@ -11,16 +11,26 @@
 
 {% block content %}
 <div class="container">
-    {% if cancel_at_period_end %}
-        <p>Membership will run to end of billing cycle: {{ period_end }} </p>
-    {% elif membership %}
-        <form action="{% url 'subscription_settings' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Cancel Membership?">
-        </form>
-    {% else %}
-        <a href="{% url 'recipes' %}">Subscribe</a>
-    {% endif %}
-</div>  
+    <div class="container">
+        <div class="row py-4 border">
+            <h4>Your Subscription Settings</h4>
+            <div class="col-12 col-md-6">
+                {% if cancel_at_period_end %}
+                    <p>Membership will run to end of billing cycle: {{ period_end }} </p>
+                {% elif membership %}
+                <form action="{% url 'subscription_settings' %}" method="POST">
+                    {% csrf_token %}
+                       <p>Your card will be charge on {{ period_end }}</p>
+                    <input type="submit" value="Cancel Membership?">
+                </form>
+                {% else %}
+                    <a href="{% url 'recipes' %}">Subscribe</a>
+                {% endif %}
+            </div>
 
-{% endblock %}
+        </div>
+
+
+    </div>
+
+    {% endblock %}
