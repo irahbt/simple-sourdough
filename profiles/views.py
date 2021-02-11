@@ -24,16 +24,12 @@ def profile(request):
             form.save()
             messages.success(request, 'Your information has been updated')
 
-    subscription = stripe.Subscription.retrieve(
-            request.user.userprofile.stripe_subscription_id)
-
     orders = profile.orders.all
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'form': form,
-        'subscription': subscription,
         'orders': orders,
         'on_profile_page': True,
     }

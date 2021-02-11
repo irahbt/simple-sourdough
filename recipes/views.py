@@ -1,21 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+
 from .models import Recipe
 from profiles.models import UserProfile
 
 
 def recipes(request):
     """ A view to return the recipes page """
-    if request.user.is_authenticated:
-        profile = get_object_or_404(UserProfile, user=request.user)
-        recipes = Recipe.objects
-        template = 'recipes/recipes.html'
-        context = {
-            'profile': profile,
-            'recipes': recipes,
-        }
-        return render(request, template, context)
+    recipes = Recipe.objects.all()
+    template = 'recipes/recipes.html'
+    context = {
+        'recipes': recipes,
+    }
  
-    return render(request, 'recipes/recipes.html')
+    return render(request, template, context)
 
 
 def recipe(request, pk):
@@ -33,8 +31,16 @@ def recipe(request, pk):
                     'recipe': recipe
                 }
                 return render(request, template, context)
+            else:
+                messages.success(
+                    request, 'You need a membership to access recipes. Please subscribe :)')
+                return redirect('subscriptions')
         except UserProfile.DoesNotExist:
+            messages.success(
+                request, 'You need a membership to access recipes. Please login to your account or subscribe now.:)')
             return redirect('account_signup')
+    messages.success(
+        request, 'You need a membership to access recipes. Please login to your account or subscribe now.:)')
     return redirect('account_login')
     template = 'recipes/recipe.html'
     context = {
