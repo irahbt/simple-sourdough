@@ -5,9 +5,13 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 from profiles.models import UserProfile
-from recipes.models import Recipe
 
 import stripe
+
+
+def subscriptions(request):
+    """ A view to return the subscription page """
+    return render(request, 'subscriptions/subscriptions.html')
 
 
 @user_passes_test(lambda u: u.is_superuser)

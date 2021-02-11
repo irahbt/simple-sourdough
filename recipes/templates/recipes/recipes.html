@@ -12,7 +12,6 @@
 
 {% block content %}
     <div class="container">
-        {% if profile.membership %}
         <div class="row">
             {% for recipe in recipes.all %}
                     <div class="col-12 col-md-6 mb-3">
@@ -34,15 +33,13 @@
                     </div>
             {% endfor %}
         </div>
-        {% else %}
-            {% include 'recipes/includes/subscriptions.html' %}
-        {% endif %}  
     </div>
     <div class="up-button">
         <a class="up-link d-flex h-100 btn">
             <i class="fas fa-chevron-up mx-auto my-auto"></i>
         </a>	
     </div>
+
     <div class="container extra-padding-container">
         <div class="row">
             <div class="col"></div>
