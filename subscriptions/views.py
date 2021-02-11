@@ -28,6 +28,7 @@ def update_accounts(request):
         profile.save()
         return HttpResponse('Subscriptions update completed')
 
+
 @login_required
 def subscription_checkout(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY

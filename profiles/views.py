@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django import template
 
 from .models import UserProfile
 from .forms import UserProfileForm
-from recipes.models import Recipe
 from checkout.models import Order
+
+from datetime import datetime
 
 import stripe
 
@@ -14,6 +16,7 @@ def profile(request):
     """ Display the user's profile. """
 
     profile = get_object_or_404(UserProfile, user=request.user)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -21,16 +24,23 @@ def profile(request):
             form.save()
             messages.success(request, 'Your information has been updated')
 
+    subscription = stripe.Subscription.retrieve(
+            request.user.userprofile.stripe_subscription_id)
+
+    # code adapted from https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date post
+    ts = int(subscription.current_period_end)
+    next_billing_date = datetime.utcfromtimestamp(ts).strftime('%d-%m-%y')
+
     orders = profile.orders.all
-    recipes = Recipe.objects
     form = UserProfileForm(instance=profile)
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'form': form,
+        'subscription': subscription,
+        'next_billing_date': next_billing_date,
         'orders': orders,
         'on_profile_page': True,
-        'recipes': recipes,
     }
 
     return render(request, template, context)
