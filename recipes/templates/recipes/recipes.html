@@ -26,7 +26,7 @@
                                 </a>    
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title }}</a></h5>
+                                <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
                             </div>
                         </div>
