@@ -8,22 +8,11 @@ from profiles.models import UserProfile
 def recipes(request):
     """ A view to return the recipes page """
     recipes = Recipe.objects.all()
-    query = None
-
-    if request.GET:
-         if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(
-                    request, "Hmm, you don't appear to have entered any search criteria. Please try again.")
-                return redirect(reverse('recipes'))
-
-            queries = Q(
-                name__icontains=query) | Q(description__icontains=query)
-            recipes = recipes.filter(queries)
+    profile = get_object_or_404(UserProfile, user=request.user)
 
     template = 'recipes/recipes.html'
     context = {
+        'profile': profile, 
         'recipes': recipes,
     }
  
