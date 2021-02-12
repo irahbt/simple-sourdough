@@ -4,10 +4,13 @@
 {% block extra_css %}
 <style>
 
-    @media (min-width: 768px) { #sub-text{
-      padding-bottom: 40%;
+    @media (min-width: 768px) { .sub-text{
+      padding-bottom: %;
   } }
   
+  .card {
+      width: 18rem;
+  }
 </style>
 {% endblock %}
 
@@ -43,10 +46,25 @@
             </div>
             <div class="col-12 col-md-6">
                 {% if profile.membership %}
-                    <p>You are currently subscribed to our {{ subscription.plan.interval }}ly plan</p>
-                    <p>To manage your setting please go to -> <a href="{% url 'subscription_settings' %}">Settings</a></p>
+                    <p class="text-center">You are currently subscribed to our {{ subscription.plan.interval }}ly plan.</p>
+                    <div class="card mx-auto">
+                        {% if latest_recipe.image %}
+                            <a href="{% url 'recipe' latest_recipe.id %}">
+                                <img src="{{ latest_recipe.image.url }}" class="card-img-top" alt="{{ latest_recipe.title }}">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe' latest_recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ latest_recipe.title }}">
+                            </a>    
+                        {% endif %}
+                        <div class="card-body">
+                            <span class="badge bg-secondary">New Recipe</span>
+                            <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' latest_recipe.id %}">{{ latest_recipe.title|title }}</a></h5>
+                        </div>
+                    </div>
+                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark text-light p-2 float-md-end float-none">Settings</a>
                 {% else %}
-                    <p id="sub-text" class="text-center">Not sure where to start? Subscribe for access to all our recipes, tips and tricks.</p>
+                    <p class="text-center sub-text">Not sure where to start? Subscribe for access to all our recipes, tips and tricks.</p>
                     <a href="{% url 'subscriptions' %}" class="btn btn-dark text-light p-2 float-md-end float-none">Subscribe Now</a>
                 {% endif %}
             </div>         

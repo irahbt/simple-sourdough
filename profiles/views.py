@@ -6,6 +6,7 @@ from django import template
 from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
+from recipes.models import Recipe
 
 from datetime import datetime
 
@@ -17,6 +18,10 @@ def profile(request):
 
     profile = get_object_or_404(UserProfile, user=request.user)
     stripe.api_key = settings.STRIPE_SECRET_KEY
+    subscription = stripe.Subscription.retrieve(
+        request.user.userprofile.stripe_subscription_id)
+
+    latest_recipe = Recipe.objects.latest('added_date')
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -29,6 +34,8 @@ def profile(request):
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
+        'subscription': subscription,
+        'latest_recipe': latest_recipe,
         'form': form,
         'orders': orders,
         'on_profile_page': True,
