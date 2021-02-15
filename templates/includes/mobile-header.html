@@ -26,9 +26,9 @@
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                 <li><a class="nav-link btn" href="{% url 'add_product' %}">Product Management</a></li>
-                <li><a class="nav-link btn" href="#">Recipe Management</a></li>
+                <li><a class="nav-link btn" href="{% url 'add_recipe' %}">Recipe Management</a></li>
                 {% endif %}
-                <li><a class="nav-link btn" href="">Account</a></li>
+                <li><a class="nav-link btn" href="{% url 'profile' %}">Account</a></li>
                 <li><a class="nav-link btn" href="{% url 'account_logout' %}">Sign Out</a></li>
                 {% else %}
                 <li><a class="nav-link btn" href="{% url 'account_login' %}">Sign In</a></li>

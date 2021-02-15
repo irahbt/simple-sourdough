@@ -104,7 +104,7 @@
                                     {% if request.user.is_superuser %}
                                     <li class="list-inline-item"><a class="dropdown-item" href="{% url 'add_product' %}">Product
                                             Management</a></li>
-                                    <li class="list-inline-item"><a class="dropdown-item" href="#">Recipe Management</a>
+                                    <li class="list-inline-item"><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a>
                                     </li>
                                     {% endif %}
                                     <li class="list-inline-item"><a class="dropdown-item"

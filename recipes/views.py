@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Recipe
+from .forms import IngredientForm, RecipeForm
 from profiles.models import UserProfile
 
 
@@ -12,7 +14,7 @@ def recipes(request):
 
     template = 'recipes/recipes.html'
     context = {
-        'profile': profile, 
+        'profile': profile,
         'recipes': recipes,
     }
  
@@ -49,4 +51,31 @@ def recipe(request, pk):
     context = {
         'recipe': recipe,
     }
+    return render(request, template, context)
+
+
+@login_required
+def add_recipe(request):
+    """
+    Add a recipe
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you must be a store owner to do that.')
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Recipe Added Successful')
+            return redirect(reverse('add_recipe'))
+        else:
+            messages.error(request, 'Add Recipe Failed. Please ensure the form is valid.')
+    else:
+        form = RecipeForm()
+
+    template = 'recipes/add_recipe.html'
+    context = {
+        'form': form,
+    }
+
     return render(request, template, context)

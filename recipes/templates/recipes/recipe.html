@@ -41,7 +41,7 @@
                             <ul>
                                  {% for ingredient in recipe.ingredient_list.all %}
                                     <li>
-                                        {{ ingredient.name }}
+                                        {{ ingredient.name|title }}
                                     </li>
                                 {% endfor %}
                             </ul>
