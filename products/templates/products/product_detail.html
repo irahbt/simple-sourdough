@@ -83,8 +83,8 @@
                     </div>
                 </form>
                 {% if request.user.is_superuser %}
-                    <small class="ms-3">
-                        <a class="text-reset" href="{% url 'edit_product' product.id %}">Edit</a> | 
+                    <small>
+                        <a class="text-reset" href="{% url 'edit_product' product.id %}">Edit Product</a> | 
                         <a class="text-danger modal-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             Delete Product
                         </a>
