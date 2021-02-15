@@ -1,4 +1,5 @@
 from django import forms
+from products.widgets import CustomClearableFileInput
 from .models import Ingredient, Recipe
 
 
@@ -18,6 +19,7 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
 
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
