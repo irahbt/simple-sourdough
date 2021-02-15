@@ -15,23 +15,12 @@
     <div class="row">
         <div class="col-12 col-md-6">
             <h2 class="my-2">Recipe Management</h2>
-            <h5>Add a Recipe</h5>
-            <hr>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-md-6">
-         <form method="POST" action="{% url 'add_ingredient' %}" class="form mb-2" >
-                {% csrf_token %}
-                {{ ingredient_form|crispy }}
-                <div class="float-end">
-                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
-                    <button class="btn btn-dark text-light p-2" type="submit">Add Ingredient</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-12 col-md-6">
+            <h5>Add a Recipe</h5>
             <form method="POST" action="{% url 'add_recipe' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
@@ -46,7 +35,17 @@
                     <button class="btn btn-dark text-light p-2" type="submit">Add Recipe</button>
                 </div>
             </form>
-        </div>            
+        </div>
+        <div class="col-12 col-md-6 order-first order-md-last">
+        <h5>Add an Ingredient</h5>
+         <form method="POST" action="{% url 'add_ingredient' %}" class="form mb-2" >
+                {% csrf_token %}
+                {{ ingredient_form|crispy }}
+                <div class="float-end">
+                    <button class="btn" type="submit"><i class="fas fa-plus"></i> Add Ingredient</button>
+                </div>
+            </form>
+        </div>         
     </div>
 </div>
 
