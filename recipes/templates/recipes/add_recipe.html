@@ -22,6 +22,16 @@
 
     <div class="row">
         <div class="col-12 col-md-6">
+         <form method="POST" action="{% url 'add_ingredient' %}" class="form mb-2" >
+                {% csrf_token %}
+                {{ ingredient_form|crispy }}
+                <div class="float-end">
+                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
+                    <button class="btn btn-dark text-light p-2" type="submit">Add Ingredient</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-6">
             <form method="POST" action="{% url 'add_recipe' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
@@ -38,7 +48,6 @@
             </form>
         </div>            
     </div>
-
 </div>
 
 <div class="container extra-padding-container">

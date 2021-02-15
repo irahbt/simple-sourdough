@@ -55,6 +55,26 @@ def recipe(request, recipe_id):
 
 
 @login_required
+def add_ingredient(request):
+    """
+    Add an ingredient
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you must be a store owner to do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = IngredientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Ingredient Added Successfully')
+            return redirect(reverse('add_recipe'))
+        else:
+            messages.error(request, 'Add Ingredient Failed. Please ensure the form is valid.')
+            return redirect(reverse('add_recipe'))
+
+
+@login_required
 def add_recipe(request):
     """
     Add a recipe
@@ -62,6 +82,7 @@ def add_recipe(request):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
         return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -72,10 +93,12 @@ def add_recipe(request):
             messages.error(request, 'Add Recipe Failed. Please ensure the form is valid.')
     else:
         form = RecipeForm()
+        ingredient_form = IngredientForm()
 
     template = 'recipes/add_recipe.html'
     context = {
         'form': form,
+        'ingredient_form': ingredient_form
     }
 
     return render(request, template, context)
