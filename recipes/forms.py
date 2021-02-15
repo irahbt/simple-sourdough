@@ -18,9 +18,11 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         ingredients = Ingredient.objects.all()
         names = [(i.id, i.__str__()) for i in ingredients]
-
+        
+        self.fields['ingredient_list'].label = 'Ingredients - Hold down “Control”, or “Command” on a Mac, to select more than one.'
         self.fields['ingredient_list'].choices = names
