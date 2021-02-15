@@ -25,7 +25,7 @@
             <ul class="list-unstyled">
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
-                <li><a class="nav-link btn" href="#">Product Management</a></li>
+                <li><a class="nav-link btn" href="{% url 'add_product' %}">Product Management</a></li>
                 <li><a class="nav-link btn" href="#">Recipe Management</a></li>
                 {% endif %}
                 <li><a class="nav-link btn" href="">Account</a></li>
