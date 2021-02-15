@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <style>
+        .modal-link{
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
 
 {% block page_header %}
 <div class="container extra-padding-container">
@@ -78,7 +85,26 @@
                 {% if request.user.is_superuser %}
                     <small class="ms-3">
                         <a class="text-reset" href="{% url 'edit_product' product.id %}">Edit</a> | 
-                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                        <a class="text-danger modal-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Delete Product
+                        </a>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure your want to delete product: {{ product.name }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-danger text-light p-2" href="{% url 'delete_product' product.id %}">Delete Product</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
                     </small>
                 {% endif %}
             </div>
