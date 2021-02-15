@@ -34,12 +34,12 @@
                     <div class="form-row">
                         {% with product.has_colours as c %}
                             {% if c %}
-                            <div class="col-12 pb-3">
-                                <input type="radio" value="white" class="btn-check" name="product_colour" id="colour_white" autocomplete="off" checked>
-                                <label class="btn btn-white border-dark p-3" for="colour_white"></label>
-                                <input type="radio" value="black" class="btn-check" name="product_colour" id="colour_black" autocomplete="off">
-                                <label class="btn btn-dark p-3" for="colour_black"></label>
-                            </div>
+                                <div class="col-12 pb-3">
+                                    <input type="radio" value="white" class="btn-check" name="product_colour" id="colour_white" autocomplete="off" checked>
+                                    <label class="btn btn-white border-dark p-3" for="colour_white"></label>
+                                    <input type="radio" value="black" class="btn-check" name="product_colour" id="colour_black" autocomplete="off">
+                                    <label class="btn btn-dark p-3" for="colour_black"></label>
+                                </div>
                             {% endif %}
                         <div class="col-12">
                             <div class="form-group">
@@ -75,6 +75,12 @@
                         {% endwith %}
                     </div>
                 </form>
+                {% if request.user.is_superuser %}
+                    <small class="ms-3">
+                        <a class="text-reset" href="{% url 'edit_product' product.id %}">Edit</a> | 
+                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                    </small>
+                {% endif %}
             </div>
         </div>
     </div>
