@@ -42,4 +42,12 @@
 </div>
 {% endblock %}
 
+{% block postloadjs %}
+    {{ block.super }}
+    <script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+    } );
+    </script>
 
+{% endblock %}

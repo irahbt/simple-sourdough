@@ -46,7 +46,11 @@
                         {% for item in basket_items %}
                             <tr>
                                 <td class="w-25">
-                                    <img class="img-fluid" src="{{ item.product.image.url }}">
+                                    {% if item.product.image %}
+                                        <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                        <img class="img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ item.product.name }}">
+                                    {% endif %}
                                 </td>
                                 <td>
                                     <p class="m-0"><strong>{{ item.product.name }}</strong></p>
@@ -162,7 +166,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+    {% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
     // Update quantity on click
