@@ -21,12 +21,12 @@ def recipes(request):
     return render(request, template, context)
 
 
-def recipe(request, pk):
+def recipe(request, recipe_id):
     """
     A view to return an individual recipe page,
     ensuring user has a membership to view
     """
-    recipe = get_object_or_404(Recipe, pk=pk)
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
 
     if request.user.is_authenticated:
         try:
@@ -76,6 +76,37 @@ def add_recipe(request):
     template = 'recipes/add_recipe.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_recipe(request, recipe_id):
+    """
+    Edit a recipe
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you must be a store owner to do that.')
+        return redirect(reverse('home'))
+
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Recipe Update Successful')
+            return redirect(reverse('recipe', args=[recipe.id]))
+        else:
+            messages.error(request, 'Update Recipe Failed. Please ensure the form is valid.')
+    else:
+        form = RecipeForm(instance=recipe)
+        messages.info(request, f'You are editing {recipe.title}')
+
+    template = 'recipes/edit_recipe.html'
+    context = {
+        'form': form,
+        'recipe': recipe,
     }
 
     return render(request, template, context)
