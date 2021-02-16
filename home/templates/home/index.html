@@ -2,14 +2,6 @@
 {% load static %}
 
 
-{% block extra_css %}
-    <style>
-       .carousel-inner{
-            width:100%;
-            max-height: 300px !important;
-            }
-    </style>
-{% endblock %}
 
 {% block page_header %}
 <div class="container extra-padding-container-home">
@@ -30,45 +22,61 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-
-                <div class="carousel-inner">
-                    {% for product in featured_products %}
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <img src="{{ product.image.url }}" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>{{ product.name|title }}</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-
-                        </div>
-                    {% endfor %}
+    <div class="row m-5">
+        {% for product in featured_products %}
+            <div class="col col-md-4">
+                <div class="card border-0">
+                    {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>{{ product.name|title }}</strong></h5>
+                        <p class="card-text"><strong>£{{ product.price }}</strong></p>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
+        {% endfor %} 
+    </div>
+
+    <div class="row m-5">
+        {% for recipe in featured_recipes %}
+                <div class="col-12 col-md-6 mb-3">
+                    <div class="card card-recipe">
+                        {% if recipe.image %}
+                            <a href="{% url 'recipe' recipe.id %}">
+                                <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe' recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ recipe.title }}">
+                            </a>    
+                        {% endif %}
+                        <div class="card-body">
+                            {% if recipe.premium %}
+                                <span class="badge bg-secondary my-3">Premium</span>
+                            {% else %}
+                                <span class="badge bg-secondary my-3">Free</span>
+                            {% endif %}
+                            <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>                        
+                            <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
         </div>
     </div>
 
+</div>
 
-
-    {% endblock %}
+{% endblock %}
