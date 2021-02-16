@@ -20,6 +20,8 @@ class Recipe(models.Model):
     image = models.ImageField(null=True, blank=True)
     added_date = models.DateTimeField(auto_now_add=True)
     premium = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.title

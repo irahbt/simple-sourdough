@@ -31,6 +31,7 @@ class Product(models.Model):
     image = models.ImageField(
         null=True, blank=True)
     added_date = models.DateField(auto_now_add=True, null=True, blank=True)
-
+    featured = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name
