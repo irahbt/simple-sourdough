@@ -36,8 +36,7 @@
                     <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Product
                     </button>
-                    <a class="btn btn-dark text-light p-2" href="{% url 'products' %}">Cancel</a>
-                    <!-- delete modal -->
+                      <!-- delete modal -->
                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -55,6 +54,7 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-dark text-light p-2" href="{% url 'products' %}">Cancel</a>
                 </div>
             </form>            
         </div>            

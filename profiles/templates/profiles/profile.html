@@ -37,7 +37,7 @@
                 <h5 class="text-center">Account Details</h5>
             </div>
             <div class="col-12 col-md-6">
-                <h5 class="text-center">Your Subscription</h5>
+                <h5 class="text-center">Premium Members</h5>
             </div>
         </div>
         <div class="row align-items-end">
@@ -50,7 +50,7 @@
             </div>
             <div class="col-12 col-md-6">
                 {% if profile.membership %}
-                    <p class="text-center">You are subscribed to our {{ subscription.plan.interval }}ly plan.</p>
+                    <p class="text-center">{{ subscription.plan.interval|title }}ly plan.</p>
                     <div class="card mx-auto">
                         {% if latest_recipe.image %}
                             <a href="{% url 'recipe' latest_recipe.id %}">
