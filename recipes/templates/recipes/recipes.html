@@ -15,7 +15,6 @@
         <div class="row mb-4">
             <div class="col-12">
                 {% if profile.membership %}
-
                 {% else %}
                     <h4 class="text-center"><a href="{% url 'subscriptions' %}" class="text-reset">Subscribe</a> for access to our recipes.</h4>
                 {% endif %}
@@ -35,7 +34,12 @@
                                 </a>    
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>
+                                {% if recipe.premium %}
+                                    <span class="badge bg-secondary my-3">Premium</span>
+                                {% else %}
+                                    <span class="badge bg-secondary my-3">Free</span>
+                                {% endif %}
+                                <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>                        
                                 <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
                             </div>
                         </div>

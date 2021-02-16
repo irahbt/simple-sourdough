@@ -19,6 +19,7 @@ class Recipe(models.Model):
         max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     added_date = models.DateTimeField(auto_now_add=True)
+    premium = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
