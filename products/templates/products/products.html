@@ -2,10 +2,6 @@
 {% load static %}
 
 
-{% block extra_css %}
-
-{% endblock %}
-
 {% block page_header %}
 <div class="container extra-padding-container">
     <div class="row">
@@ -93,6 +89,11 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    <script type="text/javascript">
+		$('.up-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
     <script type="text/javascript">
         $('#sort-select').change(function() {
             let selector = $(this);

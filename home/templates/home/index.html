@@ -2,9 +2,36 @@
 {% load static %}
 
 
+{% block extra_css %}
+    <style>
+        .down-link{
+            position: relative;
+            bottom: 35px;
+            font-size: 2rem;
+        }
+
+        .hero-image {
+            background-image: 
+                url("../static/images/home-img.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            }
+
+        .hero-text{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+        }
+    </style>
+{% endblock %}
 
 {% block page_header %}
-<div class="container extra-padding-container-home">
+<div class="container extra-padding-container">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -13,18 +40,19 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-4 text-center">
-            <h1>
-                Sourdough made Simple
-            </h1>
-            <img src="{% static 'images/logo-image.png' %}" alt="Logo Image" class="img-fluid">
-        </div>
-    </div>
+<div class="hero-image">
 
-    <div class="row m-5">
+        <div class="col-12 text-center logo-font hero-text">
+            <h2>
+                Sourdough made Simple
+            </h2>
+            <div class="down-link"><i class="fas fa-chevron-down"></i></div>
+        </div>
+</div>
+
+    <div class="row">
         {% for product in featured_products %}
-            <div class="col col-md-4">
+            <div class="col-6 col-md-3">
                 <div class="card border-0">
                     {% if product.image %}
                         <a href="{% url 'product_detail' product.id %}">
@@ -44,7 +72,7 @@
         {% endfor %} 
     </div>
 
-    <div class="row m-5">
+    <div class="row">
         {% for recipe in featured_recipes %}
                 <div class="col-12 col-md-6 mb-3">
                     <div class="card card-recipe">
@@ -70,6 +98,7 @@
                 </div>
         {% endfor %}
     </div>
+
 
     <div class="container extra-padding-container">
         <div class="row">
