@@ -133,3 +133,20 @@ def edit_recipe(request, recipe_id):
     }
 
     return render(request, template, context)
+
+
+
+@login_required
+def delete_recipe(request, recipe_id):
+    """ Delete a recipe """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you must be a store owner to do that.')
+        return redirect(reverse('home'))
+
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    recipe.delete()
+    messages.success(request, 'Recipe Deleted')
+    
+    return redirect(reverse('recipes'))
+
+    

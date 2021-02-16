@@ -39,7 +39,7 @@
                         data-bs-parent="#accordionRecipe">
                         <div class="accordion-body">
                             <ul>
-                                 {% for ingredient in recipe.ingredient_list.all %}
+                                {% for ingredient in recipe.ingredient_list.all %}
                                     <li>
                                         {{ ingredient.name|title }}
                                     </li>
@@ -65,6 +65,37 @@
             </div>
         </div>
     </div>
+
+    {% if request.user.is_superuser %}
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <small>
+                    <a class="text-reset" href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a> | 
+                    <a class="text-danger modal-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Delete Recipe
+                    </a>
+                    <!-- Delete modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure your want to delete recipe: {{ recipe.title|title }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a class="btn btn-danger text-light p-2" href="{% url 'delete_recipe' recipe.id %}">Delete Recipe</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </small>
+            </div>
+        </div>
+    {% endif %}
 </div>
 
 <div class="up-button">

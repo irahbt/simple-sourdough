@@ -32,8 +32,29 @@
                     {% endif %}
                 {% endfor %}
                 <div class="float-end">
-                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
                     <button class="btn btn-dark text-light p-2" type="submit">Edit Recipe</button>
+                    <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Delete Recipe
+                    </button>
+                    <!-- delete modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure your want to delete recipe: {{ recipe.title|title }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a class="btn btn-danger text-light p-2" href="{% url 'delete_recipe' recipe.id %}">Delete Product</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
                 </div>
             </form>
         </div>            
