@@ -35,6 +35,23 @@ html,body {
     
 }
 
+
+.hero-text, .down-link {
+    text-align: center;
+    position: relative;
+    transform: translate(-50%, -50%);
+    }
+
+.hero-text{
+  top: 10%;
+  left: 50%;
+}
+
+.down-link{
+    top: 80%;
+   left: 50%;
+}
+
 .update-link, 
 .remove-item {
     cursor: pointer;

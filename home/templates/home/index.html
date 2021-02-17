@@ -1,33 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block extra_css %}
-    <style>
-        .down-link{
-            position: relative;
-            bottom: 35px;
-            font-size: 2rem;
-        }
-
-        .hero-image {
-            background-image: 
-                url("../static/images/home-img.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            overflow: hidden;
-            }
-
-        .hero-text{
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: black;
-        }
-    </style>
+<style>
+.hero-image {
+    background-image: url("{% static 'images/home-img.png' %}");    
+    height: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    }
+</style>
 {% endblock %}
 
 {% block page_header %}
@@ -36,21 +20,21 @@
         <div class="col"></div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block content %}
-<div class="container">
 <div class="hero-image">
-
-        <div class="col-12 text-center logo-font hero-text">
-            <h2>
-                Sourdough made Simple
-            </h2>
-            <div class="down-link"><i class="fas fa-chevron-down"></i></div>
-        </div>
+    <div class="logo-font hero-text">
+        <h2>
+            Sourdough made Simple
+        </h2>
+    </div>
+    <div class="down-link"><a href="#featured-products"><i class="fas fa-chevron-down btn"></i></a></div>
 </div>
 
-    <div class="row">
+<div class="container">
+    <div id="featured-products" class="row">   
         {% for product in featured_products %}
             <div class="col-6 col-md-3">
                 <div class="card border-0">
