@@ -79,8 +79,8 @@
     <div class="down-link my-5 pt-5"><a href="#featured-products"><i class="fas fa-chevron-down btn"></i></a></div>
 
     <div id="featured-products" class="row">   
-        {% for product in featured_products|slice:":3" %}
-            <div class="col-6 col-md-4">
+        {% for product in featured_products|slice:":4" %}
+            <div class="col-6 col-md-3">
                 <div class="card border-0">
                     {% if product.image %}
                         <a href="{% url 'product_detail' product.id %}">
