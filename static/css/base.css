@@ -14,7 +14,7 @@ html,body {
     letter-spacing: 1.5px;
 }
 
-#promo-banner{
+#promo-banner, footer{
     background-color: rgb(232, 235, 238);
 }
 
