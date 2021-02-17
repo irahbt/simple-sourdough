@@ -66,7 +66,7 @@
                             <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' latest_recipe.id %}">{{ latest_recipe.title|title }}</a></h5>
                         </div>
                     </div>
-                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark text-light p-2 float-md-end mt-2mt-md-0">Settings</a>
+                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark text-light p-2 float-md-end mt-2 mt-md-0">Settings</a>
                 {% else %}
                     <p class="text-center sub-text">Not sure where to start? Subscribe for access to all our recipes, tips and tricks.</p>
                     <a href="{% url 'subscriptions' %}" class="btn btn-dark text-light p-2 float-md-end mt-2 mt-md-0">Subscribe Now</a>
