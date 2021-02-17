@@ -3,40 +3,84 @@
 
 {% block extra_css %}
 <style>
-.hero-image {
-    background-image: url("{% static 'images/home-img.png' %}");    
-    height: 75%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+    .hero-image {
+        background-image: linear-gradient(rgba(235, 224, 224, 0.4), rgba(235, 224, 224, 0.4)), url("{% static 'images/home-img.jpg' %}");    
+        height: 85%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        }
+
+    .fa-chevron-down {
+        font-size: 1.5rem;
+    }
+
+    .hero-text, .down-link {
+        text-align: center;
+        position: relative;
+        transform: translate(-50%, -50%);
+        }
+
+    #featured-recipe{
+        padding-top: 100px;
+    }
+    
+    .hero-text{
+        top: 40%;
+        left: 50%;
+        text-shadow: .5px .5px #dddddd;
+    }
+
+    .down-link{
+        top: 85%;
+        left: 50%;
     }
 </style>
 {% endblock %}
 
-{% block page_header %}
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-
-{% endblock %}
 
 {% block content %}
 <div class="hero-image">
     <div class="logo-font hero-text">
-        <h2>
-            Sourdough made Simple
+        <h2 class="text-shadow">
+            Sourdough made Simple.
         </h2>
     </div>
-    <div class="down-link"><a href="#featured-products"><i class="fas fa-chevron-down btn"></i></a></div>
+    <div class="down-link"><a href="#featured-recipe"><i class="fas fa-chevron-down btn"></i></a></div>
 </div>
 
 <div class="container">
+    <div id="featured-recipe" class="row">
+        {% for recipe in featured_recipes|slice:":1" %}
+                <div class="col-12 col-md-7">
+                    <div class="card">
+                        <a href="{% url 'recipe' recipe.id %}">
+                            {% if recipe.image %}
+                                <img src="{{ recipe.image.url }}" class="card-img" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img src="{% static 'images/noimage.png' %}" class="card-img" alt="{{ recipe.title }}">
+                            {% endif %}
+                            <div class="card-img-overlay">
+                                <h5 class="card-title text-white">{{ recipe.title|title }}</h5>
+                                <p class="card-text text-white">{{ recipe.description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5">
+                    <a href="{% url 'subscriptions' %}">
+                        <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid">
+                    </a>
+                </div>
+        {% endfor %}
+    </div>
+
+    <div class="down-link my-5 pt-5"><a href="#featured-products"><i class="fas fa-chevron-down btn"></i></a></div>
+
     <div id="featured-products" class="row">   
-        {% for product in featured_products %}
-            <div class="col-6 col-md-3">
+        {% for product in featured_products|slice:":3" %}
+            <div class="col-6 col-md-4">
                 <div class="card border-0">
                     {% if product.image %}
                         <a href="{% url 'product_detail' product.id %}">
@@ -54,33 +98,6 @@
                 </div>
             </div>
         {% endfor %} 
-    </div>
-
-    <div class="row">
-        {% for recipe in featured_recipes %}
-                <div class="col-12 col-md-6 mb-3">
-                    <div class="card card-recipe">
-                        {% if recipe.image %}
-                            <a href="{% url 'recipe' recipe.id %}">
-                                <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
-                            </a>
-                        {% else %}
-                            <a href="{% url 'recipe' recipe.id %}">
-                                <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ recipe.title }}">
-                            </a>    
-                        {% endif %}
-                        <div class="card-body">
-                            {% if recipe.premium %}
-                                <span class="badge bg-secondary my-3">Premium</span>
-                            {% else %}
-                                <span class="badge bg-secondary my-3">Free</span>
-                            {% endif %}
-                            <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>                        
-                            <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
-                        </div>
-                    </div>
-                </div>
-        {% endfor %}
     </div>
 
 
