@@ -79,7 +79,7 @@
                                 <i class="fas fa-search"></i>
                             </a>
                             <div class="dropdown-menu border-0 w-100 py-4" aria-labelledby="navbarDropdown">
-                                <form class="form d-flex justify-content-center" method="GET"
+                                <form class="form float-end" method="GET"
                                     action="{% url 'search' %}">
                                     <div class="input-group w-25">
                                         <input class="form-control search-custom rounded-0" type="text" name="q"
@@ -99,7 +99,7 @@
                                 <i class="fas fa-user"></i>
                             </a>
                             <div class="dropdown-menu border-0 w-100 p-3 bg-white py-4">
-                                <ul class="list-inline list-unstyled d-flex justify-content-center"
+                                <ul class="list-inline list-unstyled float-end pe-4"
                                     aria-labelledby="navbarDropdown">
                                     {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
