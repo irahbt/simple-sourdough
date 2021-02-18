@@ -11,11 +11,20 @@ def recipes(request):
     """ A view to return the recipes page """
     recipes = Recipe.objects.all()
 
-    template = 'recipes/recipes.html'
-    context = {
-        'recipes': recipes,
-    }
- 
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+        template = 'recipes/recipes.html'
+        context = {
+            'recipes': recipes,
+            'profile': profile,
+            }
+        return render(request, template, context)
+    else:
+        template = 'recipes/recipes.html'
+        context = {
+            'recipes': recipes,
+            }
+
     return render(request, template, context)
 
 
