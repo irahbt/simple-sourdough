@@ -47,14 +47,14 @@ def subscription_checkout(request):
         pass
     else:
         subscription = 'monthly'
-        subscription_id = 'price_1IIt2jC0y3iCJrXqFs8IMEzd'
-        final_pound = 3.99
+        subscription_id = 'price_1IMBPUC0y3iCJrXqtD6J5WjI'
+        final_pound = 2.50
 
         if request.method == 'GET' and 'subscription' in request.GET:
             if request.GET['subscription'] == 'yearly':
                 subscription = 'yearly'
-                subscription_id = 'price_1IIt2uC0y3iCJrXqY47vRnG0'
-                final_pound = 39.99
+                subscription_id = 'price_1IMBPgC0y3iCJrXquYi3X9fs'
+                final_pound = 25.00
 
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],

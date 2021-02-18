@@ -32,7 +32,7 @@
 
                             </td>
                             <td>
-                                <p>£{{ final_pound }}</p>
+                                <p>£{{ final_pound | floatformat:2 }}</p>
                             </td>
                         </tr>
                     </tbody>
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 mt-3">
-                    <h3>Total to be Paid Now: £{{ final_pound }}</h3>
+                    <h3>Total to be Paid Now: £{{ final_pound | floatformat:2 }}</h3>
                     <small class="text-muted">Add any Promo Codes at Checkout</small>
                     <p class="pt-3">
                         <a href="{% url 'recipes' %}" class="btn ps-0">

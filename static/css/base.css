@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Special+Elite&display=swap&family=Knewave&display=swap');
 
 html,body {
     width: 100%;
@@ -16,6 +16,11 @@ html,body {
 
 #promo-banner, footer{
     background-color: rgb(232, 235, 238);
+}
+
+.premium-font{
+    font-family: 'Knewave', sans-serif;
+    letter-spacing: 1px;
 }
 
 
