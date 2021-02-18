@@ -40,6 +40,10 @@ html,body {
     
 }
 
+.account-dropdown {
+    padding-right: 10%;
+}
+
 .update-link, 
 .remove-item {
     cursor: pointer;
