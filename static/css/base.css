@@ -9,12 +9,13 @@ html,body {
     letter-spacing: 1px!important;
 }
 
+
 .title-font{
     font-family: 'Special Elite', sans-serif;
     letter-spacing: 1.5px;
 }
 
-#promo-banner, footer{
+#promo-banner{
     background-color: rgb(232, 235, 238);
 }
 
@@ -23,10 +24,10 @@ html,body {
     letter-spacing: 1px;
 }
 
-
 .extra-padding-container {
     padding-top: 50px;
 }
+
 
 
 .navbar-light .navbar-toggler {
@@ -43,6 +44,11 @@ html,body {
 .account-dropdown {
     padding-right: 10%;
 }
+
+
+/* ------------------------------- bootstrap toasts */
+
+
 
 .update-link, 
 .remove-item {
