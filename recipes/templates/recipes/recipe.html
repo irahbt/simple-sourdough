@@ -39,19 +39,28 @@
                     <h2 class="accordion-header" id="headingIngredients">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseIngredients" aria-expanded="true" aria-controls="collapseInstructions">
+                            Intro
+                        </button>
+                    </h2>
+                    <div id="collapseIngredients" class="accordion-collapse collapse show" aria-labelledby="headingIngredients"
+                        data-bs-parent="#accordionRecipe">
+                        <div class="accordion-body">
+                            {{ recipe.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingIngredients">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseIngredients" aria-expanded="true" aria-controls="collapseInstructions">
                             Ingredients
                         </button>
                     </h2>
                     <div id="collapseIngredients" class="accordion-collapse collapse show" aria-labelledby="headingIngredients"
                         data-bs-parent="#accordionRecipe">
                         <div class="accordion-body">
-                            <ul>
-                                {% for ingredient in recipe.ingredient_list.all %}
-                                    <li>
-                                        {{ ingredient.name|title }}
-                                    </li>
-                                {% endfor %}
-                            </ul>
+                                                        {{ recipe.instructions }}
+
                         </div>
                     </div>
                 </div>
