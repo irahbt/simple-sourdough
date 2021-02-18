@@ -45,7 +45,7 @@
         <div class="container-fluid">
             <div id="promo-banner" class="row d-none d-sm-flex">
                 <div class="col text-center py-1">
-                    <a href="{% url 'subscriptions' %}" class="btn "><small>Become a premium member now and get 10% off your first bill with code <strong>WELCOME10</strong></small></a>
+                    <a href="{% url 'subscriptions' %}" class="btn"><small>Become a premium member now and get 10% off your first bill with code <strong>WELCOME10</strong></small></a>
                 </div>
             </div>
             <div class="row bg-white py-3">
@@ -65,8 +65,8 @@
                     </nav>
                 </div>
                 <div class="col-12 col-lg-4 d-none d-lg-flex justify-content-center">
-                    <a class="navbar-brand btn logo-font" href="{% url 'home' %}">
-                        <h2 class="logo-font"><strong>Starter.</strong></h2>
+                    <a class="navbar-brand btn" href="{% url 'home' %}">
+                        <h2 class="title-font"><strong>Starter.</strong></h2>
                         <p class="m-0 p-0 text-xs">Sourdough made Simple</p>
                     </a>
                 </div>
@@ -78,7 +78,7 @@
                                 aria-expanded="false">
                                 <i class="fas fa-search"></i>
                             </a>
-                            <div class="dropdown-menu border-0 w-100 py-4" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu border-0 w-100 py-4 bg-white" aria-labelledby="navbarDropdown">
                                 <form class="form d-flex justify-content-center" method="GET"
                                     action="{% url 'search' %}">
                                     <div class="input-group w-50">
@@ -98,7 +98,7 @@
                                 aria-expanded="false">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <div class="dropdown-menu border-0 w-100 bg-white">
+                            <div class="dropdown-menu border-0 w-100 py-4 bg-white">
                                 <ul class="list-inline list-unstyled float-end account-dropdown"
                                     aria-labelledby="navbarDropdown">
                                     {% if request.user.is_authenticated %}
@@ -165,7 +165,7 @@
         <div class="container">
             <div class="row py-5 my-5">
                 <div class="col-12">
-                            <h2 class="logo-font"><strong>Starter.</strong></h2>
+                            <h2 class="title-font"><strong>Starter.</strong></h2>
                         <p class="m-0 p-0 text-xs">Sourdough made Simple</p>
                 </div>
             </div>
