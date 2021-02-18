@@ -15,6 +15,10 @@
   .card {
       width: 20rem;
   }
+
+  .member-promo {
+      width: 25rem;
+  }
 </style>
 {% endblock %}
 
@@ -50,7 +54,6 @@
             </div>
             <div class="col-12 col-md-6">
                 {% if profile.membership %}
-                    <p class="text-center">{{ subscription.plan.interval|title }}ly plan.</p>
                     <div class="card mx-auto">
                         {% if latest_recipe.image %}
                             <a href="{% url 'recipe' latest_recipe.id %}">
@@ -68,8 +71,9 @@
                     </div>
                     <a href="{% url 'subscription_settings' %}" class="btn btn-dark text-light p-2 float-md-end mt-2 mt-md-0">Settings</a>
                 {% else %}
-                    <p class="text-center sub-text">Not sure where to start? Subscribe for access to all our recipes, tips and tricks.</p>
-                    <a href="{% url 'subscriptions' %}" class="btn btn-dark text-light p-2 float-md-end mt-2 mt-md-0">Subscribe Now</a>
+                    <a href="{% url 'subscriptions' %}" class="d-flex justify-content-center">
+                        <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid member-promo">
+                    </a>
                 {% endif %}
             </div>         
         </div>
