@@ -31,14 +31,13 @@
             <div class="table-responsive">
                 <table class="table table-borderless border-custom-top">
                     <thead class="text-xs text-muted">
-                        <tr 0>
+                        <tr>
                             <th scope="col">Item</th>
                             <th scope="col"></th>
                             <th scope="col">Price</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Subtotal</th>
                             <th scope="col"></th>
-
                         </tr>
                     </thead>
 
@@ -68,7 +67,7 @@
                                          <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-prepend me-3">
-                                                    <button class="decrement-qty btn btn-sm" 
+                                                    <button class="decrement-qty btn btn-sm hvr" 
                                                         data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                         <i class="fas fa-minus fa-sm"></i>
                                                     </button>
@@ -76,7 +75,7 @@
                                                 <input class="border-0 qty_input text-xs" type="number" name="quantity" value="{{ item.quantity }}" min="1"
                                                 max="49" data-item_id="{{ item.item_id }}" id="id-qty_{{ item.item_id }}">
                                                     <div class="input-group-append">
-                                                    <button class="increment-qty btn btn-sm"
+                                                    <button class="increment-qty btn btn-sm hvr"
                                                         data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                                         <i class="fas fa-plus fa-sm"></i>
                                                     </button>
@@ -87,13 +86,13 @@
                                             <input type="hidden" name="product_colour" value="{{ item.colour }}">
                                         {% endif %}
                                     </form>
-                                    <a class="update-link text-xs text-muted btn">Update Qty</a>
+                                    <a class="update-link text-xs text-muted btn hvr">Update Qty</a>
                                 </td>
                                 <td>
                                     <p>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                                 <td>
-                                    <a class="remove-item btn" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
+                                    <a class="remove-item btn hvr" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
                                         <i class="fas fa-times fa-sm"></i>
                                     </a> 
                                 </td>
@@ -141,7 +140,7 @@
                             <i class="fas fa-lock p-3"></i>
                         </a>
                         <p class="pt-3">
-                            <a href="{% url 'products' %}" class="btn">
+                            <a href="{% url 'products' %}" class="btn hvr">
                                 <i class="fas fa-chevron-left"></i>
                                 <span>Keep Shopping</span>
                             </a>
@@ -150,7 +149,7 @@
                 </div>
             {% else %}
                 <p>Your basket is currently empty.</p>
-                <a href="{% url 'products' %}" class="btn">
+                <a href="{% url 'products' %}" class="btn hvr">
                     <p class="mb-0">Keep Shopping <i class="fas fa-chevron-right small"></i></p>
                 </a>
             {% endif %}

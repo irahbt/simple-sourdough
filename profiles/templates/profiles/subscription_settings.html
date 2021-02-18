@@ -30,9 +30,9 @@
             <form action="{% url 'subscription_settings' %}" method="POST">
                 {% csrf_token %}
                 <p>You are currently subscribed to our {{ subscription.plan.interval }}ly plan.</p>
-                    <p>Your card will be charged £{{ amount }} on {{ period_end }}</p>
-                    <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                    Cancel Membership
+                <p>Your card will be charged £{{ amount }} on {{ period_end }}</p>
+                <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Cancel Membership
                 </button>
                 <!-- delete modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -55,7 +55,7 @@
                 </div>
             </form>
             {% else %}
-                <a href="{% url 'recipes' %}">Subscribe</a>
+                <a href="{% url 'recipes' %}" class="hvr">Subscribe</a>
             {% endif %}
         </div>
     </div>

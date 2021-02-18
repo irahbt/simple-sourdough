@@ -15,8 +15,16 @@ html,body {
     letter-spacing: 1.5px;
 }
 
-#promo-banner{
+#promo-banner {
     background-color: rgb(232, 235, 238);
+}
+
+.hvr:hover {
+    background-color: rgb(241, 244, 247);
+}
+
+.btn:hover {
+    border-color: white;
 }
 
 .premium-font{
@@ -27,7 +35,6 @@ html,body {
 .extra-padding-container {
     padding-top: 50px;
 }
-
 
 
 .navbar-light .navbar-toggler {
