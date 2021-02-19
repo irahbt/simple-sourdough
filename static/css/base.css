@@ -2,13 +2,29 @@
 
 html,body {
     width: 100%;
-    height: 100%;
-    margin: 0px;
+    min-height: 100%;
+    margin: 0px!important;
     padding: 0px;
     font-family: 'IBM Plex Sans', sans-serif!important;
     letter-spacing: 1px!important;
+    margin-bottom: 100px;
+    clear: both;
 }
 
+.custom-footer {
+    max-width: 10px;
+    position: fixed;
+    bottom: 5px;
+    right: 15px;
+}
+
+@media (min-width: 576px) { .custom-footer {
+    max-width: 10px;
+    position: fixed;
+    bottom: 5px;
+    right: 22px;
+}
+ }
 
 .title-font{
     font-family: 'Special Elite', sans-serif;
