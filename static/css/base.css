@@ -15,6 +15,11 @@ html,body {
     letter-spacing: 1.5px;
 }
 
+.email{
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
 #promo-banner {
     background-color: rgb(232, 235, 238);
 }
