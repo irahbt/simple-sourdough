@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.views.decorators.http import require_POST
 from django.http.response import HttpResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
