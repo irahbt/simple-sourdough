@@ -41,28 +41,28 @@ def add_to_basket(request, item_id):
             if colour in basket[item_id]['items_by_colour'].keys():
                 basket[item_id]['items_by_colour'][colour] += quantity
                 messages.success(
-                    request, f'{colour.capitalize()} {product.name} \n'
-                    f'quantity has been updated to \n'
-                    f'{basket[item_id]["items_by_colour"][colour]}')
+                    request, f'{colour.capitalize()} {product.name} \
+                        quantity has been updated to \
+                        {basket[item_id]["items_by_colour"][colour]}')
 
             else:
                 basket[item_id]['items_by_colour'][colour] = quantity
                 messages.success(
-                    request, f'{colour.capitalize()} {product.name} \n'
-                    f'has been added to your basket')
+                    request, f'{colour.capitalize()} {product.name} \
+                    has been added to your basket')
 
         else:
             basket[item_id] = {'items_by_colour': {colour: quantity}}
             messages.success(
-                request, f'{colour.capitalize()} {product.name} \n'
-                f'has been added to your basket')
+                request, f'{colour.capitalize()} {product.name} \
+                has been added to your basket')
 
     else:
         if item_id in list(basket.keys()):
             basket[item_id] += quantity
             messages.success(
-                    request, f'{product.name} quantity has \n'
-                    'been updated to {basket[item_id]}')
+                    request, f'{product.name} quantity has \
+                    been updated to {basket[item_id]}')
 
         else:
             basket[item_id] = quantity
@@ -93,23 +93,23 @@ def update_basket(request, item_id):
         if quantity > 0:
             basket[item_id]['items_by_colour'][colour] = quantity
             messages.success(
-                request, f'{colour.capitalize()} \n'
-                f'{product.name} quantity has been updated to \n'
-                f'{basket[item_id]["items_by_colour"][colour]}')
+                request, f'{colour.capitalize()} \
+                {product.name} quantity has been updated to \
+                {basket[item_id]["items_by_colour"][colour]}')
         else:
             del basket[item_id]['items_by_colour'][colour]
             if not basket[item_id]['items_by_colour']:
                 basket.pop(item_id)
             messages.success(
-                request, f'{colour.capitalize()} {product.name} \n'
-                f'has been removed from your basket')
+                request, f'{colour.capitalize()} {product.name} \
+                has been removed from your basket')
 
     else:
         if quantity > 0:
             basket[item_id] = quantity
             messages.success(
-                    request, f'{product.name} quantity \n'
-                    'has been updated to {basket[item_id]}')
+                    request, f'{product.name} quantity \
+                    has been updated to {basket[item_id]}')
         else:
             basket.pop(item_id)
             messages.success(
@@ -141,8 +141,8 @@ def remove_from_basket(request, item_id):
             if not basket[item_id]['items_by_colour']:
                 basket.pop(item_id)
             messages.success(
-                request, f'{colour.capitalize()} {product.name} \n'
-                f'has been removed from your basket')
+                request, f'{colour.capitalize()} {product.name} \
+                has been removed from your basket')
         else:
             basket.pop(item_id)
             messages.success(
