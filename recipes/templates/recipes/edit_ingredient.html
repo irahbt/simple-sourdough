@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="my-2 title-font text-center">Ingredient Management</h2>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-12 col-md-6">
+        <h5 class="text-center">Edit an Ingredient</h5>
+        <hr>
+            <form method="POST" action="{% url 'edit_ingredient' ingredient.id %}" class="form mb-2" >
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div>
+                    <button class="btn" type="submit"><i class="fas fa-edit"></i> Edit Ingredient</button>
+                </div>
+            </form>
+            <a class="text-danger modal-link btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <i class="fas fa-times"></i> Delete Ingredient
+            </a>
+            <!-- Delete modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Ingredient</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure your want to delete ingredient: {{ ingredient.name }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger text-light p-2" href="{% url 'delete_ingredient' ingredient.id %}">Delete Ingredient</a>
+                    </div>
+                    </div>
+                </div>
+            </div> 
+        </div>         
+    </div>
+</div>
+
+<div class="container extra-padding-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
