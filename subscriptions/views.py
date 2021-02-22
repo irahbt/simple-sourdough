@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.decorators.http import require_POST
 from django.http.response import HttpResponse
 from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 
 from profiles.models import UserProfile
 
@@ -97,3 +96,44 @@ def subscription_success(request):
 
     return render(request, 'subscriptions/subscription_success.html')
 
+
+def subscription_settings(request):
+    """
+    A view to allow the user to view their subscription settings
+    and cancel membership.
+    """
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    subscription = stripe.Subscription.retrieve(
+        request.user.userprofile.stripe_subscription_id)
+    membership = False
+    cancel_at_period_end = False
+    # period_end code adapted from
+    # https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date
+    period_end = datetime.utcfromtimestamp(
+        int(subscription.current_period_end)).strftime('%d-%m-%y')
+    amount = subscription.plan.amount / 100
+ 
+    if request.method == 'POST':
+        subscription.cancel_at_period_end = True
+        request.user.userprofile.cancel_at_period_end = True
+        cancel_at_period_end = True
+        subscription.save()
+        request.user.userprofile.save()
+    else:
+        try:
+            if request.user.userprofile.membership:
+                membership = True
+            if request.user.userprofile.cancel_at_period_end:
+                cancel_at_period_end = True
+        except UserProfile.DoesNotExist:
+            membership = False
+
+    template = 'subscriptions/subscription_settings.html'
+    context = {
+        'subscription': subscription,
+        'membership': membership,
+        'cancel_at_period_end': cancel_at_period_end,
+        'amount': amount,
+        'period_end': period_end,
+    }
+    return render(request, template, context)
