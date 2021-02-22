@@ -151,5 +151,18 @@ As one of the more difficult trends of the UK lockdown, [Starter](#) aims to sim
 7. As Admin, I want to ensure all subscriptions are up to date
 
 
+## Design
 
+The overall design is clean and simple, reflecting the the purpose of the website. 
+
+### Colour Scheme
+
+![Colour Scheme](./static/images/readme-images/colour-scheme.png)
+
+- Colour was used minimullay in order to not detract from the content.
+- Bootstrap colours were used on icons in toasts to signal different responses:
+    - Success = BS Success
+    - Info = BS Info
+    - Error = BS Danger
+    - Warning = BS Warning 
 
