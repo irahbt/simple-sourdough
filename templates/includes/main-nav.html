@@ -4,12 +4,12 @@
             <a id="serviceList" class="nav-link btn dropdown-toggle hvr" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
             </a>
-            <div class="dropdown-menu border-0 w-100 my-0 bg-white py-4 ps-5">
-                <ul class="list-inline list-unstyled" aria-labelledby="navbarDropdown">
-                    <li class="list-inline-item"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item"
+            <div class="dropdown-menu border-0 w-100 my-0 bg-white ps-5">
+                <ul class="list-unstyled" aria-labelledby="navbarDropdown">
+                    <li class="w-25"><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
+                    <li class="w-25"><a class="dropdown-item"
                             href="{% url 'products' %}?category=tools">Tools</a></li>
-                    <li class="list-inline-item"><a class="dropdown-item"
+                    <li class="w-25"><a class="dropdown-item"
                             href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
                 </ul>
             </div>

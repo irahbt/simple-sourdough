@@ -98,24 +98,24 @@
                                 aria-expanded="false">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <div class="dropdown-menu border-0 w-100 py-4 bg-white">
-                                <ul class="list-inline list-unstyled float-end account-dropdown"
+                            <div class="dropdown-menu border-0 w-100 bg-white">
+                                <ul class="list-unstyled float-end text-end account-dropdown"
                                     aria-labelledby="navbarDropdown">
                                     {% if request.user.is_authenticated %}
                                         {% if request.user.is_superuser %}
-                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'add_product' %}">Product
+                                        <li><a class="dropdown-item" href="{% url 'add_product' %}">Product
                                                 Management</a></li>
-                                        <li class="list-inline-item"><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a>
+                                        <li><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a>
                                         </li>
                                         {% endif %}
-                                        <li class="list-inline-item"><a class="dropdown-item"
+                                        <li><a class="dropdown-item"
                                                 href="{% url 'profile' %}">Account</a></li>
-                                        <li class="list-inline-item"><a class="dropdown-item"
+                                        <li><a class="dropdown-item"
                                                 href="{% url 'account_logout' %}">Sign Out</a></li>
                                         {% else %}
-                                        <li class="list-inline-item"><a class="dropdown-item"
+                                        <li><a class="dropdown-item"
                                                 href="{% url 'account_login' %}">Sign In</a></li>
-                                        <li class="list-inline-item"><a class="dropdown-item"
+                                        <li><a class="dropdown-item"
                                                 href="{% url 'account_signup' %}">Sign Up</a></li>
                                     {% endif %}
                                 </ul>
