@@ -1,6 +1,6 @@
 # Starter
 
-![Home Responsive](./static/images/readme-images/home-responsive.png')
+![Home Responsive](./static/images/readme-images/home-responsive.png)
 ## Milestone Project 4: Full Stack Frameworks with Django - Code Institute
 As one of the more difficult trends of the UK lockdown, [Starter](#) aims to simplify the processes involved in baking with sourdough by providing recipes and useful tools of the trade (available for purchase). A number of free recipes are provided, with paid membership required for access to premium recipes.
 
@@ -62,7 +62,7 @@ As one of the more difficult trends of the UK lockdown, [Starter](#) aims to sim
    - [Languages](#languages)
 
    - [Frameworks, Libraries & Programs Used](#frameworks,-libraries-&-programs-used)
-   
+
    </details>
 
 5. <details><summary>Testing
