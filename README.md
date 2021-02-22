@@ -2,8 +2,10 @@
 
 ![Home Responsive](./static/images/readme-images/home-responsive.png)
 ## Milestone Project 4: Full Stack Frameworks with Django - Code Institute
-As one of the more difficult trends of the UK lockdown, [Starter](#) aims to simplify the processes involved in baking with sourdough by providing recipes and useful tools of the trade (available for purchase). A number of free recipes are provided, with paid membership required for access to premium recipes.
+As one of the more difficult trends of the UK lockdown, [Starter](#) is an e-commerce website that aims to simplify the processes involved in baking with sourdough. The website offers recipes and useful tools of the trade (available for purchase). A number of free recipes are provided, with paid membership required for access to premium recipes.
 
+**Please use the following card number for test purposes:**
+4242 4242 4242 4242
 
 ## Table of Contents
 
@@ -211,6 +213,14 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - Social media icons are clearly positioned to the left of the footer and are constantly available to the user. Dead links are used as the social media pages to exist at present.
 - A crown icon is used when to denote premium membership. 
 
+### Layout
+- [Bootstrap's Grid System](https://getbootstrap.com/docs/5.0/layout/grid/) was used throughout to created the layout and make it responsive.
+
+### Styling
+- [Bootstrap](https://getbootstrap.com/) was used in conjunction with custom spacing and colours to provide much of the styling for the site. This includes all **buttons**, **cards** and **nav bars**.
+- [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/) was used to automatically style form elements.
+- [Stripe Elements](https://stripe.com/docs/stripe-js) was used to style the product checkout.
+- [Stripe Checkout](https://stripe.com/docs/payments/checkout) was used for the subscription/premium membership checkout. 
 
 
 
