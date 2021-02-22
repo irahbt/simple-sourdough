@@ -181,6 +181,42 @@ The overall design is clean and simple, reflecting the the purpose of the websit
 - All fonts had Sans Serif as the back-up font. 
 
 
+### Imagery
+**Bootstrap's 'img-fluid' class was used on the majority of images to ensure responsivity.**
+
+#### Product Images
+All product imagery is sized at 640 x 640px based on [this](https://store.magenest.com/blog/ecommerce-product-image/#:~:text=or%20just%20larger.-,Medium%20size%3A%20Product%20pages,or%20800%20x%20800%20image.) Magenest article.
+
+#### Recipe Images
+All recipes images are sized at 1200 x 800px based on [this](https://wordpress.org/support/topic/ideal-recipe-picture-size/#:~:text=So%20to%20answer%20the%20size,access%20to%20the%20larger%20images.) Wordpress forum. 
+
+#### Illustrations
+![Illustrations](./static/images/readme-images/illustrations.png)
+Illustrations were taken from the above Adobe stock image and used throughout the website, complimenting the title/logo font by creating the impression of a story or book. 
+
+
+#### Membership promo
+![Membership Promo](./static/images/member-promo.png)
+The membership promo was created in the image of a poster to grab the user's attention and direct them to the premium membership page. 
+
+#### No Image
+![No image](./static/images/noimage.png)
+
+The 'No Image' image is used in the event that an image is not uploaded for a product or recipe. 
+
+### Icons
+Icons are used throughout the site to provide the user with visual cues and create a more interesting aesthetic.
+
+- Chevron icons are used throughout, to indicate directional links.
+- Social media icons are clearly positioned to the left of the footer and are constantly available to the user. Dead links are used as the social media pages to exist at present.
+- A crown icon is used when to denote premium membership. 
+
+
+
+
+
+
+
 
 
 
