@@ -7,7 +7,7 @@ from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.models import UserProfile
 
-
+import stripe
 import json
 import time
 
@@ -53,10 +53,17 @@ class StripeWH_Handler:
         customer = intent.get('customer')
 
         if customer:
-            print('banana')
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-                status=200)
+            if method == 'GET' and 'session_id' in GET:
+                customer = UserProfile.objects.get(user=user)
+                customer.stripeid = intent.customer
+                customer.membership = True
+                customer.cancel_at_period_end = False
+                customer.stripe_subscription_id = intent.subscription
+                customer.save()
+
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+                    status=200)
 
         else:
             basket = intent.metadata.basket

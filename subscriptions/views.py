@@ -86,14 +86,14 @@ def subscription_cancel(request):
 
 def subscription_success(request):
 
-    if request.method == 'GET' and 'session_id' in request.GET:
-        session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
-        customer = UserProfile.objects.get(user=request.user)
-        customer.stripeid = session.customer
-        customer.membership = True
-        customer.cancel_at_period_end = False
-        customer.stripe_subscription_id = session.subscription
-        customer.save()
+    # if request.method == 'GET' and 'session_id' in request.GET:
+    #     session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
+    #     customer = UserProfile.objects.get(user=request.user)
+    #     customer.stripeid = session.customer
+    #     customer.membership = True
+    #     customer.cancel_at_period_end = False
+    #     customer.stripe_subscription_id = session.subscription
+    #     customer.save()
 
     return render(request, 'subscriptions/subscription_success.html')
 
