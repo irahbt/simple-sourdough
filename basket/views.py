@@ -4,16 +4,28 @@ from django.shortcuts import (
 from django.contrib import messages
 
 from products.models import Product
- 
+
 
 def view_basket(request):
-    """ A view to return the basket contents page """
+    """
+
+    Returns:
+    Basket contents page
+
+    """
 
     return render(request, 'basket/basket.html')
 
 
 def add_to_basket(request, item_id):
-    """ Add a quantity of the specified product to the shopping basket """
+    """
+
+    Add a quantity of the specified product to the shopping basket
+
+    Returns:
+    Url the request was made from
+
+    """
 
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -29,34 +41,46 @@ def add_to_basket(request, item_id):
             if colour in basket[item_id]['items_by_colour'].keys():
                 basket[item_id]['items_by_colour'][colour] += quantity
                 messages.success(
-                    request, f'{colour.capitalize()} {product.name} quantity has been updated to {basket[item_id]["items_by_colour"][colour]}')
+                    request, f'{colour.capitalize()} {product.name} \n'
+                    f'quantity has been updated to \n'
+                    f'{basket[item_id]["items_by_colour"][colour]}')
 
             else:
                 basket[item_id]['items_by_colour'][colour] = quantity
                 messages.success(
-                    request, f'{colour.capitalize()} {product.name} has been added to your basket')
+                    request, f'{colour.capitalize()} {product.name} \n'
+                    f'has been added to your basket')
 
         else:
             basket[item_id] = {'items_by_colour': {colour: quantity}}
             messages.success(
-                request, f'{colour.capitalize()} {product.name} has been added to your basket')
+                request, f'{colour.capitalize()} {product.name} \n'
+                f'has been added to your basket')
 
     else:
         if item_id in list(basket.keys()):
             basket[item_id] += quantity
             messages.success(
-                    request, f'{product.name} quantity has been updated to {basket[item_id]}')
+                    request, f'{product.name} quantity has \n'
+                    'been updated to {basket[item_id]}')
 
         else:
             basket[item_id] = quantity
-            messages.success(request, f'{product.name} has been added to your basket')
+            messages.success(
+                request, f'{product.name} has been added to your basket')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
 
 
 def update_basket(request, item_id):
-    """Update the quantity of the specified product to the specified amount"""
+    """
+    Update the quantity of the specified product to the specified amount
+
+    Returns:
+    Basket contents page
+
+    """
 
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -69,19 +93,23 @@ def update_basket(request, item_id):
         if quantity > 0:
             basket[item_id]['items_by_colour'][colour] = quantity
             messages.success(
-                    request, f'{colour.capitalize()} {product.name} quantity has been updated to {basket[item_id]["items_by_colour"][colour]}')
+                request, f'{colour.capitalize()} \n'
+                f'{product.name} quantity has been updated to \n'
+                f'{basket[item_id]["items_by_colour"][colour]}')
         else:
             del basket[item_id]['items_by_colour'][colour]
             if not basket[item_id]['items_by_colour']:
                 basket.pop(item_id)
             messages.success(
-                request, f'{colour.capitalize()} {product.name} has been removed from your basket')
+                request, f'{colour.capitalize()} {product.name} \n'
+                f'has been removed from your basket')
 
     else:
         if quantity > 0:
             basket[item_id] = quantity
             messages.success(
-                    request, f'{product.name} quantity has been updated to {basket[item_id]}')
+                    request, f'{product.name} quantity \n'
+                    'has been updated to {basket[item_id]}')
         else:
             basket.pop(item_id)
             messages.success(
@@ -92,7 +120,14 @@ def update_basket(request, item_id):
 
 
 def remove_from_basket(request, item_id):
-    """Remove the item from the shopping basket"""
+    """
+
+    Remove the item from the shopping basket
+
+    Returns:
+    Http Response
+
+    """
 
     try:
         product = get_object_or_404(Product, pk=item_id)
@@ -106,7 +141,8 @@ def remove_from_basket(request, item_id):
             if not basket[item_id]['items_by_colour']:
                 basket.pop(item_id)
             messages.success(
-                request, f'{colour.capitalize()} {product.name} has been removed from your basket')
+                request, f'{colour.capitalize()} {product.name} \n'
+                f'has been removed from your basket')
         else:
             basket.pop(item_id)
             messages.success(
