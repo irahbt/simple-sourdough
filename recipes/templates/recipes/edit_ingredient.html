@@ -25,12 +25,12 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 <div>
-                    <button class="btn" type="submit"><i class="fas fa-edit"></i> Edit Ingredient</button>
+                    <button class="btn" type="submit"><i class="fas fa-edit"></i> Update Ingredient</button>
+                    <a class="text-danger modal-link btn float-end" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <i class="fas fa-times"></i> Delete Ingredient
+                    </a>
                 </div>
             </form>
-            <a class="text-danger modal-link btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                <i class="fas fa-times"></i> Delete Ingredient
-            </a>
             <!-- Delete modal -->
             <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
