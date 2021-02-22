@@ -101,54 +101,59 @@ As one of the more difficult trends of the UK lockdown, [Starter](#) aims to sim
 
 ## User Stories
 
-### First Time User Goals
+### First Time User Goals 
+#### As a first time user, I want to: 
 
-1. As a First Time User, I want to easily understand the purpose of the website and the services it offers
-2. As a First Time User, I want to be able to navigate intuitively through the site
+1. Easily understand the purpose of the website and the services it offers
+2. Be able to navigate intuitively through the site
 
 
 ### Returning User Goals
+#### As a returning, I want to:
 
-1. As a Returning User, I want to browse all products and recipes
-2. As a Returning User, I want to browse via product category
-3. As a Returning User, I want to search for product and/or recipe by name or description
-4. As a Returning User, I want to easily see what I've searched for and the search results
+1. Browse all products and recipes
+2. Browse via product category
+3. Search for product and/or recipe by name or description
+4. Easily see what I've searched for and the search results
 5. As a Returning User, I want to easily select the colour and quantity of a product
-6. As a Returning User, I want to view items in my basket to be purchased
-7. As a Returning User, I want to be able to adjust the quantity of individual items in my basket 
-8. As a Returning User, I want to see an order confirmation after checkout
-9. As a Returning User, I want to receive an email confirmation after checkout
-10. As a Returning User, I want to easily find how to become a member
-11. As a Returning User, I want to learn about becoming a premium member
+6. View items in my basket to be purchased
+7. Be able to adjust the quantity of individual items in my basket 
+8. See an order confirmation after checkout
+9. Receive an email confirmation after checkout
+10. Easily find how to become a member
+11. Learn about becoming a premium member
 
 
 ### Member Goals
+#### As a member, I want to:
 
-1. As a Returning User, I want to easily login and logout
-2. As a Returning User, I want to receive an email confirmation upon registering
-3. As a Returning User, I want to recover my password in case I forget it
-4. As a Returning User, I want to save/update my shipping information
-5. As a Returning User, I want to view my order history
+1. Easily login and logout
+2. Receive an email confirmation upon registering
+3. Recover my password in case I forget it
+4. Save/update my shipping information
+5. View my order history
 
 
 ### Premium Member Goals
+#### As a premium member, I want to:
 
-1. As a Premium Member, I want to view premium content 
-2. As a Premium Member, I want to see when new premium content is added
-3. As a Premium Member, I want to view which subscription service is enabled
-4. As a Premium Member, I want to easily cancel a subscription service
-5. As a Premium Member, I want to view my next subscription payment date
+1. View premium content 
+2. See when new premium content is added
+3. View which subscription service is enabled
+4. Easily cancel a subscription service
+5. View my next subscription payment date
 
 
 ### Admin Goals
+#### As admin, I want to:
 
-1. As Admin, I want to add a product
-2. As Admin, I want to edit/update a product
-3. As Admin, I want to delete a product
-4. As Admin, I want to add a recipe 
-5. As Admin, I want to edit/update a recipe 
-6. As Admin, I want to delete a recipe
-7. As Admin, I want to ensure all subscriptions are up to date
+1. Add a product
+2. Edit/update a product
+3. Delete a product
+4. Add a recipe 
+5. Edit/update a recipe 
+6. Delete a recipe
+7. Ensure all subscriptions payments are up to date
 
 
 ## Design
@@ -165,4 +170,17 @@ The overall design is clean and simple, reflecting the the purpose of the websit
     - Info = BS Info
     - Error = BS Danger
     - Warning = BS Warning 
+
+
+### Typography
+
+- 'Special Elite' was used for headings and titles as well as the main logo. This type-writer like font was chosen to give the impression of a story or a book. 
+- 'Knewave' was used to promote premium content to make it look like a poster.
+- 'IBM Plex Sans' was used for all other text. It was chosen for it's readability. 
+- A range of font sizes and weights were used to denote importance.
+- All fonts had Sans Serif as the back-up font. 
+
+
+
+
 
