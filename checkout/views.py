@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse,
+    get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 
@@ -17,6 +18,14 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Retrieve post checkout data
+
+    Returns:
+    Http Resoponse
+
+    """
+
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -33,6 +42,16 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+
+    Retrieve order form data
+    Retrieve basket contents and create order line item(s)
+    Create Stripe payment intent
+
+    Returns:
+    Checkout page, stripe public ket and individual payment intent
+
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -76,17 +95,21 @@ def checkout(request):
                                 quantity=quantity,
                                 product_colour=colour,
                             )
+
                             order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your basket wasn't found in our database. "
+                        "One of the products in your basket \
+                            wasn't found in our database."
                         "Please contact us for assistance")
                     )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]))
 
         else:
             messages.error(request, 'There was an error in your form. \
@@ -125,18 +148,24 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
+
     Handle successful checkouts
+
+    Returns:
+    Checkout success page with order details attached
+
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
+
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
 
-         # Save the user's info
+        # Save the user's info
         if save_info:
             profile_data = {
                 'default_phone_number': order.phone_number,
@@ -164,4 +193,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-
