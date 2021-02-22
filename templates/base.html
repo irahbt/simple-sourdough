@@ -78,8 +78,8 @@
                                 aria-expanded="false">
                                 <i class="fas fa-search"></i>
                             </a>
-                            <div class="dropdown-menu border-0 w-100 py-4 bg-white" aria-labelledby="navbarDropdown">
-                                <form class="form d-flex justify-content-center" method="GET"
+                            <div class="dropdown-menu border-0 w-100 mt-1 bg-white" aria-labelledby="navbarDropdown">
+                                <form class="form d-flex justify-content-center pb-2" method="GET"
                                     action="{% url 'search' %}">
                                     <div class="input-group w-50">
                                         <input class="form-control search-custom rounded-0" type="text" name="q"
@@ -98,7 +98,7 @@
                                 aria-expanded="false">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <div class="dropdown-menu border-0 w-100 bg-white">
+                            <div class="dropdown-menu border-0 w-100 bg-white mt-1">
                                 <ul class="list-unstyled float-end text-end account-dropdown"
                                     aria-labelledby="navbarDropdown">
                                     {% if request.user.is_authenticated %}
