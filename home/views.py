@@ -5,10 +5,16 @@ from recipes.models import Recipe
 
 
 def index(request):
-    """ A view to return the index page """
+    """
+
+    Filters products and recipes by featured = True
+
+    Returns:
+    Index page with featured products and recipes
+
+    """
     featured_products = Product.objects.filter(featured=True)
     featured_recipes = Recipe.objects.filter(featured=True)
-
 
     context = {
         'featured_products': featured_products,
@@ -16,6 +22,3 @@ def index(request):
     }
 
     return render(request, 'home/index.html', context)
-
-
-
