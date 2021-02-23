@@ -36,15 +36,15 @@ class StripeWH_Handler:
             [cust_email]
         )
 
-    def _send_confirmation_email_subscription(self, userprofile):
+    def _send_confirmation_email_subscription(self, profile):
         """Send the user a confirmation email"""
-        cust_email = userprofile.user.email
+        cust_email = profile.user.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject_subscription.txt',
-            {'userprofile': userprofile})
+            {'profile': profile})
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body_subscription.txt',
-            {'userprofile': userprofile, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+            {'profile': profile, 'contact_email': settings.DEFAULT_FROM_EMAIL})
 
         send_mail(
             subject,
@@ -79,9 +79,8 @@ class StripeWH_Handler:
         profile.cancel_at_period_end = False
         profile.membership = True
         profile.save()
-        userprofile = UserProfile.object.all()
 
-        self._send_confirmation_email(userprofile)
+        self._send_confirmation_email_subscription(profile)
         return HttpResponse(
                     content=f'Webhook received: {event["type"]} | SUCCESS: \
                         Created subscription in webhook',

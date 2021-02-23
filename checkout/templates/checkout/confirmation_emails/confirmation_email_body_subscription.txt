@@ -1,4 +1,4 @@
-Hello {{ userprofile.user }}, 
+Hello {{ profile.user }}, 
 
 This is confirmation of your order from Starter. Your order information is:
 
