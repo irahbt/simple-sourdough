@@ -8,7 +8,15 @@ from profiles.models import UserProfile
 
 
 def recipes(request):
-    """ A view to return the recipes page """
+    """
+
+    Retrieves all recipes
+    Check if user is authenticated and retireve profile
+
+    Returns:
+    Recipes page and profile
+
+    """
     recipes = Recipe.objects.all()
 
     if request.user.is_authenticated:
@@ -30,8 +38,15 @@ def recipes(request):
 
 def recipe(request, recipe_id):
     """
-    A view to return an individual recipe page,
-    ensuring user has a membership to view premium recipes
+
+    Retrieve indivual recipe
+    Check if recipe is premium
+    Check if user is authenticated and if user profile has membership
+    Ensure user has membership to view premium recipes
+
+    Returns:
+    Specified recipe's page
+
     """
     recipe = get_object_or_404(Recipe, pk=recipe_id)
 
@@ -46,14 +61,17 @@ def recipe(request, recipe_id):
                     return render(request, template, context)
                 else:
                     messages.info(
-                        request, 'You need a membership to access premium recipes.')
+                        request, 'You need a membership to \
+                            access premium recipes.')
                     return redirect('subscriptions')
             except UserProfile.DoesNotExist:
                 messages.info(
-                    request, 'You need a membership to access premium recipes. Please sign in to your account or subscribe now.')
+                    request, 'You need a membership to access premium recipes. \
+                        Please sign in to your account or subscribe now.')
                 return redirect('account_signup')
         messages.info(
-            request, 'You need a membership to access premium recipes. Please sign in to your account or subscribe now.')
+            request, 'You need a membership to access premium recipes. \
+                Please sign in to your account or subscribe now.')
         return redirect('account_login')
     else:
         template = 'recipes/recipe.html'
@@ -66,7 +84,15 @@ def recipe(request, recipe_id):
 @login_required
 def add_recipe(request):
     """
-    Add a recipe
+
+    Check user is supseruser
+    Save information from recipe form
+    Redirect back to add recipe page
+    Retrieve all ingredients
+
+    Returns:
+    Add recipe page with product form, ingredient form and all ingredients
+
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
@@ -99,7 +125,15 @@ def add_recipe(request):
 @login_required
 def edit_recipe(request, recipe_id):
     """
-    Edit a recipe
+
+    Check user is superuser
+    Retrieve specified recipe
+    Save information from recipe form
+    Redirect back to specified recipe
+
+    Returns:
+    Edit recipe page with specified recipe and recipe form
+
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
@@ -114,7 +148,8 @@ def edit_recipe(request, recipe_id):
             return redirect(reverse('recipe', args=[recipe.id]))
         else:
             messages.error(
-                request, 'Update Recipe Failed. Please ensure the form is valid.')
+                request, 'Update Recipe Failed. \
+                    Please ensure the form is valid.')
     else:
         form = RecipeForm(instance=recipe)
         messages.info(request, f'You are editing {recipe.title}')
@@ -130,7 +165,16 @@ def edit_recipe(request, recipe_id):
 
 @login_required
 def delete_recipe(request, recipe_id):
-    """ Delete a recipe """
+    """
+
+    Check user is superuser
+    Retrieve specified recipe
+    Delete Recipe
+
+    Returns:
+    Recipes page
+
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
         return redirect(reverse('home'))
@@ -145,7 +189,13 @@ def delete_recipe(request, recipe_id):
 @login_required
 def add_ingredient(request):
     """
-    Add an ingredient
+
+    Check user is supseruser
+    Save information from ingredient form
+
+    Returns:
+    Reverse to add recipe page
+
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
@@ -159,14 +209,23 @@ def add_ingredient(request):
             return redirect(reverse('add_recipe'))
         else:
             messages.error(
-                request, 'Add Ingredient Failed. Please ensure the form is valid.')
+                request, 'Add Ingredient Failed. \
+                    Please ensure the form is valid.')
             return redirect(reverse('add_recipe'))
 
 
 @login_required
 def edit_ingredient(request, ingredient_id):
     """
-    Edit an ingredient
+
+    Check user is superuser
+    Retrieve specified ingredient
+    Save information from ingredient form
+    Redirect back to add recipes page
+
+    Returns:
+    Edit ingredient page with specified ingredient and ingredient form
+
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
@@ -181,7 +240,8 @@ def edit_ingredient(request, ingredient_id):
             return redirect('add_recipe')
         else:
             messages.error(
-                request, 'Update Ingredient Failed. Please ensure the form is valid.')
+                request, 'Update Ingredient Failed. \
+                    Please ensure the form is valid.')
     else:
         form = IngredientForm(instance=ingredient)
         messages.info(request, f'You are editing {ingredient.name}')
@@ -197,7 +257,16 @@ def edit_ingredient(request, ingredient_id):
 
 @login_required
 def delete_ingredient(request, ingredient_id):
-    """ Delete a recipe """
+    """
+
+    Check user is superuser
+    Retrieve specified ingredient
+    Delete ingredient
+
+    Returns:
+    Add recipe page
+
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you must be a store owner to do that.')
         return redirect(reverse('home'))
@@ -207,4 +276,3 @@ def delete_ingredient(request, ingredient_id):
     messages.success(request, 'Ingredient Deleted')
 
     return redirect(reverse('add_recipe'))
-
