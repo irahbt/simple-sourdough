@@ -59,6 +59,7 @@ def subscription_checkout(request):
     """
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
+    domain_url = settings.DOMAIN_URL
 
     try:
         if request.user.userprofile.membership:
@@ -89,8 +90,8 @@ def subscription_checkout(request):
                 }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url='https://8000-turquoise-earthworm-f1kwkeby.ws-eu03.gitpod.io/subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url='https://8000-turquoise-earthworm-f1kwkeby.ws-eu03.gitpod.io/subscriptions/subscription_cancel',
+            success_url=(domain_url + 'subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}'),
+            cancel_url=(domain_url + 'subscriptions/subscription_cancel'),
         )
 
         template = 'subscriptions/subscription_checkout.html'
@@ -116,23 +117,10 @@ def subscription_cancel(request):
 def subscription_success(request):
     """
 
-    Retrieve session id and user profile 
-    Attach subscription information to user profile and save
-
     Returns:
     Subscription success page
 
     """
-
-    # if request.method == 'GET' and 'session_id' in request.GET:
-    #     session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
-    #     customer = UserProfile.objects.get(user=request.user)
-    #     customer.stripeid = session.customer
-    #     customer.membership = True
-    #     customer.cancel_at_period_end = False
-    #     customer.stripe_subscription_id = session.subscription
-    #     customer.save()
-
     return render(request, 'subscriptions/subscription_success.html')
 
 
