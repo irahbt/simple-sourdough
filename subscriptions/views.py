@@ -10,15 +10,27 @@ import stripe
 
 
 def subscriptions(request):
-    """ A view to return the subscription page """
+    """
+
+    Returns:
+    Subscriptions page
+
+    """
     return render(request, 'subscriptions/subscriptions.html')
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def update_accounts(request):
     """
-    A view to allow superuser to update/cancel user's
-    membership if their subscription is inactive.
+
+    Retrieve user profile
+    Retrieve stripe subscriptions
+    Check subscription status
+    Save profile
+
+    Returns:
+    Http response
+
     """
     profiles = UserProfile.objects.all()
     for profile in profiles:
@@ -35,6 +47,17 @@ def update_accounts(request):
 
 @login_required
 def subscription_checkout(request):
+    """
+
+    Ensure user has a profile and without memeberhsip attached
+    Retrieve subscription type
+    Create stripe checkout session
+
+    Returns:
+    Subscription checkout page with final pound, session id and subscription
+
+    """
+
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     try:
@@ -80,10 +103,25 @@ def subscription_checkout(request):
 
 
 def subscription_cancel(request):
+    """
+
+    Returns:
+    Subscription cancelled page
+
+    """
     return render(request, 'subscriptions/subscription_cancel.html')
 
 
 def subscription_success(request):
+    """
+
+    Retrieve session id and user profile 
+    Attach subscription information to user profile and save
+
+    Returns:
+    Subscription success page
+
+    """
 
     # if request.method == 'GET' and 'session_id' in request.GET:
     #     session = stripe.checkout.Session.retrieve(request.GET['session_id'],)
@@ -99,18 +137,25 @@ def subscription_success(request):
 
 def subscription_settings(request):
     """
-    A view to allow the user to view their subscription settings
-    and cancel membership.
+
+    Retrieve stripe subscription information for current user profile
+    If request change cancel at period end to true where necessary and save
+
+    Returns:
+    Subscription settings page with associated subscription information
+
     """
     stripe.api_key = settings.STRIPE_SECRET_KEY
     subscription = stripe.Subscription.retrieve(
         request.user.userprofile.stripe_subscription_id)
     membership = False
     cancel_at_period_end = False
+
     # period_end code adapted from
     # https://stackoverflow.com/questions/3682748/converting-unix-timestamp-string-to-readable-date
     period_end = datetime.utcfromtimestamp(
         int(subscription.current_period_end)).strftime('%d-%m-%y')
+
     amount = subscription.plan.amount / 100
  
     if request.method == 'POST':
