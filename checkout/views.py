@@ -22,7 +22,7 @@ def cache_checkout_data(request):
     Retrieve post checkout data
 
     Returns:
-    Http Resoponse
+    Http Response
 
     """
 

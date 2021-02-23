@@ -82,6 +82,7 @@ def subscription_checkout(request):
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             customer_email=request.user.email,
+            client_reference_id=request.user.id,
             line_items=[{
                 'price': subscription_id,
                 'quantity': 1,

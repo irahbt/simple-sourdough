@@ -1,13 +1,14 @@
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib.auth.models import User
 
 from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.models import UserProfile
 
-import stripe
 import json
 import time
 
@@ -35,7 +36,6 @@ class StripeWH_Handler:
             [cust_email]
         )
 
-
     def handle_event(self, event):
         """
         Handle a generic/unknown/unexpected webhook event
@@ -43,6 +43,27 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
+
+    def handle_checkout_session_completed(self, event):
+        intent = event.data.object
+
+        # Fetch all the required data from session
+        client_reference_id = intent.get('client_reference_id')
+        stripe_customer_id = intent.get('customer')
+        stripe_subscription_id = intent.get('subscription')
+
+        # Get the user
+        user = User.objects.get(id=client_reference_id)
+
+        # Get user profile and update
+        profile = get_object_or_404(UserProfile, user=user)
+        profile.stripe_customer_id  = stripe_customer_id 
+        profile.stripe_subscription_id = stripe_subscription_id
+        profile.cancel_at_period_end = False
+        profile.membership = True
+        profile.save()
+
+        return HttpResponse(status=200)
 
     def handle_payment_intent_succeeded(self, event):
         """
@@ -53,18 +74,7 @@ class StripeWH_Handler:
         customer = intent.get('customer')
 
         if customer:
-            if method == 'GET' and 'session_id' in GET:
-                customer = UserProfile.objects.get(user=user)
-                customer.stripeid = intent.customer
-                customer.membership = True
-                customer.cancel_at_period_end = False
-                customer.stripe_subscription_id = intent.subscription
-                customer.save()
-
-                return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-                    status=200)
-
+            return HttpResponse(status=200)
         else:
             basket = intent.metadata.basket
             save_info = intent.metadata.save_info
@@ -164,10 +174,10 @@ class StripeWH_Handler:
                         content=f'Webhook received: {event["type"]} | ERROR: {e}',
                         status=500)
 
-            self._send_confirmation_email(order)
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-                status=200)
+                self._send_confirmation_email(order)
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+                    status=200)
 
 
     def handle_payment_intent_payment_failed(self, event):
