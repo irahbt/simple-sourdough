@@ -36,6 +36,23 @@ class StripeWH_Handler:
             [cust_email]
         )
 
+    def _send_confirmation_email_subscription(self, userprofile):
+        """Send the user a confirmation email"""
+        cust_email = userprofile.user.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject_subscription.txt',
+            {'userprofile': userprofile})
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body_subscription.txt',
+            {'userprofile': userprofile, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
+
     def handle_event(self, event):
         """
         Handle a generic/unknown/unexpected webhook event
@@ -57,13 +74,18 @@ class StripeWH_Handler:
 
         # Get user profile and update
         profile = get_object_or_404(UserProfile, user=user)
-        profile.stripe_customer_id  = stripe_customer_id 
+        profile.stripe_customer_id = stripe_customer_id
         profile.stripe_subscription_id = stripe_subscription_id
         profile.cancel_at_period_end = False
         profile.membership = True
         profile.save()
+        userprofile = UserProfile.object.all()
 
-        return HttpResponse(status=200)
+        self._send_confirmation_email(userprofile)
+        return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: \
+                        Created subscription in webhook',
+                    status=200)
 
     def handle_payment_intent_succeeded(self, event):
         """
@@ -74,7 +96,11 @@ class StripeWH_Handler:
         customer = intent.get('customer')
 
         if customer:
-            return HttpResponse(status=200)
+            return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: \
+                        Created order in webhook',
+                    status=200)
+
         else:
             basket = intent.metadata.basket
             save_info = intent.metadata.save_info
@@ -128,7 +154,8 @@ class StripeWH_Handler:
             if order_exists:
                 self._send_confirmation_email(order)
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                    content=f'Webhook received: {event["type"]} | SUCCESS: \
+                        Verified order already in database',
                     status=200)
             else:
                 order = None
@@ -171,14 +198,15 @@ class StripeWH_Handler:
                     if order:
                         order.delete()
                     return HttpResponse(
-                        content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                        content=f'Webhook received: {event["type"]} \
+                            | ERROR: {e}',
                         status=500)
 
                 self._send_confirmation_email(order)
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+                    content=f'Webhook received: {event["type"]} | SUCCESS: \
+                        Created order in webhook',
                     status=200)
-
 
     def handle_payment_intent_payment_failed(self, event):
         """
