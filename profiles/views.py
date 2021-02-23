@@ -13,7 +13,18 @@ import stripe
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
+    """
+
+    Retrieve:
+    Current user
+    Newest recipe added
+    User profile form information and save
+    Orders associated with profile
+
+    Returns:
+    Individual profile page with profile form, orders and latest recipe
+
+    """
 
     profile = get_object_or_404(UserProfile, user=request.user)
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -26,7 +37,8 @@ def profile(request):
             form.save()
             messages.success(request, 'Your information has been updated')
         else:
-            messages.error(request, 'Update failed, Please check form is valid.')
+            messages.error(request, 'Update failed, \
+                Please check form is valid.')
 
     orders = profile.orders.all
     form = UserProfileForm(instance=profile)
@@ -43,6 +55,13 @@ def profile(request):
 
 
 def order_history(request, order_number):
+    """
+    Retrieve individual orders
+
+    Returns:
+    Checkout success page with specified order
+
+    """
     order = get_object_or_404(Order, order_number=order_number)
     messages.info(request, f'Order confirmation for {order_number}.')
     template = 'checkout/checkout_success.html'
