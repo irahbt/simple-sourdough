@@ -100,16 +100,14 @@ def add_recipe(request):
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        if form.is_valid():
+        formset = IngredientFormSet(request.POST)
+
+        if form.is_valid() and formset.is_valid():
             recipe = form.save()
-            formset = IngredientFormSet(request.POST, instance=recipe)
-            if formset.is_valid():
-                formset.save()
-                messages.success(request, 'Recipe Added Successful')
-            else:
-                messages.error(
-                    request, 'Add Recipe Failed. \
-                        Please ensure the form is valid.')
+            formset.instance = recipe
+            formset.save()
+            messages.success(request, 'Recipe Added Successful')
+
         else:
             messages.error(
                 request, 'Add Recipe Failed. Please ensure the form is valid.')
