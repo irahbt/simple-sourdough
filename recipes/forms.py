@@ -4,13 +4,16 @@ from .models import Ingredient, Recipe
 
 
 class IngredientForm(forms.ModelForm):
-
     class Meta:
         model = Ingredient
-        fields = '__all__'
+        exclude = ('recipe',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+
+IngredientFormSet = forms.inlineformset_factory(
+    Recipe, Ingredient, form=IngredientForm)
 
 
 class RecipeForm(forms.ModelForm):
@@ -19,12 +22,8 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
 
-    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    image = forms.ImageField(
+        label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        ingredients = Ingredient.objects.all()
-        names = [(i.id, i.__str__()) for i in ingredients]
-        
-        self.fields['ingredient_list'].label = 'Ingredients - Hold down “Control”, or “Command” on a Mac, to select more than one.'
-        self.fields['ingredient_list'].choices = names

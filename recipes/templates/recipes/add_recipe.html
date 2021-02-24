@@ -31,33 +31,18 @@
                         {{ field }}
                     {% endif %}
                 {% endfor %}
+                <hr>
+                <h4>Ingredients</h4>
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        {{ form|crispy }}
+                    {% endfor %}
                 <div class="float-end">
-                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
+                    <a class="btn btn-dark p-2" href="{% url 'recipes' %}">Cancel</a>
                     <button class="btn btn-dark text-light p-2" type="submit">Add Recipe</button>
                 </div>
             </form>
-        </div>
-        <div class="col-12 col-md-6 order-first order-md-last">
-        <h5 class="text-center">Add an Ingredient</h5>
-        <hr>
-        <ul class="list-unstyled">
-            {% for ingredient in ingredients %}
-                <li>    
-                    {{ ingredient.name }}
-                    <small class="float-end">
-                        <a class="text-reset" href="{% url 'edit_ingredient' ingredient.id %}"><i class="fas fa-edit"></i></a>
-                    </small>
-                </li>
-            {% endfor %}
-        </ul>
-         <form method="POST" action="{% url 'add_ingredient' %}" class="form mb-2" >
-                {% csrf_token %}
-                {{ ingredient_form|crispy }}
-                <div class="float-end">
-                    <button class="btn" type="submit"><i class="fas fa-plus"></i> Add Ingredient</button>
-                </div>
-            </form>
-        </div>         
+        </div>    
     </div>
 </div>
 

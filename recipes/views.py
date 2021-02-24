@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Recipe, Ingredient
-from .forms import IngredientForm, RecipeForm
+from .models import Recipe
+from .forms import IngredientFormSet, RecipeForm
 from profiles.models import UserProfile
 
 
@@ -101,22 +101,26 @@ def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Recipe Added Successful')
-            return redirect(reverse('add_recipe'))
+            recipe = form.save()
+            formset = IngredientFormSet(request.POST, instance=recipe)
+            if formset.is_valid():
+                formset.save()
+                messages.success(request, 'Recipe Added Successful')
+            else:
+                messages.error(
+                    request, 'Add Recipe Failed. \
+                        Please ensure the form is valid.')
         else:
             messages.error(
                 request, 'Add Recipe Failed. Please ensure the form is valid.')
     else:
         form = RecipeForm()
-        ingredient_form = IngredientForm()
+        formset = IngredientFormSet()
 
-    ingredients = Ingredient.objects.all()
     template = 'recipes/add_recipe.html'
     context = {
-        'ingredients': ingredients,
+        'formset': formset,
         'form': form,
-        'ingredient_form': ingredient_form
     }
 
     return render(request, template, context)
@@ -185,94 +189,3 @@ def delete_recipe(request, recipe_id):
 
     return redirect(reverse('recipes'))
 
-
-@login_required
-def add_ingredient(request):
-    """
-
-    Check user is supseruser
-    Save information from ingredient form
-
-    Returns:
-    Reverse to add recipe page
-
-    """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you must be a store owner to do that.')
-        return redirect(reverse('home'))
-
-    if request.method == 'POST':
-        form = IngredientForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Ingredient Added Successfully')
-            return redirect(reverse('add_recipe'))
-        else:
-            messages.error(
-                request, 'Add Ingredient Failed. \
-                    Please ensure the form is valid.')
-            return redirect(reverse('add_recipe'))
-
-
-@login_required
-def edit_ingredient(request, ingredient_id):
-    """
-
-    Check user is superuser
-    Retrieve specified ingredient
-    Save information from ingredient form
-    Redirect back to add recipes page
-
-    Returns:
-    Edit ingredient page with specified ingredient and ingredient form
-
-    """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you must be a store owner to do that.')
-        return redirect(reverse('home'))
-
-    ingredient = get_object_or_404(Ingredient, pk=ingredient_id)
-    if request.method == 'POST':
-        form = IngredientForm(request.POST, request.FILES, instance=ingredient)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Ingredient Update Successful')
-            return redirect('add_recipe')
-        else:
-            messages.error(
-                request, 'Update Ingredient Failed. \
-                    Please ensure the form is valid.')
-    else:
-        form = IngredientForm(instance=ingredient)
-        messages.info(request, f'You are editing {ingredient.name}')
-
-    template = 'recipes/edit_ingredient.html'
-    context = {
-        'form': form,
-        'ingredient': ingredient,
-    }
-
-    return render(request, template, context)
-
-
-@login_required
-def delete_ingredient(request, ingredient_id):
-    """
-
-    Check user is superuser
-    Retrieve specified ingredient
-    Delete ingredient
-
-    Returns:
-    Add recipe page
-
-    """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you must be a store owner to do that.')
-        return redirect(reverse('home'))
-
-    ingredient = get_object_or_404(Ingredient, pk=ingredient_id)
-    ingredient.delete()
-    messages.success(request, 'Ingredient Deleted')
-
-    return redirect(reverse('add_recipe'))
