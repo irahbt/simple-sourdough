@@ -22,12 +22,7 @@ class Ingredient(models.Model):
 
     name = models.CharField(max_length=100)
     quantity = models.FloatField(null=True, blank=True, default='0')
-    unit_of_measurement_choices = [
-        ('MILLIGRAMS', 'mg'),
-        ('GRAMS', 'g'),
-        ('MILLILITERS', 'ml'),
-        ('LITERs', 'l'),
-        ]
+    unit_of_measurement = models.CharField(max_length=50, null=True, blank=True)
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name="ingredients")
 
