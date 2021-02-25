@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django import forms
 
 from .models import Recipe
 from .forms import IngredientFormSet, RecipeForm
@@ -111,6 +112,7 @@ def add_recipe(request):
         else:
             messages.error(
                 request, 'Add Recipe Failed. Please ensure the form is valid.')
+
     else:
         form = RecipeForm()
         formset = IngredientFormSet()
