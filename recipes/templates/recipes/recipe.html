@@ -58,8 +58,16 @@
                     </h2>
                     <div id="collapseIngredients" class="accordion-collapse collapse" aria-labelledby="headingIngredients"
                         data-bs-parent="#accordionRecipe">
-                        <div class="accordion-body">
-                            {{ recipe.instructions }}
+                        <div class="accordion-body"> 
+                        <ul class="list-unstyled">
+                            {% for ingredient in recipe.ingredients.all %}
+                            <li>
+                                {{ ingredient.name }}
+                                {{ ingredient.quantity}}
+                                {{ ingredient.unit_of_measurement}}
+                            </li>
+                            {% endfor %}
+                        </ul>
                         </div>
                     </div>
                 </div>
