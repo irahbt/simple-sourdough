@@ -10,10 +10,12 @@ class IngredientForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].label = False
 
 
 IngredientFormSet = forms.inlineformset_factory(
-    Recipe, Ingredient, form=IngredientForm, extra=1)
+    Recipe, Ingredient, form=IngredientForm, can_delete=True, extra=1)
 
 
 class RecipeForm(forms.ModelForm):

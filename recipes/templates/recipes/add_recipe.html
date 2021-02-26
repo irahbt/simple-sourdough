@@ -34,6 +34,7 @@
                 <hr>
                 <h4>Ingredients</h4>
                 {{ formset.management_form }}
+
                 <div id="form_set">
                     {% for form in formset %}
                         <table class="no_error">
@@ -48,17 +49,23 @@
                                     <th>
                                         Unit of Measurement
                                     </th>
+                                    <th>
+                                        Delete
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <td>
-                                    {{ form.name }}
+                                    {{ form.name|as_crispy_field }}
                                 </td>
                                 <td>
-                                    {{ form.quantity }}
+                                    {{ form.quantity|as_crispy_field }}
                                 </td>
                                 <td>
-                                    {{ form.unit_of_measurement }}
+                                    {{ form.unit_of_measurement|as_crispy_field }}
+                                </td>
+                                <td>
+                                    {{ form.DELETE|as_crispy_field }}
                                 </td>
                             </tbody>
                        </table>
@@ -69,13 +76,16 @@
                     <table class="no_error">
                         <tbody>
                             <td>
-                                {{ formset.empty_form.name }}
+                                {{ formset.empty_form.name|as_crispy_field }}
                             </td>
                             <td>
-                                {{ formset.empty_form.quantity }}
+                                {{ formset.empty_form.quantity|as_crispy_field }}
                             </td>
                             <td>
-                                {{ formset.empty_form.unit_of_measurement }}
+                                {{ formset.empty_form.unit_of_measurement|as_crispy_field }}
+                            </td>
+                             <td>
+                                    {{ formset.empty_form.DELETE|as_crispy_field }}
                             </td>
                         </tbody>
                     </table>
