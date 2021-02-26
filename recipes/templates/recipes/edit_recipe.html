@@ -32,13 +32,13 @@
                     {% endif %}
                 {% endfor %}
 
-                 <h4>Ingredients</h4>
+                <h5 class="pt-3">Ingredients</h5>
                 {{ formset.management_form }}
                 {% include 'recipes/includes/ingredient-formset.html' %}
        
-                <div class="float-end">
-                    <button class="btn btn-dark text-light p-2" type="submit">Update Recipe</button>
-                    <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <div class="my-5">
+                    <button class="btn btn-dark text-light p-2 w-100 mb-3" type="submit">Update Recipe</button>
+                    <button type="button" class="btn btn-danger p-2 w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Recipe
                     </button>
                     <!-- delete modal -->
@@ -59,7 +59,6 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-dark text-light p-2" href="{% url 'recipes' %}">Cancel</a>
                 </div>
             </form>
         </div>            

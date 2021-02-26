@@ -1,56 +1,61 @@
 <div id="form_set">
-    {% for form in formset %}
-        <table class="no_error">
-           <thead>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Quantity
-                    </th>
-                    <th>
-                        Unit of Measurement 
-                    </th>
-                    <th>
-                        Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <td>
-                    {{ form.id }}
-                    {{ form.name|as_crispy_field }}
-                </td>
-                <td>
-                    {{ form.quantity|as_crispy_field }}
-                </td>
-                <td>
-                    {{ form.unit_of_measurement|as_crispy_field }}
-                </td>
-                <td>
-                    {{ form.DELETE|as_crispy_field }}
-                </td>
-            </tbody>
-        </table>
+    <table class="no_error">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Unit of Measurement
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for form in formset %}
+        <tr>
+            <td>
+                {{ form.id }}
+                {{ form.name|as_crispy_field }}
+            </td>
+            <td>
+                {{ form.quantity|as_crispy_field }}
+            </td>
+            <td>
+                {{ form.unit_of_measurement|as_crispy_field }}
+            </td>
+            <td>
+                {{ form.DELETE|as_crispy_field }}
+            </td>
+      </tr>
     {% endfor %}
+      </tbody>
+    </table>
 </div>
 <input type="button" class="btn btn-dark p-2" value="Add More" id="add_more">
 <div id="empty_form" style="display:none">
     <table class="no_error">
         <tbody>
-            <td>
-                {{ formset.empty_form.name|as_crispy_field }}
-            </td>
-            <td>
-                {{ formset.empty_form.quantity|as_crispy_field }}
-            </td>
-            <td>
-                {{ formset.empty_form.unit_of_measurement|as_crispy_field }}
-            </td>
-            <td>
-                {{ formset.empty_form.DELETE|as_crispy_field }}
-            </td>
+            <tr>
+                <td>
+                    {{ formset.id }}
+                    {{ formset.empty_form.name|as_crispy_field }}
+                </td>
+                <td>
+                    {{ formset.empty_form.quantity|as_crispy_field }}
+                </td>
+                <td>
+                    {{ formset.empty_form.unit_of_measurement|as_crispy_field }}
+                </td>
+                <td>
+                    {{ formset.empty_form.DELETE|as_crispy_field }}
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

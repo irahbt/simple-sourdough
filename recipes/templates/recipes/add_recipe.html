@@ -20,7 +20,7 @@
 
     <div class="row my-4">
         <div class="col-12 col-md-6 mt-4 mt-md-0">
-            <h5 class="text-center">Add a Recipe</h5>
+            <h5>Add a Recipe</h5>
             <hr>
             <form id="recipe-form" method="POST" action="{% url 'add_recipe' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -31,11 +31,12 @@
                         {{ field }}
                     {% endif %}
                 {% endfor %}
-                <hr>
-                <h4>Ingredients</h4>
+                <h5 class="pt-3">Ingredients</h5>
                 {{ formset.management_form }}
                 {% include 'recipes/includes/ingredient-formset.html' %}
-                <button id="submit-form" class="btn btn-dark p-2" type="submit">Add Recipe</button>
+                <div class="my-5">
+                    <button id="submit-form" class="btn btn-dark p-2 w-100" type="submit">Add Recipe</button>
+                </div>
             </form>
         </div>    
     </div>
