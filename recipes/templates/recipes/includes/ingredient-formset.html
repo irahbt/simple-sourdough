@@ -1,7 +1,7 @@
 <div id="form_set">
     {% for form in formset %}
         <table class="no_error">
-            <thead>
+           <thead>
                 <tr>
                     <th>
                         Name
@@ -10,7 +10,7 @@
                         Quantity
                     </th>
                     <th>
-                        Unit of Measurement
+                        Unit of Measurement 
                     </th>
                     <th>
                         Delete
@@ -19,6 +19,7 @@
             </thead>
             <tbody>
                 <td>
+                    {{ form.id }}
                     {{ form.name|as_crispy_field }}
                 </td>
                 <td>

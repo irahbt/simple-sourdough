@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django import forms
+
 
 from .models import Recipe, Ingredient
-from .forms import IngredientFormSet, RecipeForm
+from .forms import IngredientForm, RecipeForm
+
 from profiles.models import UserProfile
 
 
@@ -98,20 +101,26 @@ def add_recipe(request):
         messages.error(request, 'Sorry, you must be a store owner to do that.')
         return redirect(reverse('home'))
 
+    IngredientFormSet = forms.inlineformset_factory(
+        Recipe, Ingredient, form=IngredientForm, can_delete=True)
+
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        formset = IngredientFormSet(request.POST, request.FILES)
+        # formset = IngredientFormSet(request.POST, request.FILES)
 
         if form.is_valid():
             recipe = form.save()
             formset = IngredientFormSet(
-                request.POST, request.FILES, instance=recipe)
+                request.POST, instance=recipe)
 
             if formset.is_valid():
                 recipe.save
                 formset.save()
                 messages.success(request, 'Recipe Added Successfuly')
-
+            else:
+                messages.error(
+                    request, 'Add Recipe Failed. \
+                        Please ensure the ingredient form is valid')
         else:
             messages.error(
                 request, 'Add Recipe Failed. Please ensure the form is valid.')
@@ -146,29 +155,43 @@ def edit_recipe(request, recipe_id):
         messages.error(request, 'Sorry, you must be a store owner to do that.')
         return redirect(reverse('home'))
 
+    IngredientFormSet = forms.inlineformset_factory(
+        Recipe, Ingredient, form=IngredientForm, can_delete=True, extra=0)
+
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
+
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Recipe Update Successful')
-            return redirect(reverse('recipe', args=[recipe.id]))
+            recipe = form.save()
+            formset = IngredientFormSet(request.POST, instance=recipe)
+            if formset.is_valid():
+                # recipe.save
+                formset.save()
+                messages.success(request, 'Recipe Update Successful')
+                return redirect(reverse('recipe', args=[recipe.id]))
+            else:
+                messages.error(
+                    request, 'Update Recipe Failed. \
+                        Please ensure the ingredient form is valid.')
         else:
             messages.error(
                 request, 'Update Recipe Failed. \
                     Please ensure the form is valid.')
     else:
         form = RecipeForm(instance=recipe)
+        formset = IngredientFormSet(instance=recipe)
         messages.info(request, f'You are editing {recipe.title}')
 
     template = 'recipes/edit_recipe.html'
     context = {
         'form': form,
+        'formset': formset,
         'recipe': recipe,
     }
 
     return render(request, template, context)
-
 
 
 @login_required

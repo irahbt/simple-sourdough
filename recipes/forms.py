@@ -14,10 +14,6 @@ class IngredientForm(forms.ModelForm):
             self.fields[field].label = False
 
 
-IngredientFormSet = forms.inlineformset_factory(
-    Recipe, Ingredient, form=IngredientForm, can_delete=True)
-
-
 class RecipeForm(forms.ModelForm):
 
     class Meta:
