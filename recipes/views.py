@@ -106,7 +106,7 @@ def add_recipe(request):
             recipe = form.save()
             formset.instance = recipe
             formset.save()
-            messages.success(request, 'Recipe Added Successful')
+            messages.success(request, 'Recipe Added Successfuly')
 
         else:
             messages.error(

@@ -13,7 +13,7 @@ class IngredientForm(forms.ModelForm):
 
 
 IngredientFormSet = forms.inlineformset_factory(
-    Recipe, Ingredient, form=IngredientForm, can_delete=True)
+    Recipe, Ingredient, form=IngredientForm, extra=1)
 
 
 class RecipeForm(forms.ModelForm):
