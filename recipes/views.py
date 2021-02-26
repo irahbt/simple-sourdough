@@ -100,13 +100,17 @@ def add_recipe(request):
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        formset = IngredientFormSet(request.POST)
+        formset = IngredientFormSet(request.POST, request.FILES)
 
-        if form.is_valid() and formset.is_valid():
+        if form.is_valid():
             recipe = form.save()
-            formset.instance = recipe
-            formset.save()
-            messages.success(request, 'Recipe Added Successfuly')
+            formset = IngredientFormSet(
+                request.POST, request.FILES, instance=recipe)
+
+            if formset.is_valid():
+                recipe.save
+                formset.save()
+                messages.success(request, 'Recipe Added Successfuly')
 
         else:
             messages.error(
@@ -143,16 +147,10 @@ def edit_recipe(request, recipe_id):
         return redirect(reverse('home'))
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    formset = IngredientFormSet(instance=recipe)
-
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
-        formset = IngredientFormSet(request.POST)
-
-        if form.is_valid() and formset.is_valid():
-            recipe = form.save()
-            formset.instance = recipe
-            formset.save()
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Recipe Update Successful')
             return redirect(reverse('recipe', args=[recipe.id]))
         else:
@@ -167,10 +165,10 @@ def edit_recipe(request, recipe_id):
     context = {
         'form': form,
         'recipe': recipe,
-        'formset': formset,
     }
 
     return render(request, template, context)
+
 
 
 @login_required
