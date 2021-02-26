@@ -31,6 +31,11 @@
                         {{ field }}
                     {% endif %}
                 {% endfor %}
+
+                 <h4>Ingredients</h4>
+                {{ formset.management_form }}
+                {% include 'recipes/includes/ingredient-formset.html' %}
+       
                 <div class="float-end">
                     <button class="btn btn-dark text-light p-2" type="submit">Update Recipe</button>
                     <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -77,4 +82,6 @@
             $('#filename').text(`Image will be set to: ${file.name}`);
         });
     </script>
+    {% include 'recipes/includes/ingredient-formset-js.html' %}
+
 {% endblock %}

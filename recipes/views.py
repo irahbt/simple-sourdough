@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Recipe
+from .models import Recipe, Ingredient
 from .forms import IngredientFormSet, RecipeForm
 from profiles.models import UserProfile
 
@@ -143,10 +143,16 @@ def edit_recipe(request, recipe_id):
         return redirect(reverse('home'))
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+    formset = IngredientFormSet(instance=recipe)
+
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
-        if form.is_valid():
-            form.save()
+        formset = IngredientFormSet(request.POST)
+
+        if form.is_valid() and formset.is_valid():
+            recipe = form.save()
+            formset.instance = recipe
+            formset.save()
             messages.success(request, 'Recipe Update Successful')
             return redirect(reverse('recipe', args=[recipe.id]))
         else:
@@ -161,6 +167,7 @@ def edit_recipe(request, recipe_id):
     context = {
         'form': form,
         'recipe': recipe,
+        'formset': formset,
     }
 
     return render(request, template, context)

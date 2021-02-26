@@ -34,62 +34,7 @@
                 <hr>
                 <h4>Ingredients</h4>
                 {{ formset.management_form }}
-
-                <div id="form_set">
-                    {% for form in formset %}
-                        <table class="no_error">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Quantity
-                                    </th>
-                                    <th>
-                                        Unit of Measurement
-                                    </th>
-                                    <th>
-                                        Delete
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <td>
-                                    {{ form.name|as_crispy_field }}
-                                </td>
-                                <td>
-                                    {{ form.quantity|as_crispy_field }}
-                                </td>
-                                <td>
-                                    {{ form.unit_of_measurement|as_crispy_field }}
-                                </td>
-                                <td>
-                                    {{ form.DELETE|as_crispy_field }}
-                                </td>
-                            </tbody>
-                       </table>
-                    {% endfor %}
-                </div>
-                <input type="button" class="btn btn-dark p-2" value="Add More" id="add_more">
-                <div id="empty_form" style="display:none">
-                    <table class="no_error">
-                        <tbody>
-                            <td>
-                                {{ formset.empty_form.name|as_crispy_field }}
-                            </td>
-                            <td>
-                                {{ formset.empty_form.quantity|as_crispy_field }}
-                            </td>
-                            <td>
-                                {{ formset.empty_form.unit_of_measurement|as_crispy_field }}
-                            </td>
-                             <td>
-                                    {{ formset.empty_form.DELETE|as_crispy_field }}
-                            </td>
-                        </tbody>
-                    </table>
-                </div>
+                {% include 'recipes/includes/ingredient-formset.html' %}
                 <button id="submit-form" class="btn btn-dark p-2" type="submit">Add Recipe</button>
             </form>
         </div>    
@@ -111,17 +56,6 @@
             $('#filename').text(`Image will be set to: ${file.name}`);
         });
     </script>
-    <script type="text/javascript">
-        /* code from:
-         https://simpleit.rocks/python/django/dynamic-add-form-with-add-button-in-django-modelformset-template/
-        */
-        $('#add_more').click(function() {
-            let form_idx = $('#id_ingredients-TOTAL_FORMS').val();
-            $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
-            $('#id_ingredients-TOTAL_FORMS').val(parseInt(form_idx) + 1);
-        });
-    </script>
-
- 
+    {% include 'recipes/includes/ingredient-formset-js.html' %}
 {% endblock %}
 
