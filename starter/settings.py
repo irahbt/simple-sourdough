@@ -161,7 +161,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-DOMAIN_URL = 'https://8000-turquoise-earthworm-f1kwkeby.ws-eu03.gitpod.io/'
+
+if 'DATABASE_URL' in os.environ:
+    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL', '')
+
+else:
+    DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
