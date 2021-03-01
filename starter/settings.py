@@ -207,6 +207,6 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'starter@starter.com'
 
 if 'USE_HEROKU_DOMAIN' in os.environ:
-    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL', '')
+    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL')
 else:
     DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
