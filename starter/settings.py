@@ -161,7 +161,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -180,4 +180,9 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'starter@starter.com'
+
+if 'DEVELOPMENT' in os.environ:
+    DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
+else:
+    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL', '')
 
