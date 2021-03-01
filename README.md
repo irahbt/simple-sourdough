@@ -5,7 +5,7 @@
 
 [Deployed Version](https://starter-sourdough.herokuapp.com/)
 
-As one of the more difficult trends of the UK lockdown, [Starter](#) is an e-commerce website that aims to simplify the processes involved in baking with sourdough. The website offers recipes and useful tools of the trade (available for purchase). A number of free recipes are provided, with paid membership required for access to premium recipes.
+As one of the more difficult trends of the UK lockdown, Starter is an e-commerce website that aims to simplify the processes involved in baking with sourdough. The website offers recipes and useful tools of the trade (available for purchase). A number of free recipes are provided, with paid membership required for access to premium recipes.
 
 **Please use the following card number for test purposes:**
 4242 4242 4242 4242
