@@ -161,13 +161,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-if 'DATABASE_URL' in os.environ:
-    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL', '')
-
-else:
-    DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
-
+DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -185,5 +179,5 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-DEFAUL_FROM_EMAIL = 'starter@starter.com'
+DEFAULT_FROM_EMAIL = 'starter@starter.com'
 
