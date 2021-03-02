@@ -50,95 +50,40 @@
 <body>
     <header>
         <div class="container-fluid">
+            <!-- Promo Banner -->
             <div id="promo-banner" class="row d-none d-sm-flex">
                 <div class="col text-center py-1">
                     <a href="{% url 'subscriptions' %}" class="btn"><small>Become a premium member now and get 10% off your first bill with code <strong>WELCOME10</strong></small></a>
                 </div>
             </div>
-            <div class="row bg-white py-3">
+
+            <!-- Top Nav -->
+            <div class="row bg-white">
                 <div class="col-12 col-lg-4 d-lg-flex justify-content-center">
-                    <nav class="navbar-expand-lg navbar-light">
-                        <ul class="list-inline list-unstyled mb-0 d-flex d-lg-none">
-                            <li class="list-inline-item pt-1">
-                                <button class="navbar-toggler list-inline-item" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#main-nav" aria-controls="#main-nav" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                            </li>
-                            {% include 'includes/mobile-header.html' %}
-                        </ul>
+                    <nav class="navbar navbar-expand-lg navbar-light d-lg-none">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        {% include 'includes/main-nav.html' %}
+                    </nav>
+
+                    <nav class="navbar-expand-lg navbar-light d-none d-lg-block">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
                         {% include 'includes/main-nav.html' %}
                     </nav>
                 </div>
                 <div class="col-12 col-lg-4 d-none d-lg-flex justify-content-center">
-                    <a class="navbar-brand btn" href="{% url 'home' %}">
+                     <a class="navbar-brand btn" href="{% url 'home' %}">
                         <h2 class="title-font"><strong>Starter.</strong></h2>
                         <p class="m-0 p-0 text-xs">Sourdough made Simple</p>
                     </a>
                 </div>
+
                 <!-- Icon Links Left -->
-                <div class="col-12 col-lg-4 d-none d-lg-flex justify-content-center">
-                    <ul class="list-inline list-unstyled pt-2">
-                        <li class="list-inline-item">
-                            <a class="nav-link btn hvr" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <div class="dropdown-menu border-0 w-100 mt-1 bg-white" aria-labelledby="navbarDropdown">
-                                <form class="form d-flex justify-content-center pb-2" method="GET"
-                                    action="{% url 'search' %}">
-                                    <div class="input-group w-50">
-                                        <input class="form-control search-custom rounded-0" type="text" name="q"
-                                            placeholder="Search">
-                                        <div class="input-group-append">
-                                            <button class="form-control btn" type="submit">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link btn hvr" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-user"></i>
-                            </a>
-                            <div class="dropdown-menu border-0 w-100 bg-white mt-1">
-                                <ul class="list-unstyled float-end text-end account-dropdown"
-                                    aria-labelledby="navbarDropdown">
-                                    {% if request.user.is_authenticated %}
-                                        {% if request.user.is_superuser %}
-                                        <li><a class="dropdown-item" href="{% url 'add_product' %}">Product
-                                                Management</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a>
-                                        </li>
-                                        {% endif %}
-                                        <li><a class="dropdown-item"
-                                                href="{% url 'profile' %}">Account</a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{% url 'account_logout' %}">Sign Out</a></li>
-                                        {% else %}
-                                        <li><a class="dropdown-item"
-                                                href="{% url 'account_login' %}">Sign In</a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{% url 'account_signup' %}">Sign Up</a></li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="nav-link btn hvr" href="{% url 'view_basket' %}">
-                                <i class="fas fa-shopping-basket"></i>
-                                {% if product_count %}
-                                <span class="small text-muted">{{ product_count }}</span>
-                                {% else %}
-                                <span class="small text-muted">{{ product_count }}</span>
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-12 col-lg-4 d-lg-flex justify-content-center">
+                    {% include 'includes/icon-links-left.html'%}
                 </div>
             </div>
         </div>

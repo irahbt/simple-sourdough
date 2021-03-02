@@ -1,24 +1,28 @@
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="list-inline list-unstyled pt-3">
-        <li class="list-inline-item">
-            <button class="btn" type="button" id="shop-btn" data-bs-toggle="dropdown" aria-expanded="false">
+    <ul class="navbar-nav">
+        <li class="nav-item d-block d-lg-none ">
+            <a class="btn hvr nav-link text-reset" href="{% url 'home' %}" id="home-link">
+                Home
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="btn nav-link hvr text-reset" type="button" id="shop-link" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
-            </button>
-            <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="shop-btn">
-                <ul class="list-unstyled text-center" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'products' %}">All</a></li>
-                    <li><a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a></li>
-                    <li><a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a></li>
-                </ul>
+            </a>
+            <div class="dropdown-menu border-0 w-100 bg-white mt-lg-5 py-3 text-center" aria-labelledby="shop-link">
+                <a class="dropdown-item" href="{% url 'products' %}">All</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=tools">Tools</a>
+                <a class="dropdown-item" href="{% url 'products' %}?category=ingredients">Ingredients</a>
             </div>
         </li>
 
-        <li class="list-inline-item">
-            <a class="btn hvr" aria-current="page" href="{% url 'recipes' %}">Recipes</a>
+        <li class="nav-item">
+            <a class="btn hvr nav-link text-reset" aria-current="page" href="{% url 'recipes' %}">Recipes</a>
         </li>
 
-        <li class="list-inline-item">
-            <a class="nav-link btn hvr" aria-current="page" href="{% url 'subscriptions' %}">Premium</a>
+        <li class="nav-item">
+            <a class="nav-link btn hvr text-reset" aria-current="page" href="{% url 'subscriptions' %}">Premium</a>
         </li>
     </ul>
 </div>
