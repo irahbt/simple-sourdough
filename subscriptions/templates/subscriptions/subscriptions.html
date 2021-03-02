@@ -2,55 +2,73 @@
 {% load static %}
 
 {% block extra_css %}
-    <style>
-        .card-img{
-            width: 170px;
-        }
-    </style>
-{% endblock %}
+<style>
+    /* 
+    Parallax code adapted from: 
+    https://www.w3schools.com/howto/howto_css_hero_image.asp
+    */
+    .parallax {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("{% static 'images/premium-hero.jpg' %}");
+        height: 45%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-{% block page_header %}
-    <div class="container extra-padding-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+    .parallax-text {
+        text-align: center;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    @media only screen and (max-device-width: 1366px) {
+        .parallax {
+            background-attachment: scroll;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col text-center">
-            <h2 class="py-3 title-font">Become a premium member!</h2>
-            <p>For access to all our recipes, tips, tricks and more!</p>
-            <p class="small text-muted pb-3">No commitment. Cancel any time and your premium membership will run until the end of your next billing period.</p>
-        </div>
+
+<div class="parallax">
+    <div class="parallax-text">
+        <h1 class="title-font">Premium Membership</h1>
+        <p>Become a Premium member for access to all our recipes, tips, tricks and more.</p>
+        <p>Choose from monthly or yearly payments.</p>
+        <p>No committment. Cancel any time.</p>
     </div>
-    <div class="row text-center">
-        <div class="col-12 col-md-4 offset-md-2 d-flex justify-content-center mb-2 mb-md-0">
-            <div class="card border-0" style="width: 18rem;">
-                <div class="card-body">
-                    <h2 class="card-title premium-font">Monthly</h2>
-                    <small class="card-subtitle text-muted">£2.50 a Month</small>
-                     <img src="{% static 'images/monthly.png' %}" class="card-img pt-3" alt="Monthly">
-                    <p class="card-text">Become a member for the price of a coffee!</p>
-                    <a href="{% url 'subscription_checkout' %}?subscription=monthly" class="card-link btn btn-dark text-light py-2 px-3">Monthly Checkout</a>
+</div>
+
+<div class="container">
+    <div class="row text-center mt-5">
+        <div class="col-12 col-md-4 offset-md-2 mb-2 mb-lg-none">
+            <div class="card border-dark">
+                <div class="card-body my-4">
+                    <h2 class="card-title premium-font">£2.50 / Monthly</h2>
+                    <small class="card-subtitle text-muted">Become a member for the price of a coffee!</small>
+                    <a href="{% url 'subscription_checkout' %}?subscription=monthly"
+                        class="card-link btn btn-dark text-light py-2 px-3 mt-4">Monthly Checkout</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-4 d-flex justify-content-center">
-            <div class="card border-0" style="width: 18rem;">
-                <div class="card-body">
-                    <h2 class="card-title premium-font">Yearly</h2>
-                    <small class="card-subtitle text-muted">£25.00 a Year</small>
-                    <img src="{% static 'images/yearly.png' %}" class="card-img pt-3" alt="Yearly">
-                    <p class="card-text">Save yourself a fiver with yearly payments!</p>
-                    <a href="{% url 'subscription_checkout' %}?subscription=yearly" class="card-link btn btn-dark py-2 px-3">Yearly Checkout</a>
+        <div class="col-12 col-md-4">
+            <div class="card border-dark">
+                <div class="card-body my-4">
+                    <h2 class="card-title premium-font">£25.00 / Yearly</h2>
+                    <small class="card-subtitle text-muted">Save yourself a fiver with yearly payments!</small>
+                    <a href="{% url 'subscription_checkout' %}?subscription=yearly"
+                        class="card-link btn btn-dark py-2 px-3 mt-4">Yearly Checkout</a>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="row text-center pt-3">
         <div class="col-12">
             <p class="small text-muted">Use code WELCOME10 at checkout for 10% off your first payment.</p>
