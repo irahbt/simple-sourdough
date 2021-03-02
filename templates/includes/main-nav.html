@@ -1,14 +1,14 @@
 {% block extra_css %}
 <style>
-    .custom-margin{
-        margin-top: 1.6rem!important;
-    }
+@media (min-width: 992px) { .custom-margin{
+        margin-top: 1.6rem!important; }
+  
+}
 </style>
-
 {% endblock %}
 
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav pt-3">
         <li class="nav-item d-block d-lg-none ">
             <a class="btn hvr nav-link text-reset" href="{% url 'home' %}" id="home-link">
                 Home
