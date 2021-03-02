@@ -1,0 +1,50 @@
+<li class="list-inline-item">
+    <button class="btn d-block d-lg-none" type="button" id="search-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-search"></i>
+    </button>
+    <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="search-btn">
+        <form class="form d-flex justify-content-center" method="GET" action="{% url 'search' %}">
+            <div class="input-group w-50">
+                <input class="form-control search-custom rounded-0" type="text" name="q"
+                    placeholder="Search">
+                <div class="input-group-append">
+                    <button class="form-control btn" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>
+
+<li class="list-inline-item">
+    <button class="btn d-block d-lg-none" type="button" id="account-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-user"></i>
+    </button>
+    <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="account-btn">
+        <ul class="list-unstyled text-center">
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <li><a class="dropdown-item" href="{% url 'add_product' %}">Product Management</a></li>
+                    <li><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a></li>
+                {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Account</a></li>
+                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
+                {% else %}
+                    <li><a class="dropdown-item" href="{% url 'account_login' %}">Sign In</a></li>
+                    <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</li>
+
+<li class="list-inline-item">
+    <a class="btn hvr d-block d-lg-none" href="{% url 'view_basket' %}">
+        <i class="fas fa-shopping-basket"></i>
+        {% if product_count %}
+        <span class="small text-muted">{{ product_count }}</span>
+        {% else %}
+        <span class="small text-muted">{{ product_count }}</span>
+        {% endif %}
+    </a>
+</li>
