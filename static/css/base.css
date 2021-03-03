@@ -48,6 +48,10 @@ html,body {
     border-color: white;
 }
 
+.nav-item:hover, .active {
+    color: rgb(146, 146, 146);
+}
+
 .premium-font{
     font-family: 'Knewave', sans-serif;
     letter-spacing: 1px;

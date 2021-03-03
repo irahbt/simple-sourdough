@@ -25,8 +25,8 @@
             </div>
         </li>
         <li class="list-inline-item px-0">
-            <a class="btn hvr d-block d-lg-none p-0" href="{% url 'view_basket' %}">
-                <i class="fas fa-shopping-basket"></i>
+            <a class="btn d-block d-lg-none p-0 {% if '/basket/' in request.path %}active{% endif %}" href="{% url 'view_basket' %}">
+                <i class="fas fa-shopping-basket "></i>
             </a>
         </li>
     </ul>
