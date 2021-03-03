@@ -48,7 +48,7 @@
                 <form action="{% url 'profile' %}" method="POST" id="profile-updated-form" class="p-2">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button class="btn btn-dark text-light p-2 float-md-end">Update Information</button>
+                    <button class="btn btn-dark p-2 float-md-end">Update Information</button>
                 </form>
             </div>
             <div class="col-12 col-md-6">
@@ -68,7 +68,7 @@
                             <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' latest_recipe.id %}">{{ latest_recipe.title|title }}</a></h5>
                         </div>
                     </div>
-                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark text-light p-2 float-md-end mt-2 mt-md-0">Settings</a>
+                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark p-2 float-md-end mt-2 mt-md-0">Settings</a>
                 {% else %}
                     <a href="{% url 'subscriptions' %}" class="d-flex justify-content-center">
                         <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid member-promo">

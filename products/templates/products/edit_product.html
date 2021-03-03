@@ -32,7 +32,7 @@
                     {% endif %}
                 {% endfor %}
                 <div class="float-end">
-                    <button class="btn btn-dark text-light p-2" type="submit">Update Product</button>
+                    <button class="btn btn-dark p-2" type="submit">Update Product</button>
                     <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Product
                     </button>
@@ -49,12 +49,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <a class="btn btn-danger text-light p-2" href="{% url 'delete_product' product.id %}">Delete Product</a>
+                                <a class="btn btn-danger p-2" href="{% url 'delete_product' product.id %}">Delete Product</a>
                             </div>
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-dark text-light p-2" href="{% url 'products' %}">Cancel</a>
+                    <a class="btn btn-dark p-2" href="{% url 'products' %}">Cancel</a>
                 </div>
             </form>            
         </div>            

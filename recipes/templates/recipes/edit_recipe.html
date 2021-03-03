@@ -37,7 +37,7 @@
                 {% include 'recipes/includes/ingredient-formset.html' %}
        
                 <div class="my-5">
-                    <button class="btn btn-dark text-light p-2 w-100 mb-3" type="submit">Update Recipe</button>
+                    <button class="btn btn-dark p-2 w-100 mb-3" type="submit">Update Recipe</button>
                     <button type="button" class="btn btn-danger p-2 w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Recipe
                     </button>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <a class="btn btn-danger text-light p-2" href="{% url 'delete_recipe' recipe.id %}">Delete Product</a>
+                                <a class="btn btn-danger p-2" href="{% url 'delete_recipe' recipe.id %}">Delete Product</a>
                             </div>
                             </div>
                         </div>
