@@ -1,29 +1,33 @@
-<li class="list-inline-item">
-    <button class="btn d-block d-lg-none" type="button" id="search-btn" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-search"></i>
-    </button>
-    <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="search-btn">
-        <form class="form d-flex justify-content-center" method="GET" action="{% url 'search' %}">
-            <div class="input-group w-50">
-                <input class="form-control search-custom rounded-0" type="text" name="q"
-                    placeholder="Search">
-                <div class="input-group-append">
-                    <button class="form-control btn" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</li>
-
-<li class="list-inline-item">
-    <a class="btn hvr d-block d-lg-none" href="{% url 'view_basket' %}">
-        <i class="fas fa-shopping-basket"></i>
-        {% if product_count %}
-        <span class="small text-muted">{{ product_count }}</span>
-        {% else %}
-        <span class="small text-muted">{{ product_count }}</span>
-        {% endif %}
+<div class="col-6">
+    <a class="btn hvr d-block d-lg-none text-center" href="{% url 'home' %}">
+        <h4 class="title-font mb-0 text-center"><strong>Starter.</strong></h4>
     </a>
-</li>
+</div>
+
+<div class="col-3 pe-0">
+    <ul class="list-inline list-unstyled float-end">
+        <li class="list-inline-item">
+            <button class="btn d-block d-lg-none px-0" type="button" id="search-btn" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="search-btn">
+                <form class="form d-flex justify-content-center" method="GET" action="{% url 'search' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control search-custom rounded-0" type="text" name="q" placeholder="Search">
+                        <div class="input-group-append">
+                            <button class="form-control btn" type="submit">
+                                <i class="fas fa-search text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+        <li class="list-inline-item px-0">
+            <a class="btn hvr d-block d-lg-none p-0" href="{% url 'view_basket' %}">
+                <i class="fas fa-shopping-basket"></i>
+            </a>
+        </li>
+    </ul>
+</div>

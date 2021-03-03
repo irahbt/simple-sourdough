@@ -43,9 +43,7 @@
         <a class="btn hvr d-none d-lg-block" href="{% url 'view_basket' %}">
             <i class="fas fa-shopping-basket"></i>
             {% if product_count %}
-            <span class="small text-muted">{{ product_count }}</span>
-            {% else %}
-            <span class="small text-muted">{{ product_count }}</span>
+                <span class="small text-muted">{{ product_count }}</span>
             {% endif %}
         </a>
     </li>

@@ -1,15 +1,9 @@
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav pt-3">
-        <li class="nav-item d-block d-lg-none ">
-            <a class="btn hvr nav-link text-reset" href="{% url 'home' %}" id="home-link">
-                Home
-            </a>
-        </li>
-
+    <ul class="navbar-nav pt-3 ">
         <li class="nav-item d-block d-lg-none">
-             <a class="btn nav-link hvr text-reset" type="button" id="account-link" data-bs-toggle="dropdown" aria-expanded="false">
-               Account 
-               <i class="fas fa-chevron-down text-xs"></i>
+            <a class="btn nav-link hvr text-reset" type="button" id="account-link" data-bs-toggle="dropdown" aria-expanded="false">
+            Account 
+            <i class="fas fa-chevron-down text-xs"></i>
             </a>
             <div class="dropdown-menu border-0 w-100 bg-white py-3 mt-0 my-lg-3 text-center" aria-labelledby="account-link">
                     {% if request.user.is_authenticated %}
