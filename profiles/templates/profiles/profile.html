@@ -2,24 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<style>
-
-    @media (min-width: 768px) { .sub-text{
-      padding-bottom: 30%;
-  } }
-
-     @media (min-width: 768px) { .card{
-      margin-bottom: 5%;
-  } }
-  
-  .card {
-      width: 20rem;
-  }
-
-  .member-promo {
-      width: 25rem;
-  }
-</style>
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
 
 {% block page_header %}

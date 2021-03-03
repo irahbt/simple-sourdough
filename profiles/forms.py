@@ -27,5 +27,5 @@ class UserProfileForm(forms.ModelForm):
             if field != 'default_country':
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            self.fields[field].widget.attrs['class'] = ('profile-style-input')
             self.fields[field].label = False
