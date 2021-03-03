@@ -40,7 +40,7 @@ html,body {
     background-color: rgb(236, 240, 243);
 }
 
-.hvr:hover {
+.hvr:hover, .dropdown-item:active {
     background-color: rgb(241, 244, 247);
 }
 
