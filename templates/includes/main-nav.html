@@ -6,9 +6,30 @@
             </a>
         </li>
 
+        <li class="nav-item d-block d-lg-none">
+             <a class="btn nav-link hvr text-reset" type="button" id="account-link" data-bs-toggle="dropdown" aria-expanded="false">
+               Account 
+               <i class="fas fa-chevron-down text-xs"></i>
+            </a>
+            <div class="dropdown-menu border-0 w-100 bg-white py-3 mt-0 my-lg-3 text-center" aria-labelledby="account-link">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a class="dropdown-item" href="{% url 'add_product' %}">Product Management</a>
+                            <a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a>
+                        {% endif %}
+                            <a class="dropdown-item" href="{% url 'profile' %}">Account</a>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'account_login' %}">Sign In</a>
+                            <a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a>
+                    {% endif %}
+            </div>
+        </li>
+
         <li class="nav-item">
             <a class="btn nav-link hvr text-reset" type="button" id="shop-link" data-bs-toggle="dropdown" aria-expanded="false">
                 Shop
+                <i class="fas fa-chevron-down text-xs"></i>
             </a>
             <div class="dropdown-menu border-0 w-100 bg-white py-3 mt-0 my-lg-3 text-center" aria-labelledby="shop-link">
                 <a class="dropdown-item" href="{% url 'products' %}">All</a>
