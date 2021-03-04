@@ -32,6 +32,9 @@ class Product(models.Model):
         null=True, blank=True)
     added_date = models.DateField(auto_now_add=True, null=True, blank=True)
     featured = models.BooleanField(default=False)
-    
+    inventory = models.IntegerField(default=0)
+    inventory_updated = models.BooleanField(default=False)
+
+
     def __str__(self):
         return self.name

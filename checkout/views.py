@@ -79,7 +79,7 @@ def checkout(request):
             order.save()
             for item_id, item_data in basket.items():
                 try:
-                    product = Product.objects.get(id=item_id)
+                    product = get_object_or_404(Product, id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
@@ -87,6 +87,8 @@ def checkout(request):
                             quantity=item_data,
                         )
                         order_line_item.save()
+                        product.inventory -= item_data
+                        product.save()
                     else:
                         for colour, quantity in item_data['items_by_colour'].items():
                             order_line_item = OrderLineItem(
@@ -97,6 +99,8 @@ def checkout(request):
                             )
 
                             order_line_item.save()
+                            product.inventory -= quantity
+                            product.save()
 
                 except Product.DoesNotExist:
                     messages.error(request, (
