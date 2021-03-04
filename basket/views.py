@@ -52,7 +52,8 @@ def add_to_basket(request, item_id):
                 request, f'{product.name} has been added to your basket')
     else:
         messages.error(
-                    request, f'{product.name} please reduce quantity')
+                    request, f'Sorry, we only have {basket[item_id]} {product.name} left in stock. Please \
+                        reduce the quantity being added to your basket.')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
