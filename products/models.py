@@ -35,6 +35,20 @@ class Product(models.Model):
     inventory = models.IntegerField(default=0)
     inventory_updated = models.BooleanField(default=False)
 
+    """
+    Inventory code adapted from: 
+    https://github.com/codingforentrepreneurs/Django-Bootcamp-1/
+    """
+    def has_inventory(self):
+        return self.inventory > 0  # True or False
+
+    def remove_items_from_inventory(self, count, save=True):
+        current_inv = self.inventory
+        current_inv -= count
+        self.inventory = current_inv
+        if save is True:
+            self.save()
+        return self.inventory
 
     def __str__(self):
         return self.name
