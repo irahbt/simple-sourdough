@@ -36,7 +36,7 @@ class Product(models.Model):
     inventory_updated = models.BooleanField(default=False)
 
     """
-    Inventory code adapted from: 
+    Inventory code adapted from:
     https://github.com/codingforentrepreneurs/Django-Bootcamp-1/
     """
     def has_inventory(self):

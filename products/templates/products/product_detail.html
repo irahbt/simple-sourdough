@@ -41,6 +41,7 @@
                                     <label class="btn btn-dark p-3" for="colour_black"></label>
                                 </div>
                             {% endif %}
+                        {% if product.has_inventory %}
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="input-group">
@@ -61,11 +62,14 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         <div class="col-12 py-2">
                             <span class="hvr p-2">
-                                <i class="fas fa-plus"></i>
-                                <input type="submit" class="btn p-0" value="Add to Basket">
+                                <input type="submit" class="btn p-0 {% if not product.has_inventory %}disabled{% endif %}" value="Add to Basket">
                             </span>
+                            {% if not product.has_inventory %}
+                                <p class="p-2">This product is currently out of stock</p>
+                            {% endif %}
                         </div>
                         <div class="col-12">
                             <a href="{% url 'products' %}" class="btn ps-0 hvr ps-2">
