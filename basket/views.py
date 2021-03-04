@@ -21,6 +21,7 @@ def add_to_basket(request, item_id):
     """
 
     Add a quantity of the specified product to the shopping basket
+    Prevent product amount from exceeding product inventory
 
     Returns:
     Url the request was made from
@@ -35,39 +36,52 @@ def add_to_basket(request, item_id):
         colour = request.POST['product_colour']
 
     basket = request.session.get('basket', {})
+    inventory = product.inventory
 
-    if colour:
-        if item_id in list(basket.keys()):
-            if colour in basket[item_id]['items_by_colour'].keys():
-                basket[item_id]['items_by_colour'][colour] += quantity
-                messages.success(
-                    request, f'{colour.capitalize()} {product.name} \
-                        quantity has been updated to \
-                        {basket[item_id]["items_by_colour"][colour]}')
+    if product.has_inventory and inventory >= quantity:
+        if colour:
+            if item_id in list(basket.keys()):
+                if colour in basket[item_id]['items_by_colour'].keys():
+                    if inventory >= basket[item_id]['items_by_colour'] + 1:
+                        basket[item_id]['items_by_colour'][colour] += quantity
+                        messages.success(
+                            request, f'{colour.capitalize()} {product.name} \
+                                quantity has been updated to \
+                                {basket[item_id]["items_by_colour"][colour]}')
+                    else:
+                        messages.error(request, f'Unfortunately, the quantity of {product.name} \
+                            in your basket exceeds what we currently have in \
+                                stock. Please check back in the near future.')
+                else:
+                    basket[item_id]['items_by_colour'][colour] = quantity
+                    messages.success(
+                        request, f'{colour.capitalize()} {product.name} \
+                        has been added to your basket')
 
             else:
-                basket[item_id]['items_by_colour'][colour] = quantity
+                basket[item_id] = {'items_by_colour': {colour: quantity}}
                 messages.success(
                     request, f'{colour.capitalize()} {product.name} \
                     has been added to your basket')
 
         else:
-            basket[item_id] = {'items_by_colour': {colour: quantity}}
-            messages.success(
-                request, f'{colour.capitalize()} {product.name} \
-                has been added to your basket')
-
+            if item_id in list(basket.keys()):
+                if inventory >= basket[item_id] + 1:
+                    basket[item_id] += quantity
+                    messages.success(
+                            request, f'{product.name} quantity has \
+                            been updated to {basket[item_id]}')
+                else:
+                    messages.error(request, f'Unfortunately, the quantity of {product.name} \
+                        in your basket exceeds what we currently have \
+                            in stock. Please check back in the near future.')
+            else:
+                basket[item_id] = quantity
+                messages.success(
+                    request, f'{product.name} has been added to your basket')
     else:
-        if item_id in list(basket.keys()):
-            basket[item_id] += quantity
-            messages.success(
-                    request, f'{product.name} quantity has \
-                    been updated to {basket[item_id]}')
-
-        else:
-            basket[item_id] = quantity
-            messages.success(
-                request, f'{product.name} has been added to your basket')
+        messages.error(
+                    request, f'{product.name} please reduce quantity')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -75,7 +89,8 @@ def add_to_basket(request, item_id):
 
 def update_basket(request, item_id):
     """
-    Update the quantity of the specified product to the specified amount
+    Update the quantity of the specified product to the specified amount.
+    Prevent product amount from exceeding product inventory.
 
     Returns:
     Basket contents page
@@ -83,6 +98,7 @@ def update_basket(request, item_id):
     """
 
     product = get_object_or_404(Product, pk=item_id)
+    inventory = product.inventory
     quantity = int(request.POST.get('quantity'))
     colour = None
     if 'product_colour' in request.POST:
@@ -106,10 +122,15 @@ def update_basket(request, item_id):
 
     else:
         if quantity > 0:
-            basket[item_id] = quantity
-            messages.success(
-                    request, f'{product.name} quantity \
-                    has been updated to {basket[item_id]}')
+            if quantity <= inventory:
+                basket[item_id] = quantity
+                messages.success(
+                        request, f'{product.name} quantity \
+                        has been updated to {basket[item_id]}')
+            else:
+                messages.error(request, f'Unfortunately, the quantity of {product.name} \
+                    in your basket exceeds what we currently have \
+                        in stock. Please check back in the near future.')
         else:
             basket.pop(item_id)
             messages.success(
