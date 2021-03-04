@@ -15,6 +15,6 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('subscriptions/', include('subscriptions.urls')),
     path('recipes/', include('recipes.urls')),
-    path('emails/', include('recipes.urls')),
+    path('webhooks/', include('webhooks.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
