@@ -29,56 +29,27 @@ def add_to_basket(request, item_id):
     """
 
     product = get_object_or_404(Product, pk=item_id)
+    inventory = product.inventory
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    colour = None
-    if 'product_colour' in request.POST:
-        colour = request.POST['product_colour']
-
     basket = request.session.get('basket', {})
-    inventory = product.inventory
 
     if product.has_inventory and inventory >= quantity:
-        if colour:
-            if item_id in list(basket.keys()):
-                if colour in basket[item_id]['items_by_colour'].keys():
-                    if inventory >= basket[item_id]['items_by_colour'] + 1:
-                        basket[item_id]['items_by_colour'][colour] += quantity
-                        messages.success(
-                            request, f'{colour.capitalize()} {product.name} \
-                                quantity has been updated to \
-                                {basket[item_id]["items_by_colour"][colour]}')
-                    else:
-                        messages.error(request, f'Unfortunately, the quantity of {product.name} \
-                            in your basket exceeds what we currently have in \
-                                stock. Please check back in the near future.')
-                else:
-                    basket[item_id]['items_by_colour'][colour] = quantity
-                    messages.success(
-                        request, f'{colour.capitalize()} {product.name} \
-                        has been added to your basket')
 
-            else:
-                basket[item_id] = {'items_by_colour': {colour: quantity}}
+        if item_id in list(basket.keys()):
+            if inventory >= basket[item_id] + 1:
+                basket[item_id] += quantity
                 messages.success(
-                    request, f'{colour.capitalize()} {product.name} \
-                    has been added to your basket')
-
+                        request, f'{product.name} quantity has \
+                        been updated to {basket[item_id]}')
+            else:
+                messages.error(request, f'Unfortunately, the quantity of {product.name} \
+                    in your basket exceeds what we currently have \
+                        in stock. Please check back in the near future.')
         else:
-            if item_id in list(basket.keys()):
-                if inventory >= basket[item_id] + 1:
-                    basket[item_id] += quantity
-                    messages.success(
-                            request, f'{product.name} quantity has \
-                            been updated to {basket[item_id]}')
-                else:
-                    messages.error(request, f'Unfortunately, the quantity of {product.name} \
-                        in your basket exceeds what we currently have \
-                            in stock. Please check back in the near future.')
-            else:
-                basket[item_id] = quantity
-                messages.success(
-                    request, f'{product.name} has been added to your basket')
+            basket[item_id] = quantity
+            messages.success(
+                request, f'{product.name} has been added to your basket')
     else:
         messages.error(
                     request, f'{product.name} please reduce quantity')
@@ -100,41 +71,22 @@ def update_basket(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     inventory = product.inventory
     quantity = int(request.POST.get('quantity'))
-    colour = None
-    if 'product_colour' in request.POST:
-        colour = request.POST['product_colour']
     basket = request.session.get('basket', {})
 
-    if colour:
-        if quantity > 0:
-            basket[item_id]['items_by_colour'][colour] = quantity
+    if quantity > 0:
+        if quantity <= inventory:
+            basket[item_id] = quantity
             messages.success(
-                request, f'{colour.capitalize()} \
-                {product.name} quantity has been updated to \
-                {basket[item_id]["items_by_colour"][colour]}')
+                    request, f'{product.name} quantity \
+                    has been updated to {basket[item_id]}')
         else:
-            del basket[item_id]['items_by_colour'][colour]
-            if not basket[item_id]['items_by_colour']:
-                basket.pop(item_id)
-            messages.success(
-                request, f'{colour.capitalize()} {product.name} \
-                has been removed from your basket')
-
+            messages.error(request, f'Unfortunately, the quantity of {product.name} \
+                in your basket exceeds what we currently have \
+                    in stock. Please check back in the near future.')
     else:
-        if quantity > 0:
-            if quantity <= inventory:
-                basket[item_id] = quantity
-                messages.success(
-                        request, f'{product.name} quantity \
-                        has been updated to {basket[item_id]}')
-            else:
-                messages.error(request, f'Unfortunately, the quantity of {product.name} \
-                    in your basket exceeds what we currently have \
-                        in stock. Please check back in the near future.')
-        else:
-            basket.pop(item_id)
-            messages.success(
-                request, f'{product.name} has been removed from your basket')
+        basket.pop(item_id)
+        messages.success(
+            request, f'{product.name} has been removed from your basket')
 
     request.session['basket'] = basket
     return redirect(reverse('view_basket'))
@@ -152,22 +104,11 @@ def remove_from_basket(request, item_id):
 
     try:
         product = get_object_or_404(Product, pk=item_id)
-        colour = None
-        if 'product_colour' in request.POST:
-            colour = request.POST['product_colour']
         basket = request.session.get('basket', {})
 
-        if colour:
-            del basket[item_id]['items_by_colour'][colour]
-            if not basket[item_id]['items_by_colour']:
-                basket.pop(item_id)
-            messages.success(
-                request, f'{colour.capitalize()} {product.name} \
-                has been removed from your basket')
-        else:
-            basket.pop(item_id)
-            messages.success(
-                request, f'{product.name} has been removed from your basket')
+        basket.pop(item_id)
+        messages.success(
+            request, f'{product.name} has been removed from your basket')
 
         request.session['basket'] = basket
         return HttpResponse(status=200)

@@ -32,15 +32,6 @@
                 <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
-                        {% with product.has_colours as c %}
-                            {% if c %}
-                                <div class="col-12 pb-3">
-                                    <input type="radio" value="white" class="btn-check" name="product_colour" id="colour_white" autocomplete="off" checked>
-                                    <label class="btn btn-white border-dark p-3" for="colour_white"></label>
-                                    <input type="radio" value="black" class="btn-check" name="product_colour" id="colour_black" autocomplete="off">
-                                    <label class="btn btn-dark p-3" for="colour_black"></label>
-                                </div>
-                            {% endif %}
                         {% if product.has_inventory %}
                         <div class="col-12">
                             <div class="form-group">
@@ -78,7 +69,6 @@
                             </a>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        {% endwith %}
                     </div>
                 </form>
                 {% if request.user.is_superuser %}

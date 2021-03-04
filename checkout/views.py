@@ -88,20 +88,10 @@ def checkout(request):
                         )
                         order_line_item.save()
                         if not product.inventory_updated:
-                            product.remove_items_from_inventory(count=item_data, save=True)
+                            product.remove_items_from_inventory(
+                                count=item_data, save=True)
                             product.inventory_updated = True
-                    else:
-                        for colour, quantity in item_data['items_by_colour'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                                product_colour=colour,
-                            )
-
                             order_line_item.save()
-                            # product.inventory -= quantity
-                            # product.save()
 
                 except Product.DoesNotExist:
                     messages.error(request, (

@@ -52,13 +52,6 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <p class="m-0"><strong>{{ item.product.name }}</strong></p>
-                                    {% if item.product.has_colours %}
-                                        <p class="my-0 text-xs text-muted">{{ item.colour|title }}</p>
-                                    {% endif %}
-                                    <p class="text-xs text-muted">SKU: {{ item.product.sku|upper }}</p>
-                                </td>
-                                <td>
                                     <p>£{{ item.product.price }}</p>
                                 </td>
                                 <td>
@@ -82,9 +75,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {% if item.product.has_colours %}
-                                            <input type="hidden" name="product_colour" value="{{ item.colour }}">
-                                        {% endif %}
                                     </form>
                                     <a class="update-link text-xs text-muted btn hvr">Update Qty</a>
                                 </td>
@@ -92,7 +82,7 @@
                                     <p>£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                                 </td>
                                 <td>
-                                    <a class="remove-item btn hvr" id="remove_{{ item.item_id }}" data-product_colour="{{ item.colour }}">
+                                    <a class="remove-item btn hvr" id="remove_{{ item.item_id }}">
                                         <i class="fas fa-times fa-sm"></i>
                                     </a> 
                                 </td>
@@ -178,9 +168,8 @@
     $('.remove-item').click(function(e) {
         let csrfToken = "{{ csrf_token }}";
         let itemId = $(this).attr('id').split('remove_')[1];
-        let colour = $(this).data('product_colour');
         let url = `/basket/remove/${itemId}/`;
-        let data = {'csrfmiddlewaretoken': csrfToken, 'product_colour': colour};
+        let data = {'csrfmiddlewaretoken': csrfToken};
 
         $.post(url, data)
          .done(function() {

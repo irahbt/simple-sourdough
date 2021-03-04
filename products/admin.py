@@ -9,7 +9,6 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'price',
         'added_date',
-        'has_colours',
         'inventory',
     )
 
