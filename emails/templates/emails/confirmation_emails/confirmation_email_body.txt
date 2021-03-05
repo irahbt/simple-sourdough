@@ -1,4 +1,4 @@
-Hello {{ order.full_name }}, 
+Hi {{ order.full_name }}, 
 
 This is confirmation of your order from Starter. Your order information is:
 
