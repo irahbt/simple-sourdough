@@ -176,13 +176,27 @@ class StripeWH_Handler:
 
                     for item_id, item_data in json.loads(basket).items():
                         product = Product.objects.get(id=item_id)
-                        if isinstance(item_data, int):
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=item_data,
-                            )
-                            order_line_item.save()
+                        if product.has_inventory():
+                            if isinstance(item_data, int):
+                                order_line_item = OrderLineItem(
+                                    order=order,
+                                    product=product,
+                                    quantity=item_data,
+                                )
+                                order_line_item.save()
+
+                            if not product.inventory_updated:
+                                product.remove_items_from_inventory(
+                                    count=item_data, save=True)
+                                product.inventory_updated = True
+                                order_line_item.save()
+                        else:
+                            if order:
+                                order.delete()
+                            return HttpResponse(
+                                content=f'Webhook received: {event["type"]} \
+                                    | ERROR: Product out of stock',
+                                status=500)
 
                 except Exception as e:
                     if order:

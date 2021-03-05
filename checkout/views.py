@@ -80,18 +80,26 @@ def checkout(request):
             for item_id, item_data in basket.items():
                 try:
                     product = get_object_or_404(Product, id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
+                    if product.has_inventory():
+                        if isinstance(item_data, int):
+                            order_line_item = OrderLineItem(
+                                order=order,
+                                product=product,
+                                quantity=item_data,
+                            )
+                            order_line_item.save()
+
                         if not product.inventory_updated:
                             product.remove_items_from_inventory(
                                 count=item_data, save=True)
                             product.inventory_updated = True
                             order_line_item.save()
+                    else:
+                        messages.error(request, f"Oh no, looks like {product.name} \
+                            has very recently sold out. \
+                        Please remove from your basket to proceed.")
+                        order.delete()
+                        return redirect(reverse('view_basket'))
 
                 except Product.DoesNotExist:
                     messages.error(request, (
