@@ -8,6 +8,11 @@
            max-width: 70%;
            max-height: auto; 
         }
+
+        .update-link, 
+        .remove-item {
+            cursor: pointer;
+        }
     </style>
 {% endblock %}
 
@@ -50,6 +55,10 @@
                                     {% else %}
                                         <img class="img-fluid" src="{% static 'images/noimage.png' %}" alt="{{ item.product.name }}">
                                     {% endif %}
+                                </td>
+                                <td>
+                                    <p class="m-0"><strong>{{ item.product.name|title }}</strong></p>
+                                    <p class="text-xs text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
                                 <td>
                                     <p>£{{ item.product.price }}</p>
