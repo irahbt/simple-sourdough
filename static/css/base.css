@@ -23,12 +23,62 @@ html,body {
     position: fixed;
     bottom: 5px;
     right: 22px;
+    }
 }
- }
+
+
+/* ------------------------------- typography */
 
 .title-font{
     font-family: 'Special Elite', sans-serif;
     letter-spacing: 1.5px;
+}
+
+.premium-font{
+    font-family: 'Knewave', sans-serif;
+    letter-spacing: 1px;
+}
+
+.text-xs{
+    font-size: .75rem;
+}
+
+
+/* ------------------------------- spacing */
+
+.extra-padding-container {
+    padding-top: 70px;
+}
+
+/* ------------------------------- navigation*/
+
+.nav-item:hover, .active {
+    color: rgb(146, 146, 146);
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+
+.up-button,
+.down-button {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.up-link {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.search-custom {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    
 }
 
 .email{
@@ -40,51 +90,13 @@ html,body {
     background-color: rgb(236, 240, 243);
 }
 
+
 .hvr:hover, .dropdown-item:active {
     background-color: rgb(241, 244, 247);
 }
 
 .btn:hover {
     border-color: white;
-}
-
-.nav-item:hover, .active {
-    color: rgb(146, 146, 146);
-}
-
-.premium-font{
-    font-family: 'Knewave', sans-serif;
-    letter-spacing: 1px;
-}
-
-.extra-padding-container {
-    padding-top: 70px;
-}
-
-
-.navbar-light .navbar-toggler {
-    border: none;
-}
-
-.search-custom {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    
-}
-
-.account-dropdown {
-    padding-right: 10%;
-}
-
-
-/* ------------------------------- bootstrap toasts */
-
-
-
-.update-link, 
-.remove-item {
-    cursor: pointer;
 }
 
 /* ------------------------------- bootstrap toasts */
@@ -105,13 +117,6 @@ html,body {
     overflow-x: hidden;
     overflow-y: auto;
 }
-
-
-/* ------------------------------- typography */
-.text-xs{
-    font-size: .75rem;
-}
-
 
 /* ------------------------------- Allauth form  */
 
@@ -147,19 +152,6 @@ html,body {
     border-bottom: solid 1px black;
 }
 
-.up-button,
-.down-button {
-    height: 50px;
-    width: 50px;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-}
-
-.up-link {
-    font-size: 22px;
-    cursor: pointer;
-}
 
 
 /* ------------------------------- Product & Recipe forms */
