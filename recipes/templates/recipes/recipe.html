@@ -45,7 +45,7 @@
                     <div id="collapseIntro" class="accordion-collapse collapse show" aria-labelledby="headingIntro"
                         data-bs-parent="#accordionIntro">
                         <div class="accordion-body">
-                            {{ recipe.description }}
+                            {{ recipe.description|linebreaks }}
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div id="collapseInstructions" class="accordion-collapse collapse" aria-labelledby="headingInstructions"
                         data-bs-parent="#accordianRecipe">
                         <div class="accordion-body">
-                            {{ recipe.instructions }}
+                            {{ recipe.instructions|linebreaks }}
                         </div>
                     </div>
                 </div>
