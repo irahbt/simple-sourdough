@@ -63,8 +63,7 @@
                             {% for ingredient in recipe.ingredients.all %}
                             <li>
                                 {{ ingredient.name }}
-                                {{ ingredient.quantity}}
-                                {{ ingredient.unit_of_measurement}}
+                                {{ ingredient.quantity }}{{ ingredient.unit_of_measurement }}
                             </li>
                             {% endfor %}
                         </ul>
