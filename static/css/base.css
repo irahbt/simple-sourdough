@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Special+Elite&display=swap&family=Knewave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Roboto&family=Special+Elite&display=swap');
 
 html,body {
     width: 100%;
     height: 100%;
     margin: 0px!important;
     padding: 0px;
-    font-family: 'IBM Plex Sans', sans-serif!important;
+    font-family: 'Roboto', sans-serif!important;
     letter-spacing: 1px!important;
     margin-bottom: 100px;
     clear: both;
