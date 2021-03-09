@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Roboto&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Roboto:wght@100;300;400&family=Special+Elite&display=swap');
 
 html,body {
     width: 100%;
@@ -6,6 +6,7 @@ html,body {
     margin: 0px!important;
     padding: 0px;
     font-family: 'Roboto', sans-serif!important;
+    font-weight: 400;
     letter-spacing: 1px!important;
     margin-bottom: 100px;
     clear: both;
@@ -43,7 +44,10 @@ html,body {
     font-size: .75rem;
 }
 
-
+.text-300{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
 /* ------------------------------- spacing */
 
 .extra-padding-container {
