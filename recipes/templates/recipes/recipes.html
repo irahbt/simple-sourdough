@@ -13,11 +13,12 @@
 {% block content %}
     <div class="container">
         <div class="row mb-4">
-            <div class="col-12">
+            <div class="col-12 text-center title-font">
+                <h2>Recipes</h2>
                 {% if profile.membership %}
-                    <h4 class="text-center title-font">Your are a Premium Member <i class="fas fa-crown"></i></h4>
+                    <h6>Your are a Premium Member <i class="fas fa-crown"></i></h6>
                 {% else %}
-                    <h4 class="text-center title-font">Become a <a href="{% url 'subscriptions' %}" class="text-reset hvr p-2">Premium Member</a> for access to all our recipes.</h4>
+                    <h6>Become a <a href="{% url 'subscriptions' %}" class="text-reset hvr p-2">Premium Member <i class="fas fa-crown"></i></a> for access to all our recipes.</h6>
                 {% endif %}
             </div>
         </div>
