@@ -5,7 +5,8 @@
 {% block extra_css %}
 <style>
 .image-text{
-    margin-top: 45%;
+    margin-top: 50%;
+    text-shadow: 0 2px 0 black;
 }
 
 .image-card {
@@ -32,7 +33,7 @@
     </div>
      <div class="row pb-5">
         <div class="col-12 col-md-6 mb-1 mb-lg-none d-flex justify-content-center d-md-block pe-md-1">
-            <div class="card image-card float-md-end">
+            <div class="card image-card float-md-end darken">
                 <a href="{% url 'subscription_checkout' %}?subscription=monthly">
                     <img src="{% static 'images/sub-1.png' %}" class="card-img img-fluid" alt="">    
                     <div class="card-img-overlay text-white text-center image-text">
@@ -49,7 +50,7 @@
                     <img src="{% static 'images/sub-2.png' %}" class="card-img img-fluid" alt="">    
                     <div class="card-img-overlay text-white text-center image-text">
                         <h2 class="card-title premium-font">£25.00 / Yearly</h2>
-                        <p class="card-subtitle py-2"><strong>Or save yourself a fiver with yearly payments. </strong></p>
+                        <p class="card-subtitle py-2"><strong>OR save yourself a fiver with yearly payments. </strong></p>
                         <i class="fs-1 fas fa-long-arrow-alt-right"></i>
                     </div>
                 </a>
