@@ -14,12 +14,12 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="d-flex justify-content-center title-font">Shop</h2>
+                <h2 class="text-center title-font">Shop</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-center">
+                <div class="text-cente title-font text-center">
                     {% for c in current_category %}
                         <a class="btn" href="{% url 'products' %}?category={{ c.name }}">
                             {{ c.friendly_name }}
