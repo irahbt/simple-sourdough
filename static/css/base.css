@@ -12,13 +12,6 @@ html,body {
     clear: both;
 }
 
-.custom-footer {
-    max-width: 10px;
-    position: fixed;
-    bottom: 5px;
-    right: 15px;
-}
-
 @media (min-width: 576px) { .custom-footer {
     max-width: 10px;
     position: fixed;
@@ -47,6 +40,10 @@ html,body {
 .text-300{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+}
+
+.fa-instagram, .fa-twitter{
+    font-size: large;
 }
 /* ------------------------------- spacing */
 
@@ -83,11 +80,6 @@ html,body {
     border-right: none;
     border-left: none;
     
-}
-
-.email{
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
 }
 
 #promo-banner {

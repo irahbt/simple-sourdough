@@ -114,12 +114,15 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="ps-2 custom-footer">
-        <small class="email">starter@starter.com</small>
-        <ul class="list-unstyled">
-            <li><a href="#" class="text-reset"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#" class="text-reset"><i class="fab fa-twitter"></i></a></li>
-        </ul>
+    
+    <footer class="{% block footer_position %}footer{% endblock %} py-3">
+      <div class="container">
+            <small class="title-font mt-3">starter@starter.com</small>
+            <div class="pt-3">
+                <a href="#" class="text-reset"><i class="fab fa-instagram nav-item"></i></a>
+                <a href="#" class="text-reset"><i class="fab fa-twitter nav-item"></i></a>
+            </div> 
+        </div>
     </footer>
     
 

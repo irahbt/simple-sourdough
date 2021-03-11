@@ -286,3 +286,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
     - The background is solid white to prevent any background interference.
 
 
+#### Toasts
+![Nav Mobile](./static/images/readme-images/toasts.png)
+- Bootstrap toasts are used to provide feedback to the user for certain actions, e.g. adding/removing a product, signing in/out. 
+- The toast also provides a running summary of the user's shopping basket and link to proceed. 
