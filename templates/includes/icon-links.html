@@ -1,7 +1,7 @@
 <ul class="list-inline list-unstyled pt-3 ">
     <li class="list-inline-item">
-        <button class="btn d-none d-lg-block nav-item" type="button" id="search-btn" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-search"></i>
+        <button class="btn d-none d-lg-block nav-item nav-icon" type="button" id="search-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search nav-icon"></i>
         </button>
         <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="search-btn">
             <form class="form d-flex justify-content-center" method="GET" action="{% url 'search' %}">
@@ -19,7 +19,7 @@
     </li>
 
     <li class="list-inline-item">
-        <button class="btn d-none d-lg-block nav-item" type="button" id="account-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn d-none d-lg-block nav-item nav-icon" type="button" id="account-btn" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user"></i>
         </button>
        <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="account-btn">
@@ -40,7 +40,7 @@
     </li>
 
     <li class="list-inline-item">
-        <a class="btn nav-item d-none d-lg-block {% if '/basket/' in request.path %}active{% endif %}" href="{% url 'view_basket' %}">
+        <a class="btn nav-item d-none d-lg-block {% if '/basket/' in request.path %}active{% endif %} nav-icon" href="{% url 'view_basket' %}">
             <i class="fas fa-shopping-basket"></i>
             {% if product_count %}
                 <span class="small text-muted">{{ product_count }}</span>
