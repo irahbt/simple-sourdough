@@ -57,8 +57,7 @@
                         <div class="col-12">
                             <span class="hvr">
                                 <button type="submit"
-                                    class="btn btn-dark p-2 w-100{% if not product.has_inventory %}disabled{% endif %}"><small>Add
-                                        to Basket</small></button>
+                                    class="btn btn-dark p-2 w-100 {% if not product.has_inventory %}disabled{% endif %}"><small>Add to Basket</small></button>
                             </span>
                             {% if not product.has_inventory %}
                             <p>This product is currently out of stock</p>
