@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<style>
+    .accordion-button:not(.collapsed){
+            color: rgb(105, 103, 103);
+    background-color: rgb(236, 240, 243);
+    }
+    .accordion-button:focus,  .accordion-button:active {
+    border-color: rgb(236, 240, 243);
+    outline: none;
+    box-shadow: none;
+    }
+</style>
+{% endblock %}
+
 {% block page_header %}
 <div class="container extra-padding-container">
     <div class="row">
