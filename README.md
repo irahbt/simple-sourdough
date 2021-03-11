@@ -225,6 +225,27 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - [Stripe Elements](https://stripe.com/docs/stripe-js) was used to style the product checkout.
 - [Stripe Checkout](https://stripe.com/docs/payments/checkout) was used for the subscription/premium membership checkout. 
 
+### Wireframes
+
+- [Homepage](./static/images/readme-images/Homepage.png)
+
+- [Shop](./static/images/readme-images/Shop.png)
+
+- [Product Details](./static/images/readme-images/Product-Details.png)
+
+- [Shopping Basket](./static/images/readme-images/Shopping-Basket.png)
+
+- [Product Checkout](./static/images/readme-images/Checkout.png)
+
+- [Recipes](./static/images/readme-images/Recipes.png)
+
+- [Recipe Details](./static/images/readme-images/Recipe-Details.png)
+
+- [Premium](./static/images/readme-images/Premium.png)
+
+- [Premium Basket](./static/images/readme-images/Premium-Basket.png)
+
+- [Account](./static/images/readme-images/Account.png)
 
 
 
