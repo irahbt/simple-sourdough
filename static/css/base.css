@@ -99,6 +99,11 @@ html,body {
     background-color: rgb(241, 244, 247);
 }
 
+.nav-icon:active, .nav-icon:focus{
+    outline: none;
+    box-shadow: none;
+}
+
 .btn:hover {
     border-color: white;
 }
