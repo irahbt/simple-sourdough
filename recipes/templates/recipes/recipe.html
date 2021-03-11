@@ -59,14 +59,23 @@
                     <div id="collapseIngredients" class="accordion-collapse collapse" aria-labelledby="headingIngredients"
                         data-bs-parent="#accordionRecipe">
                         <div class="accordion-body"> 
-                        <ul class="list-unstyled">
-                            {% for ingredient in recipe.ingredients.all %}
-                            <li>
-                                {{ ingredient.name }}
-                                {{ ingredient.quantity }}{{ ingredient.unit_of_measurement }}
-                            </li>
-                            {% endfor %}
-                        </ul>
+                            <table class="table">
+                                <tbody>
+                                    {% for ingredient in recipe.ingredients.all %}
+                                        <tr>
+                                            <td>
+                                                {{ ingredient.name }}
+                                            </td>
+                                            <td>
+                                                {{ ingredient.quantity }}
+                                            </td>
+                                            <td>
+                                                {{ ingredient.unit_of_measurement }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
