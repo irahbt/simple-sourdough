@@ -254,10 +254,35 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 ### Elements on every page
 
-- Navbar
+![Nav](./static/images/readme-images/nav.png)
+#### Navbar
+- The main navigation to the left of the bar shows the main website pages avaible to everyone.
+- The icon links to the right represent other key features of the site. 
+- Active classes are added to active page to show the user what page they are currently on.
+- Account options differ depending on user: 
+    - Not logged in:
+        - Sign In 
+        - Sign Up
+    - Logged in:
+        - Account 
+        - Sign Out
+    - Admin/Superuser:
+        - Product Management 
+        - Recipe Management
+        - Account
+        - Sign In 
+        - Sign Out
+    - Django/Python checks whether a user is logged in or not with `if request.user.is_authenticated` and whether the user is a Superuser with `if request.user.is_superuser ` to display the correct navigation to the user. 
 
+![Nav Mobile](./static/images/readme-images/nav-mobile.png)
+- Mobile Nav 
+    - The main navigation and account collapse in to a burger nav icon.
+    - The subheading of the logo is dropped.
 
-
-
+![Nav Mobile](./static/images/readme-images/nav-dropdown.png)
+![Nav Mobile](./static/images/readme-images/mobile-dropdown.png)
+- Dropdowns
+    - Dropdowns were used to reserve space. 
+    - The background is solid white to prevent any background interference.
 
 
