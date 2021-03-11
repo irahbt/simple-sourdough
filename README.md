@@ -248,6 +248,13 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - [Account](./static/images/readme-images/Account.png)
 
 
+# Features
+
+## Existing Features
+
+### Elements on every page
+
+- Navbar
 
 
 
