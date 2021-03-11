@@ -1,6 +1,6 @@
 # Starter
 
-![Home Responsive](./static/images/readme-images/home-responsive.png)
+![Home Responsive](./static/images/readme-images/responsive/home-responsive.png)
 ## Milestone Project 4: Full Stack Frameworks with Django - Code Institute
 
 [Deployed Version](https://starter-sourdough.herokuapp.com/)
@@ -227,25 +227,25 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 ### Wireframes
 
-- [Homepage](./static/images/readme-images/Homepage.png)
+- [Homepage](./static/images/readme-images/wireframes/Homepage.png)
 
-- [Shop](./static/images/readme-images/Shop.png)
+- [Shop](./static/images/readme-images/wireframes/Shop.png)
 
-- [Product Details](./static/images/readme-images/Product-Details.png)
+- [Product Details](./static/images/readme-images/wireframes/Product-Details.png)
 
-- [Shopping Basket](./static/images/readme-images/Shopping-Basket.png)
+- [Shopping Basket](./static/images/readme-images/wireframes/Shopping-Basket.png)
 
-- [Product Checkout](./static/images/readme-images/Checkout.png)
+- [Product Checkout](./static/images/readme-images/wireframes/Checkout.png)
 
-- [Recipes](./static/images/readme-images/Recipes.png)
+- [Recipes](./static/images/readme-images/wireframes/Recipes.png)
 
-- [Recipe Details](./static/images/readme-images/Recipe-Details.png)
+- [Recipe Details](./static/images/readme-images/wireframes/Recipe-Details.png)
 
-- [Premium](./static/images/readme-images/Premium.png)
+- [Premium](./static/images/readme-images/wireframes/Premium.png)
 
-- [Premium Basket](./static/images/readme-images/Premium-Basket.png)
+- [Premium Basket](./static/images/readme-images/wireframes/Premium-Basket.png)
 
-- [Account](./static/images/readme-images/Account.png)
+- [Account](./static/images/readme-images/wireframes/Account.png)
 
 
 # Features
@@ -279,14 +279,46 @@ Icons are used throughout the site to provide the user with visual cues and crea
     - The main navigation and account collapse in to a burger nav icon.
     - The subheading of the logo is dropped.
 
-![Nav Mobile](./static/images/readme-images/nav-dropdown.png)
-![Nav Mobile](./static/images/readme-images/mobile-dropdown.png)
+![Nav Dropdown](./static/images/readme-images/nav-dropdown.png)
+![Mobile Dropdown](./static/images/readme-images/mobile-dropdown.png)
 - Dropdowns
     - Dropdowns were used to reserve space. 
     - The background is solid white to prevent any background interference.
 
+#### Promo Banner
+![Promo banner](./static/images/readme-images/promo-banner.png)
+- The promo banner is placed at the top of the screen to immediately alert the user of promotions. 
+- The banner is removed on mobile views to reserve space.
 
 #### Toasts
-![Nav Mobile](./static/images/readme-images/toasts.png)
+![Toasts](./static/images/readme-images/toasts.png)
 - Bootstrap toasts are used to provide feedback to the user for certain actions, e.g. adding/removing a product, signing in/out. 
 - The toast also provides a running summary of the user's shopping basket and link to proceed. 
+
+#### Footer 
+![Nav Mobile](./static/images/readme-images/footer.png)
+- To reflect the nature of the website, the footer only contains the bare necessities; social links and contact email.
+
+### Homepage
+![Home Responsive](./static/images/readme-images/responsive/home-responsive.png)
+
+- The homepage immediately directs the user to shop for either ingredients or tools. Clicking either will take the user to their specified shopping category.
+
+
+![Homepage](./static/images/readme-images/homepage-2.png)
+![Homepage](./static/images/readme-images/homepage-3.png)
+
+- Both the Product and Recipe modal contain a boolean field called 'featured' 
+
+- The home app uses python to filter recipes/products by 'featured' which are passed in to a Django template and sliced to display the correct amount for the layout: 
+
+    - `for recipe in featured_recipes|slice:":1"`
+    - `for product in featured_products|slice:":4"`
+
+- This option allows superusers to customise their homepage by ticking the featured checkbox when creating or editing a product/recipe. 
+
+- To the left, a promotional poster is displayed to encourage the user to become a member. Clicking navigates user to the premium purchase options. 
+
+#### Promo Poster
+- The Promo Poster was created to alert the user to the website's premium membership. 
+
