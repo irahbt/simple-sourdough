@@ -37,23 +37,29 @@ def add_to_basket(request, item_id):
     if product.has_inventory and inventory >= quantity:
 
         if item_id in list(basket.keys()):
-            if inventory >= basket[item_id] + 1:
-                basket[item_id] += quantity
-                messages.success(
-                        request, f'{product.name} quantity has \
-                        been updated to {basket[item_id]}')
+            if inventory > basket[item_id]:
+                if inventory > quantity:
+                    basket[item_id] += quantity
+                    messages.success(
+                            request, f'{product.name} quantity has \
+                            been updated to {basket[item_id]}')
+                else:
+                    messages.success(request, f'Unfortunately, the quantity of {product.name} \
+                    in your basket exceeds what we currently have \
+                        in stock. Please reduce your quantity')
             else:
                 messages.error(request, f'Unfortunately, the quantity of {product.name} \
                     in your basket exceeds what we currently have \
-                        in stock. Please check back in the near future.')
+                        in stock. Please reduce your quantity')
         else:
             basket[item_id] = quantity
             messages.success(
                 request, f'{product.name} has been added to your basket')
     else:
         messages.error(
-                    request, f'Sorry, we only have {basket[item_id]} {product.name} left in stock. Please \
-                        reduce the quantity being added to your basket.')
+                    request, f'Unfortunately, the quantity of {product.name} \
+                    in your basket exceeds what we currently have \
+                        in stock. Please reduce your quantity')
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -83,7 +89,7 @@ def update_basket(request, item_id):
         else:
             messages.error(request, f'Unfortunately, the quantity of {product.name} \
                 in your basket exceeds what we currently have \
-                    in stock. Please check back in the near future.')
+                    in stock. Please reduce your quantity')
     else:
         basket.pop(item_id)
         messages.success(
