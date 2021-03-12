@@ -325,24 +325,37 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 ### Shop / Products Page
 
-#### Products
 ![Shop Responsive](./static/images/readme-images/responsive/shop-responsive.png)
 
+#### Products
 - Bootstrap cards were used to display product information
 - If user's arrived on the shop page via the 'all' navigation all products will be visable.
 - If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
 
 ![Shop Filter](./static/images/readme-images/shop-filter.png)
 
-
 #### Product Count
 
 - Logic to display product count of selected filter: `{{ products|length }}`
 
 #### Sort Options
-
 ![Sort options](./static/images/readme-images/sort-options.png)
 
 - User's are able to sort products by a number of options to make shopping easier. 
+
+### Product Details
+![Product Details](./static/images/readme-images/responsive/product-details-responsive.png)
+
+#### Buttons
+![Product Details Buttons](./static/images/readme-images/product-details-buttons.png)
+
+- The quantity buttons use javascript to overlay the default plus/minus buttons to fit with the style of the website.
+
+- The Add to Basket uses python/django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket. 
+
+- The edit/delete buttons are only visable if the user is a Superuser: `if request.user.is_superuser `. 
+
+- Clicking delete triggers a defensive modal:
+![Delete modal](./static/images/readme-images/delete-product-modal.png)
 
 
