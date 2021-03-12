@@ -51,6 +51,11 @@ html,body {
     padding-top: 70px;
 }
 
+
+.extra-padding-container-200 {
+    padding-top: 200px;
+}
+
 /* ------------------------------- navigation*/
 
 .nav-item:hover, .active {

@@ -322,3 +322,27 @@ Icons are used throughout the site to provide the user with visual cues and crea
 #### Promo Poster
 - The Promo Poster was created to alert the user to the website's premium membership. 
 
+
+### Shop / Products Page
+
+#### Products
+![Shop Responsive](./static/images/readme-images/responsive/shop-responsive.png)
+
+- Bootstrap cards were used to display product information
+- If user's arrived on the shop page via the 'all' navigation all products will be visable.
+- If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
+
+![Shop Filter](./static/images/readme-images/shop-filter.png)
+
+
+#### Product Count
+
+- Logic to display product count of selected filter: `{{ products|length }}`
+
+#### Sort Options
+
+![Sort options](./static/images/readme-images/sort-options.png)
+
+- User's are able to sort products by a number of options to make shopping easier. 
+
+
