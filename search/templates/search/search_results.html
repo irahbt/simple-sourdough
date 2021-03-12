@@ -71,6 +71,13 @@
     </div>
 </div>
 
+<!-- Push down content on medium screens -->
+<div class="container extra-padding-container-200 d-none d-md-block d-lg-none">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
 <div class="container extra-padding-container">
     <div class="row">
         <div class="col"></div>
@@ -79,7 +86,9 @@
 {% endblock %}
 
 {% block footer_position %}
-    {% if not recipes or not products %}
+    {% if not recipes and not products %}
         fixed-bottom
+    {% else %}
+        footer
     {% endif %}
 {% endblock %}
