@@ -60,7 +60,7 @@
                                     class="btn btn-dark p-2 w-100 {% if not product.has_inventory %}disabled{% endif %}"><small>Add to Basket</small></button>
                             </span>
                             {% if not product.has_inventory %}
-                            <p>This product is currently out of stock</p>
+                            <p class="pt-3">This product is currently out of stock</p>
                             {% endif %}
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
