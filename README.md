@@ -274,14 +274,14 @@ Icons are used throughout the site to provide the user with visual cues and crea
         - Sign Out
     - Django/Python checks whether a user is logged in or not with `if request.user.is_authenticated` and whether the user is a Superuser with `if request.user.is_superuser ` to display the correct navigation to the user. 
 
-![Nav Mobile](./static/images/readme-images/nav-mobile.png)
 - Mobile Nav 
+![Nav Mobile](./static/images/readme-images/nav-mobile.png)
     - The main navigation and account collapse in to a burger nav icon.
     - The subheading of the logo is dropped.
 
+- Dropdowns
 ![Nav Dropdown](./static/images/readme-images/nav-dropdown.png)
 ![Mobile Dropdown](./static/images/readme-images/mobile-dropdown.png)
-- Dropdowns
     - Dropdowns were used to reserve space. 
     - The background is solid white to prevent any background interference.
 
