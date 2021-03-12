@@ -147,7 +147,7 @@
                     </div>
                 </div>
             {% else %}
-                <p class="small text-muted">Your basket is currently empty.</p>
+                <p class="small">Your basket is currently empty.</p>
                 <a href="{% url 'products' %}" class="btn hvr p-0">
                     <p class="p-0 mb-0">Keep Shopping <i class="fas fa-chevron-right small"></i></p>
                 </a>
@@ -160,6 +160,14 @@
         <div class="col"></div>
     </div>
 </div>
+{% endblock %}
+
+{% block footer_position %}
+    {% if basket_items %}
+        footer
+    {% else %}
+        fixed-bottom
+    {% endif %}
 {% endblock %}
 
 {% block postloadjs %}

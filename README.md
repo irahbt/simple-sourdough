@@ -343,7 +343,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 - User's are able to sort products by a number of options to make shopping easier. 
 
-### Product Details
+### Product Details Page
 ![Product Details](./static/images/readme-images/responsive/product-details-responsive.png)
 
 #### Buttons
@@ -358,4 +358,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - Clicking delete triggers a defensive modal:
 ![Delete modal](./static/images/readme-images/delete-product-modal.png)
 
+
+### Shopping Basket
+![Basket](./static/images/readme-images/responsive/shop-responsive.png)
 
