@@ -351,14 +351,40 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 - The quantity buttons use javascript to overlay the default plus/minus buttons to fit with the style of the website.
 
-- The Add to Basket uses python/django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket. 
+- The Add to Basket uses python/django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket and the items are stored in the session. 
 
 - The edit/delete buttons are only visable if the user is a Superuser: `if request.user.is_superuser `. 
 
 - Clicking delete triggers a defensive modal:
 ![Delete modal](./static/images/readme-images/delete-product-modal.png)
 
+#### Inventory / Stock
+Python logic is used to prevent the user from adding products to their basket that are out of stock or exceed the amount of inventory currently in stock. 
+
+- If a product has 0 Inventory, the 'Add to Basket' button is disable and a message is displayed. 
+![Out of stock](./static/images/readme-images/no-stock.png)
+
+- If a product exce the amount of inventory currently in stock a toast is displayed and the product is not added to the basket. 
+![Exceeds Amount Toast](./static/images/readme-images/inventory-exceed.png)
+
 
 ### Shopping Basket
-![Basket](./static/images/readme-images/responsive/shop-responsive.png)
+
+#### Empty Shopping Basket 
+![Empty Shopping Basket ](./static/images/readme-images/empty-basket.png)
+
+#### Shopping Basket with Contents
+![Empty Shopping Basket ](./static/images/readme-images/basket.png)
+
+#### Product Controls
+- The user is able to update the quantity of the item or remove the item before proceeding to checkout. 
+
+#### Total 
+- Keeps a running total of all products and shipping. 
+- If the total amounts to less than the free shipping threshold a message is displayed to inform the user of how much more they have to spend to qualify for free shipping.
+
+#### Direction Buttons
+- The 'Continue to Secure Checkout' is the most prominent button on the page to direct the user to the checkout.
+- The keep shopping button takes the user back to products.
+
 
