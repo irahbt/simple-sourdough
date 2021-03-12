@@ -18,7 +18,7 @@
             </p>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 row-cols-sm-3 pb-4">
+    <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3 pb-4">
         {% for product in products %}
         <div class="col">
             <div class="card border-0">
@@ -48,9 +48,9 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-4 row-cols-sm-3">
+    <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3">
         {% for recipe in recipes.all %}
-        <div class="col">
+            <div class="col">
                 <div class="card border-0">
                     {% if recipe.image %}
                     <a href="{% url 'recipe' recipe.id %}">
@@ -76,5 +76,10 @@
         <div class="col"></div>
     </div>
 </div>
+{% endblock %}
 
+{% block footer_position %}
+    {% if not recipes or not products %}
+        fixed-bottom
+    {% endif %}
 {% endblock %}
