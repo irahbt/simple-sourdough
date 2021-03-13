@@ -417,3 +417,23 @@ Python logic is used to prevent the user from adding products to their basket th
 ### Product Checkout Success
 ![Product Checkout Success](./static/images/readme-images/product-checkout-success.png)
 - Provides user's with a summary of their order and informs them that an email has been sent to their account as assurance. 
+
+
+### Recipes Page
+![Recipes Responsive](./static/images/readme-images/responsive/recipes-responsive.png)
+
+#### Subtitle 
+- Python/Django checks if profile has membership attached with `if profile.membership`
+- If the user is not logged in or does not have a membership they are encouraged to become a premium in order to access premium content: 
+![Recipes Subtitle](./static/images/readme-images/recipes-subtitle-1.png)
+- If the user has a membership: 
+![Recipes Subtitle](./static/images/readme-images/recipes-subtitle-2.png)
+
+#### Recipe Cards
+- The recipe cards feature a large photo, recipe title and a free or premium tag.
+- Having both free and premium content shows the user the quality of the recipes making them more likely to want to access the premium content.
+- Python/Django checks if the recipe is premium with `if recipe.premium` and displays the correct tag accordingly:
+![Free Content](./static/images/readme-images/free-content1.png)
+![Premium Content](./static/images/readme-images/premium-content1.png)
+
+
