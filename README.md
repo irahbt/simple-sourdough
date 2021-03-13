@@ -383,8 +383,33 @@ Python logic is used to prevent the user from adding products to their basket th
 - Keeps a running total of all products and shipping. 
 - If the total amounts to less than the free shipping threshold a message is displayed to inform the user of how much more they have to spend to qualify for free shipping.
 
-#### Direction Buttons
+#### Directional Buttons
 - The 'Continue to Secure Checkout' is the most prominent button on the page to direct the user to the checkout.
 - The keep shopping button takes the user back to products.
 
+### Checkout
+![Checkout](./static/images/readme-images/checkout.png)
+
+#### Product Details
+- The user is displayed a summary of what they are about to purchase for final review.
+
+#### The Form
+- The form combines stripe elements with crispy forms to provide the logic and styling. 
+- Contact Information: 
+    - If the user is annonymous, they are prompted to sign / in or register to save their contact information. This will be related to the user's profile. 
+    - If the user is logged in ( `if user.is_authenticated` ) a checkbox to save shipping information is visable:
+    ![Save Shipping](./static/images/readme-images/save-shipping.png)
+    - If ticked the shipping information is then save on the user's profile. This time saving feature makes user's more likely to proceed with a purchase in the future. 
+    - If a required field is left empty the user is alerted and prevented from proceeding:
+    ![Required Field](./static/images/readme-images/required-field.png)
+
+- Payment Information:
+    - Stripe is used to handle payments
+    - The user is informed of invalid payment information with the alerts from Stripe:
+    ![Invalid Payment](./static/images/readme-images/invalid-payment.png)
+
+- Completing payment  
+    - The complete payment button sends the entered information and triggers a loading screen: 
+    ![Loading Screen](./static/images/readme-images/loading-screen.png)
+    - The loading screen informs that their request is being handled and therefor prevents refereshing or any other interuption that may effect the payment process.
 
