@@ -40,7 +40,7 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
      - [Shop](#shop)
      - [Product Details](#product-details)
      - [Basket](#basket)
-     - [Product Checkout](#checkout)
+     - [Product Checkout](#product-checkout)
      - [Recipes](#recipes)
      - [Recipe](#recipe)
      - [Premium](#add-plant-page)
@@ -387,7 +387,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - The 'Continue to Secure Checkout' is the most prominent button on the page to direct the user to the checkout.
 - The keep shopping button takes the user back to products.
 
-### Checkout
+### Product Checkout
 ![Checkout](./static/images/readme-images/checkout.png)
 
 #### Product Details
