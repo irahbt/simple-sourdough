@@ -413,3 +413,7 @@ Python logic is used to prevent the user from adding products to their basket th
     ![Loading Screen](./static/images/readme-images/loading-screen.png)
     - The loading screen informs that their request is being handled and therefor prevents refereshing or any other interuption that may effect the payment process.
 
+
+### Product Checkout Success
+![Product Checkout Success](./static/images/readme-images/product-checkout-success.png)
+- Provides user's with a summary of their order and informs them that an email has been sent to their account as assurance. 
