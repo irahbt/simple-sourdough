@@ -15,7 +15,7 @@
     <h3 class="my-3 title-font">Thank you for your order.</h3>
     <p>A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
     <div class="row py-4 border">
-        <h4>Order Summary</h4>
+        <h4 class="title-font">Order Summary</h4>
         <div class="col-12 col-md-6">
             <p class="text-muted mb-0">Details:</p>
             <p class="mb-0">{{ order.date|date:"F, jS, o" }}</p>
@@ -76,8 +76,12 @@
 </div>
 
 <div class="container extra-padding-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+    <div class="row">
+        <div class="col"></div>
+    </div>
 </div>
+{% endblock %}
+
+{% block footer_position %}
+    fixed-bottom
 {% endblock %}
