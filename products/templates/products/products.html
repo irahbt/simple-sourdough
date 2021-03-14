@@ -46,8 +46,8 @@
                 </p>
             </div>
             <div class="col-6 d-flex justify-content-end pe-0">
-                <div class="input-group w-50">
-                    <select class="form-select border-0" id="sort-select">
+                <div class="input-group w-50 pt-0">
+                    <select class="form-select border-0 pt-0" id="sort-select">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -63,7 +63,7 @@
 
         <hr class="mt-0">
 
-        <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-5 mt-3">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-5 mt-1">
             {% for product in products %}
                 <div class="col">
                     <div class="card border-0">
