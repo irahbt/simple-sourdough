@@ -96,7 +96,7 @@ html,body {
     background-color: rgb(241, 244, 247);
 }
 
-.nav-icon:active, .nav-icon:focus{
+.nav-icon:active, .nav-icon:focus, #sort-select{
     outline: none;
     box-shadow: none;
 }
