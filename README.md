@@ -464,6 +464,8 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Premium Basket/Checkout
 ![Premium Basket/Checkout](./static/images/readme-images/premium-basket.png)
+- The user must have profile for which the membership will be attached to access this page. 
+
 - The premium basket mirrors the shopping basket for continuity.
 - The information is laid out in clear way to allow user's to review for proceeding.
 - The user is informed that promo codes can be entered at the next stage. 
@@ -477,7 +479,7 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Premium Checkout Success
 ![Premium Checkout Success](./static/images/readme-images/premium-success.png)
-
+- If the transaction is successful user's will be directed to the 
 
 ### Confirmation Emails
 
