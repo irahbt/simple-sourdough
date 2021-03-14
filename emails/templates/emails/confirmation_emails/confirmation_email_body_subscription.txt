@@ -2,7 +2,7 @@ Hello {{ profile.user }},
 
 This is confirmation of your order from Starter. Your order information is:
 
-You are subscribed too... 
+You are subscribed to... 
 
 
 If you have any questions regarding your order, please contact us at {{ contact_email }}.
