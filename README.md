@@ -375,6 +375,7 @@ Python logic is used to prevent the user from adding products to their basket th
 
 #### Shopping Basket with Contents
 ![Empty Shopping Basket ](./static/images/readme-images/basket.png)
+- The information is laid out in clear way to allow user's to review for proceeding.
 
 #### Product Controls
 - The user is able to update the quantity of the item or remove the item before proceeding to checkout. 
@@ -418,7 +419,7 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Product Checkout Success](./static/images/readme-images/product-checkout-success.png)
 - Provides user's with a summary of their order and informs them that an email has been sent to their account as assurance. 
 
-### Recipes Page
+### Recipes
 ![Recipes Responsive](./static/images/readme-images/responsive/recipes-responsive.png)
 
 #### Subtitle 
@@ -436,7 +437,7 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Premium Content](./static/images/readme-images/premium-content1.png)
 
 
-### Recipe Page
+### Recipe Details
 ![Recipe Details](./static/images/readme-images/responsive/recipe-details-responsive.png)
 
 - Python/Django handels whether a user has premium membership to access premium recipes: `  if request.user.userprofile.membership`
@@ -447,6 +448,35 @@ Python logic is used to prevent the user from adding products to their basket th
 
 #### Buttons
 - Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
+
+### Premium
+![Premium](./static/images/readme-images/responsive/premium-responsive.png)
+- The premium page provides users of information of what is included with premium membership and how to cancel once purchased, for assurance. 
+
+#### Payment Options
+- Bootstrap images cards are used to display the two payemnt options.
+- The cars are of one whole image split in to two for visual impact and continuity. 
+- Overlayed text is white and has a text-shadow to ensure readability.
+- Clicking on either takes the user to checkout with specified option.
+
+#### Promotional Offer
+- The promotional offer displayed in the banner is repeated below the payment options as a reminder to users before proceeding. 
+
+### Premium Basket/Checkout
+![Premium Basket/Checkout](./static/images/readme-images/premium-basket.png)
+- The premium basket mirrors the shopping basket for continuity.
+- The information is laid out in clear way to allow user's to review for proceeding.
+- The user is informed that promo codes can be entered at the next stage. 
+- A back button is provided in case the user wants to change payment option. 
+
+### Stripe Premium Checkout
+![ Stripe Premium Checkout](./static/images/readme-images/premium-checkout.png)
+- [Stripe Checkout](https://stripe.com/docs/billing/subscriptions/checkout) is used to render information and handle payment of subscriptions. 
+
+
+
+
+
 
 
 
