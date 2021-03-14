@@ -353,7 +353,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 - The Add to Basket uses python/django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket and the items are stored in the session. 
 
-- The edit/delete buttons are only visable if the user is a Superuser: `if request.user.is_superuser `. 
+- Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
 
 - Clicking delete triggers a defensive modal:
 ![Delete modal](./static/images/readme-images/delete-product-modal.png)
@@ -418,7 +418,6 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Product Checkout Success](./static/images/readme-images/product-checkout-success.png)
 - Provides user's with a summary of their order and informs them that an email has been sent to their account as assurance. 
 
-
 ### Recipes Page
 ![Recipes Responsive](./static/images/readme-images/responsive/recipes-responsive.png)
 
@@ -435,5 +434,19 @@ Python logic is used to prevent the user from adding products to their basket th
 - Python/Django checks if the recipe is premium with `if recipe.premium` and displays the correct tag accordingly:
 ![Free Content](./static/images/readme-images/free-content1.png)
 ![Premium Content](./static/images/readme-images/premium-content1.png)
+
+
+### Recipe Page
+![Recipe Details](./static/images/readme-images/responsive/recipe-details-responsive.png)
+
+- Python/Django handels whether a user has premium membership to access premium recipes: `  if request.user.userprofile.membership`
+
+#### Bootstrap Accordian
+- A Bootstrap accordian is used to show/hide subsections of the recipe. 
+- Ingredients are rendered using a bootstrap table for clarity. 
+
+#### Buttons
+- Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
+
 
 
