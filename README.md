@@ -472,11 +472,13 @@ Python logic is used to prevent the user from adding products to their basket th
 ### Stripe Premium Checkout
 ![ Stripe Premium Checkout](./static/images/readme-images/premium-checkout.png)
 - [Stripe Checkout](https://stripe.com/docs/billing/subscriptions/checkout) is used to render information and handle payment of subscriptions. 
+- If the user goes clicks the back arrow they are re-directed to the transaction cancelled page to reassure them that they will not be charged: 
+![Transaction Cancelled](./static/images/readme-images/transaction-cancelled.png)
+
+### Premium Checkout Success
+![Premium Checkout Success](./static/images/readme-images/premium-success.png)
 
 
-
-
-
-
+### Confirmation Emails
 
 
