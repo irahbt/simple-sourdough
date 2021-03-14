@@ -32,9 +32,9 @@
                     {% endif %}
                 {% endfor %}
                 <div class="float-end">
-                    <button class="btn btn-dark p-2" type="submit">Update Product</button>
+                    <button class="btn btn-dark p-2" type="submit"> <small>Update Product</small></button>
                     <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                        Delete Product
+                        <small>Delete Product</small>
                     </button>
                     <!-- delete modal -->
                     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-dark p-2" href="{% url 'products' %}">Cancel</a>
+                    <a class="btn btn-dark p-2" href="{% url 'products' %}"><small> Cancel</small></a>
                 </div>
             </form>            
         </div>            
