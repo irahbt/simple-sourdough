@@ -20,7 +20,7 @@
             <form action="{% url 'subscription_settings' %}" method="POST">
                 {% csrf_token %}
                 <p>You are currently subscribed to our {{ subscription.plan.interval }}ly plan.</p>
-                <p>Your card will be charged £{{ amount }} on {{ period_end }}</p>
+                <p>Your card will be charged £{{ amount|floatformat:2 }} on {{ period_end }}</p>
                 <button type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 Cancel Membership
                 </button>
