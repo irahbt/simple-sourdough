@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http.response import HttpResponse
+from django.contrib import messages
 from django.conf import settings
 from datetime import datetime
 
@@ -42,7 +43,8 @@ def update_accounts(request):
             profile.membership = True
         profile.cancel_at_period_end = subscription.cancel_at_period_end
         profile.save()
-        return HttpResponse('Subscriptions update completed')
+        messages.success(request, 'Memberships update completed')
+        return HttpResponse('Memberships update completed')
 
 
 @login_required
@@ -63,6 +65,8 @@ def subscription_checkout(request):
 
     try:
         if request.user.userprofile.membership:
+            messages.success(request, 'You already have an ongoing membership, \
+                manage your settings here.')
             return redirect('profile')
     except UserProfile.DoesNotExist:
         pass
