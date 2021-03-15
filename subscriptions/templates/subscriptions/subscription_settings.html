@@ -15,7 +15,7 @@
         <h3 class="pb-2 title-font">Your Membership Settings</h3>
         <div class="col-12 col-md-6 p-5 border">
             {% if cancel_at_period_end %}
-                <p>Membership will run to end of billing cycle: {{ period_end }} </p>
+                <p>You can continue to user your Membership until the end of billing cycle: {{ period_end }} </p>
             {% elif membership %}
             <form action="{% url 'subscription_settings' %}" method="POST">
                 {% csrf_token %}
