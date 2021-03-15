@@ -43,12 +43,13 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
      - [Product Checkout](#product-checkout)
      - [Recipes](#recipes)
      - [Recipe](#recipe)
-     - [Premium](#add-plant-page)
-     - [Subscription Checkout](#subscription-checkout)
-     - [Stripe Subscription Checkout](#stripe-subscription-checkout)
+     - [Premium](#premium)
+     - [Premium Checkout](#premium-checkout)
+     - [Stripe Premium Checkout](#stripe-premium-checkout)
      - [User Account](#user-acccount)
-     - [Subscription Settings][#subscription-settings]
-     - [Allauth Pages][#allauth-pages]
+     - [Premium Settings](#premium-settings)
+     - [Allauth Pages](#allauth-pages)
+     - [Confirmation Emails](#allauth-pages)
 
    - [Features Left to Implement](#features-left-to-implement)
      </details>
@@ -486,8 +487,28 @@ Python logic is used to prevent the user from adding products to their basket th
 - Successful payment is confirmed by the checkout success page. 
 
 ### Account 
+#### Account Details
+- If the user has previously purchased something and ticked the [Save Shipping Details](#the-form) checkbox at checkout this form will be populated with the saved information.
+- Users can update this information to populate the contact information on the [Product Checkout](#product-checkout) page.
 
-### Allauth Templates 
+#### Premium Membership
+- If a user does not have a membership:
+![Account Non-Member](./static/images/readme-images/account-nonmember.png)
+
+- If a user has membership:
+![Account Member](./static/images/readme-images/account-member.png)
+- Python/Django inserts the most recently added recipe.
+- The settings button takes the user to their membership settings. 
+
+#### Order History 
+- Displays user's order history in a Bootstrap table.
+- Clicking the order number takes the user to the specified order summary, that mirrors that of the [Product Checkout Success](#product-checkout-success) page, with an altered message:
+![Order Sumamry](./static/images/readme-images/order-summary.png)
+
+### Premium Settings
+
+
+### Allauth Pages
 
 ### Confirmation Emails
 
