@@ -306,8 +306,8 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - The homepage immediately directs the user to shop for either ingredients or tools. Clicking either will take the user to their specified shopping category.
 
 
-![Homepage](./static/images/readme-images/homepage-2.png)
-![Homepage](./static/images/readme-images/homepage-3.png)
+![Homepage](./static/images/readme-images/home/homepage-2.png)
+![Homepage](./static/images/readme-images/home/homepage-3.png)
 
 - Both the Product and Recipe modal contain a boolean field called 'featured' 
 
@@ -333,14 +333,14 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - If user's arrived on the shop page via the 'all' navigation all products will be visable.
 - If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
 
-![Shop Filter](./static/images/readme-images/shop-filter.png)
+![Shop Filter](./static/images/readme-images/products/shop-filter.png)
 
 #### Product Count
 
 - Logic to display product count of selected filter: `{{ products|length }}`
 
 #### Sort Options
-![Sort options](./static/images/readme-images/sort-options.png)
+![Sort options](./static/images/readme-images/products/sort-options.png)
 
 - User's are able to sort products by a number of options to make shopping easier. 
 
@@ -348,7 +348,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 ![Product Details](./static/images/readme-images/responsive/product-details-responsive.png)
 
 #### Buttons
-![Product Details Buttons](./static/images/readme-images/product-details-buttons.png)
+![Product Details Buttons](./static/images/readme-images/products/product-details-buttons.png)
 
 - The quantity buttons use javascript to overlay the default plus/minus buttons to fit with the style of the website.
 
@@ -357,25 +357,25 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
 
 - Clicking delete triggers a defensive modal:
-![Delete modal](./static/images/readme-images/delete-product-modal.png)
+![Delete modal](./static/images/readme-images/products/delete-product-modal.png)
 
 #### Inventory / Stock
 Python logic is used to prevent the user from adding products to their basket that are out of stock or exceed the amount of inventory currently in stock. 
 
 - If a product has 0 Inventory, the 'Add to Basket' button is disable and a message is displayed. 
-![Out of stock](./static/images/readme-images/no-stock.png)
+![Out of stock](./static/images/readme-images/products/no-stock.png)
 
 - If a product exce the amount of inventory currently in stock a toast is displayed and the product is not added to the basket. 
-![Exceeds Amount Toast](./static/images/readme-images/inventory-exceed.png)
+![Exceeds Amount Toast](./static/images/readme-images/products/inventory-exceed.png)
 
 
 ### Shopping Basket
 
 #### Empty Shopping Basket 
-![Empty Shopping Basket ](./static/images/readme-images/empty-basket.png)
+![Empty Shopping Basket ](./static/images/readme-images/shopping-basket/empty-basket.png)
 
 #### Shopping Basket with Contents
-![Empty Shopping Basket ](./static/images/readme-images/basket.png)
+![Empty Shopping Basket ](./static/images/readme-images/shopping-basket/basket.png)
 - The information is laid out in clear way to allow user's to review for proceeding.
 
 #### Product Controls
@@ -390,7 +390,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - The keep shopping button takes the user back to products.
 
 ### Product Checkout
-![Checkout](./static/images/readme-images/checkout.png)
+![Checkout](./static/images/readme-images/product-checkout/checkout.png)
 
 #### Product Details
 - The user is displayed a summary of what they are about to purchase for final review.
@@ -400,24 +400,24 @@ Python logic is used to prevent the user from adding products to their basket th
 - Contact Information: 
     - If the user is annonymous, they are prompted to sign / in or register to save their contact information. This will be related to the user's profile. 
     - If the user is logged in ( `if user.is_authenticated` ) a checkbox to save shipping information is visable:
-    ![Save Shipping](./static/images/readme-images/save-shipping.png)
+    ![Save Shipping](./static/images/readme-images/product-checkout/save-shipping.png)
     - If ticked the shipping information is then save on the user's profile. This time saving feature makes user's more likely to proceed with a purchase in the future. 
     - If a required field is left empty the user is alerted and prevented from proceeding:
-    ![Required Field](./static/images/readme-images/required-field.png)
+    ![Required Field](./static/images/readme-images/product-checkout/required-field.png)
 
 - Payment Information:
     - Stripe is used to handle payments
     - The user is informed of invalid payment information with the alerts from Stripe:
-    ![Invalid Payment](./static/images/readme-images/invalid-payment.png)
+    ![Invalid Payment](./static/images/readme-images/product-checkout/invalid-payment.png)
 
 - Completing payment  
     - The complete payment button sends the entered information and triggers a loading screen: 
-    ![Loading Screen](./static/images/readme-images/loading-screen.png)
+    ![Loading Screen](./static/images/readme-images/product-checkout/loading-screen.png)
     - The loading screen informs that their request is being handled and therefor prevents refereshing or any other interuption that may effect the payment process.
 
 
 ### Product Checkout Success
-![Product Checkout Success](./static/images/readme-images/product-checkout-success.png)
+![Product Checkout Success](./static/images/readme-images/product-checkout/product-checkout-success.png)
 - Provides user's with a summary of their order and informs them that an email has been sent to their account as assurance. 
 
 ### Recipes
@@ -426,16 +426,16 @@ Python logic is used to prevent the user from adding products to their basket th
 #### Subtitle 
 - Python/Django checks if profile has membership attached with `if profile.membership`
 - If the user is not logged in or does not have a membership they are encouraged to become a premium in order to access premium content: 
-![Recipes Subtitle](./static/images/readme-images/recipes-subtitle-1.png)
+![Recipes Subtitle](./static/images/readme-images/recipes/recipes-subtitle-1.png)
 - If the user has a membership: 
-![Recipes Subtitle](./static/images/readme-images/recipes-subtitle-2.png)
+![Recipes Subtitle](./static/images/readme-images/recipes/recipes-subtitle-2.png)
 
 #### Recipe Cards
 - The recipe cards feature a large photo, recipe title and a free or premium tag.
 - Having both free and premium content shows the user the quality of the recipes making them more likely to want to access the premium content.
 - Python/Django checks if the recipe is premium with `if recipe.premium` and displays the correct tag accordingly:
-![Free Content](./static/images/readme-images/free-content1.png)
-![Premium Content](./static/images/readme-images/premium-content1.png)
+![Free Content](./static/images/readme-images/recipes/free-content1.png)
+![Premium Content](./static/images/readme-images/recipes/premium-content1.png)
 
 
 ### Recipe Details
@@ -464,25 +464,26 @@ Python logic is used to prevent the user from adding products to their basket th
 - The promotional offer displayed in the banner is repeated below the payment options as a reminder to users before proceeding. 
 
 ### Premium Basket/Checkout
-![Premium Basket/Checkout](./static/images/readme-images/premium-basket.png)
+![Premium Basket/Checkout](./static/images/readme-images/premium/premium-basket.png)
 - The user must have profile, to which the membership will be attached, to access this page. 
 - If the user is not logged in / does not have a profile they will be redirected to the Sign In page: 
 ![Sign In Redirect](./static/images/readme-images/premium-signin.png)
 - If the user already has a membership they will be redirected to their account:
-![Account Redirect](./static/images/readme-images/account-redirect.png)
+![Account Redirect](./static/images/readme-images/premium/account-redirect.png)
 - The premium basket mirrors the shopping basket for continuity.
 - The information is laid out in clear way to allow user's to review for proceeding.
 - The user is informed that promo codes can be entered at the next stage. 
 - A back button is provided in case the user wants to change payment option. 
 
 ### Stripe Premium Checkout
-![ Stripe Premium Checkout](./static/images/readme-images/premium-checkout.png)
+![ Stripe Premium Checkout](./static/images/readme-images/premium/premium-checkout.png)
 - [Stripe Checkout](https://stripe.com/docs/billing/subscriptions/checkout) is used to render information and handle payment of subscriptions. 
 - If the user goes clicks the back arrow they are re-directed to the transaction cancelled page to reassure them that they will not be charged: 
-![Transaction Cancelled](./static/images/readme-images/transaction-cancelled.png)
+![Transaction Cancelled](./static/images/readme-images/premium/transaction-cancelled.png)
+- Stripe creates the subscription `stripe.checkout.Session.create`.
 
 ### Premium Checkout Success
-![Premium Checkout Success](./static/images/readme-images/premium-success.png)
+![Premium Checkout Success](./static/images/readme-images/premium/premium-success.png)
 - If the transaction is successful, the membership will be attached to their account and the user will be able to see the changes immediately. 
 - Successful payment is confirmed by the checkout success page. 
 
@@ -493,19 +494,27 @@ Python logic is used to prevent the user from adding products to their basket th
 
 #### Premium Membership
 - If a user does not have a membership:
-![Account Non-Member](./static/images/readme-images/account-nonmember.png)
+![Account Non-Member](./static/images/readme-images/account/account-nonmember.png)
 
 - If a user has membership:
-![Account Member](./static/images/readme-images/account-member.png)
+![Account Member](./static/images/readme-images/account/account-member.png)
 - Python/Django inserts the most recently added recipe.
 - The settings button takes the user to their membership settings. 
 
 #### Order History 
 - Displays user's order history in a Bootstrap table.
 - Clicking the order number takes the user to the specified order summary, that mirrors that of the [Product Checkout Success](#product-checkout-success) page, with an altered message:
-![Order Sumamry](./static/images/readme-images/order-summary.png)
+![Order Sumamry](./static/images/readme-images/account/order-summary.png)
 
 ### Premium Settings
+(#product-checkout-success) page, with an altered message:
+![Premium Settings](./static/images/readme-images/premium/premium-settings.png)
+- This page retrieves information from the user's specific Stripe Subscription `stripe.Subscription.retrieve(request.user.userprofile.stripe_subscription_id)` and renders it to the display.
+- The Cancel Membership triggers a defensive modal:
+![Cancel Modal](./static/images/readme-images/premium/premium-modal.png)
+- If cancelled, the Stripe Subscription information is altered to stop taking payments and end of the next billing period and the following page is now displayed using `{% if cancel_at_period_end %}`:
+![Premium Cancelled](./static/images/readme-images/premium/membership-cancelled.png)
+
 
 
 ### Allauth Pages
