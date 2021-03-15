@@ -464,8 +464,11 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Premium Basket/Checkout
 ![Premium Basket/Checkout](./static/images/readme-images/premium-basket.png)
-- The user must have profile for which the membership will be attached to access this page. 
-
+- The user must have profile, to which the membership will be attached, to access this page. 
+- If the user is not logged in / does not have a profile they will be redirected to the Sign In page: 
+![Sign In Redirect](./static/images/readme-images/premium-signin.png)
+- If the user already has a membership they will be redirected to their account:
+![Account Redirect](./static/images/readme-images/account-redirect.png)
 - The premium basket mirrors the shopping basket for continuity.
 - The information is laid out in clear way to allow user's to review for proceeding.
 - The user is informed that promo codes can be entered at the next stage. 
@@ -479,7 +482,12 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Premium Checkout Success
 ![Premium Checkout Success](./static/images/readme-images/premium-success.png)
-- If the transaction is successful user's will be directed to the 
+- If the transaction is successful, the membership will be attached to their account and the user will be able to see the changes immediately. 
+- Successful payment is confirmed by the checkout success page. 
+
+### Account 
+
+### Allauth Templates 
 
 ### Confirmation Emails
 
