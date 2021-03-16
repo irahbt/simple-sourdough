@@ -28,6 +28,7 @@
                     {% if request.user.is_superuser %}
                         <li><a class="dropdown-item" href="{% url 'add_product' %}">Product Management</a></li>
                         <li><a class="dropdown-item" href="{% url 'add_recipe' %}">Recipe Management</a></li>
+                        <li><a class="dropdown-item" href="{% url 'update_accounts' %}">Update Premium Memberships</a></li>
                     {% endif %}
                         <li><a class="dropdown-item" href="{% url 'profile' %}">Account</a></li>
                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>

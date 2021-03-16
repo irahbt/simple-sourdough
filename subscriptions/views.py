@@ -24,6 +24,7 @@ def subscriptions(request):
 def update_accounts(request):
     """
 
+    A view to update the membership status of all accounts
     Retrieve user profile
     Retrieve stripe subscriptions
     Check subscription status
@@ -33,18 +34,25 @@ def update_accounts(request):
     Http response
 
     """
-    profiles = UserProfile.objects.all()
-    for profile in profiles:
-        subscription = stripe.Subscription.retrieve(
-            profile.stripe_subscription_id)
-        if subscription.status != 'active':
-            profile.membership = False
-        else:
-            profile.membership = True
-        profile.cancel_at_period_end = subscription.cancel_at_period_end
-        profile.save()
-        messages.success(request, 'Memberships update completed')
-        return HttpResponse('Memberships update completed')
+    try:
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        profiles = UserProfile.objects.all()
+        for profile in profiles:
+            subscription = stripe.Subscription.retrieve(
+                profile.stripe_subscription_id)
+            if subscription.status != 'active':
+                profile.membership = False
+            else:
+                profile.membership = True
+            profile.cancel_at_period_end = subscription.cancel_at_period_end
+            profile.save()
+            messages.success(request, 'Memberships update completed')
+            return HttpResponse('Memberships update completed, \
+                head back and refresh your browser')
+    except Exception as e:
+        messages.error(request, 'Error in updating accounts, please try again shortly or \
+            contact us if the error persists.')
+        return HttpResponse(content=e, status=500)
 
 
 @login_required
