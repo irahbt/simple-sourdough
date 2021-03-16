@@ -37,16 +37,20 @@ def update_accounts(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     profiles = UserProfile.objects.all()
     for profile in profiles:
-        subscription = stripe.Subscription.retrieve(
-            profile.stripe_subscription_id)
-        if subscription.status != 'active':
-            profile.membership = False
-        else:
-            profile.membership = True
-        profile.cancel_at_period_end = subscription.cancel_at_period_end
-        profile.save()
-        return HttpResponse('Memberships update completed')
+        if profile.membership:
+            subscription = stripe.Subscription.retrieve(
+                profile.stripe_subscription_id)
+            if subscription.status != 'active':
+                profile.membership = False
+                profile.stripe_customer_id = ""
+                profile.stripe_subscription_id = ""
 
+            else:
+                profile.membership = True
+            profile.cancel_at_period_end = subscription.cancel_at_period_end
+            profile.save()
+            return HttpResponse('Memberships update completed')
+        
 
 @login_required
 def subscription_checkout(request):
