@@ -324,7 +324,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - The Promo Poster was created to alert the user to the website's premium membership. 
 
 
-### Shop / Products Page
+### Shop / Products
 
 ![Shop Responsive](./static/images/readme-images/responsive/shop-responsive.png)
 
@@ -344,7 +344,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 - User's are able to sort products by a number of options to make shopping easier. 
 
-### Product Details Page
+### Product Details
 ![Product Details](./static/images/readme-images/responsive/product-details-responsive.png)
 
 #### Buttons

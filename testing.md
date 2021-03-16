@@ -58,13 +58,13 @@
 
 #### Elements of every page
 
-| Element              | Expected behaviour | On             | Confirmed 
+| Element              | Expected behaviour | Tested On             | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Shop Link            | Triggers shop options dropdown| click          | yes
+| Shop Link            | Trigger shop options dropdown| click          | yes
 | Main Navigation Links| Takes user to specified page  | click          | yes
 | Home Logo            | Takes user to homepage | click          | yes
-| Search Icon          | Triggers search dropdown      | click          | yes
-| Account Icon         | Triggers account options dropdown | click | yes
+| Search Icon          | Trigger search dropdown      | click          | yes
+| Account Icon         | Trigger account options dropdown | click | yes
 | Account Options | Change options depending on user | login | yes
 | Basket Icon | Takes user to basket | click | yes
 | Hover Features | Change background or colour | hover | yes
@@ -76,6 +76,29 @@
 
 #### Homepage
 
-| Element              | Expected behaviour | On             | Confirmed 
+| Element              | Expected behaviour | Tested On      | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
+| Ingredients Image | Takes user to shop filtered by ingredients | click | yes
+| Tools Image | Takes user to shop filtered by tools | click | yes
+| Featured Recipe | Populated by 'featured' recipe | changing from true / false in admin | yes
+| Featured Recipe | Takes user to recipe | click | yes
+| Membership Promo Poster | Takes user to premium page | click | yes 
+| Featured Products | Populated by 'featured' products | changing from true / false in admin | yes
+| Featured Products | Takes user to specified product | click | yes
+
+
+#### Shop/Products
+
+| Element              | Expected behaviour | Tested On      | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Subtitle | Changes depending on where you arrived from; shop or tools | click | yes
+| Product Count | Displays product count of specified filter | click / inspection | yes
+| Sort Options | Change product display depening on chosen option | click | yes
+
+
+#### Product Details
+
+| Element              | Expected behaviour | Tested On      | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Plus/Minus Buttons | Increases/reduced amount of product to be added | click / add | yes
 | 
