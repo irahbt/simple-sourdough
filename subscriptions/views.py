@@ -46,9 +46,7 @@ def update_accounts(request):
                 profile.membership = True
             profile.cancel_at_period_end = subscription.cancel_at_period_end
             profile.save()
-            messages.success(request, 'Memberships update completed')
-            return HttpResponse('Memberships update completed, \
-                head back and refresh your browser')
+            return HttpResponse('Memberships update completed')
     except Exception as e:
         messages.error(request, 'Error in updating accounts, please try again shortly or \
             contact us if the error persists.')
