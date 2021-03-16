@@ -21,7 +21,7 @@ def basket_contents(request):
                 'quantity': item_data,
                 'product': product,
             })
-  
+
     if total < settings.FREE_SHIPPING_THRESHOLD:
         shipping = Decimal(settings.STANDARD_SHIPPING)
         free_shipping_delta = settings.FREE_SHIPPING_THRESHOLD - total
