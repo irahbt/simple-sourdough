@@ -615,3 +615,44 @@ Python logic is used to prevent the user from adding products to their basket th
 ## Testing
 
 ### See [testing.md](./testing.md)
+
+# Deployment
+
+## Requirements
+
+Required tools:
+
+- [Gitpod](https://gitpod.io/) or other IDE
+
+**Must be** installed on your machine:
+
+- [PIP](https://pip.pypa.io/en/stable/installing/)
+- [Python 3 or above](https://www.python.org/downloads/)
+- If using an IDE other than Gitpod: [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+
+## Making a Local Clone on Gitpod
+1. Navigate to this project's github repository [https://github.com/irahbt/starter](https://github.com/irahbt/starter)
+
+2. Above the list of files, click "Clone"
+
+3. The default is to clone the repository using HTTPS, under "Clone with HTTPS", to clone the repository using an SSH key click "Use SSH"
+
+4. Click the icon next to the link to copy your link
+
+5. Open terminal
+
+6. Change the current working directory to the location where you want the cloned directory
+
+7. Clone repository with terminal command:
+
+```
+git clone <paste copied link>
+
+```
+
+8.  Install all required modules with terminal command:
+
+```
+pip -r requirements.txt
+
+```
