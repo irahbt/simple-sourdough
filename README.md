@@ -558,4 +558,57 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Confirmation Emails
 
+## Features Left to Implement
+
+# Information Architecture
+
+## Database Choice
+[SQLite](https://www.sqlite.org/index.html) is used in development and [PostgreSQL](https://www.postgresql.org/) is used in deployed version. 
+
+## Models Data structure
+![Database Schema](./static/images/readme-images/dbschema.png)
+
+# Technologies Used
+### Languages
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [Python](https://www.python.org/)
+
+### Frameworks, Libraries & Programs Used
+1. [Am I Responsive](http://ami.responsivedesign.is/)
+   - Used to create images of each page displayed on different screen sizes for this readme file
+
+2. [Bootstrap 5:](https://getbootstrap.com/docs/5/getting-started/download/)
+    - Used to help make the website responsive on a range of devices as well as various interactive elements
+
+3. [Crispy Bootstrap5](https://pypi.org/project/crispy-bootstrap5/)
+    - Used with django-crispy-forms to format all forms
+
+4. [Django:](https://www.djangoproject.com/) + various extensions
+    - Python Web framework used to develop the website 
+
+5. [Font Awesome:](https://fontawesome.com/)
+   - Font Awesome icons were used throughout
+
+6. [Git](https://git-scm.com/)
+   - The Gitpod terminal from Git was used to commit to Git and Push to GitHub
+
+7. [GitHub:](https://github.com/)
+   - Used to store the code after being pushed from Git
+
+8. [Google Fonts:](https://fonts.google.com/)
+   - Used to import font styles into the style.css
+
+9. [Heroku](https://www.heroku.com/)
+   - Used for deployment
+
+10. [jQuery:](https://jquery.com/)
+   - User in conjunction with Bootstrap for interactive components
+
+11. [PIP](https://pip.pypa.io/en/stable/installing/)
+    - User to for install tools needed in this project
+
+12. [Stripe](https://stripe.com/en-gb)
+    - Used to handle all payments
 
