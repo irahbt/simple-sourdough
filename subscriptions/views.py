@@ -34,23 +34,18 @@ def update_accounts(request):
     Http response
 
     """
-    try:
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        profiles = UserProfile.objects.all()
-        for profile in profiles:
-            subscription = stripe.Subscription.retrieve(
-                profile.stripe_subscription_id)
-            if subscription.status != 'active':
-                profile.membership = False
-            else:
-                profile.membership = True
-            profile.cancel_at_period_end = subscription.cancel_at_period_end
-            profile.save()
-            return HttpResponse('Memberships update completed')
-    except Exception as e:
-        messages.error(request, 'Error in updating accounts, please try again shortly or \
-            contact us if the error persists.')
-        return HttpResponse(content=e, status=500)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    profiles = UserProfile.objects.all()
+    for profile in profiles:
+        subscription = stripe.Subscription.retrieve(
+            profile.stripe_subscription_id)
+        if subscription.status != 'active':
+            profile.membership = False
+        else:
+            profile.membership = True
+        profile.cancel_at_period_end = subscription.cancel_at_period_end
+        profile.save()
+        return HttpResponse('Memberships update completed')
 
 
 @login_required
