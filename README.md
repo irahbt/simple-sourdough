@@ -517,20 +517,38 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Premium Cancelled](./static/images/readme-images/premium/membership-cancelled.png)
 
 ### Product Management 
-![Product Management](./static/images/readme-images/products/product-management.png)
+[![Product Management ](https://i.gyazo.com/2e5955617e8b5a5525553877520bed1e.gif)](https://gyazo.com/2e5955617e8b5a5525553877520bed1e)
 - The Product management page can only be accessed by superusers, if a non superuser attempts to access the page `if not request.user.is_superuser` they are redirected back to the homepage with the following message:
 ![Product Management](./static/images/readme-images/products/non-storeowner-message.png)
 
 #### The Form
-- Allows superusers to add a product 
-- All required fields are labelled with *
+- Allows superusers to add a product.
+- All required fields are labelled with *.
+- The select image field is customised with Javascript for better UX 
+- If a required field is left empty the user is alerted and prevented from proceeding.
+- If the product is added succesfully a success message is triggered.
 
-
-
+### Edit Product
+- Mirrors the Product management page but with fields populated with the specified product. 
+[![Edit Product](https://i.gyazo.com/3615c0107ca2f386b6458b9a6ee4f963.gif)](https://gyazo.com/3615c0107ca2f386b6458b9a6ee4f963)
+- The image field shows a preview of the current image using custom Javascript
 
 ### Recipe Management
+- Has the same layout and features as the add product page.
+[![Recipe Management](https://i.gyazo.com/2498ac1a620909b3c5afa43101e59317.gif)](https://gyazo.com/2498ac1a620909b3c5afa43101e59317)
+- A forset is used to link the ingredients to the recipe.
+- The user is able to control how many/few ingredients are on a recipe using the more button or delete checkbox. 
+- Failing to check delete on empty ingredients will result in a form error. 
+
+### Recipe Management
+- Has the same layout and features as the edit product pages.
+[![Image from Gyazo](https://i.gyazo.com/2fb3499720965d0bd39777fdaeb7beda.gif)](https://gyazo.com/2fb3499720965d0bd39777fdaeb7beda)
+- 
 
 ### Update Premium Memberships
+- This button configures the Stripe Subscription information with the Django user profile membership settings. 
+- It returns a http response to inform the user that the request was successful:
+- It is recommended that this is done regularly to ensure consistency. 
 
 ### Allauth Pages
 
