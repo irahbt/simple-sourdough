@@ -270,6 +270,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
     - Admin/Superuser:
         - Product Management 
         - Recipe Management
+        - Update Premium Memberships
         - Account
         - Sign In 
         - Sign Out
@@ -515,7 +516,21 @@ Python logic is used to prevent the user from adding products to their basket th
 - If cancelled, the Stripe Subscription information is altered to stop taking payments and end of the next billing period and the following page is now displayed using `{% if cancel_at_period_end %}`:
 ![Premium Cancelled](./static/images/readme-images/premium/membership-cancelled.png)
 
+### Product Management 
+![Product Management](./static/images/readme-images/products/product-management.png)
+- The Product management page can only be accessed by superusers, if a non superuser attempts to access the page `if not request.user.is_superuser` they are redirected back to the homepage with the following message:
+![Product Management](./static/images/readme-images/products/non-storeowner-message.png)
 
+#### The Form
+- Allows superusers to add a product 
+- All required fields are labelled with *
+
+
+
+
+### Recipe Management
+
+### Update Premium Memberships
 
 ### Allauth Pages
 
