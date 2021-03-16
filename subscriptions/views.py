@@ -100,8 +100,7 @@ def subscription_checkout(request):
             mode='subscription',
             allow_promotion_codes=True,
             success_url=(
-                domain_url + 'subscriptions/\
-                    subscription_success?session_id={CHECKOUT_SESSION_ID}'),
+                domain_url + 'subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}'),
             cancel_url=(domain_url + 'subscriptions/subscription_cancel'),
         )
 
