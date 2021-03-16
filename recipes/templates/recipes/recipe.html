@@ -2,36 +2,37 @@
 {% load static %}
 
 {% block extra_css %}
-<style>
-    .accordion-button:not(.collapsed){
+    <style>
+        .accordion-button:not(.collapsed) {
             color: rgb(105, 103, 103);
-    background-color: rgb(236, 240, 243);
-    }
-    .accordion-button:focus,  .accordion-button:active {
-    border-color: rgb(236, 240, 243);
-    outline: none;
-    box-shadow: none;
-    }
-</style>
+            background-color: rgb(236, 240, 243);
+        }
+
+        .accordion-button:focus,
+        .accordion-button:active {
+            border-color: rgb(236, 240, 243);
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
 {% endblock %}
 
 {% block page_header %}
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-     
+
     <div class="row my-3">
         <div class="col-12">
             <h3 class="my-2 title-font text-center">{{ recipe.title|title }}</h3>
         </div>
     </div>
-
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-9">
             {% if recipe.image %}
@@ -66,13 +67,14 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingIngredients">
                         <button class="accordion-button collapsed title-font" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseIngredients" aria-expanded="false" aria-controls="collapseInstructions">
+                            data-bs-target="#collapseIngredients" aria-expanded="false"
+                            aria-controls="collapseInstructions">
                             Ingredients
                         </button>
                     </h2>
-                    <div id="collapseIngredients" class="accordion-collapse collapse" aria-labelledby="headingIngredients"
-                        data-bs-parent="#accordionRecipe">
-                        <div class="accordion-body"> 
+                    <div id="collapseIngredients" class="accordion-collapse collapse"
+                        aria-labelledby="headingIngredients" data-bs-parent="#accordionRecipe">
+                        <div class="accordion-body">
                             <table class="table">
                                 <tbody>
                                     {% for ingredient in recipe.ingredients.all %}
@@ -96,12 +98,13 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingInstructions">
                         <button class="accordion-button collapsed title-font" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseInstructions" aria-expanded="false" aria-controls="collapseInstructions">
+                            data-bs-target="#collapseInstructions" aria-expanded="false"
+                            aria-controls="collapseInstructions">
                             Method
                         </button>
                     </h2>
-                    <div id="collapseInstructions" class="accordion-collapse collapse" aria-labelledby="headingInstructions"
-                        data-bs-parent="#accordianRecipe">
+                    <div id="collapseInstructions" class="accordion-collapse collapse"
+                        aria-labelledby="headingInstructions" data-bs-parent="#accordianRecipe">
                         <div class="accordion-body">
                             {{ recipe.instructions|linebreaks }}
                         </div>
@@ -115,25 +118,28 @@
         <div class="row mt-3">
             <div class="col-12 text-center">
                 <small>
-                    <a class="text-reset" href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a> | 
+                    <a class="text-reset" href="{% url 'edit_recipe' recipe.id %}">Edit Recipe</a> |
                     <a class="text-danger modal-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete Recipe
                     </a>
                     <!-- Delete modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure your want to delete recipe: {{ recipe.title|title }}?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <a class="btn btn-danger p-2" href="{% url 'delete_recipe' recipe.id %}">Delete Recipe</a>
-                            </div>
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure your want to delete recipe: {{ recipe.title|title }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-danger p-2" href="{% url 'delete_recipe' recipe.id %}">Delete
+                                        Recipe</a>
+                                </div>
                             </div>
                         </div>
                     </div>
