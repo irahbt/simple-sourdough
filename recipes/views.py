@@ -215,4 +215,3 @@ def delete_recipe(request, recipe_id):
     messages.success(request, 'Recipe Deleted')
 
     return redirect(reverse('recipes'))
-

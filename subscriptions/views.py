@@ -50,7 +50,7 @@ def update_accounts(request):
             profile.cancel_at_period_end = subscription.cancel_at_period_end
             profile.save()
             return HttpResponse('Memberships update completed')
-        
+
 
 @login_required
 def subscription_checkout(request):
@@ -99,7 +99,9 @@ def subscription_checkout(request):
                 }],
             mode='subscription',
             allow_promotion_codes=True,
-            success_url=(domain_url + 'subscriptions/subscription_success?session_id={CHECKOUT_SESSION_ID}'),
+            success_url=(
+                domain_url + 'subscriptions/\
+                    subscription_success?session_id={CHECKOUT_SESSION_ID}'),
             cancel_url=(domain_url + 'subscriptions/subscription_cancel'),
         )
 
@@ -155,7 +157,7 @@ def subscription_settings(request):
         int(subscription.current_period_end)).strftime('%d-%m-%y')
 
     amount = subscription.plan.amount / 100
- 
+
     if request.method == 'POST':
         subscription.cancel_at_period_end = True
         request.user.userprofile.cancel_at_period_end = True

@@ -27,8 +27,10 @@ class UserProfile(models.Model):
     default_postcode = models.CharField(
         max_length=20, null=True, blank=True)
     membership = models.BooleanField(default=False)
-    stripe_customer_id = models.CharField(max_length=255, null=True, blank=True)
-    stripe_subscription_id = models.CharField(max_length=255, null=True, blank=True)
+    stripe_customer_id = models.CharField(
+        max_length=255, null=True, blank=True)
+    stripe_subscription_id = models.CharField(
+        max_length=255, null=True, blank=True)
     cancel_at_period_end = models.BooleanField(default=False)
 
     def __str__(self):
@@ -44,4 +46,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
-

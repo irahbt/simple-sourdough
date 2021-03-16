@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Recipe(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(max_length=1000, null=True, blank=True)
@@ -11,18 +12,18 @@ class Recipe(models.Model):
     premium = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
 
-
     def __str__(self):
         return self.title
 
 
 class Ingredient(models.Model):
     class Meta:
-           verbose_name_plural = "Ingredients"
+        verbose_name_plural = "Ingredients"
 
     name = models.CharField(max_length=100)
     quantity = models.FloatField(null=True, blank=True, default='0')
-    unit_of_measurement = models.CharField(max_length=50, null=True, blank=True)
+    unit_of_measurement = models.CharField(
+        max_length=50, null=True, blank=True)
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name="ingredients")
 
