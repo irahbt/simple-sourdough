@@ -113,7 +113,6 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 1. Easily understand the purpose of the website and the services it offers
 2. Be able to navigate intuitively through the site
 
-
 ### Returning User Goals
 #### As a returning, I want to:
 
@@ -612,3 +611,7 @@ Python logic is used to prevent the user from adding products to their basket th
 12. [Stripe](https://stripe.com/en-gb)
     - Used to handle all payments
 
+
+## Testing
+
+### See [testing.md](./testing.md)
