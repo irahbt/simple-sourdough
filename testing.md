@@ -102,3 +102,26 @@
 | -------------------- | ------------------ | -----------    | ----------
 | Plus/Minus Buttons | Increases/reduced amount of product to be added | click / add | yes
 | 
+
+## Bugs
+### Fixed / Worked Around
+
+- Ingredient Formset 
+    - The ingredient formset in Recipe Management was throwing a 'required field' error even though the form was valid (see below).
+    [![Image from Gyazo](https://i.gyazo.com/3397f19b0421f56d3bb172ab69e925c8.gif)](https://gyazo.com/3397f19b0421f56d3bb172ab69e925c8)
+    -  Whilst it didn't affect the ability to add a recipe, it may have caused confusion for users. 
+    - I chose to redirect user's to the Recipes page after a recipe is successfully added, instead of showing a cleared form. 
+
+- Update Accounts issue on Deployed Version 
+    - When deployed, the update_accounts function began throwing a 500 error. I discovered this was due to try to retrieve Stripe Subscription information for users that didn't have any. I fixed this with the inclusion of ` if profile.membership:`. 
+    - Howeve, this means that at least one profile will have to have a Stripe Subscription at all times. 
+
+### Persisting
+
+- Nav menu mobile dropdown
+    - On mobile, if the nav menu is showing and the search bar dropdown is triggered, the search will attach to the bottom of the nav menu: 
+    [![Image from Gyazo](https://i.gyazo.com/8a66ca0cc72c117aad682f209d062d69.gif)](https://gyazo.com/8a66ca0cc72c117aad682f209d062d69)
+    - This is likely because the search bar used Bootstrap Dropdown, whilst the nav menu uses Bootstrap collapse.
+
+
+
