@@ -541,16 +541,20 @@ Python logic is used to prevent the user from adding products to their basket th
 - Failing to check delete on empty ingredients will result in a form error. 
 
 ### Recipe Management
-- Has the same layout and features as the edit product pages.
+- The Recipe Management has the same layout and features as the edit product pages.
 [![Image from Gyazo](https://i.gyazo.com/2fb3499720965d0bd39777fdaeb7beda.gif)](https://gyazo.com/2fb3499720965d0bd39777fdaeb7beda)
 - 
 
 ### Update Premium Memberships
 - This button configures the Stripe Subscription information with the Django user profile membership settings. 
 - It returns a http response to inform the user that the request was successful:
+![Membership Update](./static/images/readme-images/premium/membership-updates.png)
 - It is recommended that this is done regularly to ensure consistency. 
 
 ### Allauth Pages
+- Allauth pages are used throughout for authentication purposes. 
+- The allauth base template has been customised to match the rest of the website's styling for example:
+![Allauth responsive](./static/images/readme-images/responsive/allauth-responsive.png)
 
 ### Confirmation Emails
 
