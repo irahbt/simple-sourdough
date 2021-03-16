@@ -117,6 +117,7 @@ def add_recipe(request):
                 recipe.save
                 formset.save()
                 messages.success(request, 'Recipe Added Successfuly')
+                return redirect('recipes')
             else:
                 messages.error(
                     request, 'Add Recipe Failed. \
