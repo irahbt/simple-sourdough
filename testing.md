@@ -33,8 +33,9 @@
 #### As a first time user, I want to: 
 1. Easily understand the purpose of the website and the services it offers
     -  As user's first enter the site, the use of strong imagery suggest the nature of the site.
-    - The logo in the header clearly states the company name and mission: 
-    ![Logo](./static/images/readme-images/testing/logo.png)
+    - The logo in the header clearly states the company name and mission:   
+        ![Logo](./static/images/readme-images/testing/logo.png)
+
     - Each aspect of the website is represented on the homepage; shopping, recipes and membership. This gives the user an immediate sense of what the site offers. 
 
 2. Be able to navigate intuitively through the site

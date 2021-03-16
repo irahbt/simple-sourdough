@@ -656,3 +656,35 @@ git clone <paste copied link>
 pip -r requirements.txt
 
 ```
+
+
+
+## Heroku Deployment
+
+1. Create a `requirements.txt` file with terminal command:
+
+```
+pip freeze > requirements.txt
+```
+
+2.  Create a `Procfile` with terminal command
+
+```
+echo web: python app.py > Procfile
+```
+
+3. `git add` and `git commit -m` the new requirements in terminal and Procfile and then `git push` the project to GitHub.
+
+4. Create an account on [Heroku](https://dashboard.heroku.com/apps)
+
+5. Once logged in, create a new app by clicking the "New" button in your dashboard. Give it a name and set the region to Europe.
+
+6. Confirm that the heroku app is linked to the correct GitHub repository.
+
+7. On the Heroku dashboard for the app, go to "Settings" > "Reveal Config Vars".
+
+8. Set the config vars
+
+## Credits
+
+### Content
