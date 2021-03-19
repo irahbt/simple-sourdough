@@ -90,12 +90,36 @@
 
 9. Receive an email confirmation after checkout
     - 
-    
+
 10. Easily find how to become a member
+    - There are various pointers/links to becoming a member throughout the site: 
+        - The navbar
+        - The memberhsip promo on the homepage (pictured above)
+        - The recipes page:
+        ![Recipes Subtitle](./static/images/readme-images/recipes/recipes-subtitle-1.png)
+        - Account: 
+        ![Account Non-Member](./static/images/readme-images/account/account-nonmember.png)
+
 11. Learn about becoming a premium member
+    - The premium page provides users of information of what is included with premium membership and how to cancel once purchased.
+    ![Premium](./static/images/readme-images/testing/premium-member-test.png)
 
+### Premium Member Goals
+#### As a premium member, I want to:
 
+1. View premium content 
+    - The recipe cards feature a large photo, recipe title and a free or    premium tag.
+    - If premium membership is not active they will not be able to view premium recipes: 
+    [![Recipe not premium](https://i.gyazo.com/c7135788ed471bef21251476b61aec4c.gif)](https://gyazo.com/c7135788ed471bef21251476b61aec4c)
+    - Once premium memberhsip is active, the user is able to access all recipes. 
 
+2. See when new premium content is added
+    - The newest recipe is automatically displayed in premium member's account with a 'new recipe' tag:
+    ![Premium](./static/images/readme-images/testing/account-member-test.png)
+
+3. to 5. View which subscription service is enabled, easily cancel a subscription service, view my next subscription payment date
+    - The premium members settings page provides all Stripe subscription information and option to cancel: 
+    ![Premium Settings](./static/images/readme-images/premium/premium-settings.png)
 
 ## Manual Testing 
 ### Devices & Browsers

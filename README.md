@@ -177,7 +177,6 @@ The overall design is clean and simple, reflecting the the purpose of the websit
     - Error = BS Danger
     - Warning = BS Warning 
 
-
 ### Typography
 
 - 'Special Elite' was used for headings and titles as well as the main logo. This type-writer like font was chosen to give the impression of a story or a book. 
@@ -429,7 +428,6 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Free Content](./static/images/readme-images/recipes/free-content1.png)
 ![Premium Content](./static/images/readme-images/recipes/premium-content1.png)
 
-
 ### Recipe Details
 ![Recipe Details](./static/images/readme-images/responsive/recipe-details-responsive.png)
 
@@ -444,7 +442,6 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Premium
 ![Premium](./static/images/readme-images/responsive/premium-responsive.png)
-- The premium page provides users of information of what is included with premium membership and how to cancel once purchased, for assurance. 
 
 #### Payment Options
 - Bootstrap images cards are used to display the two payemnt options.
@@ -499,7 +496,6 @@ Python logic is used to prevent the user from adding products to their basket th
 ![Order Sumamry](./static/images/readme-images/account/order-summary.png)
 
 ### Premium Settings
-(#product-checkout-success) page, with an altered message:
 ![Premium Settings](./static/images/readme-images/premium/premium-settings.png)
 - This page retrieves information from the user's specific Stripe Subscription `stripe.Subscription.retrieve(request.user.userprofile.stripe_subscription_id)` and renders it to the display.
 - The Cancel Membership triggers a defensive modal:
