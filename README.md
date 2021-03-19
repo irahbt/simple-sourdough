@@ -120,7 +120,7 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 2. Browse via product category
 3. Search for product and/or recipe by name or description
 4. Easily see what I've searched for and the search results
-5. As a Returning User, I want to easily select the colour and quantity of a product
+5. As a Returning User, I want to easily select the quantity of a product to be added to the basket
 6. View items in my basket to be purchased
 7. Be able to adjust the quantity of individual items in my basket 
 8. See an order confirmation after checkout
@@ -159,6 +159,7 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 5. Edit/update a recipe 
 6. Delete a recipe
 7. Ensure all subscriptions payments are up to date
+8. Customise the homepage to include featured products/recipes
 
 
 ## Design
@@ -256,9 +257,6 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 ![Nav](./static/images/readme-images/nav.png)
 #### Navbar
-- The main navigation to the left of the bar shows the main website pages avaible to everyone.
-- The icon links to the right represent other key features of the site. 
-- Active classes are added to active page to show the user what page they are currently on.
 - Account options differ depending on user: 
     - Not logged in:
         - Sign In 
@@ -286,6 +284,8 @@ Icons are used throughout the site to provide the user with visual cues and crea
     - Dropdowns were used to reserve space. 
     - The background is solid white to prevent any background interference.
 
+- Search 
+
 #### Promo Banner
 ![Promo banner](./static/images/readme-images/promo-banner.png)
 - The promo banner is placed at the top of the screen to immediately alert the user of promotions. 
@@ -304,10 +304,6 @@ Icons are used throughout the site to provide the user with visual cues and crea
 ![Home Responsive](./static/images/readme-images/responsive/home-responsive.png)
 
 - The homepage immediately directs the user to shop for either ingredients or tools. Clicking either will take the user to their specified shopping category.
-
-
-![Homepage](./static/images/readme-images/home/homepage-2.png)
-![Homepage](./static/images/readme-images/home/homepage-3.png)
 
 - Both the Product and Recipe modal contain a boolean field called 'featured' 
 
@@ -330,10 +326,6 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 #### Products
 - Bootstrap cards were used to display product information
-- If user's arrived on the shop page via the 'all' navigation all products will be visable.
-- If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
-
-![Shop Filter](./static/images/readme-images/products/shop-filter.png)
 
 #### Product Count
 

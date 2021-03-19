@@ -29,17 +29,72 @@
   - [Gitpod](https://gitpod.io/)
 
 ## Testing User stories
+
 ### First Time User Goals
 #### As a first time user, I want to: 
 1. Easily understand the purpose of the website and the services it offers
-    -  As user's first enter the site, the use of strong imagery suggest the nature of the site.
+    -  As user's first enter the site, the use of strong imagery suggest the nature of the site:
+        ![Home Images](./static/images/readme-images/testing/home/home-images.png)
+
     - The logo in the header clearly states the company name and mission:   
         ![Logo](./static/images/readme-images/testing/logo.png)
 
-    - Each aspect of the website is represented on the homepage; shopping, recipes and membership. This gives the user an immediate sense of what the site offers. 
+    - Each aspect of the website is represented on the homepage to give the user an immediate insight in to what the site offers:
+        - Recipes & Membership:
+        ![Homepage](./static/images/readme-images/home/homepage-2.png)
+
+        - Products / Shopping: 
+        ![Homepage](./static/images/readme-images/home/homepage-3.png)
 
 2. Be able to navigate intuitively through the site
+    - The main navigation to the left of the bar shows the main website pages available to everyone.
+    - The icon links to the right represent other key features of the site. 
+    ![Nav](./static/images/readme-images/nav.png)
+    - Active classes are added to active page to show the user what page they are currently on.
+
+### Returning User Goals
+#### As a returning, I want to:
+1. Browse all products and recipes
+    - If user's arrived on the shop page via the 'all' navigation all products will be visable.
+
+2. Browse via product category
+    - If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
+
+    ![Shop Filter](./static/images/readme-images/products/shop-filter.png)
+
+3. Search for product and/or recipe by name or description
+    - The search bar is in the navigation bar and can therefore be accessed from anywhere in the website. 
+    - The entered search term searches both products and recipes names and descriptions and returns the results.
+  
+4. Easily see what I've searched for and the search results
+    - The returned results include the product count and search term:
+    [![Search](https://i.gyazo.com/190d6ac2f8f9d281364ce73fd37d6c2b.gif)](https://gyazo.com/190d6ac2f8f9d281364ce73fd37d6c2b)
+
+5. As a Returning User, I want to easily select the quantity of a product to be added to the basket:
+    - The plus/minus buttons on the product details page allow users to control the quantity of items being added to their basket:
+    [![Add Quantity](https://i.gyazo.com/16cb73179af76e6dda71281aac080f61.gif)](https://gyazo.com/16cb73179af76e6dda71281aac080f61)
+
+6. View items in my basket to be purchased
+    - Clicking on the basket takes the user to their basket
+    - Adding an item to the basket triggers a toast that gives a preview of the basket contents (see above).
+    - The toast contains a link to 'Go to Basket' 
+    ![Empty Shopping Basket ](./static/images/readme-images/shopping-basket/basket.png)
+
+7. Be able to adjust the quantity of individual items in my basket 
+    - The plus/minus controls and update button allow user's to alter the quantity of items in their basket, which also updates the totals: 
+    [![Update Basket](https://i.gyazo.com/410488d8cc5c6889cd2a2efbe0d51ccb.gif)](https://gyazo.com/410488d8cc5c6889cd2a2efbe0d51ccb)
+
+8. See an order confirmation after checkout
+    - Once payment is completed at checkout, user's are redirected to the checkout succes page: 
+    ![Product Checkout Success](./static/images/readme-images/product-checkout/product-checkout-success.png)
+
+9. Receive an email confirmation after checkout
     - 
+    
+10. Easily find how to become a member
+11. Learn about becoming a premium member
+
+
 
 
 ## Manual Testing 
@@ -109,7 +164,7 @@
 
 - Ingredient Formset 
     - The ingredient formset in Recipe Management was throwing a 'required field' error even though the form was valid (see below).
-    [![Image from Gyazo](https://i.gyazo.com/3397f19b0421f56d3bb172ab69e925c8.gif)](https://gyazo.com/3397f19b0421f56d3bb172ab69e925c8)
+    [![Ingredient Formset](https://i.gyazo.com/3397f19b0421f56d3bb172ab69e925c8.gif)](https://gyazo.com/3397f19b0421f56d3bb172ab69e925c8)
     -  Whilst it didn't affect the ability to add a recipe, it may have caused confusion for users. 
     - I chose to redirect user's to the Recipes page after a recipe is successfully added, instead of showing a cleared form. 
 
@@ -121,7 +176,7 @@
 
 - Nav menu mobile dropdown
     - On mobile, if the nav menu is showing and the search bar dropdown is triggered, the search will attach to the bottom of the nav menu: 
-    [![Image from Gyazo](https://i.gyazo.com/8a66ca0cc72c117aad682f209d062d69.gif)](https://gyazo.com/8a66ca0cc72c117aad682f209d062d69)
+    [![Mobile dropdown](https://i.gyazo.com/8a66ca0cc72c117aad682f209d062d69.gif)](https://gyazo.com/8a66ca0cc72c117aad682f209d062d69)
     - This is likely because the search bar used Bootstrap Dropdown, whilst the nav menu uses Bootstrap collapse.
 
 
