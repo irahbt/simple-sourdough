@@ -148,7 +148,6 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 4. Easily cancel a subscription service
 5. View my next subscription payment date
 
-
 ### Admin Goals
 #### As admin, I want to:
 
@@ -160,7 +159,6 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 6. Delete a recipe
 7. Ensure all subscriptions payments are up to date
 8. Customise the homepage to include featured products/recipes
-
 
 ## Design
 
@@ -310,8 +308,6 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
     - `for recipe in featured_recipes|slice:":1"`
     - `for product in featured_products|slice:":4"`
-
-- This option allows superusers to customise their homepage by ticking the featured checkbox when creating or editing a product/recipe. 
 
 - To the left, a promotional poster is displayed to encourage the user to become a member. Clicking navigates user to the premium purchase options. 
 
@@ -533,7 +529,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - 
 
 ### Update Premium Memberships
-- This button configures the Stripe Subscription information with the Django user profile membership settings. 
+- This button syncs the Stripe Subscription information with the Django user profile membership settings. 
 - It returns a http response to inform the user that the request was successful:
 ![Membership Update](./static/images/readme-images/premium/membership-updates.png)
 - It is recommended that this is done regularly to ensure consistency. 

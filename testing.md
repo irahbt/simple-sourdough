@@ -121,6 +121,34 @@
     - The premium members settings page provides all Stripe subscription information and option to cancel: 
     ![Premium Settings](./static/images/readme-images/premium/premium-settings.png)
 
+### Admin Goals
+#### As admin, I want to:
+
+1. Add a product
+    - The Product Management page gives superuser's the ability to add a product:
+    [![Product Management](https://i.gyazo.com/3adb0caecd4319bb1596b2866a9bd5bd.gif)](https://gyazo.com/3adb0caecd4319bb1596b2866a9bd5bd)
+2. Edit/update a product
+    - Superuser's are able to edit/update a specific product from that product's details page: 
+    [![Edit Product](https://i.gyazo.com/7981a95b8748feebd4969ddc204d2541.gif)](https://gyazo.com/7981a95b8748feebd4969ddc204d2541)
+
+3. Delete a product
+    - Superuser's are able to delete a specific product from either that product's details page or the update/edit product page:
+    [![Delete Product](https://i.gyazo.com/4db94128ba274745326068b1efb40f6d.gif)](https://gyazo.com/4db94128ba274745326068b1efb40f6d)
+
+4. Add a recipe 
+    - Add recipe works in the same way as add a product above.
+5. Edit/update a recipe
+    - Edit recipe works in the same way as edit a product above.  
+6. Delete a recipe
+    - Delete recipe works in the same way as delete a product above. 
+
+7. Ensure all subscriptions payments are up to date
+    - The Update Premium Memberships is visable to superusers in the account menu, clicking syncs profiles with Stripe Subsciption settings to ensure payments are up to date.
+
+8. Customise the homepage to include featured products/recipes
+    - The 'featured' option on a product/recips allows superusers to customise their homepage by ticking the featured checkbox when creating or editing a product/recipe. 
+
+
 ## Manual Testing 
 ### Devices & Browsers
 
