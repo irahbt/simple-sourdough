@@ -126,14 +126,17 @@
 
 1. Add a product
     - The Product Management page gives superuser's the ability to add a product:
-    [![Product Management](https://i.gyazo.com/3adb0caecd4319bb1596b2866a9bd5bd.gif)](https://gyazo.com/3adb0caecd4319bb1596b2866a9bd5bd)
+    [![Add Product](https://i.gyazo.com/b428595459b645c0ec3b3f8c71dcd0d8.gif)](https://gyazo.com/b428595459b645c0ec3b3f8c71dcd0d8)
+    
 2. Edit/update a product
-    - Superuser's are able to edit/update a specific product from that product's details page: 
-    [![Edit Product](https://i.gyazo.com/7981a95b8748feebd4969ddc204d2541.gif)](https://gyazo.com/7981a95b8748feebd4969ddc204d2541)
+    - Superuser's are able to edit/update a specific product from that product's details page:
+    [![Edit Product](https://i.gyazo.com/3e57c1001d2ecc1ad506a1305df1d657.gif)](https://gyazo.com/3e57c1001d2ecc1ad506a1305df1d657)
+  
 
 3. Delete a product
     - Superuser's are able to delete a specific product from either that product's details page or the update/edit product page:
-    [![Delete Product](https://i.gyazo.com/4db94128ba274745326068b1efb40f6d.gif)](https://gyazo.com/4db94128ba274745326068b1efb40f6d)
+    [![Image from Gyazo](https://i.gyazo.com/5012c62d0564f717db37e177c4ea4d68.gif)](https://gyazo.com/5012c62d0564f717db37e177c4ea4d68)
+  
 
 4. Add a recipe 
     - Add recipe works in the same way as add a product above.
@@ -215,8 +218,7 @@
 ### Fixed / Worked Around
 
 - Ingredient Formset 
-    - The ingredient formset in Recipe Management was throwing a 'required field' error even though the form was valid (see below).
-    [![Ingredient Formset](https://i.gyazo.com/3397f19b0421f56d3bb172ab69e925c8.gif)](https://gyazo.com/3397f19b0421f56d3bb172ab69e925c8)
+    - The ingredient formset in Recipe Management was throwing a 'required field' error even though the form was valid.
     -  Whilst it didn't affect the ability to add a recipe, it may have caused confusion for users. 
     - I chose to redirect user's to the Recipes page after a recipe is successfully added, instead of showing a cleared form. 
 
@@ -228,7 +230,7 @@
 
 - Nav menu mobile dropdown
     - On mobile, if the nav menu is showing and the search bar dropdown is triggered, the search will attach to the bottom of the nav menu: 
-    [![Mobile dropdown](https://i.gyazo.com/8a66ca0cc72c117aad682f209d062d69.gif)](https://gyazo.com/8a66ca0cc72c117aad682f209d062d69)
+   [![Image from Gyazo](https://i.gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a.gif)](https://gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a)
     - This is likely because the search bar used Bootstrap Dropdown, whilst the nav menu uses Bootstrap collapse.
 
 
