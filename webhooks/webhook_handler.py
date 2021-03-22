@@ -174,7 +174,7 @@ class StripeWH_Handler:
                         stripe_pid=pid,
                     )
 
-                    for item_id, item_data in basket.items():
+                    for item_id, item_data in json.loads(basket).items():
                         product = get_object_or_404(Product, id=item_id)
                         inventory = product.inventory
 
@@ -193,13 +193,18 @@ class StripeWH_Handler:
                                         count=item_data, save=True)
                                     product.inventory_updated = True
                                     order_line_item.save()
-
-                                self._send_confirmation_email(order)
-
                             else:
                                 order.delete()
+                                return HttpResponse(
+                                    content=f'Webhook received: {event["type"]} \
+                                        | ERROR: no stock',
+                                    status=500)
                         else:
                             order.delete()
+                            return HttpResponse(
+                                content=f'Webhook received: {event["type"]} \
+                                    | ERROR: no stock',
+                                status=500)
 
                 except Exception as e:
                     if order:
@@ -209,6 +214,7 @@ class StripeWH_Handler:
                             | ERROR: {e}',
                         status=500)
 
+                self._send_confirmation_email(order)
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | SUCCESS: \
                         Created order in webhook',
