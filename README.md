@@ -539,6 +539,13 @@ Python logic is used to prevent the user from adding products to their basket th
 ### Confirmation Emails
 
 ## Features Left to Implement
+1. Product variants 
+2. Filtering options on recipes 
+3. Stock control dashboard 
+4. Stripe elements on subscription checkout 
+5. Re-do delete ingredients buttons 
+6. Rest api for adding ingredients / deleting ingredients 
+
 
 # Information Architecture
 
