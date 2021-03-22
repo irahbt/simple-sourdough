@@ -211,8 +211,20 @@
 
 | Element              | Expected behaviour | Tested On      | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
+| Add to Basket button | Adds product to basket | click | yes 
 | Plus/Minus Buttons | Increases/reduced amount of product to be added | click / add | yes
-| 
+| Edit Button | Takes superusers to edit product page | click | yes 
+| Delete button | Triggers defensive modal | click | yes 
+| Modal cancel Button | Exits modal without any changes to products | click | yes 
+| Modal Delete Button | Removes product | click | yes 
+
+#### Inventory / Stock 
+| Element              | Expected behaviour | Tested On      | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Adding product quantity that exceeds product inventory | Error message and unable to proceed | 
+
+
+
 
 ## Bugs
 ### Fixed / Worked Around

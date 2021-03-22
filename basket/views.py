@@ -44,21 +44,21 @@ def add_to_basket(request, item_id):
                             request, f'{product.name} quantity has \
                             been updated to {basket[item_id]}')
                 else:
-                    messages.error(request, f'Unfortunately, we only have {basket[item_id]} of {product.name} \
-                    left in stock please reduce your \
-                        quantity being added to your basket.')
+                    messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
+                            left in stock, \
+                                please reduce your quantity to proceed.")
             else:
-                messages.error(request, f'Unfortunately, we only have {basket[item_id]} of {product.name} \
-                    left in stock please reduce your \
-                        quantity being added to your basket.')
+                messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
+                            left in stock, \
+                                please reduce your quantity to proceed.")
         else:
             basket[item_id] = quantity
             messages.success(
                 request, f'{product.name} has been added to your basket')
     else:
-        messages.error(request, f'Unfortunately, we only have {basket[item_id]} of {product.name} \
-                    left in stock please reduce your \
-                        quantity being added to your basket.')
+        messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
+                            left in stock, \
+                                please reduce your quantity to proceed.")
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -86,9 +86,9 @@ def update_basket(request, item_id):
                     request, f'{product.name} quantity \
                     has been updated to {basket[item_id]}')
         else:
-            messages.error(request, f'Unfortunately, we only have {basket[item_id]} of {product.name} \
-                    left in stock please reduce your \
-                        quantity being added to your basket.')
+            messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
+                            left in stock, \
+                                please reduce your quantity to proceed.")
     else:
         basket.pop(item_id)
         messages.success(
