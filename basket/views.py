@@ -38,15 +38,13 @@ def add_to_basket(request, item_id):
 
         if item_id in list(basket.keys()):
             if inventory > basket[item_id]:
-                if inventory > quantity:
+                if quantity + basket[item_id] >= inventory:
                     basket[item_id] += quantity
                     messages.success(
                             request, f'{product.name} quantity has \
                             been updated to {basket[item_id]}')
                 else:
-                    messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
-                            left in stock, \
-                                please reduce your quantity to proceed.")
+                    messages.error(request, "no")
             else:
                 messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
                             left in stock, \

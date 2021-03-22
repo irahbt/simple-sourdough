@@ -98,8 +98,9 @@ def checkout(request):
                                 product.inventory_updated = True
                                 order_line_item.save()
                         else:
-                            messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
-                            left in stock, \
+                            messages.error(
+                                request, f"Oh no, looks like there are only {inventory} {product.name}. \
+                            Left in stock, \
                                 please alter your basket to proceed.")
                             order.delete()
                             return redirect(reverse('view_basket'))
