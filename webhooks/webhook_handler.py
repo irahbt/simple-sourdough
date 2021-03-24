@@ -180,19 +180,18 @@ class StripeWH_Handler:
 
                         if product.has_inventory():
                             if inventory >= item_data:
-                                if isinstance(item_data, int):
-                                    order_line_item = OrderLineItem(
-                                        order=order,
-                                        product=product,
-                                        quantity=item_data,
-                                    )
-                                    order_line_item.save()
+                                order_line_item = OrderLineItem(
+                                    order=order,
+                                    product=product,
+                                    quantity=item_data,
+                                )
+                                order_line_item.save()
 
                                 if not product.inventory_updated:
                                     product.remove_items_from_inventory(
                                         count=item_data, save=True)
                                     product.inventory_updated = True
-                                    order_line_item.save()
+
                             else:
                                 order.delete()
                                 return HttpResponse(

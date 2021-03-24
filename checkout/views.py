@@ -71,12 +71,14 @@ def checkout(request):
             }
 
         order_form = OrderForm(form_data)
+
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
+
             for item_id, item_data in basket.items():
                 try:
                     product = get_object_or_404(Product, id=item_id)
@@ -84,31 +86,30 @@ def checkout(request):
 
                     if product.has_inventory():
                         if inventory >= item_data:
-                            if isinstance(item_data, int):
-                                order_line_item = OrderLineItem(
-                                    order=order,
-                                    product=product,
-                                    quantity=item_data,
-                                )
-                                order_line_item.save()
+                            order_line_item = OrderLineItem(
+                                order=order,
+                                product=product,
+                                quantity=item_data,
+                            )
+                            order_line_item.save()
 
                             if not product.inventory_updated:
                                 product.remove_items_from_inventory(
                                     count=item_data, save=True)
                                 product.inventory_updated = True
-                                order_line_item.save()
+        
                         else:
+                            print(order.delete())
                             messages.error(
                                 request, f"Oh no, looks like there are only {inventory} {product.name}. \
                             Left in stock, \
                                 please alter your basket to proceed.")
-                            order.delete()
                             return redirect(reverse('view_basket'))
                     else:
+                        print(order.delete())
                         messages.error(request, f"Oh no, looks like {product.name} \
                             has very recently sold out. \
                         Please remove from your basket to proceed.")
-                        order.delete()
                         return redirect(reverse('view_basket'))
 
                 except Product.DoesNotExist:
