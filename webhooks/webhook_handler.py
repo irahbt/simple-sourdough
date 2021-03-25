@@ -178,6 +178,7 @@ class StripeWH_Handler:
                         product = get_object_or_404(Product, id=item_id)
                         inventory = product.inventory
 
+                        # Delete order if inventory is out of stock
                         if product.has_inventory():
                             if inventory >= item_data:
                                 order_line_item = OrderLineItem(
@@ -191,7 +192,6 @@ class StripeWH_Handler:
                                     product.remove_items_from_inventory(
                                         count=item_data, save=True)
                                     product.inventory_updated = True
-
                             else:
                                 order.delete()
                                 return HttpResponse(

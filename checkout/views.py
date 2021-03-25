@@ -97,16 +97,15 @@ def checkout(request):
                                 product.remove_items_from_inventory(
                                     count=item_data, save=True)
                                 product.inventory_updated = True
-        
                         else:
-                            print(order.delete())
+                            order.delete()
                             messages.error(
                                 request, f"Oh no, looks like there are only {inventory} {product.name}. \
                             Left in stock, \
                                 please alter your basket to proceed.")
                             return redirect(reverse('view_basket'))
                     else:
-                        print(order.delete())
+                        order.delete()
                         messages.error(request, f"Oh no, looks like {product.name} \
                             has very recently sold out. \
                         Please remove from your basket to proceed.")
