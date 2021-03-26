@@ -77,29 +77,38 @@ def update_basket(request, item_id):
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
 
-    if quantity > 0:
-        if quantity <= inventory:
-            basket[item_id] = quantity
-            if not product.inventory_updated:
-                product.remove_items_from_inventory(
-                    count=quantity, save=True)
-                product.inventory_updated = True
-            messages.success(
-                    request, f'{product.name} quantity \
-                    has been updated to {basket[item_id]}')
-        else:
-            messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
-                            left in stock, \
+    for item_id, item_data in basket.items():
+        if quantity > 0:
+            if product.has_inventory:
+                inventory_total = inventory + item_data
+
+                if quantity <= inventory_total:
+                    basket[item_id] = quantity
+                    quantity_difference = quantity - item_data
+
+                    if not product.inventory_updated:
+                        product.remove_items_from_inventory(
+                            count=quantity_difference, save=True)
+                        product.inventory_updated = True
+                    messages.success(
+                        request, f'{product.name} quantity \
+                        has been updated to {basket[item_id]}')
+
+                else:
+                    messages.error(request, f"Oh no, looks like there are only {inventory_total} {product.name} \
+                            currently in stock, \
                                 please reduce your quantity to proceed.")
-    else:
-        for item_id, item_data in basket.items():
+            else:
+                messages.error(request, f"Oh no, looks like {product.name} \
+                    has sold out!")
+        else:
             if not product.inventory_updated:
                 product.add_items_back_to_inventory(count=item_data, save=True)
                 product.inventory_updated = True
 
-        basket.pop(item_id)
-        messages.success(
-            request, f'{product.name} has been removed from your basket')
+            basket.pop(item_id)
+            messages.success(
+                request, f'{product.name} has been removed from your basket')
 
     request.session['basket'] = basket
     return redirect(reverse('view_basket'))
