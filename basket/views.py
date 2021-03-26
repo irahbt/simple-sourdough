@@ -35,29 +35,23 @@ def add_to_basket(request, item_id):
     basket = request.session.get('basket', {})
 
     if product.has_inventory and inventory >= quantity:
-
         if item_id in list(basket.keys()):
-            if inventory > basket[item_id]:
-                basket[item_id] += quantity
-                if not product.inventory_updated:
-                    product.remove_items_from_inventory(
-                        count=quantity, save=True)
-                    product.inventory_updated = True
-                messages.success(
-                        request, f'{product.name} quantity has \
-                        been updated to {basket[item_id]}')
-            else:
-                messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
-                            left in stock, \
-                                please reduce your quantity to proceed.")
+            basket[item_id] += quantity
+            if not product.inventory_updated:
+                product.remove_items_from_inventory(
+                    count=quantity, save=True)
+                product.inventory_updated = True
+            messages.success(
+                    request, f'{product.name} quantity has \
+                    been updated to {basket[item_id]}')
         else:
             basket[item_id] = quantity
             if not product.inventory_updated:
                 product.remove_items_from_inventory(
                     count=quantity, save=True)
                 product.inventory_updated = True
-        messages.success(
-                request, f'{product.name} has been added to your basket')
+            messages.success(
+                    request, f'{product.name} has been added to your basket')
     else:
         messages.error(request, f"Oh no, looks like there are only {inventory} {product.name} \
                             left in stock, \
