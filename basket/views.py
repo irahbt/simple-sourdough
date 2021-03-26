@@ -44,6 +44,7 @@ def add_to_basket(request, item_id):
             messages.success(
                     request, f'{product.name} quantity has \
                     been updated to {basket[item_id]}')
+
         else:
             basket[item_id] = quantity
             if not product.inventory_updated:
@@ -92,9 +93,8 @@ def update_basket(request, item_id):
                                 please reduce your quantity to proceed.")
     else:
         for item_id, item_data in basket.items():
-            print(item_data)
             if not product.inventory_updated:
-                product.add_items_to_inventory(count=item_data, save=True)
+                product.add_items_back_to_inventory(count=item_data, save=True)
                 product.inventory_updated = True
 
         basket.pop(item_id)
@@ -118,16 +118,12 @@ def remove_from_basket(request, item_id):
     try:
         product = get_object_or_404(Product, pk=item_id)
         basket = request.session.get('basket', {})
-        # quantity = int(request.get('quantity'))
+        for item_id, item_data in basket.items():
+            if not product.inventory_updated:
+                product.add_items_back_to_inventory(count=item_data, save=True)
+                product.inventory_updated = True
 
         basket.pop(item_id)
-
-        # basket[item_id] = quantity
-        # if not product.inventory_updated:
-        #     product.remove_items_from_inventory(
-        #         count=quantity, save=True)
-        #     product.inventory_updated = True
-        # print(quantity)
         messages.success(
             request, f'{product.name} has been removed from your basket')
 
