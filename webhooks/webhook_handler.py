@@ -62,12 +62,12 @@ class StripeWH_Handler:
             status=200)
 
     def handle_checkout_session_completed(self, event):
-        intent = event.data.object
+        session = event.data.object
 
         # Fetch all the required data from session
-        client_reference_id = intent.get('client_reference_id')
-        stripe_customer_id = intent.get('customer')
-        stripe_subscription_id = intent.get('subscription')
+        client_reference_id = session.get('client_reference_id')
+        stripe_customer_id = session.get('customer')
+        stripe_subscription_id = session.get('subscription')
 
         # Get the user
         user = User.objects.get(id=client_reference_id)
@@ -193,6 +193,7 @@ class StripeWH_Handler:
                                         count=item_data, save=True)
                                     product.inventory_updated = True
                             else:
+
                                 order.delete()
                                 return HttpResponse(
                                     content=f'Webhook received: {event["type"]} \

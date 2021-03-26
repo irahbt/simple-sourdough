@@ -33,6 +33,7 @@ def cache_checkout_data(request):
             'basket': json.dumps(request.session.get('basket', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
+            'status': '',
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -49,7 +50,7 @@ def checkout(request):
     Create Stripe payment intent
 
     Returns:
-    Checkout page, stripe public ket and individual payment intent
+    Checkout page, stripe public key and individual payment intent
 
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -57,6 +58,7 @@ def checkout(request):
 
     if request.method == 'POST':
         basket = request.session.get('basket', {})
+        pid = request.POST.get('client_secret').split('_secret')[0]
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -84,32 +86,32 @@ def checkout(request):
                     product = get_object_or_404(Product, id=item_id)
                     inventory = product.inventory
 
-                    if product.has_inventory():
-                        if inventory >= item_data:
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=item_data,
-                            )
-                            order_line_item.save()
+                    # if product.has_inventory():
+                    #     if inventory >= item_data:
+                    order_line_item = OrderLineItem(
+                        order=order,
+                        product=product,
+                        quantity=item_data,
+                    )
+                    order_line_item.save()
 
-                            if not product.inventory_updated:
-                                product.remove_items_from_inventory(
-                                    count=item_data, save=True)
-                                product.inventory_updated = True
-                        else:
-                            order.delete()
-                            messages.error(
-                                request, f"Oh no, looks like there are only {inventory} {product.name}. \
-                            Left in stock, \
-                                please alter your basket to proceed.")
-                            return redirect(reverse('view_basket'))
-                    else:
-                        order.delete()
-                        messages.error(request, f"Oh no, looks like {product.name} \
-                            has very recently sold out. \
-                        Please remove from your basket to proceed.")
-                        return redirect(reverse('view_basket'))
+                            # if not product.inventory_updated:
+                            #     product.remove_items_from_inventory(
+                            #         count=item_data, save=True)
+                            #     product.inventory_updated = True
+                    #     else:
+                    #         order.delete()
+                    #         messages.error(
+                    #             request, f"Oh no, looks like there are only {inventory} {product.name}. \
+                    #         Left in stock, \
+                    #             please alter your basket to proceed.")
+                    #         return redirect(reverse('view_basket'))
+                    # else:
+                    #     order.delete()
+                    #     messages.error(request, f"Oh no, looks like {product.name} \
+                    #         has very recently sold out. \
+                    #     Please remove from your basket to proceed.")
+                    #     return redirect(reverse('view_basket'))
 
                 except Product.DoesNotExist:
                     messages.error(request, (
@@ -134,19 +136,19 @@ def checkout(request):
             messages.error(request, "There's nothing in your basket right now")
             return redirect(reverse('products'))
 
-        for item_id, item_data in basket.items():
-            product = get_object_or_404(Product, id=item_id)
-            inventory = product.inventory
-            if not product.has_inventory():
-                messages.error(request, f"Oh no, looks like {product.name} \
-                    has very recently sold out. \
-                        Please remove from your basket to proceed.")
-                return redirect(reverse('view_basket'))
-            if inventory < item_data:
-                messages.error(request, f"Oh no, looks like there are only {inventory} \
-                    {product.name}. \
-                        Left in stock, please alter your basket to proceed.")
-                return redirect(reverse('view_basket'))
+        # for item_id, item_data in basket.items():
+        #     product = get_object_or_404(Product, id=item_id)
+        #     inventory = product.inventory
+        #     if not product.has_inventory():
+        #         messages.error(request, f"Oh no, looks like {product.name} \
+        #             has very recently sold out. \
+        #                 Please remove from your basket to proceed.")
+        #         return redirect(reverse('view_basket'))
+        #     if inventory < item_data:
+        #         messages.error(request, f"Oh no, looks like there are only {inventory} \
+        #             {product.name}. \
+        #                 Left in stock, please alter your basket to proceed.")
+        #         return redirect(reverse('view_basket'))
 
         current_basket = basket_contents(request)
         total = current_basket['grand_total']

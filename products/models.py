@@ -49,5 +49,13 @@ class Product(models.Model):
             self.save()
         return self.inventory
 
+    def add_items_to_inventory(self, count, save=True):
+        current_inv = self.inventory
+        current_inv += count
+        self.inventory = current_inv
+        if save is True:
+            self.save()
+        return self.inventory
+
     def __str__(self):
         return self.name
