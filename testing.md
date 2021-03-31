@@ -231,15 +231,40 @@
 
 - Ingredient Formset 
     - The ingredient formset in Recipe Management was throwing a 'required field' error even though the form was valid.
-    -  Whilst it didn't affect the ability to add a recipe, it may have caused confusion for users. 
+    - Whilst it didn't affect the ability to add a recipe, it may have caused confusion for users. 
     - I chose to redirect user's to the Recipes page after a recipe is successfully added, instead of showing a cleared form. 
 
 - Update Accounts issue on Deployed Version 
     - When deployed, the update_accounts function began throwing a 500 error. I discovered this was due to try to retrieve Stripe Subscription information for users that didn't have any. I fixed this with the inclusion of ` if profile.membership:`. 
-    - Howeve, this means that at least one profile will have to have a Stripe Subscription at all times. 
+    - However, this means that at least one profile will have to have a Stripe Subscription at all times. 
 
 ### Persisting
+- Ability to purchase sold out items at checkout submit
+    - The inventory levels are checked various points to avoid users being able to purchase sold out items. However at the final stage, they are able to do this. I tried the following solutions: 
+        | Attempted Fix | Failed due to 
+        | ------------- | -------------
+        | Add inventory condition to post data e.g `if not product.has_inventory() -> order.delete()` | The deleted order was still being created in the webhook 
+        | Add inventory condition(as above) to payment_intent.succeeded webhook handler | The order was not being created, however Stripe was still charging the user 
+        | Create a webhook handler for charge.succeeded | Failing the charge.succeeded continued to charge the user in Stripe
+        | Change where stock was removed from checkout view to add_to_basket view | Could not get the inventory to be added back to stock on session end
 
+        |Potentional solution beyond the scope of this project|
+        -------------------------------------------------------
+
+        Add a held_inventory object to Product model. 
+        
+        On add_to_basket view execute: 
+        ```
+        inventory - item quantity
+        held_inventory + item quantity 
+        ```
+
+        Create a background task using task queue software e.g. [Django Background Task](https://django-background-tasks.readthedocs.io/en/latest/) or [Django Celery](https://docs.celeryproject.org/projects/django-celery/en/2.4/) that runs every hour: 
+        ```
+        held_inventory + inventory
+        ```
+
+    
 - Nav menu mobile dropdown
     - On mobile, if the nav menu is showing and the search bar dropdown is triggered, the search will attach to the bottom of the nav menu: 
    [![Image from Gyazo](https://i.gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a.gif)](https://gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a)

@@ -187,7 +187,7 @@ class StripeWH_Handler:
                         if not product.inventory_updated:
                             product.remove_items_from_inventory(
                                 count=item_data, save=True)
-   
+
                 except Exception as e:
                     if order:
                         order.delete()
