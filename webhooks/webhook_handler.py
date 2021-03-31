@@ -176,36 +176,18 @@ class StripeWH_Handler:
 
                     for item_id, item_data in json.loads(basket).items():
                         product = get_object_or_404(Product, id=item_id)
-                        inventory = product.inventory
 
-                        # Delete order if inventory is out of stock
-                        if product.has_inventory():
-                            if inventory >= item_data:
-                                order_line_item = OrderLineItem(
-                                    order=order,
-                                    product=product,
-                                    quantity=item_data,
-                                )
-                                order_line_item.save()
+                        order_line_item = OrderLineItem(
+                                order=order,
+                                product=product,
+                                quantity=item_data,
+                            )
+                        order_line_item.save()
 
-                                if not product.inventory_updated:
-                                    product.remove_items_from_inventory(
-                                        count=item_data, save=True)
-                                    product.inventory_updated = True
-                            else:
-
-                                order.delete()
-                                return HttpResponse(
-                                    content=f'Webhook received: {event["type"]} \
-                                        | ERROR: no stock',
-                                    status=500)
-                        else:
-                            order.delete()
-                            return HttpResponse(
-                                content=f'Webhook received: {event["type"]} \
-                                    | ERROR: no stock',
-                                status=500)
-
+                        if not product.inventory_updated:
+                            product.remove_items_from_inventory(
+                                count=item_data, save=True)
+   
                 except Exception as e:
                     if order:
                         order.delete()

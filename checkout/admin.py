@@ -21,8 +21,8 @@ class OrderAdmin(admin.ModelAdmin):
               'original_basket', 'stripe_pid')
 
     list_display = ('order_number', 'date', 'full_name',
-                    'order_total', 'shipping_cost', 'grand_total',)
-
+                    'order_total', 'shipping_cost',
+                    'grand_total',)
     ordering = ('-date',)
 
 
