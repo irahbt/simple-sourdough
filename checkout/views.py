@@ -84,10 +84,6 @@ def checkout(request):
             for item_id, item_data in basket.items():
                 try:
                     product = get_object_or_404(Product, id=item_id)
-                    inventory = product.inventory
-
-                    # if product.has_inventory():
-                    #     if inventory >= item_data:
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
@@ -95,23 +91,10 @@ def checkout(request):
                     )
                     order_line_item.save()
 
-                            # if not product.inventory_updated:
-                            #     product.remove_items_from_inventory(
-                            #         count=item_data, save=True)
-                            #     product.inventory_updated = True
-                    #     else:
-                    #         order.delete()
-                    #         messages.error(
-                    #             request, f"Oh no, looks like there are only {inventory} {product.name}. \
-                    #         Left in stock, \
-                    #             please alter your basket to proceed.")
-                    #         return redirect(reverse('view_basket'))
-                    # else:
-                    #     order.delete()
-                    #     messages.error(request, f"Oh no, looks like {product.name} \
-                    #         has very recently sold out. \
-                    #     Please remove from your basket to proceed.")
-                    #     return redirect(reverse('view_basket'))
+                    if not product.inventory_updated:
+                        product.remove_items_from_inventory(
+                            count=item_data, save=True)
+                        product.inventory_updated = True
 
                 except Product.DoesNotExist:
                     messages.error(request, (
@@ -136,19 +119,19 @@ def checkout(request):
             messages.error(request, "There's nothing in your basket right now")
             return redirect(reverse('products'))
 
-        # for item_id, item_data in basket.items():
-        #     product = get_object_or_404(Product, id=item_id)
-        #     inventory = product.inventory
-        #     if not product.has_inventory():
-        #         messages.error(request, f"Oh no, looks like {product.name} \
-        #             has very recently sold out. \
-        #                 Please remove from your basket to proceed.")
-        #         return redirect(reverse('view_basket'))
-        #     if inventory < item_data:
-        #         messages.error(request, f"Oh no, looks like there are only {inventory} \
-        #             {product.name}. \
-        #                 Left in stock, please alter your basket to proceed.")
-        #         return redirect(reverse('view_basket'))
+        for item_id, item_data in basket.items():
+            product = get_object_or_404(Product, id=item_id)
+            inventory = product.inventory
+            if not product.has_inventory():
+                messages.error(request, f"Oh no, looks like {product.name} \
+                    has very recently sold out. \
+                        Please remove from your basket to proceed.")
+                return redirect(reverse('view_basket'))
+            if inventory < item_data:
+                messages.error(request, f"Oh no, looks like there are only {inventory} \
+                    {product.name}. \
+                        Left in stock, please alter your basket to proceed.")
+                return redirect(reverse('view_basket'))
 
         current_basket = basket_contents(request)
         total = current_basket['grand_total']
