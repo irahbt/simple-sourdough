@@ -84,6 +84,8 @@ def checkout(request):
             for item_id, item_data in basket.items():
                 try:
                     product = get_object_or_404(Product, id=item_id)
+                    inventory = product.inventory
+
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
@@ -91,10 +93,16 @@ def checkout(request):
                     )
                     order_line_item.save()
 
+                    # Remove items from inventory
                     if not product.inventory_updated:
                         product.remove_items_from_inventory(
                             count=item_data, save=True)
                         product.inventory_updated = True
+
+                    if not product.has_inventory():
+                        if not inventory >= item_data:
+                            order.order_fullfilled = False
+                            order.save()
 
                 except Product.DoesNotExist:
                     messages.error(request, (

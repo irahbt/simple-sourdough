@@ -221,7 +221,11 @@
 #### Inventory / Stock 
 | Element              | Expected behaviour | Tested On      | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Adding product quantity that exceeds product inventory | Error message and unable to proceed | 
+| Adding product quantity that exceeds product inventory | Error message and unable to proceed | Removing/Adding stock from Admin Panel | Yes 
+| Attempting to proceed to checkout if item recently sold out | Error message and unable to proceed | Removing/Adding stock from Admin Panel | Yes
+| Attempting to checkout if item recently sold out | Error message and unable to proceed | Removing/Adding stock from Admin Panel | No (see bugs below)
+
+
 
 
 
