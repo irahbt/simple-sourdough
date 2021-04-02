@@ -263,11 +263,15 @@
         ```
         held_inventory + inventory
         ```
-
+- Checkout Submit Button 
+    - Hitting the enter key as opposed to clicking the submit button bypassed the form validation resulting in the following: 
+    [![Checkout submit bug](https://i.gyazo.com/f2308004711008b484d4f0c88c945525.gif)](https://gyazo.com/f2308004711008b484d4f0c88c945525)
+    - My assumption is that stripe js elements overrides the form validation but have not been able to identify where. 
+    - I tried changing the submit button input type to no avail.
     
 - Nav menu mobile dropdown
     - On mobile, if the nav menu is showing and the search bar dropdown is triggered, the search will attach to the bottom of the nav menu: 
-   [![Image from Gyazo](https://i.gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a.gif)](https://gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a)
+   [![Mobile dropdown bug](https://i.gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a.gif)](https://gyazo.com/2623b1476a557ebd7a72ee3a34d93a9a)
     - This is likely because the search bar used Bootstrap Dropdown, whilst the nav menu uses Bootstrap collapse.
 
 
