@@ -13,7 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
         'featured',
     )
 
-    ordering = ('sku',)
+    ordering = ('inventory',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
