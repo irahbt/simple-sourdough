@@ -1,10 +1,7 @@
 Hello {{ profile.user }}, 
 
-This is confirmation of your order from Starter. Your order information is:
+Thank you for becoming a premium member! To view your membership details or to cancel your membership please head over to your account.
 
-You are subscribed to... 
-
-
-If you have any questions regarding your order, please contact us at {{ contact_email }}.
+If you have any questions, please contact us at {{ contact_email }}.
 
 Starter.
