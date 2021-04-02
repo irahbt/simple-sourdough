@@ -266,7 +266,7 @@
 - Checkout Submit Button 
     - Hitting the enter key as opposed to clicking the submit button bypassed the form validation resulting in the following: 
     [![Checkout submit bug](https://i.gyazo.com/f2308004711008b484d4f0c88c945525.gif)](https://gyazo.com/f2308004711008b484d4f0c88c945525)
-    - My assumption is that stripe js elements overrides the form validation but have not been able to identify where. 
+    - My assumption is that stripe js elements overrides the form validation but have not been able to identify where
     - I tried changing the submit button input type to no avail.
     
 - Nav menu mobile dropdown
