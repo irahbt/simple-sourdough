@@ -53,6 +53,9 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if product.inventory < 5 %}
+                                <p class="text-muted small">Low in Stock</p>
+                            {% endif %}
                         {% endif %}
                         <div class="col-12">
                             <span class="hvr">
