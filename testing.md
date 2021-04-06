@@ -230,7 +230,15 @@
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Update Qty | Updates quantity to specified amount, updating all totals accordingly | click | yes 
-| 
+| Delete | Removes specified product from basket, updating all totals accordingly | click | yes 
+| Keep Shopping | Takes user to shop | click | yes
+| Continue to Secure Checkout | Takes user to checkout | click | yes 
+
+### Product Checkout
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Complete Order if form/payment is invalid | User unable to proceed and source of mistake is signposted | click | yes (see bugs below for issue when pressed the enter key to submit)
+| Complete Order if form/payment is valid | User directed to order confirmation, confirmation email sent to user, order created in backend | click | yes 
 
 
 
@@ -273,6 +281,9 @@
         ```
         held_inventory + inventory
         ```
+    - Currently, if an order is created when there isn't enough stock, the order will fail the 'order_fullfilled' object. This is to notify the site owners as soon as possible: 
+    ![Order Fullfilled](static/images/readme-images/testing/order_fullfilled.png)
+
 - Checkout Submit Button 
     - Hitting the enter key as opposed to clicking the submit button bypassed the form validation resulting in the following: 
     [![Checkout submit bug](https://i.gyazo.com/f2308004711008b484d4f0c88c945525.gif)](https://gyazo.com/f2308004711008b484d4f0c88c945525)
