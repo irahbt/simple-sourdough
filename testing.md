@@ -169,7 +169,7 @@
 
 #### Elements of every page
 
-| Element              | Expected behaviour | Tested On             | Confirmed 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Shop Link            | Trigger shop options dropdown| click          | yes
 | Main Navigation Links| Takes user to specified page  | click          | yes
@@ -187,7 +187,7 @@
 
 #### Homepage
 
-| Element              | Expected behaviour | Tested On      | Confirmed 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Ingredients Image | Takes user to shop filtered by ingredients | click | yes
 | Tools Image | Takes user to shop filtered by tools | click | yes
@@ -200,7 +200,7 @@
 
 #### Shop/Products
 
-| Element              | Expected behaviour | Tested On      | Confirmed 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Subtitle | Changes depending on where you arrived from; shop or tools | click | yes
 | Product Count | Displays product count of specified filter | click / inspection | yes
@@ -209,9 +209,9 @@
 
 #### Product Details
 
-| Element              | Expected behaviour | Tested On      | Confirmed 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Add to Basket button | Adds product to basket | click | yes 
+| Add to Basket button | Adds product to session basket / triggers toast that shows a preview of basket | click | yes 
 | Plus/Minus Buttons | Increases/reduced amount of product to be added | click / add | yes
 | Edit Button | Takes superusers to edit product page | click | yes 
 | Delete button | Triggers defensive modal | click | yes 
@@ -219,12 +219,18 @@
 | Modal Delete Button | Removes product | click | yes 
 
 #### Inventory / Stock 
-| Element              | Expected behaviour | Tested On      | Confirmed 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Adding product quantity that exceeds product inventory | Error message and unable to proceed | Removing/Adding stock from Admin Panel | Yes 
 | Attempting to proceed to checkout if item recently sold out | Error message and unable to proceed | Removing/Adding stock from Admin Panel | Yes
 | Attempting to checkout if item recently sold out | Error message and unable to proceed | Removing/Adding stock from Admin Panel | No (see bugs below)
 
+
+#### Shopping Basket 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Update Qty | Updates quantity to specified amount, updating all totals accordingly | click | yes 
+| 
 
 
 

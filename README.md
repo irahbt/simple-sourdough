@@ -546,6 +546,7 @@ Python logic is used to prevent the user from adding products to their basket th
 5. Re-do delete ingredients buttons 
 6. Rest api for adding ingredients / deleting ingredients 
 7. Link products to recipes 
+8. Social account login / signup - awaiting verfification
 
 
 # Information Architecture
