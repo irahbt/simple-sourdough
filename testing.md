@@ -27,7 +27,7 @@
 - Python:
   - [PEP8](http://pep8online.com/)
   - [Gitpod](https://gitpod.io/)
-
+  - 'Line too long' warning has been ignored when splitting would break a link 
 ## Testing User stories
 
 ### First Time User Goals
@@ -318,6 +318,12 @@
 | Sign up | creates account | click | yes 
 | Sign in | Signs user in | click | yes 
 | Sign out | Signs user out | click | yes 
+
+### Confirmation Emails
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Order confirmation | automatically sent on successful purchase of product | Placed order | yes 
+| Membership Subsciption confirmation | automatically sent on successful memberhsip subscription | Subscribe to premium memberhsip | yes 
 
 ## Bugs
 ### Fixed / Worked Around
