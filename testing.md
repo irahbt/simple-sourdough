@@ -259,7 +259,37 @@
 | Modal Delete Button | Removes recipe | click | yes 
 
 
+### Premium (if user does not have a premium account)
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Payment options | Takes user to specified payment amount checkout | click | yes 
 
+### Premium (if user does not have a premium account)
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Payment options | Redirects user to their account with message displayed | click | yes 
+
+### Premium Basket/Checkout
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Back to options button | takes user back to premium page | click | yes
+| Continue to Secure Checkout | takes user to Stripe Checkout | click | yes 
+
+
+### Stripe Premium Checkout
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Add promotional code | advertised promo code "WELCOME10" takes 10% off first payment | entering | yes
+| Subscribe button if form/payment is valid | - User directed to subscription confirmation, confirmation email sent to user, subscription and customer created in Stripe, membership info attached to user profile | click | yes 
+
+### Account / Membership Settings
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Update Information | Updates users information to newly entered data | click | yes 
+| Settings button | takes the user to their membership settings | click | yes 
+| Cancel Membership button | Triggers modal | click | yes 
+| Cancel modal | Cancels memebership on Stripe, change message displayed | click | yes 
+| Order number link | takes the user to the specified order summary | click | yes
 
 
 
