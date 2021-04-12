@@ -506,7 +506,7 @@ Python logic is used to prevent the user from adding products to their basket th
 #### The Form
 - Allows superusers to add a product.
 - All required fields are labelled with *.
-- The select image field is customised with Javascript for better UX 
+- The select image field is customised with Javascript for better UI 
 - If a required field is left empty the user is alerted and prevented from proceeding.
 - If the product is added succesfully a success message is triggered.
 

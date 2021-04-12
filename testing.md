@@ -292,6 +292,21 @@
 | Order number link | takes the user to the specified order summary | click | yes
 
 
+### Product Management 
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Add product if form is valid | Adds product to database and products | click | yes 
+| Edit product | Updates product information with newly entered data | click | yes 
+
+
+### Recipe Management
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Add recipe if form is valid | Adds receipe to database and recipes | click | yes 
+| Add more ingredients | Allows user to enter more ingredients | click | yes 
+| Delete ingredient checkbox | Deletes ingredients from recipes | click | yes with slight front-end issue (see bugs below)
+| Edit recipe | Updates recipe information with newly entered data | click | yes 
+
 
 ## Bugs
 ### Fixed / Worked Around
