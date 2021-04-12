@@ -307,6 +307,17 @@
 | Delete ingredient checkbox | Deletes ingredients from recipes | click | yes with slight front-end issue (see bugs below)
 | Edit recipe | Updates recipe information with newly entered data | click | yes 
 
+### Update Premium Memberships
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Update Premium Membership link | Sync the Stripe Subscription information with the Django user profile membership settings, return HTTP response | removing customer from Stripe and click | yes 
+
+### Allauth Pages
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Sign up | creates account | click | yes 
+| Sign in | Signs user in | click | yes 
+| Sign out | Signs user out | click | yes 
 
 ## Bugs
 ### Fixed / Worked Around
