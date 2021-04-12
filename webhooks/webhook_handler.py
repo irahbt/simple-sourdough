@@ -94,10 +94,11 @@ class StripeWH_Handler:
         pid = intent.id
         customer = intent.get('customer')
 
+        # Bypass if subscription purchase
         if customer:
             return HttpResponse(
                     content=f'Webhook received: {event["type"]} | SUCCESS: \
-                        Created order in webhook',
+                        Stripe Subscription Customer',
                     status=200)
 
         else:

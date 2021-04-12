@@ -241,7 +241,18 @@
 | Complete Order if form/payment is valid | User directed to order confirmation, confirmation email sent to user, order created in backend | click | yes 
 
 
+### Recipes
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Recipe cards | Takes you to specified recipe | click | yes 
+| Premium recipes when logged out | Redirects user to login with message | click | yes 
+| Premium recipes without a premium account | Redirects user to premium page with message | click | yes 
 
+
+### Recipe Details
+| Element              | Expected behaviour | Tested On/By   | Confirmed 
+| -------------------- | ------------------ | -----------    | ----------
+| Bootstrap Accordian | 
 
 
 ## Bugs
