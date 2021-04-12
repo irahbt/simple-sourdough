@@ -106,7 +106,6 @@ def add_recipe(request):
 
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        # formset = IngredientFormSet(request.POST, request.FILES)
 
         if form.is_valid():
             recipe = form.save()
@@ -157,7 +156,7 @@ def edit_recipe(request, recipe_id):
         return redirect(reverse('home'))
 
     IngredientFormSet = forms.inlineformset_factory(
-        Recipe, Ingredient, form=IngredientForm, can_delete=True, extra=0)
+        Recipe, Ingredient, form=IngredientForm, can_delete=True, extra=1)
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
 
@@ -168,7 +167,6 @@ def edit_recipe(request, recipe_id):
             recipe = form.save()
             formset = IngredientFormSet(request.POST, instance=recipe)
             if formset.is_valid():
-                # recipe.save
                 formset.save()
                 messages.success(request, 'Recipe Update Successful')
                 return redirect(reverse('recipe', args=[recipe.id]))
