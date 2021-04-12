@@ -545,7 +545,7 @@ Python logic is used to prevent the user from adding products to their basket th
 4. Stripe elements on subscription checkout 
 5. Re-do delete ingredients buttons 
 6. Rest api for adding ingredients / deleting ingredients 
-7. Link products to recipes 
+7. Link products to recipes vice-a-versa
 8. Social account login / signup - awaiting verfification
 9. Corresponding recipes/ingredients/tools
 
