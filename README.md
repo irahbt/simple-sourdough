@@ -168,7 +168,7 @@ The overall design is clean and simple, reflecting the the purpose of the websit
 
 ![Colour Scheme](./static/images/readme-images/colour-scheme.png)
 
-- Colour was used minimullay in order to not detract from the content.
+- Colour was used minimally in order to not detract from the content.
 - Bootstrap colours were used on icons in toasts to signal different responses:
     - Success = BS Success
     - Info = BS Info
@@ -179,7 +179,7 @@ The overall design is clean and simple, reflecting the the purpose of the websit
 
 - 'Special Elite' was used for headings and titles as well as the main logo. This type-writer like font was chosen to give the impression of a story or a book. 
 - 'Knewave' was used to promote premium content to make it look like a poster.
-- 'IBM Plex Sans' was used for all other text. It was chosen for it's readability. 
+- 'IBM Plex Sans' was used for all other text. It was chosen for its readability. 
 - A range of font sizes and weights were used to denote importance.
 - All fonts had Sans Serif as the back-up font. 
 
@@ -215,7 +215,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - A crown icon is used when to denote premium membership. 
 
 ### Layout
-- [Bootstrap's Grid System](https://getbootstrap.com/docs/5.0/layout/grid/) was used throughout to created the layout and make it responsive.
+- [Bootstrap's Grid System](https://getbootstrap.com/docs/5.0/layout/grid/) was used throughout to create the layout and make it responsive.
 
 ### Styling
 - [Bootstrap](https://getbootstrap.com/) was used in conjunction with custom spacing and colours to provide much of the styling for the site. This includes all **buttons**, **cards** and **nav bars**.
@@ -316,6 +316,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 
 #### Featured Products Carousel 
 - A [Slick](https://kenwheeler.github.io/slick/) Carousel is used to display featured products.
+- An overlay is used to display information, this is on hover-over on larger screens and constant on smaller screens.
 
 ### Shop / Products
 
@@ -339,11 +340,11 @@ Icons are used throughout the site to provide the user with visual cues and crea
 #### Buttons
 ![Product Details Buttons](./static/images/readme-images/products/product-details-buttons.png)
 
-- The quantity buttons use javascript to overlay the default plus/minus buttons to fit with the style of the website.
+- The quantity buttons use Javascript to overlay the default plus/minus buttons to fit with the style of the website.
 
-- The Add to Basket uses python/django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket and the items are stored in the session. 
+- The Add to Basket uses python/Django to add the specified quantity of the specified product to the shopping basket. If successful, a success toast is triggered with a summary of the shopping basket and the items are stored in the session. 
 
-- Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
+- Edit/delete buttons are visible if the user is a Superuser: `if request.user.is_superuser `. 
 
 - Clicking delete triggers a defensive modal:
 ![Delete modal](./static/images/readme-images/products/delete-product-modal.png)
@@ -354,7 +355,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - If a product has 0 Inventory, the 'Add to Basket' button is disable and a message is displayed. 
 ![Out of stock](./static/images/readme-images/products/no-stock.png)
 
-- If a product exce the amount of inventory currently in stock a toast is displayed and the product is not added to the basket. 
+- If a product exceeds the amount of inventory currently in stock a toast is displayed and the product is not added to the basket. 
 ![Exceeds Amount Toast](./static/images/readme-images/products/inventory-exceed.png)
 
 
@@ -387,10 +388,10 @@ Python logic is used to prevent the user from adding products to their basket th
 #### The Form
 - The form combines stripe elements with crispy forms to provide the logic and styling. 
 - Contact Information: 
-    - If the user is annonymous, they are prompted to sign / in or register to save their contact information. This will be related to the user's profile. 
-    - If the user is logged in ( `if user.is_authenticated` ) a checkbox to save shipping information is visable:
+    - If the user is anonymous, they are prompted to sign / in or register to save their contact information. This will be related to the user's profile. 
+    - If the user is logged in ( `if user.is_authenticated` ) a checkbox to save shipping information is visible:
     ![Save Shipping](./static/images/readme-images/product-checkout/save-shipping.png)
-    - If ticked the shipping information is then save on the user's profile. This time saving feature makes user's more likely to proceed with a purchase in the future. 
+    - If ticked the shipping information is then saved on the user's profile. This time saving feature makes user's more likely to proceed with a purchase in the future. 
     - If a required field is left empty the user is alerted and prevented from proceeding:
     ![Required Field](./static/images/readme-images/product-checkout/required-field.png)
 
@@ -402,7 +403,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - Completing payment  
     - The complete payment button sends the entered information and triggers a loading screen: 
     ![Loading Screen](./static/images/readme-images/product-checkout/loading-screen.png)
-    - The loading screen informs that their request is being handled and therefor prevents refereshing or any other interuption that may effect the payment process.
+    - The loading screen informs that their request is being handled and therefor prevents refreshing or any other interruption that may affect the payment process.
 
 
 ### Product Checkout Success
@@ -431,20 +432,20 @@ Python logic is used to prevent the user from adding products to their basket th
 
 - Python/Django handels whether a user has premium membership to access premium recipes: `  if request.user.userprofile.membership`
 
-#### Bootstrap Accordian
-- A Bootstrap accordian is used to show/hide subsections of the recipe. 
+#### Bootstrap Accordion
+- A Bootstrap accordion is used to show/hide subsections of the recipe. 
 - Ingredients are rendered using a bootstrap table for clarity. 
 
 #### Buttons
-- Edit/delete buttons are visable if the user is a Superuser: `if request.user.is_superuser `. 
+- Edit/delete buttons are visible if the user is a Superuser: `if request.user.is_superuser `. 
 
 ### Premium
 ![Premium](./static/images/readme-images/responsive/premium-responsive.png)
 
 #### Payment Options
-- Bootstrap images cards are used to display the two payemnt options.
-- The cars are of one whole image split in to two for visual impact and continuity. 
-- Overlayed text is white and has a text-shadow to ensure readability.
+- Bootstrap images cards are used to display the two payment options.
+- The cars are of one whole image split in two for visual impact and continuity. 
+- Overlaid text is white and has a text-shadow to ensure readability.
 - Clicking on either takes the user to checkout with specified option.
 
 #### Promotional Offer
@@ -453,7 +454,7 @@ Python logic is used to prevent the user from adding products to their basket th
 ### Premium Basket/Checkout
 ![Premium Basket/Checkout](./static/images/readme-images/premium/premium-basket.png)
 - The user must have profile, to which the membership will be attached, to access this page. 
-- If the user is not logged in / does not have a profile they will be redirected to the Sign In page: 
+- If the user is not logged in / does not have a profile they will be redirected to the Sign-In page: 
 ![Sign In Redirect](./static/images/readme-images/premium-signin.png)
 - If the user already has a membership they will be redirected to their account:
 ![Account Redirect](./static/images/readme-images/premium/account-redirect.png)
@@ -510,7 +511,7 @@ Python logic is used to prevent the user from adding products to their basket th
 - All required fields are labelled with *.
 - The select image field is customised with Javascript for better UI 
 - If a required field is left empty the user is alerted and prevented from proceeding.
-- If the product is added succesfully a success message is triggered.
+- If the product is added successfully a success message is triggered.
 
 ### Edit Product
 - Mirrors the Product management page but with fields populated with the specified product. 
@@ -529,7 +530,7 @@ Python logic is used to prevent the user from adding products to their basket th
 
 ### Update Premium Memberships
 - This button syncs the Stripe Subscription information with the Django user profile membership settings. 
-- It returns a http response to inform the user that the request was successful:
+- It returns a HTTP response to inform the user that the request was successful:
 ![Membership Update](./static/images/readme-images/premium/membership-updates.png)
 - It is recommended that this is done regularly to ensure consistency. 
 
@@ -548,7 +549,7 @@ Python logic is used to prevent the user from adding products to their basket th
 5. Re-do delete ingredients buttons 
 6. Rest api for adding ingredients / deleting ingredients 
 7. Link products to recipes vice-a-versa
-8. Social account login / signup - awaiting verfification
+8. Social account login / signup - awaiting verifification
 9. Corresponding recipes/ingredients/tools
 
 # Information Architecture

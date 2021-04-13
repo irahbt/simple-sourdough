@@ -55,15 +55,15 @@
 ### Returning User Goals
 #### As a returning, I want to:
 1. Browse all products and recipes
-    - If user's arrived on the shop page via the 'all' navigation all products will be visable.
+    - If user arrived at the shop page via the 'all' navigation all products will be visible.
 
 2. Browse via product category
-    - If user's arrived on the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
+    - If user arrived at the shop page via the 'tools' or 'ingredients' the products will be filtered by their respective category with the category name displayed e.g:
 
     ![Shop Filter](./static/images/readme-images/products/shop-filter.png)
 
 3. Search for product and/or recipe by name or description
-    - The search bar is in the navigation bar and can therefore be accessed from anywhere in the website. 
+    - The search bar is in the navigation bar and can therefore be accessed from anywhere on the website. 
     - The entered search term searches both products and recipes names and descriptions and returns the results.
   
 4. Easily see what I've searched for and the search results
@@ -78,14 +78,14 @@
     - Clicking on the basket takes the user to their basket
     - Adding an item to the basket triggers a toast that gives a preview of the basket contents (see above).
     - The toast contains a link to 'Go to Basket' 
-    ![Empty Shopping Basket ](./static/images/readme-images/shopping-basket/basket.png)
+    ![Empty Shopping Basket](./static/images/readme-images/shopping-basket/basket.png)
 
 7. Be able to adjust the quantity of individual items in my basket 
     - The plus/minus controls and update button allow user's to alter the quantity of items in their basket, which also updates the totals: 
     [![Update Basket](https://i.gyazo.com/410488d8cc5c6889cd2a2efbe0d51ccb.gif)](https://gyazo.com/410488d8cc5c6889cd2a2efbe0d51ccb)
 
 8. See an order confirmation after checkout
-    - Once payment is completed at checkout, user's are redirected to the checkout succes page: 
+    - Once payment is completed at checkout, users are redirected to the checkout success page: 
     ![Product Checkout Success](./static/images/readme-images/product-checkout/product-checkout-success.png)
 
 9. Receive an email confirmation after checkout
@@ -94,7 +94,7 @@
 10. Easily find how to become a member
     - There are various pointers/links to becoming a member throughout the site: 
         - The navbar
-        - The memberhsip promo on the homepage (pictured above)
+        - The memberhship promo on the homepage (pictured above)
         - The recipes page:
         ![Recipes Subtitle](./static/images/readme-images/recipes/recipes-subtitle-1.png)
         - Account: 
@@ -108,10 +108,10 @@
 #### As a premium member, I want to:
 
 1. View premium content 
-    - The recipe cards feature a large photo, recipe title and a free or    premium tag.
+    - The recipe cards feature a large photo, recipe title and a free or premium tag.
     - If premium membership is not active they will not be able to view premium recipes: 
     [![Recipe not premium](https://i.gyazo.com/c7135788ed471bef21251476b61aec4c.gif)](https://gyazo.com/c7135788ed471bef21251476b61aec4c)
-    - Once premium memberhsip is active, the user is able to access all recipes. 
+    - Once premium membership is active, the user is able to access all recipes. 
 
 2. See when new premium content is added
     - The newest recipe is automatically displayed in premium member's account with a 'new recipe' tag:
@@ -134,7 +134,7 @@
   
 
 3. Delete a product
-    - Superuser's are able to delete a specific product from either that product's details page or the update/edit product page:
+    - Superusers are able to delete a specific product from either that product's details page or the update/edit product page:
     [![Image from Gyazo](https://i.gyazo.com/5012c62d0564f717db37e177c4ea4d68.gif)](https://gyazo.com/5012c62d0564f717db37e177c4ea4d68)
   
 
@@ -146,10 +146,10 @@
     - Delete recipe works in the same way as delete a product above. 
 
 7. Ensure all subscriptions payments are up to date
-    - The Update Premium Memberships is visable to superusers in the account menu, clicking syncs profiles with Stripe Subsciption settings to ensure payments are up to date.
+    - The Update Premium Memberships is visible to superusers in the account menu, clicking syncs profiles with Stripe Subscription settings to ensure payments are up to date.
 
 8. Customise the homepage to include featured products/recipes
-    - The 'featured' option on a product/recips allows superusers to customise their homepage by ticking the featured checkbox when creating or editing a product/recipe. 
+    - The 'featured' option on a product/recipes allows superusers to customise their homepage by ticking the featured checkbox when creating or editing a product/recipe. 
 
 
 ## Manual Testing 
@@ -204,7 +204,7 @@
 | -------------------- | ------------------ | -----------    | ----------
 | Subtitle | Changes depending on where you arrived from; shop or tools | click | yes
 | Product Count | Displays product count of specified filter | click / inspection | yes
-| Sort Options | Change product display depening on chosen option | click | yes
+| Sort Options | Change product display depending on chosen option | click | yes
 
 
 #### Product Details
@@ -252,7 +252,7 @@
 ### Recipe Details
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Bootstrap Accordian | Expand/Collapse | click | yes 
+| Bootstrap Accordion | Expand/Collapse | click | yes 
 | Edit Button | Takes superusers to edit specific recipe page | click | yes 
 | Delete button | Triggers defensive modal | click | yes 
 | Modal cancel Button | Exits modal without any changes to recipe | click | yes 
@@ -288,7 +288,7 @@
 | Update Information | Updates users information to newly entered data | click | yes 
 | Settings button | takes the user to their membership settings | click | yes 
 | Cancel Membership button | Triggers modal | click | yes 
-| Cancel modal | Cancels memebership on Stripe, change message displayed | click | yes 
+| Cancel modal | Cancels membership on Stripe, change message displayed | click | yes 
 | Order number link | takes the user to the specified order summary | click | yes
 
 
@@ -302,7 +302,7 @@
 ### Recipe Management
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Add recipe if form is valid | Adds receipe to database and recipes | click | yes 
+| Add recipe if form is valid | Adds recipe to database and recipes | click | yes 
 | Add more ingredients | Allows user to enter more ingredients | click | yes 
 | Delete ingredient checkbox | Deletes ingredients from recipes | click | yes with slight front-end issue (see bugs below)
 | Edit recipe | Updates recipe information with newly entered data | click | yes 
@@ -323,7 +323,7 @@
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
 | Order confirmation | automatically sent on successful purchase of product | Placed order | yes 
-| Membership Subsciption confirmation | automatically sent on successful memberhsip subscription | Subscribe to premium memberhsip | yes 
+| Membership Subscription confirmation | automatically sent on successful membership subscription | Subscribe to premium membership | yes 
 
 ## Bugs
 ### Fixed / Worked Around
@@ -339,15 +339,15 @@
 
 ### Persisting
 - Ability to purchase sold out items at checkout submit
-    - The inventory levels are checked various points to avoid users being able to purchase sold out items. However at the final stage, they are able to do this. I tried the following solutions: 
+    - The inventory levels are checked various points to avoid users being able to purchase sold out items. However, at the final stage they are able to do this. I tried the following solutions: 
         | Attempted Fix | Failed due to 
         | ------------- | -------------
-        | Add inventory condition to post data e.g `if not product.has_inventory() -> order.delete()` | The deleted order was still being created in the webhook 
+        | Add inventory condition to post data e.g.`if not product.has_inventory() -> order.delete()` | The deleted order was still being created in the webhook 
         | Add inventory condition(as above) to payment_intent.succeeded webhook handler | The order was not being created, however Stripe was still charging the user 
         | Create a webhook handler for charge.succeeded | Failing the charge.succeeded continued to charge the user in Stripe
         | Change where stock was removed from checkout view to add_to_basket view | Could not get the inventory to be added back to stock on session end
 
-        |Potentional solution beyond the scope of this project|
+        |Potential solution beyond the scope of this project|
         -------------------------------------------------------
 
         Add a held_inventory object to Product model. 
