@@ -2,11 +2,6 @@
     margin-top: 75%;
 }
 
-.slick-prev:before,
-.slick-next:before {
-    color: black!important;
-}
-
 .product-container {
     position: relative;
     width: 50%;
