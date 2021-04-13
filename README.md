@@ -307,13 +307,15 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - The home app uses python to filter recipes/products by 'featured' which are passed in to a Django template and sliced to display the correct amount for the layout: 
 
     - `for recipe in featured_recipes|slice:":1"`
-    - `for product in featured_products|slice:":4"`
+    - `for product in featured_products|slice:":8"`
 
 - To the left, a promotional poster is displayed to encourage the user to become a member. Clicking navigates user to the premium purchase options. 
 
 #### Promo Poster
 - The Promo Poster was created to alert the user to the website's premium membership. 
 
+#### Featured Products Carousel 
+- A [Slick](https://kenwheeler.github.io/slick/) Carousel is used to display featured products.
 
 ### Shop / Products
 
@@ -598,7 +600,10 @@ Python logic is used to prevent the user from adding products to their basket th
 11. [PIP](https://pip.pypa.io/en/stable/installing/)
     - User to for install tools needed in this project
 
-12. [Stripe](https://stripe.com/en-gb)
+12. [Slick Carousel](https://kenwheeler.github.io/slick/)
+    - Slick carousel was used to create the carousel on the homepage
+
+13. [Stripe](https://stripe.com/en-gb)
     - Used to handle all payments
 
 
