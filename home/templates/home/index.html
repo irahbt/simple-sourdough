@@ -81,9 +81,9 @@
             {% endif %}
             <a href="{% url 'product_detail' product.id %}">
                 <div class="overlay">
-                    <div class="text">
-                        <h3>{{ product.name|title }}</h3>
-                        <p>£{{ product.price }}</p>
+                    <div class="text ">
+                        <h5>{{ product.name|title }}</h5>
+                        <p class="small">£{{ product.price }}</p>
                     </div>
                 </div>
             </a>

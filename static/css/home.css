@@ -2,6 +2,7 @@
     margin-top: 75%;
 }
 
+/* Code Adapted from https://www.w3schools.com/howto/howto_css_image_overlay.asp */
 .product-container {
     position: relative;
     width: 50%;
