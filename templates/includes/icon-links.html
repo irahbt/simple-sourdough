@@ -3,13 +3,13 @@
         <button class="btn d-none d-lg-block nav-item nav-icon" type="button" id="search-btn" data-bs-toggle="dropdown" aria-expanded="false" aria-labelledby="search-btn">
             <i class="fas fa-search nav-icon"></i>
         </button>
-        <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3" aria-labelledby="search-btn">
+        <div class="dropdown-menu border-0 w-100 bg-white mt-3 py-3">
             <form class="form d-flex justify-content-center" method="GET" action="{% url 'search' %}">
                 <div class="input-group w-50">
                     <input class="form-control search-custom rounded-0" type="text" name="q"
                         placeholder="Search">
                     <div class="input-group-append">
-                        <button class="form-control btn" type="submit">
+                        <button class="form-control btn" type="submit" aria-labelledby="search-submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -41,7 +41,7 @@
     </li>
 
     <li class="list-inline-item">
-        <a class="btn nav-item d-none d-lg-block {% if '/basket/' in request.path %}active{% endif %} nav-icon" href="{% url 'view_basket' %}">
+        <a class="btn nav-item d-none d-lg-block {% if '/basket/' in request.path %}active{% endif %} nav-icon" href="{% url 'view_basket' %}" aria-labelledby="view_basket">
             <i class="fas fa-shopping-basket"></i>
             {% if product_count %}
                 <span class="small text-muted">{{ product_count }}</span>
