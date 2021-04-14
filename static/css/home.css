@@ -41,11 +41,3 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
-
-.blur a:hover {
-    filter: blur(2px);
-    -moz-filter: blur(2px);
-    -webkit-filter: blur(2px);
-    -o-filter: blur(2px);
-    transition: .5s ease;
-}
