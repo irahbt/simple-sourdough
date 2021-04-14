@@ -16,10 +16,10 @@
         <div class="col-12 text-center title-font">
             <h2>Recipes</h2>
             {% if profile.membership %}
-                <h6>Your are a Premium Member <i class="fas fa-crown"></i></h6>
+                <h5>Your are a Premium Member <i class="fas fa-crown"></i></h5>
                 {% else %}
-                <h6>Become a <a href="{% url 'subscriptions' %}" class="text-reset hvr p-2">Premium Member <i
-                            class="fas fa-crown"></i></a> for access to all our recipes.</h6>
+                <h5>Become a <a href="{% url 'subscriptions' %}" class="text-reset hvr p-2">Premium Member <i
+                            class="fas fa-crown"></i></a> for access to all our recipes.</h5>
             {% endif %}
         </div>
     </div>
@@ -42,8 +42,8 @@
                         {% else %}
                             <span class="badge bg-secondary my-3">Free</span>
                         {% endif %}
-                        <h5 class="card-title"><a class="btn ps-0"
-                                href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h5>
+                        <h6 class="card-title"><a class="btn ps-0"
+                                href="{% url 'recipe' recipe.id %}">{{ recipe.title|title }}</a></h6>
                     </div>
                 </div>
             </div>
