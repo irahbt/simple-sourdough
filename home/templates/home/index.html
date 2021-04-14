@@ -12,85 +12,85 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container">
-    <div class="row">
-        <div class="col-12 d-lg-none text-center">
-            <h6>Sourdough made Simple</h6>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-lg-none text-center">
+                <h6>Sourdough made Simple</h6>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row pb-5">
-        <div class="col-12 col-md-6">
-            <div class="card">
-                <a href="{% url 'products' %}?category=ingredients">
-                    <img src="{% static 'images/home-ingredients.png' %}" class="card-img img-fluid" alt="Ingredients">
-                    <div class="card-img-overlay">
-                        <h2 class="card-title text-white text-center image-title title-font"><u>Ingredients</u></h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="card">
-                <a href="{% url 'products' %}?category=tools">
-                    <img id="tools-image" src="{% static 'images/home-tools.png' %}" class="card-img img-fluid" alt="Tools">
-                    <div class="card-img-overlay">
-                        <h2 class="card-title text-white text-center image-title title-font"><u>Tools</u></h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="featured-recipe" class="row py-5">
-        {% for recipe in featured_recipes|slice:":1" %}
-        <div class="col-12 col-md-7">
-            <div class="card">
-                <a href="{% url 'recipe' recipe.id %}">
-                    {% if recipe.image %}
-                    <img src="{{ recipe.image.url }}" class="card-img img-fluid" alt="{{ recipe.title }}">
-                    {% else %}
-                    <img src="{% static 'images/noimage.png' %}" class="card-img img-fluid" alt="{{ recipe.title }}">
-                    {% endif %}
-                    <div class="card-img-overlay">
-                        <h5 class="card-title text-white title-font">{{ recipe.title|title }} Recipe </h5>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-5">
-            <a href="{% url 'subscriptions' %}">
-                <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid">
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Featured products Carousel -->
-    <div class="multiple-items">
-        {% for product in featured_products|slice:":12" %}
-        <div class="product-container">
-            {% if product.image %}
-            <img class="img-fluid px-1" src="{{ product.image.url }}" alt="{{ product.name }}">
-            {% else %}
-            <img class="img-fluid px-2" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
-            {% endif %}
-            <a href="{% url 'product_detail' product.id %}">
-                <div class="overlay">
-                    <div class="text ">
-                        <h5><strong>{{ product.name|title }}</strong></h5>
-                        <p class="small">£{{ product.price }}</p>
-                    </div>
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <a href="{% url 'products' %}?category=ingredients">
+                        <img src="{% static 'images/home-ingredients.png' %}" class="card-img img-fluid" alt="Ingredients">
+                        <div class="card-img-overlay">
+                            <h2 class="card-title text-white text-center image-title title-font"><u>Ingredients</u></h2>
+                        </div>
+                    </a>
                 </div>
-            </a>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <a href="{% url 'products' %}?category=tools">
+                        <img id="tools-image" src="{% static 'images/home-tools.png' %}" class="card-img img-fluid" alt="Tools">
+                        <div class="card-img-overlay">
+                            <h2 class="card-title text-white text-center image-title title-font"><u>Tools</u></h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
+
+        <div id="featured-recipe" class="row py-5">
+            {% for recipe in featured_recipes|slice:":1" %}
+            <div class="col-12 col-md-7">
+                <div class="card">
+                    <a href="{% url 'recipe' recipe.id %}">
+                        {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" class="card-img img-fluid" alt="{{ recipe.title }}">
+                        {% else %}
+                        <img src="{% static 'images/noimage.png' %}" class="card-img img-fluid" alt="{{ recipe.title }}">
+                        {% endif %}
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-white title-font p-2">{{ recipe.title|title }} Recipe </h5>
+                        </div> 
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-md-5">
+                <a href="{% url 'subscriptions' %}">
+                    <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Featured products Carousel -->
+        <div class="multiple-items">
+            {% for product in featured_products|slice:":12" %}
+                <div class="product-container">
+                    {% if product.image %}
+                        <img class="img-fluid px-1" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img class="img-fluid px-2" src="{% static 'images/noimage.png' %}" alt="{{ product.name }}">
+                    {% endif %}
+                    <a href="{% url 'product_detail' product.id %}">
+                        <div class="overlay">
+                            <div class="text ">
+                                <h5><strong>{{ product.name|title }}</strong></h5>
+                                <p class="small">£{{ product.price }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}
 
 
