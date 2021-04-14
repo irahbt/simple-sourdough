@@ -44,5 +44,8 @@
 
 .blur:hover {
     filter: blur(2px);
-    transition: .4s ease;
+    -moz-filter: blur(2px);
+    -webkit-filter: blur(2px);
+    -o-filter: blur(2px);
+    transition: .5s ease;
 }
