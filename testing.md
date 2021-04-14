@@ -28,6 +28,9 @@
   - [PEP8](http://pep8online.com/)
   - [Gitpod](https://gitpod.io/)
   - 'Line too long' warning has been ignored when splitting would break a link 
+
+## Lighthouse 
+
 ## Testing User stories
 
 ### First Time User Goals
