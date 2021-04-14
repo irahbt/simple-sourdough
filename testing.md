@@ -4,6 +4,7 @@
 
 ## Table of Contents
 1. [Validators](#validators)
+3. [Lighthouse](#lighthouse-in-chrome-devtools)
 2. [User Stories](#testing-user-stories)
      - [First Time User Goals](#first-time-user-goals)
      - [Returning User Goals](#returning-user-goals)
@@ -11,9 +12,9 @@
      - [Premium Member Goals](#premium-member-goals)
      - [Admin](#admin-goals)
 3. [Manual Testing](#manual-testing)
-   - [Devices & Browsers](#devices-tested-on)
-   - [User Testing](#testing)
-   - [Testing Features](#testing-interactive-elements)
+   - [Devices & Browsers](#devices-&-browsers)
+   - [User Testing](#user-testing)
+   - [Interactive Elements](#interactive-elements)
 4. [Bugs](#bugs)
 
 ## Validators
@@ -29,7 +30,15 @@
   - [Gitpod](https://gitpod.io/)
   - 'Line too long' warning has been ignored when splitting would break a link 
 
-## Lighthouse 
+## Lighthouse in Chrome DevTools
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to generate reports on each page for the following criteria: 
+  - Performance 
+  - Accessibility
+  - Best Practices
+  - SEO 
+- All reports were deemed acceptable
+
+
 
 ## Testing User stories
 
@@ -168,7 +177,7 @@
 
 - Friends and family members viewed the site and provided feedback on bugs and UX issues.
 
-### Testing Features / Interactive Elements
+### Interactive Elements
 
 #### Elements of every page
 
