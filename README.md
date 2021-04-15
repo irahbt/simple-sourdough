@@ -88,6 +88,8 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 
    - [Heroku Deployment](#heroku-deployment)
 
+    - [Emails](#emails)
+
    </details>
 
 7. <details><summary>Credits
@@ -584,7 +586,7 @@ Python logic is used to prevent the user from adding products to their basket th
     - Used to help make the website responsive on a range of devices as well as various interactive elements
 
 4. [Canva](https://www.canva.com/)
-    - Used to edit images
+    - Used to create and edit images
 
 5. [Crispy Bootstrap5](https://pypi.org/project/crispy-bootstrap5/)
     - Used with django-crispy-forms to format all forms
@@ -668,8 +670,6 @@ pip -r requirements.txt
 
 ```
 
-
-
 ## Heroku Deployment
 
 1. Create a `requirements.txt` file with terminal command:
@@ -694,8 +694,66 @@ echo web: python app.py > Procfile
 
 7. On the Heroku dashboard for the app, go to "Settings" > "Reveal Config Vars".
 
-8. Set the config vars
+8. Set the following config vars:
+    ![Config Vars](./static/images/readme-images/config-vars.png)
+    - See Django, AWS and Stripe documentation for secret keys. 
+
+9. In the heroku dashboard, go to "Deploy"
+
+10. In the heroku dashboard, click "Deploy"
+
+11. Select deployment method > "GitHub"
+
+12. Select "Enable Automatic Deployment"
+
+13. Make sure master branch is selected
+
+14. Click "Deploy Branch"
+
+15. Once app has been built, click "View" to launch your deployed app
+
+## Emails
+
+
+
 
 ## Credits
 
 ### Content
+
+- All copy was written by myself. 
+
+### Media
+
+- Images were sourced from:
+    - [Unsplash](https://unsplash.com/)
+    - [Adobe Stock](https://stock.adobe.com/)
+
+- [Reduce Images](https://www.reduceimages.com/) was used to compress images
+
+- [Real Favicon Generator](https://realfavicongenerator.net/) was used to generate the website's favicon.
+
+- Icons from [Font Awesome](https://fontawesome.com/)
+
+### Code
+- [Bootstrap](https://getbootstrap.com/) code was used throughout.
+
+- Code was adapted from the Code Institute's [Boutique Ado](https://github.com/ckz8780/boutique_ado_v1) project
+
+- The following resources were used to guide the creation of:
+
+    - Stripe Subscription
+        - [Django Stripe Subscriptions](https://testdriven.io/blog/django-stripe-subscriptions/#stripe-webhooks)
+        - [Django and Stripe subscriptions](https://medium.com/cloud-home-lab/how-to-build-a-django-membership-site-with-payment-integration-part-1-163552292aed)
+
+    - Recipe Ingredients Formset
+        - [Getting Started With Formsets—Create a Recipe App](https://engineertodeveloper.com/getting-started-with-formsets-create-a-recipe-app/)
+
+    - Inventory: 
+        - [Orders & Inventory - Day 7 - Django Bootcamp](https://www.youtube.com/watch?v=TtxOwoZlNFY)
+
+### Acknowledgements
+
+Special thanks to my Code Institute mentor, Dick Vlaanderen, for his guidance throughout this project.
+
+Also, a big thank you to my Mum for providing inspiration in the form of freshly baked Sourdough. 
