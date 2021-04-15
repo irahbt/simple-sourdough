@@ -4,7 +4,7 @@
 
 ## Table of Contents
 1. [Validators](#validators)
-3. [Lighthouse](#lighthouse-in-chrome-devtools)
+3. [Automated Testing](#automated-testing)
 2. [User Stories](#testing-user-stories)
      - [First Time User Goals](#first-time-user-goals)
      - [Returning User Goals](#returning-user-goals)
@@ -30,7 +30,9 @@
   - [Gitpod](https://gitpod.io/)
   - 'Line too long' warning has been ignored when splitting would break a link 
 
-## Lighthouse in Chrome DevTools
+
+## Automated Testing
+### Lighthouse in Chrome DevTools
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to generate reports on each page for the following criteria: 
   - Performance 
   - Accessibility
