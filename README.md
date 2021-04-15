@@ -697,6 +697,7 @@ echo web: python app.py > Procfile
 8. Set the following config vars:
     ![Config Vars](./static/images/readme-images/config-vars.png)
     - See Django, AWS and Stripe documentation for secret keys. 
+    - See [Emails](#emails) below for email variables.
 
 9. In the heroku dashboard, go to "Deploy"
 
@@ -714,7 +715,12 @@ echo web: python app.py > Procfile
 
 ## Emails
 
+### Setting up emails with [Gmail](https://mail.google.com/)
 
+1. Create account 
+2. Go to Settings > Accounts and Import > Change account settings > Other Google Account settings
+3. Got to Security tab > Signing in to google > Turn on 2 step verification > Set device to mail and chose a name
+4. Add the password and host e-mail to your Heroku Config Vars 
 
 
 ## Credits
