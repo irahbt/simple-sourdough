@@ -10,73 +10,74 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
-{% block content %}
-<div class="container">
-    <div class="row">
-        <h2 class="my-3 title-font">Your Premium Membership</h2>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="table-responsive">
-                <table class="table table-borderless border-custom-top">
-                    <thead class="text-xs text-muted">
-                        <tr 0>
-                            <th scope="col">Payment Type</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody class="border-custom-bottom">
-                        <tr>
-                            <td>
-                                <p class="m-0"><strong>{{ subscription|title }}</strong></p>
-
-                            </td>
-                            <td>
-                                <p>£{{ final_pound | floatformat:2 }}</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 mt-3">
-                    <h3>Total to be Paid Now: £{{ final_pound | floatformat:2 }}</h3>
-                    <small class="text-muted">Add any Promo Codes at Checkout</small>
-                    <p class="pt-3">
-                        <a href="{% url 'subscriptions' %}" class="btn ps-0 hvr">
-                            <i class="fas fa-chevron-left"></i>
-                            <span>Back to Options</span>
-                        </a>
-                    </p>
-                </div>
-                <div class="col-12 col-md-6 mt-3">
-                    <button id="subscription-checkout-button" class="btn btn-dark p-2"
-                        data-secret="{{ session_id }}">
-                        <span class="p-3 pe-0 letter-spacing">Continue to Secure Checkout</span>
-                        <i class="fas fa-lock p-3"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container extra-padding-container">
         <div class="row">
             <div class="col"></div>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2 class="my-3 title-font">Your Premium Membership</h2>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table table-borderless border-custom-top">
+                        <thead class="text-xs text-muted">
+                            <tr 0>
+                                <th scope="col">Payment Type</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-custom-bottom">
+                            <tr>
+                                <td>
+                                    <p class="m-0"><strong>{{ subscription|title }}</strong></p>
+
+                                </td>
+                                <td>
+                                    <p>£{{ final_pound | floatformat:2 }}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3">
+                        <h3>Total to be Paid Now: £{{ final_pound | floatformat:2 }}</h3>
+                        <small class="text-muted">Add any Promo Codes at Checkout</small>
+                        <p class="pt-3">
+                            <a href="{% url 'subscriptions' %}" class="btn ps-0 hvr">
+                                <i class="fas fa-chevron-left"></i>
+                                <span>Back to Options</span>
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-6 mt-3">
+                        <button id="subscription-checkout-button" class="btn btn-dark p-2"
+                            data-secret="{{ session_id }}">
+                            <span class="p-3 pe-0 letter-spacing">Continue to Secure Checkout</span>
+                            <i class="fas fa-lock p-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container extra-padding-container">
+            <div class="row">
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
+    {{ block.super }}
     <script type="text/javascript">
         let sessionid = "{{session_id}}";
     </script>

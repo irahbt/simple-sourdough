@@ -1,7 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-
+    
 <head>
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -101,7 +101,6 @@
     {% block content %}
     {% endblock %}
 
-
     <footer class="{% block footer_position %}footer{% endblock %} py-3 bg-white">
         <div class="container">
             <small class="title-font mt-3">starter@starter.com</small>
@@ -130,8 +129,7 @@
             $(document).ready(function () {
                 $('.toast').toast('show');
             });
-        </script>
-        <script>
+
             $('.up-link').click(function (e) {
                 window.scrollTo(0, 0)
             })

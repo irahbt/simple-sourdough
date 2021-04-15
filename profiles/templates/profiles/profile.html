@@ -14,99 +14,99 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row mb-5">
-        <div class="col-12 col-md-6 mb-5 mb-md-0">
-            <div class="text-center">
-                <i class="fas fa-user-edit"></i>
-                <h5 class="title-font">Account Details</h5>
-            </div>
-            <form action="{% url 'profile' %}" method="POST" id="profile-updated-form" class="p-2">
-                {% csrf_token %}
-                {{ form|crispy }}
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 col-md-6 mb-5 mb-md-0">
                 <div class="text-center">
-                    <button class="btn btn-dark p-2"><small>Update Information</small></button>
+                    <i class="fas fa-user-edit"></i>
+                    <h5 class="title-font">Account Details</h5>
                 </div>
-            </form>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="text-center">
-                    <i class="fas fa-crown"></i>
-                <h5 class="title-font">Premium Members</h5>
-            </div>
-            {% if profile.membership %}
-                <div class="card mx-auto">
-                    {% if latest_recipe.image %}
-                        <a href="{% url 'recipe' latest_recipe.id %}">
-                            <img src="{{ latest_recipe.image.url }}" class="card-img-top" alt="{{ latest_recipe.title }}">
-                        </a>
-                    {% else %}
-                        <a href="{% url 'recipe' latest_recipe.id %}">
-                            <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ latest_recipe.title }}">
-                        </a>    
-                    {% endif %}
-                    <div class="card-body">
-                        <span class="badge bg-secondary">New Recipe</span>
-                        <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' latest_recipe.id %}">{{ latest_recipe.title|title }}</a></h5>
+                <form action="{% url 'profile' %}" method="POST" id="profile-updated-form" class="p-2">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center">
+                        <button class="btn btn-dark p-2"><small>Update Information</small></button>
                     </div>
-                </div>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
                 <div class="text-center">
-                    <a href="{% url 'subscription_settings' %}" class="btn btn-dark p-2 mt-2 mt-md-0"><small>Settings</small></a>
+                        <i class="fas fa-crown"></i>
+                    <h5 class="title-font">Premium Members</h5>
                 </div>
-            {% else %}
-                <a href="{% url 'subscriptions' %}" class="d-flex justify-content-center">
-                    <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid member-promo">
-                </a>
-            {% endif %}
-        </div>         
-    </div>
-    <div class="row pt-5">
-        <div class="col-12">
-            <h5 class="text-center title-font">Order History</h5>
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Order Number</th>
-                            <th>Date</th>
-                            <th>Items</th>
-                            <th>Order Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in orders %}
+                {% if profile.membership %}
+                    <div class="card mx-auto">
+                        {% if latest_recipe.image %}
+                            <a href="{% url 'recipe' latest_recipe.id %}">
+                                <img src="{{ latest_recipe.image.url }}" class="card-img-top" alt="{{ latest_recipe.title }}">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe' latest_recipe.id %}">
+                                <img src="{% static 'images/noimage.png' %}" class="card-img-top" alt="{{ latest_recipe.title }}">
+                            </a>    
+                        {% endif %}
+                        <div class="card-body">
+                            <span class="badge bg-secondary">New Recipe</span>
+                            <h5 class="card-title"><a class="btn ps-0" href="{% url 'recipe' latest_recipe.id %}">{{ latest_recipe.title|title }}</a></h5>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="{% url 'subscription_settings' %}" class="btn btn-dark p-2 mt-2 mt-md-0"><small>Settings</small></a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'subscriptions' %}" class="d-flex justify-content-center">
+                        <img src="{% static 'images/member-promo.png' %}" alt="Membership Promo" class="img-fluid member-promo">
+                    </a>
+                {% endif %}
+            </div>         
+        </div>
+        <div class="row pt-5">
+            <div class="col-12">
+                <h5 class="text-center title-font">Order History</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
                             <tr>
-                                <td>
-                                    <a href="{% url 'order_history' order.order_number %}"
-                                    title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
-                                    </a>
-                                </td>
-                                <td>{{ order.date }}</td>                                    
-                                <td>
-                                    <ul class="list-unstyled">
-                                        {% for item in order.lineitems.all %}
-                                            <li class="small">
-                                                {{ item.product.name }} x {{ item.quantity }}           
-                                            </li>
-                                        {% endfor %}
-                                
-                                    </ul>
-                                </td>
-                                <td>£{{ order.grand_total }}</td>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'order_history' order.order_number %}"
+                                        title="{{ order.order_number }}">
+                                            {{ order.order_number|truncatechars:6 }}
+                                        </a>
+                                    </td>
+                                    <td>{{ order.date }}</td>                                    
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {% for item in order.lineitems.all %}
+                                                <li class="small">
+                                                    {{ item.product.name }} x {{ item.quantity }}           
+                                                </li>
+                                            {% endfor %}
+                                    
+                                        </ul>
+                                    </td>
+                                    <td>£{{ order.grand_total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 

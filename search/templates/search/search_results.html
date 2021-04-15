@@ -10,80 +10,80 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <p class="m-0">
-                {{ products|length }} Product(s) found for <strong>"{{ search_term }}"</strong>
-            </p>
-        </div>
-    </div>
-    <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3 pb-4">
-        {% for product in products %}
-            <div class="col">
-                <div class="card border-0">
-                    {% if product.image %}
-                    <a href="{% url 'product_detail' product.id %}">
-                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </a>
-                    {% else %}
-                    <a href="{% url 'product_detail' product.id %}">
-                        <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}"
-                            alt="{{ product.name }}">
-                    </a>
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>{{ product.name|title }}</strong></h5>
-                        <p class="card-text"><strong>£{{ product.price }}</strong></p>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <p class="m-0">
+                    {{ products|length }} Product(s) found for <strong>"{{ search_term }}"</strong>
+                </p>
             </div>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="row py-4">
-        <div class="col-6">
-            <p class="m-0">
-                {{ recipes|length }} Recipe(s) found for <strong>"{{ search_term }}"</strong>
-            </p>
         </div>
-    </div>
-
-    <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3">
-        {% for recipe in recipes.all %}
-            <div class="col">
-                <div class="card border-0">
-                    {% if recipe.image %}
-                        <a href="{% url 'recipe' recipe.id %}">
-                            <img class="card-img-top img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+        <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3 pb-4">
+            {% for product in products %}
+                <div class="col">
+                    <div class="card border-0">
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
-                    {% else %}
-                        <a href="{% url 'recipe' recipe.id %}">
+                        {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}"
-                                alt="{{ recipe.title }}">
+                                alt="{{ product.name }}">
                         </a>
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>{{ recipe.title|title }}</strong></h5>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ product.name|title }}</strong></h5>
+                            <p class="card-text"><strong>£{{ product.price }}</strong></p>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="row py-4">
+            <div class="col-6">
+                <p class="m-0">
+                    {{ recipes|length }} Recipe(s) found for <strong>"{{ search_term }}"</strong>
+                </p>
             </div>
-        {% endfor %}
-    </div>
-</div>
+        </div>
 
-<!-- Push down content on medium screens -->
-<div class="container extra-padding-container-200 d-none d-md-block d-lg-none">
-    <div class="row">
-        <div class="col"></div>
+        <div class="row row-cols-1 row-cols-lg-4 row-cols-sm-3">
+            {% for recipe in recipes.all %}
+                <div class="col">
+                    <div class="card border-0">
+                        {% if recipe.image %}
+                            <a href="{% url 'recipe' recipe.id %}">
+                                <img class="card-img-top img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'recipe' recipe.id %}">
+                                <img class="card-img-top img-fluid" src="{% static 'images/noimage.png' %}"
+                                    alt="{{ recipe.title }}">
+                            </a>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ recipe.title|title }}</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <!-- Push down content on medium screens -->
+    <div class="container extra-padding-container-200 d-none d-md-block d-lg-none">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
+
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block footer_position %}

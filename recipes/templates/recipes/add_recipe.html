@@ -11,43 +11,43 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="my-2 title-font">Recipe Management</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="my-2 title-font">Recipe Management</h2>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
+                <h5>Add a Recipe</h5>
+                <hr>
+                <form id="recipe-form" method="POST" action="{% url 'add_recipe' %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <h5 class="pt-3">Ingredients </h5> 
+                    <small class="py-3">Tick delete box if blank</small>
+                    {{ formset.management_form }}
+                    {% include 'recipes/includes/ingredient-formset.html' %}
+                    <div class="my-5">
+                        <button id="submit-form" class="btn btn-dark p-2 w-100" type="submit"><small>Add Recipe</small></button>
+                    </div>
+                </form>
+            </div>    
         </div>
     </div>
 
-    <div class="row my-4">
-        <div class="col-12 col-md-6 mt-4 mt-md-0">
-            <h5>Add a Recipe</h5>
-            <hr>
-            <form id="recipe-form" method="POST" action="{% url 'add_recipe' %}" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    {% if field.name != 'image' %}
-                        {{ field | as_crispy_field }}
-                    {% else %}
-                        {{ field }}
-                    {% endif %}
-                {% endfor %}
-                <h5 class="pt-3">Ingredients </h5> 
-                <small class="py-3">Tick delete box if blank</small>
-                {{ formset.management_form }}
-                {% include 'recipes/includes/ingredient-formset.html' %}
-                <div class="my-5">
-                    <button id="submit-form" class="btn btn-dark p-2 w-100" type="submit"><small>Add Recipe</small></button>
-                </div>
-            </form>
-        </div>    
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
-
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
 {% endblock %}
 
 {% block postloadjs %}

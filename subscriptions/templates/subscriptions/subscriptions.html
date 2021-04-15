@@ -3,73 +3,72 @@
 
 
 {% block extra_css %}
-<style>
-.image-text{
-    margin-top: 50%;
-    text-shadow: 0 2px 0 black;
-}
+    <style>
+    .image-text{
+        margin-top: 50%;
+        text-shadow: 0 2px 0 black;
+    }
 
-.image-card {
-    width: 22rem;
-}
-</style>
+    .image-card {
+        width: 22rem;
+    }
+    </style>
 {% endblock %}
 
 
 {% block page_header %}
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row text-center">
-        <i class="fas fa-crown pb-1"></i>
-        <h1 class="title-font">Premium Membership</h1>
-        <p>Become a Premium member for access to all our recipes, tips, tricks and more.</p>
-        <p class="small text-muted">No commitment. Cancel any time.</p>
-    </div>
-     <div class="row">
-        <div class="col-12 col-md-6 mb-1 mb-lg-none d-flex justify-content-center d-md-block pe-md-1">
-            <div class="card image-card float-md-end darken">
-                <a href="{% url 'subscription_checkout' %}?subscription=monthly">
-                    <img src="{% static 'images/sub-1.png' %}" class="card-img img-fluid" alt="">    
-                    <div class="card-img-overlay text-white text-center image-text">
-                        <h2 class="card-title premium-font">£2.50 / Monthly</h2>
-                        <p class="card-subtitle py-2"><strong>Become a member for the price of a coffee!</strong></p>
-                        <i class="fs-1 fas fa-long-arrow-alt-right large"></i>
-                    </div>
-                </a>
+    <div class="container">
+        <div class="row text-center">
+            <i class="fas fa-crown pb-1"></i>
+            <h1 class="title-font">Premium Membership</h1>
+            <p>Become a Premium member for access to all our recipes, tips, tricks and more.</p>
+            <p class="small text-muted">No commitment. Cancel any time.</p>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 mb-1 mb-lg-none d-flex justify-content-center d-md-block pe-md-1">
+                <div class="card image-card float-md-end darken">
+                    <a href="{% url 'subscription_checkout' %}?subscription=monthly">
+                        <img src="{% static 'images/sub-1.png' %}" class="card-img img-fluid" alt="">    
+                        <div class="card-img-overlay text-white text-center image-text">
+                            <h2 class="card-title premium-font">£2.50 / Monthly</h2>
+                            <p class="card-subtitle py-2"><strong>Become a member for the price of a coffee!</strong></p>
+                            <i class="fs-1 fas fa-long-arrow-alt-right large"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-center d-md-block ps-md-1">
+                <div class="card image-card">
+                    <a href="{% url 'subscription_checkout' %}?subscription=yearly">
+                        <img src="{% static 'images/sub-2.png' %}" class="card-img img-fluid" alt="">    
+                        <div class="card-img-overlay text-white text-center image-text">
+                            <h2 class="card-title premium-font">£25.00 / Yearly</h2>
+                            <p class="card-subtitle py-2"><strong>OR save yourself a fiver with yearly payments. </strong></p>
+                            <i class="fs-1 fas fa-long-arrow-alt-right"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 d-flex justify-content-center d-md-block ps-md-1">
-            <div class="card image-card">
-                <a href="{% url 'subscription_checkout' %}?subscription=yearly">
-                    <img src="{% static 'images/sub-2.png' %}" class="card-img img-fluid" alt="">    
-                    <div class="card-img-overlay text-white text-center image-text">
-                        <h2 class="card-title premium-font">£25.00 / Yearly</h2>
-                        <p class="card-subtitle py-2"><strong>OR save yourself a fiver with yearly payments. </strong></p>
-                        <i class="fs-1 fas fa-long-arrow-alt-right"></i>
-                    </div>
-                </a>
+        <div class="row text-center pt-3">
+            <div class="col-12">
+                <p class="small text-muted">Use code WELCOME10 at checkout for 10% off your first payment.</p>
             </div>
         </div>
     </div>
-    <div class="row text-center pt-3">
-        <div class="col-12">
-            <p class="small text-muted">Use code WELCOME10 at checkout for 10% off your first payment.</p>
+
+
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
         </div>
     </div>
-</div>
-
-
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-
 {% endblock %}

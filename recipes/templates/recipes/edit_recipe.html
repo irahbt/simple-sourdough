@@ -3,84 +3,84 @@
 
 
 {% block page_header %}
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <h2 class="my-2 title-font">Recipe Management</h2>
-            <h5>Edit a Recipe</h5>
-            <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h2 class="my-2 title-font">Recipe Management</h2>
+                <h5>Edit a Recipe</h5>
+                <hr>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <form method="POST" action="{% url 'edit_recipe' recipe.id %}" class="form mb-2"
-                enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    {% if field.name != 'image' %}
-                        {{ field | as_crispy_field }}
-                    {% else %}
-                        {{ field }}
-                    {% endif %}
-                {% endfor %}
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'edit_recipe' recipe.id %}" class="form mb-2"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
 
-                <h5 class="pt-3">Ingredients</h5>
-                <small class="py-3">Tick delete box if blank</small>
-                {{ formset.management_form }}
-                {% include 'recipes/includes/ingredient-formset.html' %}
+                    <h5 class="pt-3">Ingredients</h5>
+                    <small class="py-3">Tick delete box if blank</small>
+                    {{ formset.management_form }}
+                    {% include 'recipes/includes/ingredient-formset.html' %}
 
-                <div class="my-5">
-                    <button class="btn btn-dark p-2 w-100 mb-3" type="submit"><small>Update Recipe</small></button>
-                    <button type="button" class="btn btn-danger p-2 w-100" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal">
-                        Delete Recipe
-                    </button>
-                    <!-- delete modal -->
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure your want to delete recipe: {{ recipe.title|title }}?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-danger p-2" href="{% url 'delete_recipe' recipe.id %}">Delete
-                                        Product</a>
+                    <div class="my-5">
+                        <button class="btn btn-dark p-2 w-100 mb-3" type="submit"><small>Update Recipe</small></button>
+                        <button type="button" class="btn btn-danger p-2 w-100" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal">
+                            Delete Recipe
+                        </button>
+                        <!-- delete modal -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure your want to delete recipe: {{ recipe.title|title }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <a class="btn btn-danger p-2" href="{% url 'delete_recipe' recipe.id %}">Delete
+                                            Product</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container extra-padding-container">
-    <div class="row">
-        <div class="col"></div>
+    <div class="container extra-padding-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
+    {{ block.super }}
     <script>
         $('#new-image').change(function () {
             var file = $('#new-image')[0].files[0];

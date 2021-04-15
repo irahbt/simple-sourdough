@@ -728,6 +728,7 @@ echo web: python app.py > Procfile
 ### Content
 
 - All copy was written by myself. 
+- Product descriptions were adapted from various similar product descriptions.
 
 ### Media
 
@@ -762,4 +763,4 @@ echo web: python app.py > Procfile
 
 Special thanks to my Code Institute mentor, Dick Vlaanderen, for his guidance throughout this project.
 
-Also, a big thank you to my Mum for providing inspiration in the form of freshly baked Sourdough. 
+Also, a big thank you to my Mum for providing inspiration in the form of freshly baked sourdough loaves.
