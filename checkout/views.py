@@ -99,10 +99,10 @@ def checkout(request):
                             count=item_data, save=True)
                         product.inventory_updated = True
 
-                    # if not product.has_inventory():
-                    #     if not inventory >= item_data:
-                    #         order.order_fulfilled = False
-                    #         order.save()
+                    if not product.has_inventory():
+                        if not inventory >= item_data:
+                            order.order_fulfilled = False
+                            order.save()
 
                 except Product.DoesNotExist:
                     messages.error(request, (
