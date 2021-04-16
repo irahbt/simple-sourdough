@@ -101,7 +101,7 @@ def checkout(request):
 
                     if not product.has_inventory():
                         if not inventory >= item_data:
-                            order.order_fulfilled = False
+                            order.order_fullfilled = False
                             order.save()
 
                 except Product.DoesNotExist:
