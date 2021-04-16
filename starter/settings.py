@@ -206,7 +206,7 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 if 'USE_HEROKU_DOMAIN' in os.environ:
-    DOMAIN_URL = os.getenv('HEROKU_DOMAIN_URL')
+    DOMAIN_URL = os.environ.get('HEROKU_DOMAIN_URL')
 else:
     DOMAIN_URL = os.getenv('LOCAL_DOMAIN_URL', '')
 
