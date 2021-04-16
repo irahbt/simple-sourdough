@@ -19,7 +19,7 @@
 
 ## Validators
 - HTML: [W3C Markup Validator](https://validator.w3.org/)
-  - The use of Django templating in the html results in a number of errors in each file, all have been reviewed and deemed acceptable.
+  - The use of Django templates in the HTML results in a number of errors in each file, all have been reviewed and deemed acceptable.
 
 - CSS: [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
 
