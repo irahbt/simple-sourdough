@@ -377,7 +377,7 @@
         held_inventory + inventory
         ```
     - Currently, if an order is created when there isn't enough stock, the order will fail the 'order_fulfilled' object. This is to notify the site owners as soon as possible: 
-    ![Order Fulfilled](static/images/readme-images/testing/order_fullfilled.png)
+    ![Order Fulfilled](static/images/readme-images/testing/order_fullfiled.png)
 
 - Checkout Submit Button 
     - Hitting the enter key as opposed to clicking the submit button bypassed the form validation resulting in the following: 
