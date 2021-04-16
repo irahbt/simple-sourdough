@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('order_number', models.CharField(editable=False, max_length=32)),
-                ('order_fullfilled', models.BooleanField(default=True)),
+                ('order_fulfilled', models.BooleanField(default=True)),
                 ('full_name', models.CharField(max_length=50)),
                 ('email', models.EmailField(max_length=254)),
                 ('phone_number', models.CharField(max_length=20)),
