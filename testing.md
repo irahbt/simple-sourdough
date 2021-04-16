@@ -108,7 +108,7 @@
 10. Easily find how to become a member
     - There are various pointers/links to becoming a member throughout the site: 
         - The navbar
-        - The memberhship promo on the homepage (pictured above)
+        - The membership promo on the homepage (pictured above)
         - The recipes page:
         ![Recipes Subtitle](./static/images/readme-images/recipes/recipes-subtitle-1.png)
         - Account: 
@@ -143,7 +143,7 @@
     [![Add Product](https://i.gyazo.com/b428595459b645c0ec3b3f8c71dcd0d8.gif)](https://gyazo.com/b428595459b645c0ec3b3f8c71dcd0d8)
     
 2. Edit/update a product
-    - Superuser's are able to edit/update a specific product from that product's details page:
+    - Superusers are able to edit/update a specific product from that product's details page:
     [![Edit Product](https://i.gyazo.com/3e57c1001d2ecc1ad506a1305df1d657.gif)](https://gyazo.com/3e57c1001d2ecc1ad506a1305df1d657)
   
 
@@ -171,7 +171,7 @@
 
 - The Website was tested on Google Chrome, Firefox, Microsoft Edge and Safari browsers.
 
-- The website was tested on a variety of devices including; Desktop, Laptop, iPad mini, iPhone 7, iPhone 8, iPhoneX, Nokia E30 and Galaxy S20.
+- The website was tested on a variety of devices including; Desktop, Laptop, iPad Mini, iPhone 7, iPhone 8, iPhoneX, Nokia E30 and Galaxy S20.
 
 - It was also viewed on all devices and orientations available in Chrome DevTools.
 
@@ -293,8 +293,8 @@
 ### Stripe Premium Checkout
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Add promotional code | advertised promo code "WELCOME10" takes 10% off first payment | entering | yes
-| Subscribe button if form/payment is valid | - User directed to subscription confirmation, confirmation email sent to user, subscription and customer created in Stripe, membership info attached to user profile | click | yes 
+| Add promotional code | advertised promo code “WELCOME10” takes 10% off first payment | entering | yes
+| Subscribe button if form/payment is valid | User directed to subscription confirmation, confirmation email sent to user, subscription and customer created in Stripe, membership info attached to user profile | click | yes 
 
 ### Account / Membership Settings
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
@@ -376,8 +376,8 @@
         ```
         held_inventory + inventory
         ```
-    - Currently, if an order is created when there isn't enough stock, the order will fail the 'order_fullfilled' object. This is to notify the site owners as soon as possible: 
-    ![Order Fullfilled](static/images/readme-images/testing/order_fullfilled.png)
+    - Currently, if an order is created when there isn't enough stock, the order will fail the 'order_fulfilled' object. This is to notify the site owners as soon as possible: 
+    ![Order Fulfilled](static/images/readme-images/testing/order_fullfilled.png)
 
 - Checkout Submit Button 
     - Hitting the enter key as opposed to clicking the submit button bypassed the form validation resulting in the following: 
