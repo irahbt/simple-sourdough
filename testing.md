@@ -266,7 +266,7 @@
 ### Recipe Details
 | Element              | Expected behaviour | Tested On/By   | Confirmed 
 | -------------------- | ------------------ | -----------    | ----------
-| Bootstrap Accordion | Expand/Collapse | click | yes 
+| Bootstrap Accordion  | Expand/Collapse | click | yes 
 | Edit Button | Takes superusers to edit specific recipe page | click | yes 
 | Delete button | Triggers defensive modal | click | yes 
 | Modal cancel Button | Exits modal without any changes to recipe | click | yes 
