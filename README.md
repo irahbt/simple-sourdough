@@ -37,16 +37,16 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
    - [Existing Features](#existing-features)
 
      - [Elements on every page](#elements-on-every-page)
-     - [Shop](#shop)
+     - [Shop / Products](#shop/products)
      - [Product Details](#product-details)
      - [Basket](#basket)
      - [Product Checkout](#product-checkout)
      - [Recipes](#recipes)
-     - [Recipe](#recipe)
+     - [Recipe Details](#recipe-details)
      - [Premium](#premium)
      - [Premium Checkout](#premium-checkout)
      - [Stripe Premium Checkout](#stripe-premium-checkout)
-     - [User Account](#user-acccount)
+     - [User Account](#user-account)
      - [Premium Settings](#premium-settings)
      - [Allauth Pages](#allauth-pages)
      - [Confirmation Emails](#allauth-pages)
@@ -59,7 +59,7 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 
    - [Database Choice](#database-choice)
 
-   - [Collections Data Structure](#collections-data-structure)
+   - [Models Data structure](#models-data-structure)
 
    </details>
 
@@ -320,7 +320,7 @@ Icons are used throughout the site to provide the user with visual cues and crea
 - A [Slick](https://kenwheeler.github.io/slick/) Carousel is used to display featured products.
 - An overlay is used to display information, this is on hover-over on larger screens and constant on smaller screens.
 
-### Shop / Products
+### Shop/Products
 
 ![Shop Responsive](./static/images/readme-images/responsive/shop-responsive.png)
 
@@ -477,7 +477,8 @@ Python logic is used to prevent the user from adding products to their basket th
 - If the transaction is successful, the membership will be attached to their account and the user will be able to see the changes immediately. 
 - Successful payment is confirmed by the checkout success page. 
 
-### Account 
+
+### User Account 
 #### Account Details
 - If the user has previously purchased something and ticked the [Save Shipping Details](#the-form) checkbox at checkout this form will be populated with the saved information.
 - Users can update this information to populate the contact information on the [Product Checkout](#product-checkout) page.
