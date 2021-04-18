@@ -727,8 +727,13 @@ echo web: python app.py > Procfile
 
 ### Content
 
-- All copy was written by myself. 
 - Product descriptions were adapted from various similar product descriptions.
+- Recipes were adapated from the following:
+    - [Soft and Chewy Sourdough Chocolate Chip Cookies](https://www.theclevercarrot.com/2020/05/sourdough-chocolate-chip-cookies-soft-chewy/)
+    - [No Knead Soft Sourdough Rolls](https://www.weekendbakery.com/posts/no-knead-soft-sourdough-rolls/)
+    - [Sourdough Flatbread Recipe
+    ](https://www.hobbshousebakery.co.uk/blogs/recipes/140060935-sourdough-flatbread-recipe)
+    - Other recipes were given by friends and family 
 
 ### Media
 
