@@ -59,7 +59,7 @@ As one of the more difficult trends of the UK lockdown, Starter is an e-commerce
 
    - [Database Choice](#database-choice)
 
-   - [Models Data structure](#models-data-structure)
+   - [Database Schema](#Database-Schema)
 
    </details>
 
@@ -565,7 +565,7 @@ Python logic is used to prevent the user from adding products to their basket th
 ## Database Choice
 [SQLite](https://www.sqlite.org/index.html) is used in development and [PostgreSQL](https://www.postgresql.org/) is used in deployed version. 
 
-## Models Data structure
+## Database Schema
 ![Database Schema](./static/images/readme-images/dbschema.png)
 
 # Technologies Used
