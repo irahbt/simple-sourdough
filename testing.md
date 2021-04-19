@@ -1,6 +1,6 @@
 # Starter testing
 - [Primary README.md file](./README.md)
-- [View Website](https://https://starter-sourdough.herokuapp.com/.herokuapp.com/)
+- [View Website](https://starter-sourdough.herokuapp.com/)
 
 ## Table of Contents
 1. [Validators](#validators)
